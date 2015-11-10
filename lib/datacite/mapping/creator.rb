@@ -1,0 +1,20 @@
+require 'xml/mapping'
+require_relative 'name_identifier'
+
+module Datacite
+  module Mapping
+    class Creator
+      include ::XML::Mapping
+
+      text_node :name, 'creatorName'
+      object_node :identifier, 'nameIdentifier', class: NameIdentifier
+      array_node :affiliations, 'affiliation', class: String
+
+      def initialize(name:, identifier: nil, affiliations: nil)
+        self.name = name
+        self.identifier = identifier
+        self.affiliations = affiliations || []
+      end
+    end
+  end
+end
