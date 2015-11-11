@@ -22,3 +22,7 @@ Style/EmptyLinesAroundModuleBody:
 # Allow one line around block body (Style/EmptyLines will still disallow two or more)
 Style/EmptyLinesAroundBlockBody:
   Enabled: false
+
+# Allow leading underscores for 'internal' accessors
+Lint/UnderscorePrefixedVariableName:
+  Enabled: false
