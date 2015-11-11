@@ -8,7 +8,7 @@ module Datacite
       root_element_name 'nameIdentifier'
 
       text_node :scheme, '@nameIdentifierScheme'
-      uri_node :scheme_uri, '@schemeURI', default: nil
+      uri_node :scheme_uri, '@schemeURI', default_value: nil
       text_node :value, 'text()'
 
       def initialize(scheme:, scheme_uri: nil, value:)
