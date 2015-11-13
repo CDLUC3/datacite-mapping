@@ -33,7 +33,16 @@ module Datacite
       end
 
       describe 'lang=' do
-        it 'requires a language'
+        it 'sets the language' do
+          title = Title.new(value: "Of Some Books Lately Publish't", lang: 'en-emodeng')
+          new_lang = 'en-gb'
+          title.lang = new_lang
+          expect(title.lang).to eq(new_lang)
+        end
+        it 'requires a language' do
+          title = Title.new(value: "Of Some Books Lately Publish't", lang: 'en-emodeng')
+          expect { title.lang = nil }.to raise_error(ArgumentError)
+        end
       end
 
       describe '#load_from_xml' do
@@ -51,7 +60,12 @@ module Datacite
           expect(title.value).to eq(expected_value)
         end
 
-        it 'treats missing language as en-us'
+        it 'treats missing language as en' do
+          xml_text = '<title>Physical oceanography from BT during cruise U99XX00542B_1979</title>'
+          xml = REXML::Document.new(xml_text).root
+          title = Title.load_from_xml(xml)
+          expect(title.lang).to eq('en')
+        end
       end
 
       describe '#save_to_xml' do
