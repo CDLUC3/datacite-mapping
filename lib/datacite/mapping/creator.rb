@@ -4,7 +4,7 @@ require_relative 'name_identifier'
 module Datacite
   module Mapping
     class Creator
-      include ::XML::Mapping
+      include XML::Mapping
 
       text_node :name, 'creatorName'
       object_node :identifier, 'nameIdentifier', class: NameIdentifier
@@ -19,7 +19,7 @@ module Datacite
 
     # Not to be instantiated directly -- just call `Resource#creators`
     class Creators
-      include ::XML::Mapping
+      include XML::Mapping
       array_node :creators, 'creator', class: Creator
 
       def initialize(creators:)

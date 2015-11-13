@@ -3,7 +3,7 @@ require 'xml/mapping_extensions'
 module Datacite
   module Mapping
     class NameIdentifier
-      include ::XML::Mapping
+      include XML::Mapping
 
       root_element_name 'nameIdentifier'
 

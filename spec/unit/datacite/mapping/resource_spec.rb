@@ -5,7 +5,15 @@ module Datacite
     describe Resource do
       describe '#save_to_xml' do
         it 'sets the namespace to http://datacite.org/schema/kernel-3'
-        it "doesn't clobber the namespace on the title xml:lang attribute"
+        it "doesn't clobber the namespace on the various xml:lang attributes"
+      end
+
+      describe 'identifier' do
+        it 'returns the identifier'
+      end
+
+      describe 'identifier=' do
+        it 'sets the identifier'
       end
 
       describe 'creators' do
@@ -24,6 +32,31 @@ module Datacite
 
       describe 'titles=' do
         it 'overwrites the title list'
+      end
+
+      describe 'publisher' do
+        it 'returns the publisher'
+      end
+
+      describe 'publisher=' do
+        it 'sets the publisher'
+      end
+
+      describe 'publication_year' do
+        it 'returns the publication year'
+      end
+
+      describe 'publication_year=' do
+        it 'sets the publication year'
+      end
+
+      describe 'subjects' do
+        it 'returns the subject list'
+        it 'returns an editable list'
+      end
+
+      describe 'subjects=' do
+        it 'overwrites the subject list'
       end
     end
   end

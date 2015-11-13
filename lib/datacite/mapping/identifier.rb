@@ -3,7 +3,7 @@ require 'xml/mapping'
 module Datacite
   module Mapping
     class Identifier
-      include ::XML::Mapping
+      include XML::Mapping
 
       text_node :identifier_type, '@identifierType'
       text_node :value, 'text()'

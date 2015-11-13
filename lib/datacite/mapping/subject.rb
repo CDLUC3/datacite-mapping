@@ -1,18 +1,19 @@
 require 'xml/mapping'
-require_relative 'types/title_type'
 
 module Datacite
   module Mapping
-    class Title
+    class Subject
       include XML::Mapping
 
+      text_node :scheme, '@subjectScheme', default_value: nil
+      uri_node :scheme_uri, '@schemeURI', default_value: nil
       text_node :_lang, '@xml:lang', default_value: nil
-      title_type_node :type, '@titleType', default_value: nil
       text_node :value, 'text()'
 
-      def initialize(lang:, type: nil, value:)
+      def initialize(scheme: nil, scheme_uri: nil, lang:, value:)
+        self.scheme = scheme
+        self.scheme_uri = scheme_uri
         self._lang = lang
-        self.type = type
         self.value = value
       end
 
@@ -27,15 +28,15 @@ module Datacite
 
     end
 
-    # Not to be instantiated directly -- just call `Resource#titles`
-    class Titles
+    class Subjects
       include XML::Mapping
 
-      array_node :titles, 'title', class: Title
+      array_node :subjects, 'subject', class: Subject
 
-      def initialize(titles:)
-        self.titles = titles
+      def initialize(subjects:)
+        self.subjects = subjects
       end
+
     end
   end
 end

@@ -6,11 +6,13 @@ require_relative 'title'
 module Datacite
   module Mapping
     class Resource
-      include ::XML::Mapping
+      include XML::Mapping
 
       object_node :identifier, 'identifier', class: Identifier
       object_node :_creators, 'creators', class: Creators
       object_node :_titles, 'titles', class: Titles
+      text_node :publisher, 'publisher'
+      numeric_node :publication_year, 'publicationYear'
 
       def creators=(value)
         self._creators = Creators.new(creators: value)
