@@ -17,7 +17,7 @@ module Datacite
         end
 
         it 'requires a language' do
-          expect{ Title.new(value: 'A Relation of an Accident by Thunder and Lightning, at Oxford') }.to raise_error(ArgumentError)
+          expect { Title.new(value: 'A Relation of an Accident by Thunder and Lightning, at Oxford') }.to raise_error(ArgumentError)
         end
 
         it 'sets the type' do

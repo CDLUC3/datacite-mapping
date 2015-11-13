@@ -21,7 +21,7 @@ module Datacite
       end
 
       def lang=(value)
-        raise ArgumentError, 'Language cannot be nil' unless value
+        fail ArgumentError, 'Language cannot be nil' unless value
         self._lang = value
       end
 
