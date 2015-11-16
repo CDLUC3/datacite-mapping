@@ -12,7 +12,7 @@ module Datacite
 
         it 'sets the language' do
           lang = 'en-emodeng'
-          title = Title.new(lang: lang, value: 'Observables upon a Monstrous Head', lang: 'en-emodeng')
+          title = Title.new(lang: lang, value: 'Observables upon a Monstrous Head')
           expect(title.lang).to eq(lang)
         end
 
@@ -21,7 +21,7 @@ module Datacite
         end
 
         it 'sets the type' do
-          type = Types::TitleType::SUBTITLE
+          type = TitleType::SUBTITLE
           title = Title.new(type: type, value: 'And a Contest between Two Artists about Optick Glasses, &c', lang: 'en-emodeng')
           expect(title.type).to eq(type)
         end
@@ -52,7 +52,7 @@ module Datacite
           title = Title.load_from_xml(xml)
 
           expected_lang = 'en-emodeng'
-          expected_type = Types::TitleType::SUBTITLE
+          expected_type = TitleType::SUBTITLE
           expected_value = 'Together with an Appendix of the Same, Containing an Answer to Some Objections, Made by Severall Persons against That Hypothesis'
 
           expect(title.lang).to eq(expected_lang)
@@ -72,7 +72,7 @@ module Datacite
         it 'writes XML' do
           title = Title.new(
             lang: 'en-emodeng',
-            type: Types::TitleType::SUBTITLE,
+            type: TitleType::SUBTITLE,
             value: 'Together with an Appendix of the Same, Containing an Answer to Some Objections, Made by Severall Persons against That Hypothesis'
           )
           expected_xml = '<title xml:lang="en-emodeng" titleType="Subtitle">Together with an Appendix of the Same, Containing an Answer to Some Objections, Made by Severall Persons against That Hypothesis</title>'

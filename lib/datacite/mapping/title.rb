@@ -1,8 +1,21 @@
 require 'xml/mapping'
-require_relative 'types/title_type'
 
 module Datacite
   module Mapping
+
+    class TitleType
+      include Ruby::Enum
+
+      define :ALTERNATIVE_TITLE, 'AlternativeTitle'
+      define :SUBTITLE, 'Subtitle'
+      define :TRANSLATED_TITLE, 'TranslatedTitle'
+    end
+
+    class TitleTypeNode < XML::MappingExtensions::EnumNodeBase
+      ENUM_CLASS = TitleType
+    end
+    XML::Mapping.add_node_class TitleTypeNode
+
     class Title
       include XML::Mapping
 
