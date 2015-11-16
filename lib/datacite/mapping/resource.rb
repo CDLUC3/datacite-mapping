@@ -2,6 +2,7 @@ require 'xml/mapping'
 require_relative 'identifier'
 require_relative 'creator'
 require_relative 'title'
+require_relative 'subject'
 
 module Datacite
   module Mapping
@@ -13,6 +14,7 @@ module Datacite
       object_node :_titles, 'titles', class: Titles
       text_node :publisher, 'publisher'
       numeric_node :publication_year, 'publicationYear'
+      object_node :_subjects, 'subjects', class: Subjects
 
       def creators=(value)
         self._creators = Creators.new(creators: value)
@@ -30,6 +32,15 @@ module Datacite
       def titles
         _titles ||= Titles.new(titles: [])
         _titles.titles
+      end
+
+      def subjects=(value)
+        self._subjects = Subjects.new(subjects: value)
+      end
+
+      def subjects
+        _subjects ||= Subjects.new(subjects: [])
+        _subjects.subjects
       end
 
     end
