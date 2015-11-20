@@ -1,26 +1,19 @@
-require 'xml/mapping'
+require 'xml/mapping_extensions'
 
 module Datacite
   module Mapping
 
-    class TitleType
-      include Ruby::Enum
-
-      define :ALTERNATIVE_TITLE, 'AlternativeTitle'
-      define :SUBTITLE, 'Subtitle'
-      define :TRANSLATED_TITLE, 'TranslatedTitle'
+    class TitleType < TypesafeEnum::Base
+      new :ALTERNATIVE_TITLE, 'AlternativeTitle'
+      new :SUBTITLE, 'Subtitle'
+      new :TRANSLATED_TITLE, 'TranslatedTitle'
     end
-
-    class TitleTypeNode < XML::MappingExtensions::EnumNodeBase
-      ENUM_CLASS = TitleType
-    end
-    XML::Mapping.add_node_class TitleTypeNode
 
     class Title
       include XML::Mapping
 
       text_node :_lang, '@xml:lang', default_value: nil
-      title_type_node :type, '@titleType', default_value: nil
+      typesafe_enum_node :type, '@titleType', class: TitleType, default_value: nil
       text_node :value, 'text()'
 
       def initialize(lang:, type: nil, value:)

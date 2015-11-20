@@ -44,6 +44,16 @@ module Datacite
           expect(id.scheme_uri).to eq(URI('http://isni.org'))
           expect(id.value).to eq('0000-0001-1690-159X')
         end
+
+        it 'defaults to an empty affiliation array' do
+          xml_text = '<creator>
+                        <creatorName>Hedy Lamarr</creatorName>
+                        <nameIdentifier schemeURI="http://isni.org/" nameIdentifierScheme="ISNI">0000-0001-1690-159X</nameIdentifier>
+                      </creator>'
+          xml = REXML::Document.new(xml_text).root
+          creator = Creator.load_from_xml(xml)
+          expect(creator.affiliations).to eq([])
+        end
       end
 
       describe '#save_to_xml' do
