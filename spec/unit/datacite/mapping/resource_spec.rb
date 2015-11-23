@@ -62,6 +62,7 @@ module Datacite
       describe 'publisher=' do
         it 'sets the publisher'
         it 'rejects nil'
+        it 'rejects the empty string'
       end
 
       describe 'publication_year' do
