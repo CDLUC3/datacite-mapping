@@ -72,7 +72,10 @@ module Datacite
     end
 
     describe Creators do
-      it 'requires at least one creator'
+      it 'requires at least one creator' do
+        expect { Creators.new(creators: []) }.to raise_error(ArgumentError)
+        expect { Creators.new(creators: nil) }.to raise_error(ArgumentError)
+      end
       it 'round-trips to xml' do
         xml_text = '<creators>
                       <creator>

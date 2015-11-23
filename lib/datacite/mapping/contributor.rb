@@ -51,7 +51,7 @@ module Datacite
       array_node :contributors, 'contributor', class: Contributor
 
       def initialize(contributors:)
-        self.contributors = contributors
+        self.contributors = contributors || []
       end
     end
   end

@@ -34,7 +34,7 @@ module Datacite
       array_node :subjects, 'subject', class: Subject
 
       def initialize(subjects:)
-        self.subjects = subjects
+        self.subjects = subjects || []
       end
 
     end

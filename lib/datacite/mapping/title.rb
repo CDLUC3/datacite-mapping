@@ -40,6 +40,7 @@ module Datacite
       array_node :titles, 'title', class: Title
 
       def initialize(titles:)
+        fail ArgumentError, 'No titles provided' unless titles && !titles.empty?
         self.titles = titles
       end
     end

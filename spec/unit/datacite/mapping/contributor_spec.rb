@@ -96,7 +96,14 @@ module Datacite
     end
 
     describe Contributors do
-      it 'allows zero contributors'
+      it 'allows zero contributors' do
+        contributors = Contributors.new(contributors: [])
+        expect(contributors.contributors).to eq([])
+      end
+      it 'defaults to an empty list' do
+        contributors = Contributors.new(contributors: nil)
+        expect(contributors.contributors).to eq([])
+      end
       it 'round-trips to XML' do
         xml_text = '<contributors>
                       <contributor contributorType="Researcher">

@@ -23,6 +23,7 @@ module Datacite
       array_node :creators, 'creator', class: Creator
 
       def initialize(creators:)
+        fail ArgumentError, 'No creators provided' unless creators && !creators.empty?
         self.creators = creators
       end
     end

@@ -83,7 +83,10 @@ module Datacite
     end
 
     describe Titles do
-      it 'requires at least one title'
+      it 'requires at least one title' do
+        expect { Titles.new(titles: []) }.to raise_error(ArgumentError)
+        expect { Titles.new(titles: nil) }.to raise_error(ArgumentError)
+      end
       it 'round-trips to xml' do
         xml_text = '<titles>
                       <title xml:lang="en-us">Full DataCite XML Example</title>
