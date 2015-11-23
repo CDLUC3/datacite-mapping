@@ -72,6 +72,7 @@ module Datacite
     end
 
     describe Creators do
+      it 'requires at least one creator'
       it 'round-trips to xml' do
         xml_text = '<creators>
                       <creator>

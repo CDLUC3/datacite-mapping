@@ -96,6 +96,7 @@ module Datacite
     end
 
     describe Contributors do
+      it 'allows zero contributors'
       it 'round-trips to XML' do
         xml_text = '<contributors>
                       <contributor contributorType="Researcher">

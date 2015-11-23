@@ -83,6 +83,7 @@ module Datacite
     end
 
     describe Titles do
+      it 'requires at least one title'
       it 'round-trips to xml' do
         xml_text = '<titles>
                       <title xml:lang="en-us">Full DataCite XML Example</title>

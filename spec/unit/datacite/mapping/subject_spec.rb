@@ -104,6 +104,7 @@ module Datacite
     end
 
     describe Subjects do
+      it 'allows zero subjects'
       it 'round-trips to XML' do
         xml_text = '<subjects>
                       <subject xml:lang="en-us" schemeURI="http://id.loc.gov/authorities/subjects" subjectScheme="LCSH">Mammals--Embryology</subject>
