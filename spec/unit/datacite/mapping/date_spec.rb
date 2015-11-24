@@ -1,18 +1,5 @@
 require 'spec_helper'
 
-# Year:
-#   YYYY (eg 1997)
-# Year and month:
-#   YYYY-MM (eg 1997-07)
-# Complete date:
-#   YYYY-MM-DD (eg 1997-07-16)
-# Complete date plus hours and minutes:
-#   YYYY-MM-DDThh:mmTZD (eg 1997-07-16T19:20+01:00)
-# Complete date plus hours, minutes and seconds:
-#   YYYY-MM-DDThh:mm:ssTZD (eg 1997-07-16T19:20:30+01:00)
-# Complete date plus hours, minutes, seconds and a decimal fraction of a second
-#   YYYY-MM-DDThh:mm:ss.sTZD (eg 1997-07-16T19:20:30.45+01:00)
-
 module Datacite
   module Mapping
     describe Date do
@@ -27,7 +14,7 @@ module Datacite
         @values[:iso8601] = '1914-08-04T11:01+01:00'
         @values[:iso8601_secs] = '1914-08-04T11:01:06+01:00'
         @values[:iso8601_frac] = '1914-08-04T11:01:06.0123+01:00'
-        @dates = @values.map { |k, v| [k, Date.new(value: v)] }.to_h
+        @dates = @values.map { |format, v| [format, Date.new(value: v)] }.to_h
       end
 
       describe '#initialize' do
@@ -82,90 +69,151 @@ module Datacite
         it 'rejects invalid dates' do
           expect { Date.new(value: 'elvis') }.to raise_error(ArgumentError)
         end
+
+        it 'rejects nil' do
+          expect { Date.new(value: nil) }.to raise_error(ArgumentError)
+        end
       end
 
       describe 'value=' do
-        it 'accepts a DateTime'
-        it 'accepts a Date'
-        it 'accepts a year as an integer'
-        it 'accepts a year as a string'
-        it 'accepts a year-month string'
-        it 'accepts an ISO 8601 date string with hours and minutes'
-        it 'accepts an ISO 8601 date string with hours, minutes, and seconds'
-        it 'accepts an ISO 8601 date string with hours, minutes, seconds, and fractional seconds'
-        it 'rejects invalid dates'
+        it 'accepts all date formats' do
+          @values.each_value do |v|
+            d = Date.allocate
+            d.value = v
+            expect(d.value).not_to be_nil, "Expected non-nil value for #{v}, got nil"
+          end
+        end
+
+        it 'rejects invalid dates' do
+          d = Date.new(value: 1914)
+          old_value = d.value
+          expect { d.value = 'elvis' }.to raise_error(ArgumentError)
+          expect(d.value).to eq(old_value)
+        end
+
+        it 'rejects nil' do
+          d = Date.new(value: 1914)
+          old_value = d.value
+          expect { d.value = nil }.to raise_error(ArgumentError)
+          expect(d.value).to eq(old_value)
+        end
       end
 
       describe 'value' do
-        it 'returns the value'
-        it 'returns a string for a DateTime'
-        it 'returns a string for a Date'
+        it 'returns a string for a DateTime' do
+          expect(@dates[:with_date_time].value).to eq(@values[:with_date_time].iso8601)
+        end
+        it 'returns a string for a Date' do
+          expect(@dates[:with_date].value).to eq(@values[:with_date].iso8601)
+        end
+        it 'returns a string for a year as an integer' do
+          expect(@dates[:with_year].value).to eq(@values[:with_year].to_s)
+        end
+        it 'returns a string for a year as a string' do
+          expect(@dates[:with_year_str].value).to eq(@values[:with_year_str])
+        end
+        it 'returns a string for a year-month string' do
+          expect(@dates[:with_year_month].value).to eq(@values[:with_year_month])
+        end
+        it 'preserves an ISO 8601 date string with hours and minutes' do
+          expect(@dates[:iso8601].value).to eq(@values[:iso8601])
+        end
+        it 'preserves an ISO 8601 date string with hours, minutes, and seconds' do
+          expect(@dates[:iso8601_secs].value).to eq(@values[:iso8601_secs])
+        end
+        it 'preserves an ISO 8601 date string with hours, minutes, seconds, and fractional seconds' do
+          expect(@dates[:iso8601_frac].value).to eq(@values[:iso8601_frac])
+        end
       end
-      
+
       describe 'year' do
-        it 'returns the year as an integer for a DateTime'
-        it 'returns the year as an integer for a Date'
-        it 'returns the year as an integer for a year as an integer'
-        it 'returns the year as an integer for a year as a string'
-        it 'returns the year as an integer for a year-month string'
-        it 'returns the year as an integer for an ISO 8601 date string with hours and minutes'
-        it 'returns the year as an integer for an ISO 8601 date string with hours, minutes, and seconds'
-        it 'returns the year as an integer for an ISO 8601 date string with hours, minutes, seconds, and fractional seconds'
+        it 'returns the year for all date formats' do
+          @dates.each_value do |d|
+            expect(d.year).to eq(1914)
+          end
+        end
       end
-      
+
       describe 'month' do
-        it 'returns the month as an integer for a DateTime'
-        it 'returns the month as an integer for a Date'
-        it 'returns nil for a year as an integer'
-        it 'returns nil for a year as a string'
-        it 'returns the month as an integer for a year-month string'
-        it 'returns the month as an integer for an ISO 8601 date string with hours and minutes'
-        it 'returns the month as an integer for an ISO 8601 date string with hours, minutes, and seconds'
-        it 'returns the month as an integer for an ISO 8601 date string with hours, minutes, seconds, and fractional seconds'
+        it 'returns the month for all date formats that have it' do
+          expected = 8
+          @dates.each_pair do |format, d|
+            if [:with_year, :with_year_str].include?(format)
+              expect(d.month).to be_nil
+            else
+              expect(d.month).to eq(expected), "expected #{expected}, got #{d.month} for :#{format} (#{d.value})"
+            end
+          end
+        end
       end
 
       describe 'day' do
-        it 'returns the day as an integer for a DateTime'
-        it 'returns the day as an integer for a Date'
-        it 'returns nil for a year as an integer'
-        it 'returns nil for a year as a string'
-        it 'returns nil for a year-month string'
-        it 'returns the day as an integer for an ISO 8601 date string with hours and minutes'
-        it 'returns the day as an integer for an ISO 8601 date string with hours, minutes, and seconds'
-        it 'returns the day as an integer for an ISO 8601 date string with hours, minutes, seconds, and fractional seconds'
+        it 'returns the day for all date formats that have it' do
+          expected = 4
+          @dates.each_pair do |format, d|
+            if [:with_year, :with_year_str, :with_year_month].include?(format)
+              expect(d.day).to be_nil
+            else
+              expect(d.day).to eq(expected), "expected #{expected}, got #{d.day} for :#{format} (#{d.value})"
+            end
+          end
+        end
       end
 
       describe 'hour' do
-        it 'returns the hour as an integer for a DateTime'
-        it 'returns the hour as an integer for a Date'
-        it 'returns nil for a year as an integer'
-        it 'returns nil for a year as a string'
-        it 'returns nil for a year-month string'
-        it 'returns the hour as an integer for an ISO 8601 date string with hours and minutes'
-        it 'returns the hour as an integer for an ISO 8601 date string with hours, minutes, and seconds'
-        it 'returns the hour as an integer for an ISO 8601 date string with hours, minutes, seconds, and fractional seconds'
+        it 'returns the hour for all formats that have it' do
+          expected = 11
+          @dates.each_pair do |format, d|
+            if [:with_date, :with_year, :with_year_str, :with_year_month].include?(format)
+              expect(d.hour).to be_nil, "expected nil, got #{d.hour} for :#{format} (#{d.value})"
+            else
+              expect(d.hour).to eq(expected), "expected #{expected}, got #{d.hour} for :#{format} (#{d.value})"
+            end
+          end
+        end
       end
 
-      describe 'minutes' do
-        it 'returns the minutes as an integer for a DateTime'
-        it 'returns the minutes as an integer for a Date'
-        it 'returns nil for a year as an integer'
-        it 'returns nil for a year as a string'
-        it 'returns nil for a year-month string'
-        it 'returns the minutes as an integer for an ISO 8601 date string with hours and minutes'
-        it 'returns the minutes as an integer for an ISO 8601 date string with hours, minutes, and seconds'
-        it 'returns the minutes as an integer for an ISO 8601 date string with hours, minutes, seconds, and fractional seconds'
+      describe 'minute' do
+        it 'returns the minutes for all formats that have it' do
+          expected = 1
+          @dates.each_pair do |format, d|
+            if [:with_date, :with_year, :with_year_str, :with_year_month].include?(format)
+              expect(d.minute).to be_nil, "expected nil, got #{d.hour} for :#{format} (#{d.value})"
+            else
+              expect(d.minute).to eq(expected), "expected #{expected}, got #{d.minute} for :#{format} (#{d.value})"
+            end
+          end
+        end
       end
 
-      describe 'minutes' do
-        it 'returns the seconds as an integer for a DateTime'
-        it 'returns the seconds as an integer for a Date'
-        it 'returns nil for a year as an integer'
-        it 'returns nil for a year as a string'
-        it 'returns nil for a year-month string'
-        it 'returns nil for an ISO 8601 date string with hours and minutes'
-        it 'returns the seconds as an integer for an ISO 8601 date string with hours, minutes, and seconds'
-        it 'returns the seconds as a float for an ISO 8601 date string with hours, minutes, seconds, and fractional seconds'
+      describe 'sec' do
+        it 'returns the seconds for all formats that have it' do
+          expected = 6
+          @dates.each_pair do |format, d|
+            if [:with_date, :with_year, :with_year_str, :with_year_month].include?(format)
+              expect(d.sec).to be_nil, "expected nil, got #{d.hour} for :#{format} (#{d.value})"
+            elsif format == :iso8601
+              expect(d.sec).to eq(0)
+            else
+              expect(d.sec).to eq(expected), "expected #{expected}, got #{d.sec} for :#{format} (#{d.value})"
+            end
+          end
+        end
+      end
+
+      describe 'nsec' do
+        it 'returns the nanoseconds for all formats that have it' do
+          expected = 12_300_000
+          @dates.each_pair do |format, d|
+            if [:with_date, :with_year, :with_year_str, :with_year_month].include?(format)
+              expect(d.nsec).to be_nil, "expected nil, got #{d.hour} for :#{format} (#{d.value})"
+            elsif [:iso8601, :iso8601_secs].include?(format)
+              expect(d.nsec).to eq(0)
+            else
+              expect(d.nsec).to eq(expected), "expected #{expected}, got #{d.nsec} for :#{format} (#{d.value})"
+            end
+          end
+        end
       end
     end
   end
