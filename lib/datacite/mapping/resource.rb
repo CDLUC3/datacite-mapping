@@ -3,6 +3,8 @@ require_relative 'identifier'
 require_relative 'creator'
 require_relative 'title'
 require_relative 'subject'
+require_relative 'resource_type'
+require_relative 'alternate_identifier'
 
 module Datacite
   module Mapping
@@ -16,6 +18,8 @@ module Datacite
       numeric_node :publication_year, 'publicationYear'
       object_node :_subjects, 'subjects', class: Subjects
       text_node :_lang, 'language'
+      object_node :resource_type, 'resourceType', class: ResourceType
+      object_node :alternate_identifiers, 'alternateIdentifiers', class: AlternateIdentifiers
 
       def creators=(value)
         self._creators = Creators.new(creators: value)
