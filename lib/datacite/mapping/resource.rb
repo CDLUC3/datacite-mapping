@@ -15,6 +15,7 @@ module Datacite
       text_node :publisher, 'publisher'
       numeric_node :publication_year, 'publicationYear'
       object_node :_subjects, 'subjects', class: Subjects
+      text_node :_lang, 'language'
 
       def creators=(value)
         self._creators = Creators.new(creators: value)
@@ -41,6 +42,15 @@ module Datacite
       def subjects
         _subjects ||= Subjects.new(subjects: [])
         _subjects.subjects
+      end
+
+      def language
+        _lang || 'en'
+      end
+
+      def language=(value)
+        fail ArgumentError, 'Language cannot be nil' unless value
+        self._lang = value
       end
 
     end

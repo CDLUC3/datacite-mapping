@@ -100,7 +100,16 @@ module Datacite
 
       describe 'language=' do
         it 'sets the languge'
-        it 'accepts nil'
+        it 'requires a language'
+      end
+
+      describe 'resource_type' do
+        it 'returns the resource type'
+      end
+
+      describe 'resource_type=' do
+        it 'sets the resource type'
+        it 'requires a resource type'
       end
 
       describe 'alternate_identifiers' do
