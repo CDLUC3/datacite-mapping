@@ -72,9 +72,18 @@ module Datacite
     end
 
     describe Creators do
-      it 'requires at least one creator' do
-        expect { Creators.new(creators: []) }.to raise_error(ArgumentError)
-        expect { Creators.new(creators: nil) }.to raise_error(ArgumentError)
+      describe '#initialize' do
+        it 'accepts a list of creators' do
+          id1 = NameIdentifier.new(scheme: 'ISNI', scheme_uri: URI('http://isni.org/'), value: '0000-0001-1690-159X')
+          c1 = Creator.new(name: 'Hedy Lamarr', identifier: id1, affiliations: ['United Artists', 'Metro-Goldwyn-Mayer'])
+          id2 = NameIdentifier.new(scheme: 'ISNI', scheme_uri: URI('http://isni.org/'), value: '0000-0001-0907-8419')
+          c2 = Creator.new(name: 'Herschlag, Natalie', identifier: id2, affiliations: ['Gaumont Buena Vista International', '20th Century Fox'])
+          expect(Creators.new(creators: [c1, c2]).creators).to eq([c1, c2])
+        end
+        it 'requires at least one creator' do
+          expect { Creators.new(creators: []) }.to raise_error(ArgumentError)
+          expect { Creators.new(creators: nil) }.to raise_error(ArgumentError)
+        end
       end
       it 'round-trips to xml' do
         xml_text = '<creators>

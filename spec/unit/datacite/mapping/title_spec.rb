@@ -83,9 +83,20 @@ module Datacite
     end
 
     describe Titles do
-      it 'requires at least one title' do
-        expect { Titles.new(titles: []) }.to raise_error(ArgumentError)
-        expect { Titles.new(titles: nil) }.to raise_error(ArgumentError)
+      describe '#initialize' do
+        it 'accepts a list of titles' do
+          t1 =  Title.new(value: "Of Some Books Lately Publish't", lang: 'en-emodeng')
+          t2 = Title.new(
+            lang: 'en-emodeng',
+            type: TitleType::SUBTITLE,
+            value: 'Together with an Appendix of the Same, Containing an Answer to Some Objections, Made by Severall Persons against That Hypothesis'
+          )
+          expect(Titles.new(titles: [t1, t2]).titles).to eq([t1, t2])
+        end
+        it 'requires at least one title' do
+          expect { Titles.new(titles: []) }.to raise_error(ArgumentError)
+          expect { Titles.new(titles: nil) }.to raise_error(ArgumentError)
+        end
       end
       it 'round-trips to xml' do
         xml_text = '<titles>

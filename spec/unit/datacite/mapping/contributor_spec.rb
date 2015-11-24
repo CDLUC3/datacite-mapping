@@ -121,9 +121,9 @@ module Datacite
                     </contributors>'
         xml = REXML::Document.new(xml_text).root
         contributors = Contributors.load_from_xml(xml)
-        contributors.contributors.each do |c|
-          puts "#{c.name} -> #{c.type}"
-        end
+        # contributors.contributors.each do |c|
+        #   puts "#{c.name} -> #{c.type}"
+        # end
         expect(contributors.save_to_xml).to be_xml(xml_text)
       end
     end

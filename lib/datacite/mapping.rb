@@ -8,7 +8,8 @@ module Datacite
     end
 
     def self.log
-      @log ||= new_logger(logdev: $stdout)
+      self.log_device = $stdout unless @log
+      @log
     end
 
     def self.log_device=(value)
