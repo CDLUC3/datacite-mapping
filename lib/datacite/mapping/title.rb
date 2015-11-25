@@ -27,7 +27,7 @@ module Datacite
       end
 
       def lang=(value)
-        fail ArgumentError, 'Language cannot be nil' unless value
+        fail ArgumentError, 'Language cannot be nil' unless value && !value.empty?
         self._lang = value
       end
 
@@ -36,7 +36,7 @@ module Datacite
       end
 
       def value=(value)
-        fail ArgumentError, 'Value cannot be nil' unless value
+        fail ArgumentError, 'Value cannot be nil' unless value && !value.empty?
         self._value = value
       end
 
