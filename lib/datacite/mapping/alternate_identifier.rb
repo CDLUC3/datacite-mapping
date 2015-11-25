@@ -38,7 +38,7 @@ module Datacite
     class AlternateIdentifiers
       include XML::Mapping
 
-      array_node :alternate_identifiers, 'alternate_identifier', class: AlternateIdentifier
+      array_node :alternate_identifiers, 'alternateIdentifier', class: AlternateIdentifier
 
       def initialize(alternate_identifiers:)
         self.alternate_identifiers = alternate_identifiers || []

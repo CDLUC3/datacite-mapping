@@ -86,6 +86,7 @@ module Datacite
                         </alternateIdentifiers>'
         xml = REXML::Document.new(xml_text).root
         ids = AlternateIdentifiers.load_from_xml(xml)
+        expect(ids.alternate_identifiers).not_to eq([])
         expect(ids.save_to_xml).to be_xml(xml)
       end
     end
