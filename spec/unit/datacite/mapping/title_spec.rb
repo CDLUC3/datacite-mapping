@@ -32,6 +32,24 @@ module Datacite
         end
       end
 
+      describe 'value=' do
+        it 'sets the value' do
+          title = Title.allocate
+          title.value = "Of Some Books Lately Publish't"
+          expect(title.value).to eq("Of Some Books Lately Publish't")
+        end
+        it 'requires a value' do
+          title = Title.new(value: "Of Some Books Lately Publish't", lang: 'en-emodeng')
+          expect { title.value = nil }.to raise_error(ArgumentError)
+          expect(title.value).to eq("Of Some Books Lately Publish't")
+        end
+        it 'requires a non-empty value' do
+          title = Title.new(value: "Of Some Books Lately Publish't", lang: 'en-emodeng')
+          expect { title.value = '' }.to raise_error(ArgumentError)
+          expect(title.value).to eq("Of Some Books Lately Publish't")
+        end
+      end
+
       describe 'lang=' do
         it 'sets the language' do
           title = Title.new(value: "Of Some Books Lately Publish't", lang: 'en-emodeng')
@@ -42,6 +60,12 @@ module Datacite
         it 'requires a language' do
           title = Title.new(value: "Of Some Books Lately Publish't", lang: 'en-emodeng')
           expect { title.lang = nil }.to raise_error(ArgumentError)
+          expect(title.lang).to eq('en-emodeng')
+        end
+        it 'requires a non-empty language' do
+          title = Title.new(value: "Of Some Books Lately Publish't", lang: 'en-emodeng')
+          expect { title.lang = '' }.to raise_error(ArgumentError)
+          expect(title.lang).to eq('en-emodeng')
         end
       end
 

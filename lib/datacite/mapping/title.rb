@@ -14,7 +14,7 @@ module Datacite
 
       text_node :_lang, '@xml:lang', default_value: nil
       typesafe_enum_node :type, '@titleType', class: TitleType, default_value: nil
-      text_node :value, 'text()'
+      text_node :_value, 'text()'
 
       def initialize(lang:, type: nil, value:)
         self._lang = lang
@@ -29,6 +29,15 @@ module Datacite
       def lang=(value)
         fail ArgumentError, 'Language cannot be nil' unless value
         self._lang = value
+      end
+
+      def value
+        _value
+      end
+
+      def value=(value)
+        fail ArgumentError, 'Value cannot be nil' unless value
+        self._value = value
       end
 
     end
