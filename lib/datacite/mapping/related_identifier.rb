@@ -36,9 +36,9 @@ module Datacite
 
       root_element_name 'relatedIdentifier'
 
-      typesafe_enum_node :relation_type, '@relationType', class: RelationType
-      text_node :value, 'text()'
-      text_node :identifier_type, '@relatedIdentifierType'
+      typesafe_enum_node :_relation_type, '@relationType', class: RelationType
+      text_node :_value, 'text()'
+      text_node :_identifier_type, '@relatedIdentifierType'
       text_node :related_metadata_scheme, '@relatedMetadataScheme', default_value: nil
       uri_node :scheme_uri, '@schemeURI', default_value: nil
       text_node :scheme_type, '@schemeType', default_value: nil
@@ -50,6 +50,33 @@ module Datacite
         self.related_metadata_scheme = related_metadata_scheme
         self.scheme_uri = scheme_uri
         self.scheme_type = scheme_type
+      end
+
+      def value
+        _value
+      end
+
+      def value=(value)
+        fail ArgumentError, 'Value cannot be empty or nil' unless value && !value.empty?
+        self._value = value
+      end
+
+      def identifier_type
+        _identifier_type
+      end
+
+      def identifier_type=(value)
+        fail ArgumentError, 'Identifier type cannot be empty or nil' unless value && !value.empty?
+        self._identifier_type = value
+      end
+
+      def relation_type
+        _relation_type
+      end
+
+      def relation_type=(value)
+        fail ArgumentError, 'Relation type cannot be nil' unless value
+        self._relation_type = value
       end
     end
 
