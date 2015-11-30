@@ -102,25 +102,5 @@ module Datacite
         end
       end
     end
-
-    describe Subjects do
-      it 'allows zero subjects' do
-        subjects = Subjects.new(subjects: [])
-        expect(subjects.subjects).to eq([])
-      end
-      it 'defaults to an empty list' do
-        subjects = Subjects.new(subjects: nil)
-        expect(subjects.subjects).to eq([])
-      end
-      it 'round-trips to XML' do
-        xml_text = '<subjects>
-                      <subject xml:lang="en-us" schemeURI="http://id.loc.gov/authorities/subjects" subjectScheme="LCSH">Mammals--Embryology</subject>
-                      <subject xml:lang="fr" schemeURI="http://dewey.info/" subjectScheme="dewey">571.8 Croissance, développement, reproduction biologique (fécondation, sexualité)</subject>
-                    </subjects>'
-        xml = REXML::Document.new(xml_text).root
-        subjects = Subjects.load_from_xml(xml)
-        expect(subjects.save_to_xml).to be_xml(xml)
-      end
-    end
   end
 end

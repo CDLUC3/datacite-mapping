@@ -158,42 +158,5 @@ module Datacite
         end
       end
     end
-
-    describe RelatedIdentifiers do
-      describe '#initialize' do
-        it 'accepts a list of ids' do
-          id1 = RelatedIdentifier.new(
-            identifier_type: 'URL',
-            relation_type: RelationType::HAS_METADATA,
-            related_metadata_scheme: 'citeproc+json',
-            scheme_type: 'Turtle',
-            scheme_uri: URI('https://github.com/citation-style-language/schema/raw/master/csl-data.json'),
-            value: 'http://data.datacite.org/application/citeproc+json/10.5072/example-full'
-          )
-          id2 = RelatedIdentifier.new(
-            identifier_type: 'arXiv',
-            relation_type: RelationType::IS_REVIEWED_BY,
-            value: 'arXiv:0706.0001'
-          )
-
-          ids = RelatedIdentifiers.new(related_identifiers: [id1, id2])
-          expect(ids.related_identifiers).to eq([id1, id2])
-        end
-        it 'allows an empty list' do
-          ids = RelatedIdentifiers.new(related_identifiers: [])
-          expect(ids.related_identifiers).to eq([])
-        end
-      end
-
-      it 'round-trips to XML' do
-        xml_text = '<relatedIdentifiers>
-                      <relatedIdentifier relatedIdentifierType="URL" relationType="HasMetadata" relatedMetadataScheme="citeproc+json" schemeURI="https://github.com/citation-style-language/schema/raw/master/csl-data.json">http://data.datacite.org/application/citeproc+json/10.5072/example-full</relatedIdentifier>
-                      <relatedIdentifier relatedIdentifierType="arXiv" relationType="IsReviewedBy">arXiv:0706.0001</relatedIdentifier>
-                    </relatedIdentifiers>'
-        xml = REXML::Document.new(xml_text).root
-        ids = RelatedIdentifiers.load_from_xml(xml)
-        expect(ids.save_to_xml).to be_xml(xml)
-      end
-    end
   end
 end

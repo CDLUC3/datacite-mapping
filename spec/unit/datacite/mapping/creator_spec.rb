@@ -70,40 +70,5 @@ module Datacite
         end
       end
     end
-
-    describe Creators do
-      describe '#initialize' do
-        it 'accepts a list of creators' do
-          id1 = NameIdentifier.new(scheme: 'ISNI', scheme_uri: URI('http://isni.org/'), value: '0000-0001-1690-159X')
-          c1 = Creator.new(name: 'Hedy Lamarr', identifier: id1, affiliations: ['United Artists', 'Metro-Goldwyn-Mayer'])
-          id2 = NameIdentifier.new(scheme: 'ISNI', scheme_uri: URI('http://isni.org/'), value: '0000-0001-0907-8419')
-          c2 = Creator.new(name: 'Herschlag, Natalie', identifier: id2, affiliations: ['Gaumont Buena Vista International', '20th Century Fox'])
-          expect(Creators.new(creators: [c1, c2]).creators).to eq([c1, c2])
-        end
-        it 'requires at least one creator' do
-          expect { Creators.new(creators: []) }.to raise_error(ArgumentError)
-          expect { Creators.new(creators: nil) }.to raise_error(ArgumentError)
-        end
-      end
-      it 'round-trips to xml' do
-        xml_text = '<creators>
-                      <creator>
-                        <creatorName>Hedy Lamarr</creatorName>
-                        <nameIdentifier schemeURI="http://isni.org/" nameIdentifierScheme="ISNI">0000-0001-1690-159X</nameIdentifier>
-                        <affiliation>United Artists</affiliation>
-                        <affiliation>Metro-Goldwyn-Mayer</affiliation>
-                      </creator>
-                      <creator>
-                        <creatorName>Hershlag, Natalie</creatorName>
-                        <nameIdentifier schemeURI="http://isni.org/" nameIdentifierScheme="ISNI">0000-0001-0907-8419</nameIdentifier>
-                        <affiliation>Gaumont Buena Vista International</affiliation>
-                        <affiliation>20th Century Fox</affiliation>
-                      </creator>
-                    </creators>'
-        xml = REXML::Document.new(xml_text).root
-        creators = Creators.load_from_xml(xml)
-        expect(creators.save_to_xml).to be_xml(xml_text)
-      end
-    end
   end
 end

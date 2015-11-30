@@ -79,18 +79,5 @@ module Datacite
         self._relation_type = value
       end
     end
-
-    # Not to be instantiated directly -- just call `Resource#related_identifiers`
-    class RelatedIdentifiers
-      include XML::Mapping
-
-      root_element_name 'relatedIdentifiers'
-
-      array_node :related_identifiers, 'relatedIdentifier', class: RelatedIdentifier
-
-      def initialize(related_identifiers:)
-        self.related_identifiers = related_identifiers || []
-      end
-    end
   end
 end

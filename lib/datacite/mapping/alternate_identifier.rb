@@ -33,18 +33,5 @@ module Datacite
         self._value = val
       end
     end
-
-    # Not to be instantiated directly -- just call `Resource#alternate_identifiers`
-    class AlternateIdentifiers
-      include XML::Mapping
-
-      root_element_name 'alternateIdentifiers'
-
-      array_node :alternate_identifiers, 'alternateIdentifier', class: AlternateIdentifier
-
-      def initialize(alternate_identifiers:)
-        self.alternate_identifiers = alternate_identifiers || []
-      end
-    end
   end
 end

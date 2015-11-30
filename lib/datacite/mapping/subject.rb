@@ -25,18 +25,6 @@ module Datacite
         fail ArgumentError, 'Language cannot be nil' unless value
         self._lang = value
       end
-
-    end
-
-    class Subjects
-      include XML::Mapping
-
-      array_node :subjects, 'subject', class: Subject
-
-      def initialize(subjects:)
-        self.subjects = subjects || []
-      end
-
     end
   end
 end

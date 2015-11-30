@@ -56,40 +56,5 @@ module Datacite
         end
       end
     end
-
-    describe AlternateIdentifiers do
-      describe '#initialize' do
-        it 'accepts a list of alternate identifiers' do
-          id1 = AlternateIdentifier.new(type: 'URL', value: 'http://example.org')
-          id2 = AlternateIdentifier.new(type: 'URL', value: 'http://example.com')
-          expect(AlternateIdentifiers.new(alternate_identifiers: [id1, id2]).alternate_identifiers).to eq([id1, id2])
-        end
-        it 'allows an empty list' do
-          expect(AlternateIdentifiers.new(alternate_identifiers: []).alternate_identifiers).to eq([])
-        end
-      end
-
-      describe '#alternate_identifiers' do
-        it 'takes a list of alternate identifiers' do
-          ids = AlternateIdentifiers.allocate
-          id1 = AlternateIdentifier.new(type: 'URL', value: 'http://example.org')
-          id2 = AlternateIdentifier.new(type: 'URL', value: 'http://example.com')
-          ids.alternate_identifiers = [id1, id2]
-          expect(ids.alternate_identifiers).to eq([id1, id2])
-        end
-      end
-
-      it 'round-trips to xml' do
-        xml_text = '  <alternateIdentifiers>
-                          <alternateIdentifier alternateIdentifierType="URL">http://schema.datacite.org/schema/meta/kernel-3.1/example/datacite-example-full-v3.1.xml</alternateIdentifier>
-                          <alternateIdentifier alternateIdentifierType="arXiv">arXiv:0706.0001</alternateIdentifier>
-                        </alternateIdentifiers>'
-        xml = REXML::Document.new(xml_text).root
-        ids = AlternateIdentifiers.load_from_xml(xml)
-        expect(ids.alternate_identifiers).not_to eq([])
-        expect(ids.save_to_xml).to be_xml(xml)
-      end
-    end
-
   end
 end

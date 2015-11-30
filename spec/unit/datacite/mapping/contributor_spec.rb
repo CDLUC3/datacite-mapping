@@ -94,39 +94,5 @@ module Datacite
         end
       end
     end
-
-    describe Contributors do
-      it 'allows zero contributors' do
-        contributors = Contributors.new(contributors: [])
-        expect(contributors.contributors).to eq([])
-      end
-      it 'defaults to an empty list' do
-        contributors = Contributors.new(contributors: nil)
-        expect(contributors.contributors).to eq([])
-      end
-      it 'round-trips to XML' do
-        xml_text = '<contributors>
-                      <contributor contributorType="Researcher">
-                        <contributorName>Hedy Lamarr</contributorName>
-                        <nameIdentifier schemeURI="http://isni.org/" nameIdentifierScheme="ISNI">0000-0001-1690-159X</nameIdentifier>
-                        <affiliation>United Artists</affiliation>
-                        <affiliation>Metro-Goldwyn-Mayer</affiliation>
-                      </contributor>
-                      <contributor contributorType="ProjectMember">
-                        <contributorName>Hershlag, Natalie</contributorName>
-                        <nameIdentifier schemeURI="http://isni.org/" nameIdentifierScheme="ISNI">0000-0001-0907-8419</nameIdentifier>
-                        <affiliation>Gaumont Buena Vista International</affiliation>
-                        <affiliation>20th Century Fox</affiliation>
-                      </contributor>
-                    </contributors>'
-        xml = REXML::Document.new(xml_text).root
-        contributors = Contributors.load_from_xml(xml)
-        # contributors.contributors.each do |c|
-        #   puts "#{c.name} -> #{c.type}"
-        # end
-        expect(contributors.save_to_xml).to be_xml(xml_text)
-      end
-    end
-
   end
 end

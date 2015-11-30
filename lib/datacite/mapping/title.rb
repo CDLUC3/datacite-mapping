@@ -39,19 +39,6 @@ module Datacite
         fail ArgumentError, 'Value cannot be empty or nil' unless value && !value.empty?
         self._value = value
       end
-
-    end
-
-    # Not to be instantiated directly -- just call `Resource#titles`
-    class Titles
-      include XML::Mapping
-
-      array_node :titles, 'title', class: Title
-
-      def initialize(titles:)
-        fail ArgumentError, 'No titles provided' unless titles && !titles.empty?
-        self.titles = titles
-      end
     end
   end
 end

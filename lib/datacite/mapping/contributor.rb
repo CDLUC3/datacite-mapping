@@ -44,15 +44,5 @@ module Datacite
         self.type = type
       end
     end
-
-    # Not to be instantiated directly -- just call `Resource#contributors`
-    class Contributors
-      include XML::Mapping
-      array_node :contributors, 'contributor', class: Contributor
-
-      def initialize(contributors:)
-        self.contributors = contributors || []
-      end
-    end
   end
 end

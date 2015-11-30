@@ -16,16 +16,5 @@ module Datacite
         self.affiliations = affiliations || []
       end
     end
-
-    # Not to be instantiated directly -- just call `Resource#creators`
-    class Creators
-      include XML::Mapping
-      array_node :creators, 'creator', class: Creator
-
-      def initialize(creators:)
-        fail ArgumentError, 'No creators provided' unless creators && !creators.empty?
-        self.creators = creators
-      end
-    end
   end
 end

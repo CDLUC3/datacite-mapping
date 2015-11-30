@@ -12,41 +12,14 @@ module Datacite
       include XML::Mapping
 
       object_node :identifier, 'identifier', class: Identifier
-      object_node :_creators, 'creators', class: Creators
-      object_node :_titles, 'titles', class: Titles
+      array_node :creator, 'creators', 'creator', class: Creator
+      array_node :title, 'titles', 'title', class: Title
       text_node :publisher, 'publisher'
       numeric_node :publication_year, 'publicationYear'
-      object_node :_subjects, 'subjects', class: Subjects
+      array_node :subject, 'subjects', 'subject', class: Subject
       text_node :_lang, 'language'
       object_node :resource_type, 'resourceType', class: ResourceType
-      object_node :alternate_identifiers, 'alternateIdentifiers', class: AlternateIdentifiers
-
-      def creators=(value)
-        self._creators = Creators.new(creators: value)
-      end
-
-      def creators
-        _creators ||= Creators.new(creators: [])
-        _creators.creators
-      end
-
-      def titles=(value)
-        self._titles = Titles.new(titles: value)
-      end
-
-      def titles
-        _titles ||= Titles.new(titles: [])
-        _titles.titles
-      end
-
-      def subjects=(value)
-        self._subjects = Subjects.new(subjects: value)
-      end
-
-      def subjects
-        _subjects ||= Subjects.new(subjects: [])
-        _subjects.subjects
-      end
+      array_node :alternate_identifier, 'alternateIdentifiers', 'alternateIdentifier', class: AlternateIdentifier
 
       def language
         _lang || 'en'
@@ -56,7 +29,6 @@ module Datacite
         fail ArgumentError, 'Language cannot be nil' unless value
         self._lang = value
       end
-
     end
   end
 end
