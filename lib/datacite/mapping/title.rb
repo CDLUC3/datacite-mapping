@@ -12,21 +12,21 @@ module Datacite
     class Title
       include XML::Mapping
 
-      text_node :_lang, '@xml:lang', default_value: nil
+      text_node :_lang, '@xml:lang', default_value: nil # hack to assume 'en' if missing
       typesafe_enum_node :type, '@titleType', class: TitleType, default_value: nil
       text_node :_value, 'text()'
 
-      def initialize(lang:, type: nil, value:)
-        self._lang = lang
+      def initialize(language:, type: nil, value:)
+        self.language = language
         self.type = type
         self.value = value
       end
 
-      def lang
+      def language
         _lang || 'en'
       end
 
-      def lang=(value)
+      def language=(value)
         fail ArgumentError, 'Language cannot be empty or nil' unless value && !value.empty?
         self._lang = value
       end

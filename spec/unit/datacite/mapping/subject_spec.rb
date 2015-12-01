@@ -6,35 +6,35 @@ module Datacite
       describe '#initialize' do
         it 'sets the value' do
           value = 'Mammals--Embryology'
-          subject = Subject.new(value: value, lang: 'en-us')
+          subject = Subject.new(value: value, language: 'en-us')
           expect(subject.value).to eq(value)
         end
 
         it 'sets the language' do
           lang = 'en-us'
-          subject = Subject.new(value: 'Mammals--Embryology', lang: lang)
-          expect(subject.lang).to eq(lang)
+          subject = Subject.new(value: 'Mammals--Embryology', language: lang)
+          expect(subject.language).to eq(lang)
         end
 
         it 'sets the scheme' do
           scheme = 'LCSH'
-          subject = Subject.new(value: 'Mammals--Embryology', lang: 'en-us', scheme: scheme)
+          subject = Subject.new(value: 'Mammals--Embryology', language: 'en-us', scheme: scheme)
           expect(subject.scheme).to eq(scheme)
         end
 
         it 'sets the schemeURI' do
           scheme_uri = URI('http://id.loc.gov/authorities/subjects')
-          subject = Subject.new(value: 'Mammals--Embryology', lang: 'en-us', scheme: 'LCSH', scheme_uri: scheme_uri)
+          subject = Subject.new(value: 'Mammals--Embryology', language: 'en-us', scheme: 'LCSH', scheme_uri: scheme_uri)
           expect(subject.scheme_uri).to eq(scheme_uri)
         end
 
         it 'defaults to a nil scheme' do
-          subject = Subject.new(value: 'Mammals--Embryology', lang: 'en-us')
+          subject = Subject.new(value: 'Mammals--Embryology', language: 'en-us')
           expect(subject.scheme).to be_nil
         end
 
         it 'defaults to a nil schemeURI' do
-          subject = Subject.new(value: 'Mammals--Embryology', lang: 'en-us')
+          subject = Subject.new(value: 'Mammals--Embryology', language: 'en-us')
           expect(subject.scheme_uri).to be_nil
         end
 
@@ -46,15 +46,15 @@ module Datacite
 
       describe 'lang=' do
         it 'sets the language' do
-          subject = Subject.new(value: 'Mammals--Embryology', lang: 'en')
+          subject = Subject.new(value: 'Mammals--Embryology', language: 'en')
           new_lang = 'en-us'
-          subject.lang = new_lang
-          expect(subject.lang).to eq(new_lang)
+          subject.language = new_lang
+          expect(subject.language).to eq(new_lang)
         end
 
         it 'requires a language' do
-          subject = Subject.new(value: 'Mammals--Embryology', lang: 'en')
-          expect { subject.lang = nil }.to raise_error(ArgumentError)
+          subject = Subject.new(value: 'Mammals--Embryology', language: 'en')
+          expect { subject.language = nil }.to raise_error(ArgumentError)
         end
       end
 
@@ -70,7 +70,7 @@ module Datacite
           scheme_uri = URI('http://id.loc.gov/authorities/subjects')
 
           expect(subject.value).to eq(value)
-          expect(subject.lang).to eq(lang)
+          expect(subject.language).to eq(lang)
           expect(subject.scheme).to eq(scheme)
           expect(subject.scheme_uri).to eq(scheme_uri)
         end
@@ -79,7 +79,7 @@ module Datacite
           xml_text = '<subject schemeURI="http://id.loc.gov/authorities/subjects" subjectScheme="LCSH">Mammals--Embryology</subject>'
           xml = REXML::Document.new(xml_text).root
           subject = Subject.load_from_xml(xml)
-          expect(subject.lang).to eq('en')
+          expect(subject.language).to eq('en')
         end
       end
 
@@ -91,7 +91,7 @@ module Datacite
           scheme_uri = URI('http://id.loc.gov/authorities/subjects')
 
           subject = Subject.new(
-            lang: lang,
+            language: lang,
             scheme: scheme,
             scheme_uri: scheme_uri,
             value: value

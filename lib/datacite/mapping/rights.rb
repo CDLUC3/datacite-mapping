@@ -5,10 +5,10 @@ module Datacite
     class Rights
       include XML::Mapping
 
-      uri_node :uri, '@rightsURI', default_value: null
+      uri_node :uri, '@rightsURI', default_value: nil
       text_node :value, 'text()'
 
-      def initialize(uri: null, value:)
+      def initialize(uri: nil, value:)
         self.uri = uri
         self.value = value
       end
