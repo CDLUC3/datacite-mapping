@@ -11,11 +11,19 @@ module Datacite
       new :OTHER, 'Other'
     end
 
+    # Note: Contra the DataCite 3.1 spec, `Description` will escape `<br/>` tags
     class Description
       include XML::Mapping
 
-      typesafe_enum_node :type, '@descriptionType'
+      text_node :language, '@xml:lang', default_value: nil
+      typesafe_enum_node :type, '@descriptionType', class: DescriptionType
+      text_node :value, 'text()'
 
+      def initialize(language: nil, type:, value:)
+        self.language = language
+        self.type = type
+        self.value = value
+      end
     end
   end
 end
