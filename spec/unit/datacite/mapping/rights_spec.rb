@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Datacite
   module Mapping
-    describe Size do
+    describe Rights do
       describe '#initialize' do
         it 'sets the value'
         it 'requires a value'
