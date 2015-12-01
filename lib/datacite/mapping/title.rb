@@ -12,7 +12,7 @@ module Datacite
     class Title
       include XML::Mapping
 
-      text_node :_lang, '@xml:lang', default_value: nil # hack to assume 'en' if missing
+      text_node :_lang, '@xml:lang', default_value: nil # HACK: to assume 'en' if missing
       typesafe_enum_node :type, '@titleType', class: TitleType, default_value: nil
       text_node :_value, 'text()'
 

@@ -10,7 +10,7 @@ module Datacite
                       </description>'
           xml = REXML::Document.new(xml_text).root
           desc = Description.load_from_xml(xml)
-          
+
           expected_lang = 'en-us'
           expected_type = DescriptionType::ABSTRACT
           expected_value = 'XML example of all DataCite Metadata Schema v3.1 properties.'
@@ -37,7 +37,7 @@ module Datacite
                       </description>'
           xml = REXML::Document.new(xml_text).root
           desc = Description.load_from_xml(xml)
-          expected_value = 'I am an <br></br> abstract <br/> full <br/> of <br/>s'
+          expected_value = 'I am an <br/> abstract <br/> full <br/> of <br/>s'
           expect(desc.value.strip).to eq(expected_value)
         end
       end
