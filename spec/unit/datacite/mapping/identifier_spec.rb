@@ -15,6 +15,13 @@ module Datacite
           id = Identifier.new(value: '10.14749/1407399495')
           expect(id.identifier_type).to eq('DOI')
         end
+
+        it 'disallows bad DOIs'
+      end
+
+      describe '#value=' do
+        it 'sets the value'
+        it 'disallows bad DOIs'
       end
 
       describe '#load_from_xml' do
