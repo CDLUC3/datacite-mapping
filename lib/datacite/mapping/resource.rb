@@ -5,6 +5,8 @@ require_relative 'title'
 require_relative 'subject'
 require_relative 'resource_type'
 require_relative 'alternate_identifier'
+require_relative 'related_identifier'
+require_relative 'rights'
 
 module Datacite
   module Mapping
@@ -12,23 +14,35 @@ module Datacite
       include XML::Mapping
 
       object_node :identifier, 'identifier', class: Identifier
-      array_node :creator, 'creators', 'creator', class: Creator
-      array_node :title, 'titles', 'title', class: Title
+      array_node :creators, 'creators', 'creator', class: Creator
+      array_node :titles, 'titles', 'title', class: Title
       text_node :publisher, 'publisher'
       numeric_node :publication_year, 'publicationYear'
-      array_node :subject, 'subjects', 'subject', class: Subject
-      text_node :_lang, 'language'
+      array_node :subjects, 'subjects', 'subject', class: Subject
+      array_node :dates, 'dates', 'date', class: Date
+      text_node :language, 'language'
       object_node :resource_type, 'resourceType', class: ResourceType
-      array_node :alternate_identifier, 'alternateIdentifiers', 'alternateIdentifier', class: AlternateIdentifier
+      array_node :alternate_identifiers, 'alternateIdentifiers', 'alternateIdentifier', class: AlternateIdentifier
+      array_node :related_identifiers, 'relatedIdentifiers', 'relatedIdentifier', class: RelatedIdentifier
+      array_node :sizes, 'sizes', 'size', class: String
+      array_node :formats, 'formats', 'format', class: String
+      text_node :version, 'version'
+      array_node :rights_list, 'rightsList', 'rights', class: Rights
 
-      def language
-        _lang || 'en'
+      def initialize(identifier:, creators:, titles:, publisher:, publication_year:, subjects: [], dates: [], language: [], resource_type: nil, alternate_identifiers: [])
+        self.identifier = identifier
+        self.creators = creators
+        self.titles = titles
+        self.publisher = publisher
+        self.publication_year = publication_year
+        self.subjects = subjects
+        self.dates = dates
+        self.language = language
+        self.resource_type = resource_type
+        self.alternate_identifeirs = alternate_identifiers
+        self.related_identifiers = related_identifiers
       end
 
-      def language=(value)
-        fail ArgumentError, 'Language cannot be nil' unless value
-        self._lang = value
-      end
     end
   end
 end
