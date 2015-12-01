@@ -29,7 +29,7 @@ module Datacite
       text_node :version, 'version'
       array_node :rights_list, 'rightsList', 'rights', class: Rights
 
-      def initialize(identifier:, creators:, titles:, publisher:, publication_year:, subjects: [], dates: [], language: [], resource_type: nil, alternate_identifiers: [])
+      def initialize(identifier:, creators:, titles:, publisher:, publication_year:, subjects: [], dates: [], language: [], resource_type: nil, alternate_identifiers: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists
         self.identifier = identifier
         self.creators = creators
         self.titles = titles
