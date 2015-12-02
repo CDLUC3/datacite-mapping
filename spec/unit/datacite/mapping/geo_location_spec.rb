@@ -71,12 +71,45 @@ module Datacite
       end
 
       describe '#load_from_xml' do
-        it 'reads XML'
+        it 'parses XML' do
+          xml_text = '<geoLocation>
+                        <geoLocationPoint>31.233 -67.302</geoLocationPoint>
+                        <geoLocationBox>41.090 -71.032 42.893 -68.211</geoLocationBox>
+                        <geoLocationPlace>Atlantic Ocean</geoLocationPlace>
+                      </geoLocation>'
+          xml = REXML::Document.new(xml_text).root
+          loc = GeoLocation.load_from_xml(xml)
+          expect(loc.point).to eq(GeoLocationPoint.new(31.233, -67.302))
+          expect(loc.box).to eq(GeoLocationBox.new(41.09, -71.032, 42.893, -68.211))
+          expect(loc.place).to eq('Atlantic Ocean')
+        end
+
+        it 'trims place-name whitespace' do
+          xml_text = '<geoLocation>
+                        <geoLocationPlace>
+                          Atlantic Ocean
+                        </geoLocationPlace>
+                      </geoLocation>'
+          xml = REXML::Document.new(xml_text).root
+          loc = GeoLocation.load_from_xml(xml)
+          expect(loc.place).to eq('Atlantic Ocean')
+        end
       end
 
       describe '#save_to_xml' do
-        it 'writes XML'
-        it 'writes point/box/place in correct order'
+        it 'writes XML' do
+          loc = GeoLocation.new(
+            point: GeoLocationPoint.new(31.233, -67.302),
+            box: GeoLocationBox.new(41.09, -71.032, 42.893, -68.211),
+            place: 'Atlantic Ocean'
+          )
+          expected_xml = '<geoLocation>
+                            <geoLocationPoint>31.233 -67.302</geoLocationPoint>
+                            <geoLocationBox>41.09 -71.032 42.893 -68.211</geoLocationBox>
+                            <geoLocationPlace>Atlantic Ocean</geoLocationPlace>
+                          </geoLocation>'
+          expect(loc.save_to_xml).to be_xml(expected_xml)
+        end
       end
     end
   end
