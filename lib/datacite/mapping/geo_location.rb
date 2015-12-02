@@ -13,15 +13,13 @@ module Datacite
       attr_reader :longitude
 
       def initialize(*args)
-        fail ArgumentError, 'GeoLocationPoint requires latitude and longitude' unless args.respond_to?(:length) && args.length == 2
         case args
         when Hash
-          self.latitude = args[:latitude]
-          self.longitude = args[:longitude]
+          init_from_hash(args)
         when Array
-          self.latitude, self.longitude = args
+          init_from_array(args)
         else
-          fail ArgumentError, "Can't parse latitude and longitude values from arguments: #{args}"
+          fail ArgumentError, "Can't construct GeoLocationPoint from arguments: #{args}"
         end
       end
 
@@ -35,6 +33,17 @@ module Datacite
         fail ArgumentError, 'Longitude cannot be nil' unless value
         fail ArgumentError, "#{value} is not a valid longitude" unless value >= -180 && value <= 180
         @longitude = value
+      end
+
+      private
+
+      def init_from_hash(latitude:, longitude:)
+        self.latitude = latitude
+        self.longitude = longitude
+      end
+
+      def init_from_array(args)
+        self.latitude, self.longitude = args
       end
 
     end
@@ -51,17 +60,13 @@ module Datacite
       attr_reader :east_longitude
 
       def initialize(*args)
-        fail ArgumentError, 'GeoLocationPoint requires south_latitude, west_longitude, north_latitude and east_longitude' unless args.respond_to?(:length) && args.length == 4
         case args
         when Hash
-          self.south_latitude = args[:south_latitude]
-          self.west_longitude = args[:west_longitude]
-          self.north_latitude = args[:north_latitude]
-          self.east_longitude = args[:east_longitude]
+          init_from_hash(args)
         when Array
-          self.south_latitude, self.west_longitude, self.north_latitude, self.east_longitude = args
+          init_from_array(args)
         else
-          fail ArgumentError, "Can't parse south_latitude, west_longitude, north_latitude and east_longitude values from arguments: #{args}"
+          fail ArgumentError, "Can't construct GeoLocationBox from arguments: #{args}"
         end
       end
 
@@ -87,6 +92,19 @@ module Datacite
         fail ArgumentError, 'East longitude cannot be nil' unless value
         fail ArgumentError, "#{value} is not a valid east longitude" unless value >= -180 && value <= 180
         @east_longitude = value
+      end
+
+      private
+
+      def init_from_hash(south_latitude:, west_longitude:, north_latitude:, east_longitude:)
+        self.south_latitude = south_latitude
+        self.west_longitude = west_longitude
+        self.north_latitude = north_latitude
+        self.east_longitude = east_longitude
+      end
+
+      def init_from_array(coordinates)
+        self.south_latitude, self.west_longitude, self.north_latitude, self.east_longitude = coordinates
       end
 
     end
