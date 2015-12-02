@@ -3,6 +3,7 @@ require 'xml/mapping'
 module Datacite
   module Mapping
     class GeoLocationBox
+      include Comparable
 
       attr_reader :south_latitude
       attr_reader :west_longitude
@@ -44,6 +45,23 @@ module Datacite
         @east_longitude = value
       end
 
+      def to_s
+        "#{south_latitude} #{west_longitude} #{north_latitude} #{east_longitude}"
+      end
+
+      def <=>(other)
+        return nil unless other.class == self.class
+        [:south_latitude, :west_longitude, :north_latitude, :east_longitude].each do |c|
+          order = send(c) <=> other.send(c)
+          return order if order != 0
+        end
+        0
+      end
+
+      def hash
+        [south_latitude, west_longitude, north_latitude, east_longitude].hash
+      end
+
       private
 
       def init_from_hash(south_latitude:, west_longitude:, north_latitude:, east_longitude:)
@@ -56,7 +74,16 @@ module Datacite
       def init_from_array(coordinates)
         self.south_latitude, self.west_longitude, self.north_latitude, self.east_longitude = coordinates
       end
-
     end
+
+    class GeoLocationBoxNode < XML::MappingExtensions::NodeBase
+      def to_value(xml_text)
+        stripped = xml_text.strip
+        coords = stripped.split(/\s+/).map(&:to_f)
+        GeoLocationBox.new(*coords)
+      end
+    end
+    XML::Mapping.add_node_class GeoLocationBoxNode
+
   end
 end

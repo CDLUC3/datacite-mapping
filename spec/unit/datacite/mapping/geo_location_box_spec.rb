@@ -127,6 +127,87 @@ module Datacite
           expect { box.east_longitude = -181 }.to raise_error(ArgumentError)
         end
       end
+
+      describe '#==' do
+        it 'reports equal values as equal' do
+          box1 = GeoLocationBox.new(-33.45, -122.33, 47.61, -70.67)
+          box2 = GeoLocationBox.new(
+            south_latitude: -33.45,
+            west_longitude: -122.33,
+            north_latitude: 47.61,
+            east_longitude: -70.67
+          )
+          expect(box1).to eq(box2)
+          expect(box2).to eq(box1)
+        end
+        it 'reports unequal values as unequal' do
+          box1 = GeoLocationBox.new(-47.61, -70.67, -33.45, 122.33)
+          box2 = GeoLocationBox.new(
+            south_latitude: -33.45,
+            west_longitude: -122.33,
+            north_latitude: 47.61,
+            east_longitude: -70.67
+          )
+          expect(box1).not_to eq(box2)
+          expect(box2).not_to eq(box1)
+        end
+      end
+
+      describe '#hash' do
+        it 'reports equal values as having equal hashes' do
+          box1 = GeoLocationBox.new(-33.45, -122.33, 47.61, -70.67)
+          box2 = GeoLocationBox.new(
+            south_latitude: -33.45,
+            west_longitude: -122.33,
+            north_latitude: 47.61,
+            east_longitude: -70.67
+          )
+          expect(box1.hash).to eq(box2.hash)
+          expect(box2.hash).to eq(box1.hash)
+        end
+        it 'reports unequal values as having unequal hashes' do
+          box1 = GeoLocationBox.new(-47.61, -70.67, -33.45, 122.33)
+          box2 = GeoLocationBox.new(
+            south_latitude: -33.45,
+            west_longitude: -122.33,
+            north_latitude: 47.61,
+            east_longitude: -70.67
+          )
+          expect(box1.hash).not_to eq(box2.hash)
+          expect(box2.hash).not_to eq(box1.hash)
+        end
+      end
+
+      describe '#to_s' do
+        it 'returns the coordinates' do
+          box = GeoLocationBox.new(-33.45, -122.33, 47.61, -70.67)
+          expect(box.to_s).to eq('-33.45 -122.33 47.61 -70.67')
+        end
+      end
+    end
+
+    describe GeoLocationBoxNode do
+
+      class SomeElement
+        include XML::Mapping
+      end
+
+      describe '#to_value' do
+        it 'parses the value' do
+          node = GeoLocationBoxNode.new(SomeElement, :box, 'box')
+          xml_text = '-33.45 -122.33 47.61 -70.67'
+          expected = GeoLocationBox.new(-33.45, -122.33, 47.61, -70.67)
+          expect(node.to_value(xml_text)).to eq(expected)
+        end
+        it 'deals with weird whitespace' do
+          node = GeoLocationBoxNode.new(SomeElement, :box, 'box')
+          xml_text = %(
+                        -33.45 -122.33\t47.61 -70.67
+                     )
+          expected = GeoLocationBox.new(-33.45, -122.33, 47.61, -70.67)
+          expect(node.to_value(xml_text)).to eq(expected)
+        end
+      end
     end
   end
 end
