@@ -75,6 +75,74 @@ module Datacite
           expect { point.longitude = -181 }.to raise_error(ArgumentError)
         end
       end
+
+      describe '#==' do
+        it 'reports equal values as equal' do
+          point1 = GeoLocationPoint.new(-33.45, -122.33)
+          point2 = GeoLocationPoint.new(
+            latitude: -33.45,
+            longitude: -122.33
+          )
+          expect(point1).to eq(point2)
+          expect(point2).to eq(point1)
+        end
+        it 'reports unequal values as unequal' do
+          point1 = GeoLocationPoint.new(-47.61, -70.67)
+          point2 = GeoLocationPoint.new(-33.45, -122.33)
+          expect(point1).not_to eq(point2)
+          expect(point2).not_to eq(point1)
+        end
+      end
+
+      describe '#hash' do
+        it 'reports equal values as having equal hashes' do
+          point1 = GeoLocationPoint.new(-33.45, -122.33)
+          point2 = GeoLocationPoint.new(
+            latitude: -33.45,
+            longitude: -122.33
+          )
+          expect(point1.hash).to eq(point2.hash)
+          expect(point2.hash).to eq(point1.hash)
+        end
+        it 'reports unequal values as having unequal hashes' do
+          point1 = GeoLocationPoint.new(-47.61, -70.67)
+          point2 = GeoLocationPoint.new(-33.45, -122.33)
+          expect(point1.hash).not_to eq(point2.hash)
+          expect(point2.hash).not_to eq(point1.hash)
+        end
+      end
+
+      describe '#to_s' do
+        it 'returns the coordinates' do
+          point = GeoLocationPoint.new(-33.45, -122.33)
+          expect(point.to_s).to eq('-33.45 -122.33')
+        end
+      end
     end
+
+    describe GeoLocationPointNode do
+
+      class SomeElement
+        include XML::Mapping
+      end
+
+      describe '#to_value' do
+        it 'parses the value' do
+          node = GeoLocationPointNode.new(SomeElement, :point, 'point')
+          xml_text = '-33.45 -122.33'
+          expected = GeoLocationPoint.new(-33.45, -122.33)
+          expect(node.to_value(xml_text)).to eq(expected)
+        end
+        it 'deals with weird whitespace' do
+          node = GeoLocationPointNode.new(SomeElement, :point, 'point')
+          xml_text = %(
+                        -33.45\t-122.33
+                     )
+          expected = GeoLocationPoint.new(-33.45, -122.33)
+          expect(node.to_value(xml_text)).to eq(expected)
+        end
+      end
+    end
+
   end
 end

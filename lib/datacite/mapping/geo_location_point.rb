@@ -3,6 +3,8 @@ require 'xml/mapping'
 module Datacite
   module Mapping
     class GeoLocationPoint
+      include Comparable
+
       attr_reader :latitude
       attr_reader :longitude
 
@@ -29,6 +31,23 @@ module Datacite
         @longitude = value
       end
 
+      def to_s
+        "#{latitude} #{longitude}"
+      end
+
+      def <=>(other)
+        return nil unless other.class == self.class
+        [:latitude, :longitude].each do |c|
+          order = send(c) <=> other.send(c)
+          return order if order != 0
+        end
+        0
+      end
+
+      def hash
+        [latitude, longitude].hash
+      end
+
       private
 
       def init_from_hash(latitude:, longitude:)
@@ -40,5 +59,15 @@ module Datacite
         self.latitude, self.longitude = args
       end
     end
+
+    class GeoLocationPointNode < XML::MappingExtensions::NodeBase
+      def to_value(xml_text)
+        stripped = xml_text.strip
+        coords = stripped.split(/\s+/).map(&:to_f)
+        GeoLocationPoint.new(*coords)
+      end
+    end
+    XML::Mapping.add_node_class GeoLocationPointNode
+
   end
 end
