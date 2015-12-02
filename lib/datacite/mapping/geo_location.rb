@@ -4,19 +4,15 @@ module Datacite
   module Mapping
 
     class GeoLocationPoint
-      include XML::Mapping
-
-      # TODO: custom node? custom reader/writer?
-      text_node :_value, 'text()'
 
       attr_reader :latitude
       attr_reader :longitude
 
       def initialize(*args)
-        case args
-        when Hash
-          init_from_hash(args)
-        when Array
+        case args.length
+        when 1
+          init_from_hash(args[0])
+        when 2
           init_from_array(args)
         else
           fail ArgumentError, "Can't construct GeoLocationPoint from arguments: #{args}"
@@ -49,10 +45,6 @@ module Datacite
     end
 
     class GeoLocationBox
-      include XML::Mapping
-
-      # TODO: custom node? custom reader/writer?
-      text_node :_value, 'text()'
 
       attr_reader :south_latitude
       attr_reader :west_longitude
@@ -60,10 +52,10 @@ module Datacite
       attr_reader :east_longitude
 
       def initialize(*args)
-        case args
-        when Hash
-          init_from_hash(args)
-        when Array
+        case args.length
+        when 1
+          init_from_hash(args[0])
+        when 4
           init_from_array(args)
         else
           fail ArgumentError, "Can't construct GeoLocationBox from arguments: #{args}"
@@ -112,6 +104,7 @@ module Datacite
     class GeoLocation
       include XML::Mapping
 
+      # TODO: custom reader/writers
       object_node :point, 'geoLocationPoint', class: GeoLocationPoint, default_value: nil
       object_node :box, 'geoLocationBox', class: GeoLocationBox, default_value: nil
       text_node :place, 'geoLocationPlace', default_value: nil
