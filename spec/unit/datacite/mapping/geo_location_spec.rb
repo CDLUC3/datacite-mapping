@@ -5,25 +5,78 @@ module Datacite
 
     describe GeoLocation do
       describe '#initialize' do
-        it 'accepts a point'
-        it 'accepts a box'
-        it 'accepts a place'
-        it 'allows an empty location'
+        it 'accepts a point' do
+          point = GeoLocationPoint.new(47.61, -122.33)
+          loc = GeoLocation.new(point: point)
+          expect(loc.point).to eq(point)
+        end
+        it 'accepts a box' do
+          box = GeoLocationBox.new(-33.45, -122.33, 47.61, -70.67)
+          loc = GeoLocation.new(box: box)
+          expect(loc.box).to eq(box)
+        end
+        it 'accepts a place' do
+          place = 'Ouagadougou'
+          loc = GeoLocation.new(place: place)
+          expect(loc.place).to eq(place)
+        end
+        it 'allows an empty location' do
+          loc = GeoLocation.new
+          expect(loc.point).to be_nil
+          expect(loc.box).to be_nil
+          expect(loc.place).to be_nil
+        end
       end
 
       describe '#point=' do
-        it 'sets the point'
-        it 'accepts nil'
+        it 'sets the point' do
+          point = GeoLocationPoint.new(47.61, -122.33)
+          loc = GeoLocation.new
+          loc.point = point
+          expect(loc.point).to eq(point)
+        end
+        it 'accepts nil' do
+          loc = GeoLocation.new(point: GeoLocationPoint.new(47.61, -122.33))
+          loc.point = nil
+          expect(loc.point).to be_nil
+        end
       end
 
       describe '#box=' do
-        it 'sets the point'
-        it 'accepts nil'
+        it 'sets the box' do
+          box = GeoLocationBox.new(-33.45, -122.33, 47.61, -70.67)
+          loc = GeoLocation.new
+          loc.box = box
+          expect(loc.box).to eq(box)
+        end
+        it 'accepts nil' do
+          loc = GeoLocation.new(box: GeoLocationBox.new(-33.45, -122.33, 47.61, -70.67))
+          loc.box = nil
+          expect(loc.box).to be_nil
+        end
       end
 
       describe '#place=' do
-        it 'sets the place'
-        it 'accepts nil'
+        it 'sets the place' do
+          place = 'Ouagadougou'
+          loc = GeoLocation.new
+          loc.place = place
+          expect(loc.place).to eq(place)
+        end
+        it 'accepts nil' do
+          loc = GeoLocation.new(place: 'Ouagadougou')
+          loc.place = nil
+          expect(loc.place).to be_nil
+        end
+      end
+
+      describe '#load_from_xml' do
+        it 'reads XML'
+      end
+
+      describe '#save_to_xml' do
+        it 'writes XML'
+        it 'writes point/box/place in correct order'
       end
     end
   end
