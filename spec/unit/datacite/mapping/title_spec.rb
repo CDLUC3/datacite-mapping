@@ -90,6 +90,15 @@ module Datacite
           title = Title.load_from_xml(xml)
           expect(title.language).to eq('en')
         end
+
+        it 'trims the value' do
+          xml_text = '<title>
+                         Physical oceanography from BT during cruise U99XX00542B_1979
+                      </title>'
+          xml = REXML::Document.new(xml_text).root
+          title = Title.load_from_xml(xml)
+          expect(title.value).to eq('Physical oceanography from BT during cruise U99XX00542B_1979')
+        end
       end
 
       describe '#save_to_xml' do
