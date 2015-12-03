@@ -16,12 +16,40 @@ module Datacite
           expect(id.identifier_type).to eq('DOI')
         end
 
-        it 'disallows bad DOIs'
+        it 'disallows bad DOIs' do
+          bad_dois = %w(
+            20.14749/1407399495
+            11.14749/1407399495
+            10./1407399495
+            10.14749\1407399495
+            10.14749/
+          )
+          bad_dois.each do |doi|
+            expect { Identifier.new(value: doi) }.to raise_error(ArgumentError)
+          end
+        end
       end
 
       describe '#value=' do
-        it 'sets the value'
-        it 'disallows bad DOIs'
+        it 'sets the value' do
+          id = Identifier.allocate
+          id.value = '10.14749/1407399495'
+          expect(id.value).to eq('10.14749/1407399495')
+        end
+        it 'disallows bad DOIs' do
+          id = Identifier.allocate
+          bad_dois = %w(
+            20.14749/1407399495
+            11.14749/1407399495
+            10./1407399495
+            10.14749\1407399495
+            10.14749/
+          )
+          bad_dois.each do |doi|
+            expect { id.value = doi }.to raise_error(ArgumentError)
+            expect(id.value).to be_nil
+          end
+        end
       end
 
       describe '#load_from_xml' do
