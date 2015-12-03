@@ -4,28 +4,69 @@ module Datacite
   module Mapping
     describe Rights do
       describe '#initialize' do
-        it 'sets the value'
-        it 'requires a value'
-        it 'sets the URI'
-        it 'allows a null URI'
+        it 'sets the value' do
+          rights = Rights.new(value: 'CC0 1.0 Universal')
+          expect(rights.value).to eq('CC0 1.0 Universal')
+        end
+        it 'sets the URI' do
+          rights = Rights.new(value: 'CC0 1.0 Universal', uri: URI('http://creativecommons.org/publicdomain/zero/1.0/'))
+          expect(rights.uri).to eq(URI('http://creativecommons.org/publicdomain/zero/1.0/'))
+        end
+        it 'requires a value' do
+          expect { Rights.new(uri: URI('http://creativecommons.org/publicdomain/zero/1.0/')) }.to raise_error(ArgumentError)
+        end
       end
 
       describe '#value=' do
-        it 'sets the value'
-        it 'requires a value'
+        it 'sets the value' do
+          rights = Rights.allocate
+          rights.value = 'CC0 1.0 Universal'
+          expect(rights.value).to eq('CC0 1.0 Universal')
+        end
+        it 'requires a value' do
+          rights = Rights.new(value: 'CC0 1.0 Universal')
+          expect { rights.value = nil }.to raise_error(ArgumentError)
+          expect(rights.value).to eq('CC0 1.0 Universal')
+        end
       end
 
       describe '#uri=' do
-        it 'sets the URI'
-        it 'allows a null URI'
+        it 'sets the URI' do
+          rights = Rights.allocate
+          rights.uri = URI('http://creativecommons.org/publicdomain/zero/1.0/')
+          expect(rights.uri).to eq(URI('http://creativecommons.org/publicdomain/zero/1.0/'))
+        end
+        it 'allows a nil URI' do
+          rights = Rights.new(value: 'CC0 1.0 Universal', uri: URI('http://creativecommons.org/publicdomain/zero/1.0/'))
+          rights.uri = nil
+          expect(rights.uri).to be_nil
+        end
       end
 
       describe '#load_from_xml' do
-        it 'reads XML'
+        it 'reads XML' do
+          xml_text = '<rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 Universal</rights>'
+          xml = REXML::Document.new(xml_text).root
+          rights = Rights.load_from_xml(xml)
+          expect(rights.value).to eq('CC0 1.0 Universal')
+          expect(rights.uri).to eq(URI('http://creativecommons.org/publicdomain/zero/1.0/'))
+        end
+        it 'trims the value' do
+          xml_text = '<rights>
+                        CC0 1.0 Universal
+                      </rights>'
+          xml = REXML::Document.new(xml_text).root
+          rights = Rights.load_from_xml(xml)
+          expect(rights.value).to eq('CC0 1.0 Universal')
+        end
       end
 
       describe '#save_to_xml' do
-        it 'writes XML'
+        it 'writes XML' do
+          rights = Rights.new(value: 'CC0 1.0 Universal', uri: URI('http://creativecommons.org/publicdomain/zero/1.0/'))
+          expected_xml = '<rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 Universal</rights>'
+          expect(rights.save_to_xml).to be_xml(expected_xml)
+        end
       end
     end
   end
