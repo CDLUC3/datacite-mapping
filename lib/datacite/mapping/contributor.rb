@@ -4,6 +4,7 @@ require_relative 'name_identifier'
 module Datacite
   module Mapping
 
+    # Controlled vocabulary of contributor types.
     class ContributorType < TypesafeEnum::Base
       new :CONTACT_PERSON, 'ContactPerson'
       new :DATA_COLLECTOR, 'DataCollector'
@@ -29,6 +30,8 @@ module Datacite
       new :OTHER, 'Other'
     end
 
+    # The institution or person responsible for collecting, creating, or otherwise contributing to the developement of the dataset.
+    # TODO: Document generated setters
     class Contributor
       include XML::Mapping
 
@@ -37,11 +40,35 @@ module Datacite
       array_node :affiliations, 'affiliation', class: String
       typesafe_enum_node :type, '@contributorType', class: ContributorType
 
+      alias_method :_name=, :name=
+      alias_method :_type=, :type=
+      private :_name=
+      private :_type=
+
+      # Initializes a new {Contributor}.
+      # @param name [String] The personal name of the contributor, in the format `Family, Given`. Cannot be empty or nil
+      # @param identifier [NameIdentifier] An identifier for the contributor. Optional.
+      # @param affiliations [Array<Affiliation>] The contributor's affiliations. Defaults to an empty list.
+      # @param type [ContributorType] The contributor type. Cannot be nil.
       def initialize(name:, identifier: nil, affiliations: nil, type:)
         self.name = name
         self.identifier = identifier
         self.affiliations = affiliations || []
         self.type = type
+      end
+
+      # Sets the name.
+      # @param value [String] The personal name of the contributor, in the format `Family, Given`. Cannot be empty or nil
+      def name=(value)
+        fail ArgumentError, 'Name cannot be empty or nil' unless value && !value.empty?
+        self._name = value
+      end
+
+      # Sets the type.
+      # @param value [ContributorType] The contributor type. Cannot be nil.
+      def type=(value)
+        fail ArgumentError, 'Type cannot be nil' unless value
+        self._type = value
       end
     end
   end

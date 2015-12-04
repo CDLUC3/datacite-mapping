@@ -1,4 +1,6 @@
+# Module for working with the [DataCite metadata schema](https://schema.datacite.org/meta/kernel-3/index.html)
 module Datacite
+  # Maps DataCite XML to Ruby objects
   module Mapping
 
     Dir.glob(File.expand_path('../mapping/*.rb', __FILE__)).sort.each(&method(:require))
@@ -7,11 +9,15 @@ module Datacite
       attr_writer :log
     end
 
+    # Gets the logger for the module. Default logger logs to `$stdout`.
+    # @return [Logger] the logger
     def self.log
       self.log_device = $stdout unless @log
       @log
     end
 
+    # Sets the log device. Defaults to `$stdout`
+    # @param value [IO] the log device
     def self.log_device=(value)
       @log = new_logger(logdev: value)
     end

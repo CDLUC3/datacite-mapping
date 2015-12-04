@@ -49,6 +49,37 @@ module Datacite
 
       end
 
+      describe '#name=' do
+        it 'sets the name' do
+          contrib = Contributor.allocate
+          contrib.name = 'Hershlag, Natalie'
+          expect(contrib.name).to eq('Hershlag, Natalie')
+        end
+        it 'rejects nil' do
+          contrib = Contributor.new(name: 'Hershlag, Natalie', type: ContributorType::PROJECT_MEMBER)
+          expect { contrib.name = nil }.to raise_error(ArgumentError)
+          expect(contrib.name).to eq('Hershlag, Natalie')
+        end
+        it 'rejects empty' do
+          contrib = Contributor.new(name: 'Hershlag, Natalie', type: ContributorType::PROJECT_MEMBER)
+          expect { contrib.name = '' }.to raise_error(ArgumentError)
+          expect(contrib.name).to eq('Hershlag, Natalie')
+        end
+      end
+
+      describe '#type=' do
+        it 'sets the type' do
+          contrib = Contributor.allocate
+          contrib.type = ContributorType::PROJECT_MEMBER
+          expect(contrib.type).to eq(ContributorType::PROJECT_MEMBER)
+        end
+        it 'rejects nil' do
+          contrib = Contributor.new(name: 'Hershlag, Natalie', type: ContributorType::PROJECT_MEMBER)
+          expect { contrib.type = nil }.to raise_error(ArgumentError)
+          expect(contrib.type).to eq(ContributorType::PROJECT_MEMBER)
+        end
+      end
+
       describe '#load_from_xml' do
         it 'parses XML' do
           xml_text = '<contributor contributorType="ProjectMember">
