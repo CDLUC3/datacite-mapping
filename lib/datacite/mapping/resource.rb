@@ -29,7 +29,7 @@ module Datacite
       text_node :version, 'version'
       array_node :rights_list, 'rightsList', 'rights', class: Rights
 
-      def initialize(identifier:, creators:, titles:, publisher:, publication_year:, subjects: [], dates: [], language: [], resource_type: nil, alternate_identifiers: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists
+      def initialize(identifier:, creators:, titles:, publisher:, publication_year:, subjects: [], dates: [], language: [], resource_type: nil, alternate_identifiers: [], related_identifiers: [], sizes: [], formats: [], version: nil, rights_list: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists
         self.identifier = identifier
         self.creators = creators
         self.titles = titles
@@ -39,8 +39,12 @@ module Datacite
         self.dates = dates
         self.language = language
         self.resource_type = resource_type
-        self.alternate_identifeirs = alternate_identifiers
+        self.alternate_identifiers = alternate_identifiers
         self.related_identifiers = related_identifiers
+        self.sizes = sizes
+        self.formats = formats
+        self.version = version
+        self.rights_list = rights_list
       end
 
     end

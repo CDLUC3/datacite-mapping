@@ -1,24 +1,276 @@
+# coding: UTF-8
 require 'spec_helper'
 
 module Datacite
   module Mapping
     describe Resource do
 
+      before :each do
+        @id = Identifier.new(value: '10.14749/1407399495')
+        @creators = [
+          Creator.new(
+            name: 'Hedy Lamarr',
+            identifier: NameIdentifier.new(scheme: 'ISNI', scheme_uri: URI('http://isni.org/'), value: '0000-0001-1690-159X'),
+            affiliations: ['United Artists', 'Metro-Goldwyn-Mayer']
+          ),
+          Creator.new(
+            name: 'Herschlag, Natalie',
+            identifier: NameIdentifier.new(scheme: 'ISNI', scheme_uri: URI('http://isni.org/'), value: '0000-0001-0907-8419'),
+            affiliations: ['Gaumont Buena Vista International', '20th Century Fox']
+          )
+        ]
+        @titles = [
+          Title.new(value: 'An Account of a Very Odd Monstrous Calf', language: 'en-emodeng'),
+          Title.new(type: TitleType::SUBTITLE, value: 'And a Contest between Two Artists about Optick Glasses, &c', language: 'en-emodeng')
+        ]
+        @publisher = 'California Digital Library'
+        @pub_year = 2015
+      end
+
       describe '#initialize' do
-        it 'requires an identifier'
-        it 'requires creators'
-        it 'requires titles'
-        it 'requires a publisher'
-        it 'requires a publicationYear'
-        it 'allows subjects'
-        it 'allows dates'
-        it 'allows a language'
-        it 'allows alternate identifiers'
-        it 'allows related identifiers'
-        it 'allows sizes'
-        it 'allows formats'
-        it 'allows a version'
-        it 'allows rights'
+        it 'sets the identifier' do
+          resource = Resource.new(
+            identifier: @identifier,
+            creators: @creators,
+            titles: @titles,
+            publisher: @publisher,
+            publication_year: @pub_year
+          )
+          expect(resource.identifier).to eq(@identifier)
+        end
+        it 'sets the creators' do
+          resource = Resource.new(
+            identifier: @identifier,
+            creators: @creators,
+            titles: @titles,
+            publisher: @publisher,
+            publication_year: @pub_year
+          )
+          expect(resource.creators).to eq(@creators)
+        end
+        it 'sets the titles' do
+          resource = Resource.new(
+            identifier: @identifier,
+            creators: @creators,
+            titles: @titles,
+            publisher: @publisher,
+            publication_year: @pub_year
+          )
+          expect(resource.titles).to eq(@titles)
+        end
+        it 'sets the publisher' do
+          resource = Resource.new(
+            identifier: @identifier,
+            creators: @creators,
+            titles: @titles,
+            publisher: @publisher,
+            publication_year: @pub_year
+          )
+          expect(resource.publisher).to eq(@publisher)
+        end
+        it 'sets the publicationYear' do
+          resource = Resource.new(
+            identifier: @identifier,
+            creators: @creators,
+            titles: @titles,
+            publisher: @publisher,
+            publication_year: @pub_year
+          )
+          expect(resource.publication_year).to eq(@pub_year)
+        end
+        it 'requires an identifier' do
+          expect do
+            Resource.new(
+              creators: @creators,
+              titles: @titles,
+              publisher: @publisher,
+              publication_year: @pub_year
+            )
+          end.to raise_error(ArgumentError)
+        end
+        it 'requires creators' do
+          expect do
+            Resource.new(
+              identifier: @identifier,
+              titles: @titles,
+              publisher: @publisher,
+              publication_year: @pub_year
+            )
+          end.to raise_error(ArgumentError)
+        end
+        it 'requires titles' do
+          expect do
+            Resource.new(
+              identifier: @identifier,
+              creators: @creators,
+              publisher: @publisher,
+              publication_year: @pub_year
+            )
+          end.to raise_error(ArgumentError)
+        end
+        it 'requires a publisher' do
+          expect do
+            Resource.new(
+              identifier: @identifier,
+              creators: @creators,
+              titles: @titles,
+              publication_year: @pub_year
+            )
+          end.to raise_error(ArgumentError)
+        end
+        it 'requires a publicationYear' do
+          expect do
+            Resource.new(
+              identifier: @identifier,
+              creators: @creators,
+              titles: @titles,
+              publisher: @publisher
+            )
+          end.to raise_error(ArgumentError)
+        end
+        it 'allows subjects' do
+          subjects = [
+            Subject.new(
+              language: 'en-us',
+              scheme: 'LCSH',
+              scheme_uri: URI('http://id.loc.gov/authorities/subjects'),
+              value: 'Mammals--Embryology'
+            ),
+            Subject.new(
+              language: 'fr',
+              scheme: 'dewey',
+              scheme_uri: URI('http://dewey.info/'),
+              value: '571.8 Croissance, développement, reproduction biologique (fécondation, sexualité)'
+            )
+          ]
+          resource = Resource.new(
+            identifier: @identifier,
+            creators: @creators,
+            titles: @titles,
+            publisher: @publisher,
+            publication_year: @pub_year,
+            subjects: subjects
+          )
+          expect(resource.subjects).to eq(subjects)
+        end
+        it 'allows dates' do
+          dates = [
+            Date.new(value: DateTime.new(1914, 8, 4, 11, 01, 6.0123, '+1')),
+            Date.new(value: '1914-08-04T11:01:06.0123+01:00')
+          ]
+          resource = Resource.new(
+            identifier: @identifier,
+            creators: @creators,
+            titles: @titles,
+            publisher: @publisher,
+            publication_year: @pub_year,
+            dates: dates
+          )
+          expect(resource.dates).to eq(dates)
+        end
+        it 'allows a language' do
+          resource = Resource.new(
+            identifier: @identifier,
+            creators: @creators,
+            titles: @titles,
+            publisher: @publisher,
+            publication_year: @pub_year,
+            language: 'en-emodeng'
+          )
+          expect(resource.language).to eq('en-emodeng')
+        end
+        it 'allows alternate identifiers' do
+          alternate_identifiers = [
+            AlternateIdentifier.new(type: 'URL', value: 'http://example.org'),
+            AlternateIdentifier.new(type: 'URL', value: 'http://example.com')
+          ]
+          resource = Resource.new(
+            identifier: @identifier,
+            creators: @creators,
+            titles: @titles,
+            publisher: @publisher,
+            publication_year: @pub_year,
+            alternate_identifiers: alternate_identifiers
+          )
+          expect(resource.alternate_identifiers).to eq(alternate_identifiers)
+        end
+        it 'allows sizes' do
+          sizes = ['2 petabytes', '2048 TB']
+          resource = Resource.new(
+            identifier: @identifier,
+            creators: @creators,
+            titles: @titles,
+            publisher: @publisher,
+            publication_year: @pub_year,
+            sizes: sizes
+          )
+          expect(resource.sizes).to eq(sizes)
+        end
+        it 'allows related identifiers' do
+          related_identifiers = [
+            RelatedIdentifier.new(
+              identifier_type: 'URL',
+              relation_type: RelationType::HAS_METADATA,
+              related_metadata_scheme: 'citeproc+json',
+              scheme_type: 'Turtle',
+              scheme_uri: URI('https://github.com/citation-style-language/schema/raw/master/csl-data.json'),
+              value: 'http://data.datacite.org/application/citeproc+json/10.5072/example-full'
+            ),
+            RelatedIdentifier.new(
+              identifier_type: 'arXiv',
+              relation_type: RelationType::IS_REVIEWED_BY,
+              value: 'arXiv:0706.0001'
+            )
+          ]
+          resource = Resource.new(
+            identifier: @identifier,
+            creators: @creators,
+            titles: @titles,
+            publisher: @publisher,
+            publication_year: @pub_year,
+            related_identifiers: related_identifiers
+          )
+          expect(resource.related_identifiers).to eq(related_identifiers)
+        end
+        it 'allows formats' do
+          formats = %w(application/xml text/html)
+          resource = Resource.new(
+            identifier: @identifier,
+            creators: @creators,
+            titles: @titles,
+            publisher: @publisher,
+            publication_year: @pub_year,
+            formats: formats
+          )
+          expect(resource.formats).to eq(formats)
+        end
+        it 'allows a version' do
+          version = '3.1'
+          resource = Resource.new(
+            identifier: @identifier,
+            creators: @creators,
+            titles: @titles,
+            publisher: @publisher,
+            publication_year: @pub_year,
+            version: version
+          )
+          expect(resource.version).to eq(version)
+        end
+        it 'allows rights' do
+          rights_list = [
+            Rights.new(value: 'CC0 1.0 Universal', uri: URI('http://creativecommons.org/publicdomain/zero/1.0/')),
+            Rights.new(value: 'This work is free of known copyright restrictions.', uri: URI('http://creativecommons.org/publicdomain/mark/1.0/'))
+          ]
+          resource = Resource.new(
+            identifier: @identifier,
+            creators: @creators,
+            titles: @titles,
+            publisher: @publisher,
+            publication_year: @pub_year,
+            rights_list: rights_list
+          )
+          expect(resource.rights_list).to eq(rights_list)
+        end
       end
 
       describe '#save_to_xml' do
@@ -68,6 +320,7 @@ module Datacite
       describe 'publication_year' do
         it 'returns the publication year'
         it 'rejects nil'
+        it 'accepts only 4-digit integers'
       end
 
       describe 'publication_year=' do
