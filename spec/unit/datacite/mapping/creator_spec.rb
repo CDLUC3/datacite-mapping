@@ -27,6 +27,23 @@ module Datacite
         end
       end
 
+      describe '#creator=' do
+        it 'sets the creator'
+        it 'rejects nil'
+        it 'rejects empty'
+      end
+
+      describe '#identifier=' do
+        it 'sets the identifier'
+        it 'allows nil'
+      end
+
+      describe '#affiliation=' do
+        it 'sets affiliations'
+        it 'treats nil as empty'
+        it 'accepts an empty array'
+      end
+
       describe '#load_from_xml' do
         it 'parses XML' do
           xml_text = '<creator>

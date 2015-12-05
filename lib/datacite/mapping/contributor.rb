@@ -35,9 +35,20 @@ module Datacite
     class Contributor
       include XML::Mapping
 
+      # @!attribute [rw] name
+      #   @return [String] The personal name of the contributor, in the format `Family, Given`. Cannot be empty or nil
       text_node :name, 'contributorName'
+
+      # @!attribute [rw] identifier
+      #   @return [NameIdentifier] An identifier for the contributor. Optional.
       object_node :identifier, 'nameIdentifier', class: NameIdentifier
+
+      # @!attribute [rw] affiliations
+      #   @return [Array<String>] The contributor's affiliations. Defaults to an empty list.
       array_node :affiliations, 'affiliation', class: String
+
+      # @!attribute [rw] type
+      #   @return [ContributorType] The contributor type. Cannot be nil.
       typesafe_enum_node :type, '@contributorType', class: ContributorType
 
       alias_method :_name=, :name=
@@ -57,15 +68,11 @@ module Datacite
         self.type = type
       end
 
-      # Sets the name.
-      # @param value [String] The personal name of the contributor, in the format `Family, Given`. Cannot be empty or nil
       def name=(value)
         fail ArgumentError, 'Name cannot be empty or nil' unless value && !value.empty?
         self._name = value
       end
 
-      # Sets the type.
-      # @param value [ContributorType] The contributor type. Cannot be nil.
       def type=(value)
         fail ArgumentError, 'Type cannot be nil' unless value
         self._type = value
