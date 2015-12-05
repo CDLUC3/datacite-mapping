@@ -31,7 +31,6 @@ module Datacite
     end
 
     # The institution or person responsible for collecting, creating, or otherwise contributing to the developement of the dataset.
-    # TODO: Document generated setters
     class Contributor
       include XML::Mapping
 
