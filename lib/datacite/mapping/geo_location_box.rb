@@ -73,12 +73,15 @@ module Datacite
         @east_longitude = value
       end
 
+      # Gets the box coordinates as a string.
       # @return [String] the coordinates of the box as a sequence of four numbers, in the order S W N E.
       def to_s
         "#{south_latitude} #{west_longitude} #{north_latitude} #{east_longitude}"
       end
 
-      #
+      # Sorts boxes from north to south and east to west, first by south edge, then west
+      # edge, then north edge, then east edge.
+      # @param other [GeoLocationBox] the box to compare
       def <=>(other)
         return nil unless other.class == self.class
         [:south_latitude, :west_longitude, :north_latitude, :east_longitude].each do |c|
@@ -88,6 +91,8 @@ module Datacite
         0
       end
 
+      # Returns a hash code consistent with {GeoLocationBox#&lt;=&gt;}
+      # @return [Integer] the hash code
       def hash
         [south_latitude, west_longitude, north_latitude, east_longitude].hash
       end
@@ -107,7 +112,10 @@ module Datacite
       end
     end
 
+    # XML mapping node for `<geoLocationBox/>`
     class GeoLocationBoxNode < XML::MappingExtensions::NodeBase
+      # Converts a whitespace-separated list of coordinates to a {GeoLocationBox}.
+      # @param xml_text [String] the coordinates, in the order `lat long lat long`.
       def to_value(xml_text)
         stripped = xml_text.strip
         coords = stripped.split(/\s+/).map(&:to_f)
