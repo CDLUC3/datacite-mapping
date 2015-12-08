@@ -28,6 +28,11 @@ module Datacite
           expect { rights.value = nil }.to raise_error(ArgumentError)
           expect(rights.value).to eq('CC0 1.0 Universal')
         end
+        it 'requires a non-empty value' do
+          rights = Rights.new(value: 'CC0 1.0 Universal')
+          expect { rights.value = '' }.to raise_error(ArgumentError)
+          expect(rights.value).to eq('CC0 1.0 Universal')
+        end
       end
 
       describe '#uri=' do
