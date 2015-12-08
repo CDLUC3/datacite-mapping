@@ -2,6 +2,17 @@ require 'xml/mapping'
 
 module Datacite
   module Mapping
+    # A latitude-longitude quadrangle containing the area where the data was gathered or about
+    # which the data is focused.
+    #
+    # @!attribute [rw] south_latitude
+    #   @return [Numeric] the latitude of the south edge of the box
+    # @!attribute [rw] west_longitude
+    #   @return [Numeric] the longitude of the west edge of the box
+    # @!attribute [rw] north_latitude
+    #   @return [Numeric] the latitude of the north edge of the box
+    # @!attribute [rw] east_longitude
+    #   @return [Numeric] the longitude of the east edge of the box
     class GeoLocationBox
       include Comparable
 
@@ -10,6 +21,23 @@ module Datacite
       attr_reader :north_latitude
       attr_reader :east_longitude
 
+      # Initializes a new {GeoLocationBox}. The arguments can be provided
+      # either as a named-parameter hash, or as an array of four coordinates
+      # in the form `[lat, long, lat, long]` (typically
+      # `[south_latitude, west_longitude, north_latitude, east_longitude]`
+      # but not necessarily; north/south and east/west will be flipped if
+      # need be).
+      #
+      # @param south_latitude [Numeric]
+      #   the latitude of the south edge of the box
+      # @param west_longitude [Numeric]
+      #   the longitude of the west edge of the box
+      # @param north_latitude [Numeric]
+      #   the latitude of the north edge of the box
+      # @param east_longitude [Numeric]
+      #   the longitude of the east edge of the box
+      # @param args [Array<Numeric>] an array of coordinates in the form
+      #   `[lat, long, lat, long]`
       def initialize(*args)
         case args.length
         when 1
@@ -45,10 +73,12 @@ module Datacite
         @east_longitude = value
       end
 
+      # @return [String] the coordinates of the box as a sequence of four numbers, in the order S W N E.
       def to_s
         "#{south_latitude} #{west_longitude} #{north_latitude} #{east_longitude}"
       end
 
+      #
       def <=>(other)
         return nil unless other.class == self.class
         [:south_latitude, :west_longitude, :north_latitude, :east_longitude].each do |c|
@@ -72,7 +102,8 @@ module Datacite
       end
 
       def init_from_array(coordinates)
-        self.south_latitude, self.west_longitude, self.north_latitude, self.east_longitude = coordinates
+        self.south_latitude, self.north_latitude = [coordinates[0], coordinates[2]].sort
+        self.west_longitude, self.east_longitude = [coordinates[1], coordinates[3]].sort
       end
     end
 

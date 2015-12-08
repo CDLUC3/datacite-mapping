@@ -12,6 +12,22 @@ module Datacite
           expect(box.east_longitude).to eq(-70.67)
         end
 
+        it 'accepts a quad with flipped east/west coordinates' do
+          box = GeoLocationBox.new(-33.45, -70.67, 47.61, -122.33)
+          expect(box.south_latitude).to eq(-33.45)
+          expect(box.west_longitude).to eq(-122.33)
+          expect(box.north_latitude).to eq(47.61)
+          expect(box.east_longitude).to eq(-70.67)
+        end
+
+        it 'accepts a quad with flipped north/south coordinates' do
+          box = GeoLocationBox.new(47.61, -122.33, -33.45, -70.67)
+          expect(box.south_latitude).to eq(-33.45)
+          expect(box.west_longitude).to eq(-122.33)
+          expect(box.north_latitude).to eq(47.61)
+          expect(box.east_longitude).to eq(-70.67)
+        end
+
         it 'accepts :south_latitude, :west_longitude, :north_latitude, :east_longitude' do
           box = GeoLocationBox.new(
             south_latitude: -33.45,
@@ -194,10 +210,22 @@ module Datacite
 
       describe '#to_value' do
         it 'parses the value' do
-          node = GeoLocationBoxNode.new(SomeElement, :box, 'box')
           xml_text = '-33.45 -122.33 47.61 -70.67'
-          expected = GeoLocationBox.new(-33.45, -122.33, 47.61, -70.67)
-          expect(node.to_value(xml_text)).to eq(expected)
+          node = GeoLocationBoxNode.new(SomeElement, :box, 'box')
+          expected_box = GeoLocationBox.new(-33.45, -122.33, 47.61, -70.67)
+          expect(node.to_value(xml_text)).to eq(expected_box)
+        end
+        it 'deals with flipped east/west coordinates' do
+          xml_text = '-33.45 -70.67 47.61 -122.33'
+          node = GeoLocationBoxNode.new(SomeElement, :box, 'box')
+          expected_box = GeoLocationBox.new(-33.45, -122.33, 47.61, -70.67)
+          expect(node.to_value(xml_text)).to eq(expected_box)
+        end
+        it 'deals with flipped north/south coordinates' do
+          xml_text = '47.61 -122.33 -33.45 -70.67'
+          node = GeoLocationBoxNode.new(SomeElement, :box, 'box')
+          expected_box = GeoLocationBox.new(-33.45, -122.33, 47.61, -70.67)
+          expect(node.to_value(xml_text)).to eq(expected_box)
         end
         it 'deals with weird whitespace' do
           node = GeoLocationBoxNode.new(SomeElement, :box, 'box')
