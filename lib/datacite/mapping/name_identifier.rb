@@ -9,7 +9,7 @@ module Datacite
       root_element_name 'nameIdentifier'
 
       # @!attribute [rw] scheme
-      #   @return [URI] the name identifier scheme. Cannot be nil.
+      #   @return [String] the name identifier scheme. Cannot be nil.
       text_node :scheme, '@nameIdentifierScheme'
       # @!attribute [rw] scheme_uri
       #   @return [URI, nil] the URI of the identifier scheme. Optional.
@@ -24,6 +24,10 @@ module Datacite
       alias_method :_value=, :value=
       private :_value=
 
+      # Initializes a new {NameIdentifier}
+      # @param scheme [Scheme] the name identifier scheme. Cannot be nil.
+      # @param scheme_uri [URI, nil] the URI of the identifier scheme. Optional.
+      # @param value [String] the identifier value. Cannot be nil.
       def initialize(scheme:, scheme_uri: nil, value:)
         self.scheme = scheme
         self.scheme_uri = scheme_uri
