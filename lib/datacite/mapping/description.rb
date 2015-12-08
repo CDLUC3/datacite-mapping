@@ -95,7 +95,7 @@ module Datacite
       end
 
       def language=(value)
-        self._language = (value)
+        self._language = value.strip if value
       end
 
     end

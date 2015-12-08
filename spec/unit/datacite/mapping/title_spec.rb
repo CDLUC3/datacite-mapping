@@ -57,14 +57,9 @@ module Datacite
           title.language = new_lang
           expect(title.language).to eq(new_lang)
         end
-        it 'requires a language' do
+        it 'ignores nil' do
           title = Title.new(value: "Of Some Books Lately Publish't", language: 'en-emodeng')
-          expect { title.language = nil }.to raise_error(ArgumentError)
-          expect(title.language).to eq('en-emodeng')
-        end
-        it 'requires a non-empty language' do
-          title = Title.new(value: "Of Some Books Lately Publish't", language: 'en-emodeng')
-          expect { title.language = '' }.to raise_error(ArgumentError)
+          title.language = nil
           expect(title.language).to eq('en-emodeng')
         end
       end

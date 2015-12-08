@@ -13,9 +13,15 @@ module Datacite
       include XML::Mapping
 
       # nil isn't actually allowed, but we generously allow it on reading (converting to 'en')
-      text_node :_lang, '@xml:lang', default_value: nil
+      text_node :language, '@xml:lang', default_value: nil
       typesafe_enum_node :type, '@titleType', class: TitleType, default_value: nil
       text_node :value, 'text()'
+
+      alias_method :_language, :language
+      private :_language
+
+      alias_method :_language=, :language=
+      private :_language=
 
       def initialize(language:, type: nil, value:)
         self.language = language
@@ -24,12 +30,11 @@ module Datacite
       end
 
       def language
-        _lang || 'en'
+        _language || 'en'
       end
 
       def language=(value)
-        fail ArgumentError, 'Language cannot be empty or nil' unless value && !value.empty?
-        self._lang = value.strip
+        self._language = value.strip if value
       end
 
       alias_method :_value=, :value=
