@@ -35,19 +35,19 @@ module Datacite
       include XML::Mapping
 
       # @!attribute [rw] name
-      #   @return [String] The personal name of the contributor, in the format `Family, Given`. Cannot be empty or nil
+      #   @return [String] the personal name of the contributor, in the format `Family, Given`. Cannot be empty or nil
       text_node :name, 'contributorName'
 
       # @!attribute [rw] identifier
-      #   @return [NameIdentifier] An identifier for the contributor. Optional.
+      #   @return [NameIdentifier, nil] an identifier for the contributor. Optional.
       object_node :identifier, 'nameIdentifier', class: NameIdentifier
 
       # @!attribute [rw] affiliations
-      #   @return [Array<String>] The contributor's affiliations. Defaults to an empty list.
+      #   @return [Array<String>] the contributor's affiliations. Defaults to an empty list.
       array_node :affiliations, 'affiliation', class: String
 
       # @!attribute [rw] type
-      #   @return [ContributorType] The contributor type. Cannot be nil.
+      #   @return [ContributorType] the contributor type. Cannot be nil.
       typesafe_enum_node :type, '@contributorType', class: ContributorType
 
       alias_method :_name=, :name=
@@ -56,10 +56,10 @@ module Datacite
       private :_type=
 
       # Initializes a new {Contributor}.
-      # @param name [String] The personal name of the contributor, in the format `Family, Given`. Cannot be empty or nil
-      # @param identifier [NameIdentifier] An identifier for the contributor. Optional.
-      # @param affiliations [Array<Affiliation>] The contributor's affiliations. Defaults to an empty list.
-      # @param type [ContributorType] The contributor type. Cannot be nil.
+      # @param name [String] the personal name of the contributor, in the format `Family, Given`. Cannot be empty or nil
+      # @param identifier [NameIdentifier, nil] an identifier for the contributor. Optional.
+      # @param affiliations [Array<Affiliation>] the contributor's affiliations. Defaults to an empty list.
+      # @param type [ContributorType] the contributor type. Cannot be nil.
       def initialize(name:, identifier: nil, affiliations: nil, type:)
         self.name = name
         self.identifier = identifier
