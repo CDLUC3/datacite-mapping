@@ -27,21 +27,55 @@ module Datacite
         end
       end
 
-      describe '#creator=' do
-        it 'sets the creator'
-        it 'rejects nil'
-        it 'rejects empty'
+      describe '#name=' do
+        it 'sets the name' do
+          creator = Creator.allocate
+          creator.name = 'Hedy Lamarr'
+          expect(creator.name).to eq('Hedy Lamarr')
+        end
+        it 'rejects nil' do
+          creator = Creator.new(name: 'Hedy Lamarr')
+          expect { creator.name = nil }.to raise_error(ArgumentError)
+          expect(creator.name).to eq('Hedy Lamarr')
+        end
+        it 'rejects empty' do
+          creator = Creator.new(name: 'Hedy Lamarr')
+          expect { creator.name = '' }.to raise_error(ArgumentError)
+          expect(creator.name).to eq('Hedy Lamarr')
+        end
       end
 
       describe '#identifier=' do
-        it 'sets the identifier'
-        it 'allows nil'
+        it 'sets the identifier' do
+          creator = Creator.new(name: 'Hedy Lamarr')
+          identifier = NameIdentifier.new(scheme: 'ISNI', scheme_uri: URI('http://isni.org/'), value: '0000-0001-1690-159X')
+          creator.identifier = identifier
+          expect(creator.identifier).to eq(identifier)
+        end
+        it 'allows nil' do
+          creator = Creator.new(name: 'Hedy Lamarr', identifier: NameIdentifier.new(scheme: 'ISNI', scheme_uri: URI('http://isni.org/'), value: '0000-0001-1690-159X'))
+          creator.identifier = nil
+          expect(creator.identifier).to be_nil
+        end
       end
 
       describe '#affiliation=' do
-        it 'sets affiliations'
-        it 'treats nil as empty'
-        it 'accepts an empty array'
+        it 'sets affiliations' do
+          creator = Creator.allocate
+          affiliations = ['United Artists', 'Metro-Goldwyn-Mayer']
+          creator.affiliations = affiliations
+          expect(creator.affiliations).to eq(affiliations)
+        end
+        it 'treats nil as empty' do
+          creator = Creator.new(name: 'Hedy Lamarr', affiliations: ['United Artists', 'Metro-Goldwyn-Mayer'])
+          creator.affiliations = nil
+          expect(creator.affiliations).to eq([])
+        end
+        it 'accepts an empty array' do
+          creator = Creator.new(name: 'Hedy Lamarr', affiliations: ['United Artists', 'Metro-Goldwyn-Mayer'])
+          creator.affiliations = []
+          expect(creator.affiliations).to eq([])
+        end
       end
 
       describe '#load_from_xml' do
