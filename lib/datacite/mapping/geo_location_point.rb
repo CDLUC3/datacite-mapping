@@ -2,12 +2,29 @@ require 'xml/mapping'
 
 module Datacite
   module Mapping
+    # A latitude-longitude point at which the data was gathered or about
+    # which the data is focused.
+    #
+    # @!attribute [rw] latitude
+    #   @return [Numeric] the latitude
+    # @!attribute [rw] longitude
+    #   @return [Numeric] the longitude
     class GeoLocationPoint
       include Comparable
 
       attr_reader :latitude
       attr_reader :longitude
 
+      # Initializes a new {GeoLocationPoint}. The arguments can be provided
+      # either as a named-parameter hash, or as a pair of coordinates in the
+      # form `lat, long`. That is, the following forms are equivalent:
+      #
+      #     GeoLocationPoint.new(latitude: 47.61, longitude: -122.33)
+      #
+      #     GeoLocationPoint.new(47.61, -122.33)
+      #
+      # @param latitude [Numeric] the latitude
+      # @param longitude [Numeric] the longitude
       def initialize(*args)
         case args.length
         when 1
@@ -31,10 +48,17 @@ module Datacite
         @longitude = value
       end
 
+      # Gets the coordinates as a string.
+      # @return [String] the coordinates as a pair of numbers separated by a space, in the
+      #   order `lat` `long`.
       def to_s
         "#{latitude} #{longitude}"
       end
 
+      # Sorts points from north to south and from east to west, and compares them for equality.
+      # @param other [GeoLocationPoint] the point to compare
+      # @return [Fixnum, nil] the sort order (-1, 0, or 1), or nil if `other` is not a
+      #   {GeoLocationPoint}
       def <=>(other)
         return nil unless other.class == self.class
         [:latitude, :longitude].each do |c|
@@ -44,6 +68,8 @@ module Datacite
         0
       end
 
+      # Returns a hash code consistent with {GeoLocationPoint#&lt;=&gt;}
+      # @return [Integer] the hash code
       def hash
         [latitude, longitude].hash
       end
@@ -60,7 +86,10 @@ module Datacite
       end
     end
 
+    # XML mapping node for `<geoLocationPoint/>`
     class GeoLocationPointNode < XML::MappingExtensions::NodeBase
+      # Converts a whitespace-separated pair of coordinates to a {GeoLocationPoint}.
+      # @param xml_text [String] the coordinates, in the order `lat` `long`.
       def to_value(xml_text)
         stripped = xml_text.strip
         coords = stripped.split(/\s+/).map(&:to_f)

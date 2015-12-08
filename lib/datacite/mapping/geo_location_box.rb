@@ -22,11 +22,20 @@ module Datacite
       attr_reader :east_longitude
 
       # Initializes a new {GeoLocationBox}. The arguments can be provided
-      # either as a named-parameter hash, or as an array of four coordinates
-      # in the form `[lat, long, lat, long]` (typically
-      # `[south_latitude, west_longitude, north_latitude, east_longitude]`
+      # either as a named-parameter hash, or as a list of four coordinates
+      # in the form `lat, long, lat, long` (typically
+      # `south_latitude, west_longitude, north_latitude, east_longitude`
       # but not necessarily; north/south and east/west will be flipped if
-      # need be).
+      # need be). That is, the following forms are equivalent:
+      #
+      #     GeoLocationBox.new(
+      #       south_latitude: -33.45,
+      #       west_longitude: -122.33,
+      #       north_latitude: 47.61,
+      #       east_longitude: -70.67
+      #     )
+      #
+      #     GeoLocationBox.new(-33.45, -122.33, 47.61, -70.67)
       #
       # @param south_latitude [Numeric]
       #   the latitude of the south edge of the box
@@ -36,8 +45,6 @@ module Datacite
       #   the latitude of the north edge of the box
       # @param east_longitude [Numeric]
       #   the longitude of the east edge of the box
-      # @param args [Array<Numeric>] an array of coordinates in the form
-      #   `[lat, long, lat, long]`
       def initialize(*args)
         case args.length
         when 1
@@ -80,8 +87,10 @@ module Datacite
       end
 
       # Sorts boxes from north to south and east to west, first by south edge, then west
-      # edge, then north edge, then east edge.
+      # edge, then north edge, then east edge, and compares them for equality.
       # @param other [GeoLocationBox] the box to compare
+      # @return [Fixnum, nil] the sort order (-1, 0, or 1), or nil if `other` is not a
+      #   {GeoLocationBox}
       def <=>(other)
         return nil unless other.class == self.class
         [:south_latitude, :west_longitude, :north_latitude, :east_longitude].each do |c|
