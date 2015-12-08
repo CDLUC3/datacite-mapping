@@ -74,6 +74,12 @@ module Datacite
       #   @return [String] the description itself.
       break_preserving_value_node :value, 'node()'
 
+      alias_method :_language, :language
+      private :_language
+
+      alias_method :_language=, :language=
+      private :_language=
+
       # Initializes a new {Description}
       # @param language [String, nil] an IETF BCP 47, ISO 639-1 language code identifying the language. Optional.
       # @param type [DescriptionType] the description type.
@@ -82,6 +88,14 @@ module Datacite
         self.language = language
         self.type = type
         self.value = value
+      end
+
+      def language
+        _language || 'en'
+      end
+
+      def language=(value)
+        self._language = (value)
       end
 
     end

@@ -59,12 +59,12 @@ module Datacite
         end
         it 'escapes HTML' do
           desc = Description.new(type: DescriptionType::ABSTRACT, value: '<p>This is HTML text</p>')
-          expected_xml = '<description descriptionType="Abstract">&lt;p&gt;This is HTML text&lt;/p&gt;</description>'
+          expected_xml = '<description xml:lang="en" descriptionType="Abstract">&lt;p&gt;This is HTML text&lt;/p&gt;</description>'
           expect(desc.save_to_xml).to be_xml(expected_xml)
         end
         it 'preserves <br/> and <br></br> tags' do
           desc = Description.new(type: DescriptionType::ABSTRACT, value: '<br/> &lt;br/&gt; abstract <br></br> full <br /> of <br> </br>s')
-          expected_xml = '<description descriptionType="Abstract"><br/> &amp;lt;br/&amp;gt; abstract <br/> full <br/> of <br/>s</description>'
+          expected_xml = '<description xml:lang="en" descriptionType="Abstract"><br/> &amp;lt;br/&amp;gt; abstract <br/> full <br/> of <br/>s</description>'
           expect(desc.save_to_xml).to be_xml(expected_xml)
         end
       end
