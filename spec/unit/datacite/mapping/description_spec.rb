@@ -28,7 +28,16 @@ module Datacite
           desc = Description.load_from_xml(xml)
 
           expected_value = '<p>This is HTML text</p><p><small>despite the advice in the standard</small></p>'
-          expect(desc.value.strip).to eq(expected_value)
+          expect(desc.value).to eq(expected_value)
+        end
+
+        it 'strips extra whitespace' do
+          xml_text = '<description xml:lang="en-us" descriptionType="Abstract">
+                        This is the value
+                      </description>'
+          xml = REXML::Document.new(xml_text).root
+          desc = Description.load_from_xml(xml)
+          expect(desc.value).to eq('This is the value')
         end
 
         it 'allows un-escaped <br/> and <br></br> tags' do
@@ -53,11 +62,27 @@ module Datacite
           expected_xml = '<description descriptionType="Abstract">&lt;p&gt;This is HTML text&lt;/p&gt;</description>'
           expect(desc.save_to_xml).to be_xml(expected_xml)
         end
-        it 'escapes <br/> and <br></br> tags' do
-          desc = Description.new(type: DescriptionType::ABSTRACT, value: 'abstract <br></br> full <br/> of <br/>s')
-          expected_xml = '<description descriptionType="Abstract">abstract &lt;br&gt;&lt;/br&gt; full &lt;br/&gt; of &lt;br/&gt;s</description>'
+        it 'preserves <br/> and <br></br> tags' do
+          desc = Description.new(type: DescriptionType::ABSTRACT, value: '<br/> &lt;br/&gt; abstract <br></br> full <br /> of <br> </br>s')
+          expected_xml = '<description descriptionType="Abstract"><br/> &amp;lt;br/&amp;gt; abstract <br/> full <br/> of <br/>s</description>'
           expect(desc.save_to_xml).to be_xml(expected_xml)
         end
+      end
+
+      it 'round-trips to XML' do
+        xml_text = '<description xml:lang="en-us" descriptionType="Abstract">foo</description>'
+        xml = REXML::Document.new(xml_text).root
+        desc = Description.load_from_xml(xml)
+        expect(desc.save_to_xml).to be_xml(xml_text)
+      end
+
+      it 'un-escapes <br/> tags when round-tripping' do
+        xml_text = '<description xml:lang="en-us" descriptionType="Abstract"><br/> &lt;br/&gt; abstract <br></br> full <br /> of <br> </br>s</description>'
+        xml = REXML::Document.new(xml_text).root
+        desc = Description.load_from_xml(xml)
+        expected_xml = '<description xml:lang="en-us" descriptionType="Abstract"><br/> <br/> abstract <br></br> full <br /> of <br> </br>s</description>'
+        expect(desc.save_to_xml).to be_xml(expected_xml)
+
       end
     end
   end
