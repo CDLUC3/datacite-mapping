@@ -27,6 +27,57 @@ module Datacite
         @pub_year = 2015
       end
 
+      # TODO: double-check all required/optional attributes
+
+      it 'correctly differentiates required and optional attributes'
+
+      # Required:
+      #
+      # <xs:element name="resource">
+      # <xs:element name="identifier">
+      # <xs:element name="creators">
+      # <xs:element name="creator" maxOccurs="unbounded">
+      # <xs:element name="creatorName">
+      # <xs:element name="titles">
+      # <xs:element name="title" maxOccurs="unbounded">
+      # <xs:element name="publisher">
+      # <xs:element name="publicationYear">
+      # <xs:element name="contributorName">
+
+      # Optional:
+      #
+      # <xs:element name="nameIdentifier" minOccurs="0">
+      # <xs:element name="affiliation" minOccurs="0" maxOccurs="unbounded"/>
+      # <xs:element name="subjects" minOccurs="0">
+      # <xs:element name="subject" minOccurs="0" maxOccurs="unbounded">
+      # <xs:element name="contributors" minOccurs="0">
+      # <xs:element name="contributor" minOccurs="0" maxOccurs="unbounded">
+      # <xs:element name="nameIdentifier" minOccurs="0">
+      # <xs:element name="affiliation" minOccurs="0" maxOccurs="unbounded"/>
+      # <xs:element name="dates" minOccurs="0">
+      # <xs:element name="date" minOccurs="0" maxOccurs="unbounded">
+      # <xs:element name="language" type="xs:language" minOccurs="0">
+      # <xs:element name="resourceType" minOccurs="0">
+      # <xs:element name="alternateIdentifiers" minOccurs="0">
+      # <xs:element name="alternateIdentifier" minOccurs="0" maxOccurs="unbounded">
+      # <xs:element name="relatedIdentifiers" minOccurs="0">
+      # <xs:element name="relatedIdentifier" minOccurs="0" maxOccurs="unbounded">
+      # <xs:element name="sizes" minOccurs="0">
+      # <xs:element name="size" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+      # <xs:element name="formats" minOccurs="0">
+      # <xs:element name="format" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+      # <xs:element name="version" type="xs:string" minOccurs="0">
+      # <xs:element name="rightsList" minOccurs="0">
+      # <xs:element name="rights" minOccurs="0" maxOccurs="unbounded">
+      # <xs:element name="descriptions" minOccurs="0">
+      # <xs:element name="description" minOccurs="0" maxOccurs="unbounded">
+      # <xs:element name="br" minOccurs="0" maxOccurs="unbounded">
+      # <xs:element name="geoLocations" minOccurs="0">
+      # <xs:element name="geoLocation" minOccurs="0" maxOccurs="unbounded">
+      # <xs:element name="geoLocationPoint" type="point" minOccurs="0"/>
+      # <xs:element name="geoLocationBox" type="box" minOccurs="0"/>
+      # <xs:element name="geoLocationPlace" minOccurs="0"/>
+
       describe '#initialize' do
         it 'sets the identifier' do
           resource = Resource.new(

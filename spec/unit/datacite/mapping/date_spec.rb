@@ -84,6 +84,8 @@ module Datacite
           end
         end
 
+        it 'supports RKMS-ISO8601 date ranges'
+
         it 'rejects invalid dates' do
           d = Date.new(value: 1914)
           old_value = d.value
