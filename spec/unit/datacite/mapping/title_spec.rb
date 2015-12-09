@@ -16,8 +16,9 @@ module Datacite
           expect(title.language).to eq(lang)
         end
 
-        it 'requires a language' do
-          expect { Title.new(value: 'A Relation of an Accident by Thunder and Lightning, at Oxford') }.to raise_error(ArgumentError)
+        it 'defaults language to "en"' do
+          title = Title.new(value: 'A Relation of an Accident by Thunder and Lightning, at Oxford')
+          expect(title.language).to eq('en')
         end
 
         it 'sets the type' do

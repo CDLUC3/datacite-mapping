@@ -63,7 +63,8 @@ module Datacite
       include XML::Mapping
 
       # @!attribute [rw] language
-      #   @return [String, nil] an IETF BCP 47, ISO 639-1 language code identifying the language. Optional.
+      #   @return [String] an IETF BCP 47, ISO 639-1 language code identifying the language.
+      #     It's unclear from the spec whether language is required; to play it safe, if it's missing, we default to 'en'.
       text_node :language, '@xml:lang', default_value: nil
 
       # @!attribute [rw] type
@@ -71,7 +72,8 @@ module Datacite
       typesafe_enum_node :type, '@descriptionType', class: DescriptionType
 
       # @!attribute [rw] value
-      #   @return [String] the description itself.
+      #   @return [String] the description itself. See {Description} for notes on special
+      #     handling of `<br/>` tags.
       break_preserving_value_node :value, 'node()'
 
       alias_method :_language, :language
@@ -81,10 +83,12 @@ module Datacite
       private :_language=
 
       # Initializes a new {Description}
-      # @param language [String, nil] an IETF BCP 47, ISO 639-1 language code identifying the language. Optional.
+      # @param language [String] an IETF BCP 47, ISO 639-1 language code identifying the language.
+      #   It's unclear from the spec whether language is required; to play it safe, if it's missing, we default to 'en'.
       # @param type [DescriptionType] the description type.
-      # @param value [String] the description itself.
-      def initialize(language: nil, type:, value:)
+      # @param value [String] the description itself. See {Description} for notes on special
+      #     handling of `<br/>` tags.
+      def initialize(language: 'en', type:, value:)
         self.language = language
         self.type = type
         self.value = value

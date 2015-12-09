@@ -38,8 +38,9 @@ module Datacite
           expect(subject.scheme_uri).to be_nil
         end
 
-        it 'requires a language' do
-          expect { Subject.new(value: 'Mammals--Embryology') }.to raise_error(ArgumentError)
+        it 'defaults language to "en"' do
+          subject = Subject.new(value: 'Mammals--Embryology')
+          expect(subject.language).to eq('en')
         end
 
       end

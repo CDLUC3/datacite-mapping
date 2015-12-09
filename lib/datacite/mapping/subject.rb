@@ -15,9 +15,13 @@ module Datacite
       #   @return [URI, nil] the URI of the subject scheme or classification code or authority if one is used. Optional.
       uri_node :scheme_uri, '@schemeURI', default_value: nil
 
-      # @!attribute [rw] scheme
-      #   @return [String, nil] the subject scheme or classification code or authority if one is used. Optional.
+      # @!attribute [rw] language
+      #   @return [String] an IETF BCP 47, ISO 639-1 language code identifying the language.
+      #     It's unclear from the spec whether language is required; to play it safe, if it's missing, we default to 'en'.
       text_node :language, '@xml:lang', default_value: nil
+
+      # @!attribute [rw] value
+      #   @return [String] the subject itself.
       text_node :value, 'text()'
 
       alias_method :_language, :language
@@ -26,7 +30,13 @@ module Datacite
       alias_method :_language=, :language=
       private :_language=
 
-      def initialize(scheme: nil, scheme_uri: nil, language:, value:)
+      # Initializes a new {Subject}
+      # @param scheme [String, nil] the subject scheme or classification code or authority if one is used. Optional.
+      # @param scheme_uri [URI, nil] the URI of the subject scheme or classification code or authority if one is used. Optional.
+      # @param language [String] an IETF BCP 47, ISO 639-1 language code identifying the language.
+      #   It's unclear from the spec whether language is required; to play it safe, if it's missing, we default to 'en'.
+      # @param value [String] the subject itself.
+      def initialize(scheme: nil, scheme_uri: nil, language: 'en', value:)
         self.scheme = scheme
         self.scheme_uri = scheme_uri
         self.language = language
