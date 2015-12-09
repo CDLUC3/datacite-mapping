@@ -10,6 +10,10 @@ require_relative 'rights'
 
 module Datacite
   module Mapping
+
+    # A collection of metadata properties chosen for the accurate and consistent identification
+    # of a resource for citation and retrieval purposes, along with recommended use instructions.
+    # The resource that is being identified can be of any kind, but it is typically a dataset.
     class Resource
       include XML::Mapping
 
