@@ -89,7 +89,7 @@ module Datacite
       private :_language=
 
       # Initialies a new {Resource}
-
+      #
       # @param identifier [Identifier] a persistent identifier that identifies a resource.
       # @param creators [Array<Creator>] the main researchers involved working on the data, or the authors of the publication in priority order.
       # @param titles [Array<Title>] the names or titles by which a resource is known.

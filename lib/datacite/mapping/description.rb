@@ -16,6 +16,8 @@ module Datacite
     class BreakPreservingValueNode < XML::Mapping::SingleAttributeNode
       # Collapses a sequence of text nodes and `<br/>` tags into a single string value.
       # Implements `SingleAttributeNode#xml_to_obj`.
+      # @param obj [Description] the object being created
+      # @param xml [REXML::Element] the XML being read
       def xml_to_obj(obj, xml)
         value_str = xml.children.map { |c| c.respond_to?(:value) ? c.value : c.to_s }.join
         obj.value = value_str.strip
@@ -23,6 +25,8 @@ module Datacite
 
       # Converts a string value to a sequence of text nodes and `<br/>` tags.
       # Implements `SingleAttributeNode#obj_to_xml`.
+      # @param obj [Description] the object being serialized
+      # @param xml [REXML::Element] the XML being written
       def obj_to_xml(obj, xml)
         value_str = obj.value || ''
         values = value_str.split(%r{<br[^/]?/>|<br>[^<]*</br>})
