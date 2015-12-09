@@ -17,29 +17,104 @@ module Datacite
     class Resource
       include XML::Mapping
 
+      # @!attribute [rw] identifier
+      #   @return [Identifier] a persistent identifier that identifies a resource.
       object_node :identifier, 'identifier', class: Identifier
+
+      # @!attribute [rw] creators
+      #   @return [Array<Creator>] the main researchers involved working on the data, or the authors of the publication in priority order.
       array_node :creators, 'creators', 'creator', class: Creator
+
+      # @!attribute [rw] titles
+      #   @return [Array<Title>] the names or titles by which a resource is known.
       array_node :titles, 'titles', 'title', class: Title
+
+      # @!attribute [rw] publisher
+      #   @return [String] the name of the entity that holds, archives, publishes prints, distributes, releases, issues, or produces the resource.
       text_node :publisher, 'publisher'
+
+      # @!attribute [rw] publication_year
+      #   @return [Integer] year when the resource is made publicly available.
       numeric_node :publication_year, 'publicationYear'
+
+      # @!attribute [rw] subjects
+      #   @return [Array<Subject>] subjects, keywords, classification codes, or key phrases describing the resource.
       array_node :subjects, 'subjects', 'subject', class: Subject
+
+      # @!attribute [rw] contributors
+      #   @return [Array<Contributor>] institutions or persons responsible for collecting, creating, or otherwise contributing to the developement of the dataset.
+      array_node :contributors, 'contributors', 'contributor', class: Contributor
+
+      # @!attribute [rw] dates
+      #   @return [Array<Date>] different dates relevant to the work.
       array_node :dates, 'dates', 'date', class: Date
+
+      # @!attribute [rw] language
+      #   @return [String] Primary language of the resource: an IETF BCP 47, ISO 639-1 language code.
+      #   It's unclear from the spec whether language is required; to play it safe, if it's missing, we default to 'en'.
       text_node :language, 'language'
+
+      # @!attribute [rw] resource_type
+      #   @return [ResourceType, nil] the type of the resource
       object_node :resource_type, 'resourceType', class: ResourceType
+
+      # @!attribute [rw] alternate_identifiers
+      #   @return [Array<AlternateIdentifier>] an identifier or identifiers other than the primary {Identifier} applied to the resource being registered.
       array_node :alternate_identifiers, 'alternateIdentifiers', 'alternateIdentifier', class: AlternateIdentifier
+
+      # @!attribute [rw] related_identifiers
+      #   @return [Array<RelatedIdentifier>] identifiers of related resources.
       array_node :related_identifiers, 'relatedIdentifiers', 'relatedIdentifier', class: RelatedIdentifier
+
+      # @!attribute [rw] sizes
+      #   @return [Array<String>] unstructured size information about the resource.
       array_node :sizes, 'sizes', 'size', class: String
+
+      # @!attribute [rw] formats
+      #   @return [Array<String>] technical format of the resource, e.g. file extension or MIME type.
       array_node :formats, 'formats', 'format', class: String
+
+      # @!attribute [rw] version
+      #   @return [String] version number of the resource.
       text_node :version, 'version'
+
+      # @!attribute [rw] rights_list
+      #   @return [Array<Rights>] rights information for this resource.
       array_node :rights_list, 'rightsList', 'rights', class: Rights
 
-      def initialize(identifier:, creators:, titles:, publisher:, publication_year:, subjects: [], dates: [], language: [], resource_type: nil, alternate_identifiers: [], related_identifiers: [], sizes: [], formats: [], version: nil, rights_list: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists
+      alias_method :_language, :language
+      private :_language
+
+      alias_method :_language=, :language=
+      private :_language=
+
+      # Initialies a new {Resource}
+
+      # @param identifier [Identifier] a persistent identifier that identifies a resource.
+      # @param creators [Array<Creator>] the main researchers involved working on the data, or the authors of the publication in priority order.
+      # @param titles [Array<Title>] the names or titles by which a resource is known.
+      # @param publisher [String] the name of the entity that holds, archives, publishes prints, distributes, releases, issues, or produces the resource.
+      # @param publication_year [Integer] year when the resource is made publicly available.
+      # @param subjects [Array<Subject>] subjects, keywords, classification codes, or key phrases describing the resource.
+      # @param contributors [Array<Contributor>] institutions or persons responsible for collecting, creating, or otherwise contributing to the developement of the dataset.
+      # @param dates [Array<Date>] different dates relevant to the work.
+      # @param language [String] Primary language of the resource: an IETF BCP 47, ISO 639-1 language code.
+      #   It's unclear from the spec whether language is required; to play it safe, if it's missing, we default to 'en'.
+      # @param resource_type [ResourceType, nil] the type of the resource
+      # @param alternate_identifiers [Array<AlternateIdentifier>] an identifier or identifiers other than the primary {Identifier} applied to the resource being registered.
+      # @param related_identifiers [Array<RelatedIdentifier>] identifiers of related resources.
+      # @param sizes [Array<String>] unstructured size information about the resource.
+      # @param formats [Array<String>] technical format of the resource, e.g. file extension or MIME type.
+      # @param version [String] version number of the resource.
+      # @param rights_list [Array<Rights>] rights information for this resource.
+      def initialize(identifier:, creators:, titles:, publisher:, publication_year:, subjects: [], contributors: [], dates: [], language: 'en', resource_type: nil, alternate_identifiers: [], related_identifiers: [], sizes: [], formats: [], version: nil, rights_list: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists
         self.identifier = identifier
         self.creators = creators
         self.titles = titles
         self.publisher = publisher
         self.publication_year = publication_year
         self.subjects = subjects
+        self.contributors = contributors
         self.dates = dates
         self.language = language
         self.resource_type = resource_type
@@ -49,6 +124,14 @@ module Datacite
         self.formats = formats
         self.version = version
         self.rights_list = rights_list
+      end
+
+      def language
+        _language || 'en'
+      end
+
+      def language=(value)
+        self._language = value.strip if value
       end
 
     end
