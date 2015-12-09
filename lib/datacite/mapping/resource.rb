@@ -107,7 +107,7 @@ module Datacite
       # @param formats [Array<String>] technical format of the resource, e.g. file extension or MIME type.
       # @param version [String] version number of the resource.
       # @param rights_list [Array<Rights>] rights information for this resource.
-      def initialize(identifier:, creators:, titles:, publisher:, publication_year:, subjects: [], contributors: [], dates: [], language: 'en', resource_type: nil, alternate_identifiers: [], related_identifiers: [], sizes: [], formats: [], version: nil, rights_list: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists
+      def initialize(identifier:, creators:, titles:, publisher:, publication_year:, subjects: [], contributors: [], dates: [], language: 'en', resource_type: nil, alternate_identifiers: [], related_identifiers: [], sizes: [], formats: [], version: nil, rights_list: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
         self.identifier = identifier
         self.creators = creators
         self.titles = titles
