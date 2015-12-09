@@ -4,7 +4,7 @@ module Datacite
   module Mapping
 
     # Controlled vocabulary of general resource types
-    class ResourceTypeGeneral < TypesafeEnum::Base
+    class ResourceTypeGeneral < TypesafeEnum::Base # TODO: list enum values in docs
       new :AUDIOVISUAL, 'Audiovisual'
       new :COLLECTION, 'Collection'
       new :DATASET, 'Dataset'

@@ -4,7 +4,7 @@ module Datacite
   module Mapping
 
     # Controlled list of relationships of the {Resource} to a related resource.
-    class RelationType < TypesafeEnum::Base
+    class RelationType < TypesafeEnum::Base # TODO: list enum values in docs
       new :IS_CITED_BY, 'IsCitedBy'
       new :CITES, 'Cites'
       new :IS_SUPPLEMENT_TO, 'IsSupplementTo'
@@ -33,7 +33,7 @@ module Datacite
     end
 
     # Controlled list of related identifier types.
-    class RelatedIdentifierType < TypesafeEnum::Base
+    class RelatedIdentifierType < TypesafeEnum::Base # TODO: list enum values in docs
       new :ARK, 'ARK'
       new :ARXIV, 'arXiv'
       new :BIBCODE, 'bibcode'

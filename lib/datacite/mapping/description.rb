@@ -4,7 +4,7 @@ module Datacite
   module Mapping
 
     # Controlled vocabulary of description types.
-    class DescriptionType < TypesafeEnum::Base
+    class DescriptionType < TypesafeEnum::Base # TODO: list enum values in docs
       new :ABSTRACT, 'Abstract'
       new :METHODS, 'Methods'
       new :SERIES_INFORMATION, 'SeriesInformation'

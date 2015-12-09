@@ -5,7 +5,7 @@ module Datacite
   module Mapping
 
     # Controlled vocabulary of contributor types.
-    class ContributorType < TypesafeEnum::Base
+    class ContributorType < TypesafeEnum::Base # TODO: list enum values in docs
       new :CONTACT_PERSON, 'ContactPerson'
       new :DATA_COLLECTOR, 'DataCollector'
       new :DATA_CURATOR, 'DataCurator'
