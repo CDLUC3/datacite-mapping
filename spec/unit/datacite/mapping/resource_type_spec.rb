@@ -12,8 +12,9 @@ module Datacite
           rt = ResourceType.new(resource_type_general: ResourceTypeGeneral::DATASET, value: 'some data')
           expect(rt.resource_type_general).to eq(ResourceTypeGeneral::DATASET)
         end
-        it 'requires a value' do
-          expect { ResourceType.new(resource_type_general: ResourceTypeGeneral::DATASET) }.to raise_error(ArgumentError)
+        it 'allows a nil value' do
+          rt = ResourceType.new(resource_type_general: ResourceTypeGeneral::DATASET)
+          expect(rt.value).to be_nil
         end
         it 'requires a general resource type' do
           expect { ResourceType.new(value: 'some data') }.to raise_error(ArgumentError)
@@ -39,10 +40,10 @@ module Datacite
           rt.value = 'some data'
           expect(rt.value).to eq('some data')
         end
-        it 'requires a value' do
+        it 'allows a nil value' do
           rt = ResourceType.new(resource_type_general: ResourceTypeGeneral::DATASET, value: 'some data')
-          expect { rt.value = nil }.to raise_error(ArgumentError)
-          expect(rt.value).to eq('some data')
+          rt.value = nil
+          expect(rt.value).to be_nil
         end
       end
 

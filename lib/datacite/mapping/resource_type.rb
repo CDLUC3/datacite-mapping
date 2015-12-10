@@ -60,19 +60,16 @@ module Datacite
       typesafe_enum_node :resource_type_general, '@resourceTypeGeneral', class: ResourceTypeGeneral
 
       # @!attribute [rw] value
-      #    @return [String] additional free text description of the resource type.
-      text_node :value, 'text()'
+      #    @return [String] additional free text description of the resource type. Optional.
+      text_node :value, 'text()', default_value: nil
 
       alias_method :_resource_type_general=, :resource_type_general=
       private :_resource_type_general=
 
-      alias_method :_value=, :value=
-      private :_value=
-
       # Initializes a new {ResourceType}
       # @param resource_type_general [ResourceTypeGeneral] the general resource type
       # @param value [String] additional free text description of the resource type.
-      def initialize(resource_type_general:, value:)
+      def initialize(resource_type_general:, value: nil)
         self.resource_type_general = resource_type_general
         self.value = value
       end
@@ -80,11 +77,6 @@ module Datacite
       def resource_type_general=(val)
         fail ArgumentError, 'General resource type cannot be nil' unless val
         self._resource_type_general = val
-      end
-
-      def value=(val)
-        fail ArgumentError, 'Resource type cannot be nil or empty' unless val && !val.empty?
-        self._value = val
       end
     end
   end
