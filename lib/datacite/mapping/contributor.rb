@@ -84,7 +84,7 @@ module Datacite
 
       # @!attribute [rw] identifier
       #   @return [NameIdentifier, nil] an identifier for the contributor. Optional.
-      object_node :identifier, 'nameIdentifier', class: NameIdentifier
+      object_node :identifier, 'nameIdentifier', class: NameIdentifier, default_value: nil
 
       # @!attribute [rw] affiliations
       #   @return [Array<String>] the contributor's affiliations. Defaults to an empty list.
