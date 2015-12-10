@@ -13,7 +13,7 @@ module Datacite
 
       # @!attribute [rw] identifier
       #   @return [NameIdentifier, nil] An identifier for the creator. Optional.
-      object_node :identifier, 'nameIdentifier', class: NameIdentifier
+      object_node :identifier, 'nameIdentifier', class: NameIdentifier, default_value: nil
 
       # @!attribute [rw] affiliations
       #   @return [Array<Affiliation>, nil] The creator's affiliations. Defaults to an empty list.

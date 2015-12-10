@@ -64,7 +64,10 @@ module Datacite
       text_node :value, 'text()'
 
       alias_method :_resource_type_general=, :resource_type_general=
+      private :_resource_type_general=
+
       alias_method :_value=, :value=
+      private :_value=
 
       # Initializes a new {ResourceType}
       # @param resource_type_general [ResourceTypeGeneral] the general resource type
@@ -75,12 +78,12 @@ module Datacite
       end
 
       def resource_type_general=(val)
-        fail ArgumentError, 'No general resource type provided' unless val
+        fail ArgumentError, 'General resource type cannot be nil' unless val
         self._resource_type_general = val
       end
 
       def value=(val)
-        fail ArgumentError, 'No general resource type provided' unless val
+        fail ArgumentError, 'Resource type cannot be nil or empty' unless val && !val.empty?
         self._value = val
       end
     end
