@@ -4,7 +4,7 @@ module Datacite
   module Mapping
 
     # Controlled vocabulary of date types
-    class DateType < TypesafeEnum::Base
+    class DateType < TypesafeEnum::Base # TODO: list enum values in docs
       new :ACCEPTED, 'Accepted'
       new :AVAILABLE, 'Available'
       new :COPYRIGHTED, 'Copyrighted'
