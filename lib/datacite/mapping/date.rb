@@ -3,17 +3,35 @@ require 'xml/mapping_extensions'
 module Datacite
   module Mapping
 
-    # Controlled vocabulary of date types
-    class DateType < TypesafeEnum::Base # TODO: list enum values in docs
+    # Controlled vocabulary of date types.
+    class DateType < TypesafeEnum::Base
+      # @!parse ACCEPTED = Accepted
       new :ACCEPTED, 'Accepted'
+
+      # @!parse AVAILABLE = Available
       new :AVAILABLE, 'Available'
+
+      # @!parse COPYRIGHTED = Copyrighted
       new :COPYRIGHTED, 'Copyrighted'
+
+      # @!parse COLLECTED = Collected
       new :COLLECTED, 'Collected'
+
+      # @!parse CREATED = Created
       new :CREATED, 'Created'
+
+      # @!parse ISSUED = Issued
       new :ISSUED, 'Issued'
+
+      # @!parse SUBMITTED = Submitted
       new :SUBMITTED, 'Submitted'
+
+      # @!parse UPDATED = Updated
       new :UPDATED, 'Updated'
+
+      # @!parse VALID = Valid
       new :VALID, 'Valid'
+
     end
 
     # Represents a DataCite `<date/>` field, which can be a year, date (year-month-day or just year-month),

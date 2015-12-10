@@ -5,29 +5,73 @@ module Datacite
   module Mapping
 
     # Controlled vocabulary of contributor types.
-    class ContributorType < TypesafeEnum::Base # TODO: list enum values in docs
+    class ContributorType < TypesafeEnum::Base
+      # @!parse CONTACT_PERSON = ContactPerson
       new :CONTACT_PERSON, 'ContactPerson'
+
+      # @!parse DATA_COLLECTOR = DataCollector
       new :DATA_COLLECTOR, 'DataCollector'
+
+      # @!parse DATA_CURATOR = DataCurator
       new :DATA_CURATOR, 'DataCurator'
+
+      # @!parse DATA_MANAGER = DataManager
       new :DATA_MANAGER, 'DataManager'
+
+      # @!parse DISTRIBUTOR = Distributor
       new :DISTRIBUTOR, 'Distributor'
+
+      # @!parse EDITOR = Editor
       new :EDITOR, 'Editor'
+
+      # @!parse FUNDER = Funder
       new :FUNDER, 'Funder'
+
+      # @!parse HOSTING_INSTITUTION = HostingInstitution
       new :HOSTING_INSTITUTION, 'HostingInstitution'
+
+      # @!parse PRODUCER = Producer
       new :PRODUCER, 'Producer'
+
+      # @!parse PROJECT_LEADER = ProjectLeader
       new :PROJECT_LEADER, 'ProjectLeader'
+
+      # @!parse PROJECT_MANAGER = ProjectManager
       new :PROJECT_MANAGER, 'ProjectManager'
+
+      # @!parse PROJECT_MEMBER = ProjectMember
       new :PROJECT_MEMBER, 'ProjectMember'
+
+      # @!parse REGISTRATION_AGENCY = RegistrationAgency
       new :REGISTRATION_AGENCY, 'RegistrationAgency'
+
+      # @!parse REGISTRATION_AUTHORITY = RegistrationAuthority
       new :REGISTRATION_AUTHORITY, 'RegistrationAuthority'
+
+      # @!parse RELATED_PERSON = RelatedPerson
       new :RELATED_PERSON, 'RelatedPerson'
+
+      # @!parse RESEARCHER = Researcher
       new :RESEARCHER, 'Researcher'
+
+      # @!parse RESEARCH_GROUP = ResearchGroup
       new :RESEARCH_GROUP, 'ResearchGroup'
+
+      # @!parse RIGHTS_HOLDER = RightsHolder
       new :RIGHTS_HOLDER, 'RightsHolder'
+
+      # @!parse SPONSOR = Sponsor
       new :SPONSOR, 'Sponsor'
+
+      # @!parse SUPERVISOR = Supervisor
       new :SUPERVISOR, 'Supervisor'
+
+      # @!parse WORK_PACKAGE_LEADER = WorkPackageLeader
       new :WORK_PACKAGE_LEADER, 'WorkPackageLeader'
+
+      # @!parse OTHER = Other
       new :OTHER, 'Other'
+
     end
 
     # The institution or person responsible for collecting, creating, or otherwise contributing to the developement of the dataset.

@@ -4,10 +4,16 @@ module Datacite
   module Mapping
 
     # Controlled vocabulary of title types (for titles other than the main/default title).
-    class TitleType < TypesafeEnum::Base # TODO: list enum values in docs
+    class TitleType < TypesafeEnum::Base
+      # @!parse ALTERNATIVE_TITLE = AlternativeTitle
       new :ALTERNATIVE_TITLE, 'AlternativeTitle'
+
+      # @!parse SUBTITLE = Subtitle
       new :SUBTITLE, 'Subtitle'
+
+      # @!parse TRANSLATED_TITLE = TranslatedTitle
       new :TRANSLATED_TITLE, 'TranslatedTitle'
+
     end
 
     # A name or title by which a {Resource} is known.

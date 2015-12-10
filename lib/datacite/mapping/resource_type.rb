@@ -3,22 +3,50 @@ require 'xml/mapping_extensions'
 module Datacite
   module Mapping
 
-    # Controlled vocabulary of general resource types
-    class ResourceTypeGeneral < TypesafeEnum::Base # TODO: list enum values in docs
+    # Controlled vocabulary of general resource types.
+    class ResourceTypeGeneral < TypesafeEnum::Base
+      # @!parse AUDIOVISUAL = Audiovisual
       new :AUDIOVISUAL, 'Audiovisual'
+
+      # @!parse COLLECTION = Collection
       new :COLLECTION, 'Collection'
+
+      # @!parse DATASET = Dataset
       new :DATASET, 'Dataset'
+
+      # @!parse EVENT = Event
       new :EVENT, 'Event'
+
+      # @!parse IMAGE = Image
       new :IMAGE, 'Image'
+
+      # @!parse INTERACTIVE_RESOURCE = InteractiveResource
       new :INTERACTIVE_RESOURCE, 'InteractiveResource'
+
+      # @!parse MODEL = Model
       new :MODEL, 'Model'
+
+      # @!parse PHYSICAL_OBJECT = PhysicalObject
       new :PHYSICAL_OBJECT, 'PhysicalObject'
+
+      # @!parse SERVICE = Service
       new :SERVICE, 'Service'
+
+      # @!parse SOFTWARE = Software
       new :SOFTWARE, 'Software'
+
+      # @!parse SOUND = Sound
       new :SOUND, 'Sound'
+
+      # @!parse TEXT = Text
       new :TEXT, 'Text'
+
+      # @!parse WORKFLOW = Workflow
       new :WORKFLOW, 'Workflow'
+
+      # @!parse OTHER = Other
       new :OTHER, 'Other'
+
     end
 
     # The type of the resource

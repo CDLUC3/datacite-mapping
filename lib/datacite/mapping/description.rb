@@ -4,12 +4,22 @@ module Datacite
   module Mapping
 
     # Controlled vocabulary of description types.
-    class DescriptionType < TypesafeEnum::Base # TODO: list enum values in docs
+    class DescriptionType < TypesafeEnum::Base
+      # @!parse ABSTRACT = Abstract
       new :ABSTRACT, 'Abstract'
+
+      # @!parse METHODS = Methods
       new :METHODS, 'Methods'
+
+      # @!parse SERIES_INFORMATION = SeriesInformation
       new :SERIES_INFORMATION, 'SeriesInformation'
+
+      # @!parse TABLE_OF_CONTENTS = TableOfContents
       new :TABLE_OF_CONTENTS, 'TableOfContents'
+
+      # @!parse OTHER = Other
       new :OTHER, 'Other'
+
     end
 
     # XML mapping class preserving `<br/>` tags in description values
