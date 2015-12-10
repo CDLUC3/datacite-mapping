@@ -75,8 +75,8 @@ module Datacite
       array_node :formats, 'formats', 'format', class: String, default_value: []
 
       # @!attribute [rw] version
-      #   @return [String] version number of the resource.
-      text_node :version, 'version'
+      #   @return [String] version number of the resource. Optional.
+      text_node :version, 'version', default_value: nil
 
       # @!attribute [rw] rights_list
       #   @return [Array<Rights>] rights information for this resource.
