@@ -82,6 +82,14 @@ module Datacite
       #   @return [Array<Rights>] rights information for this resource.
       array_node :rights_list, 'rightsList', 'rights', class: Rights
 
+      # @!attribute [rw] descriptions
+      #   @return [Array<Description>] all additional information that does not fit in any of the other categories.
+      array_node :descriptions, 'descriptions', 'description', class: Description
+
+      # @!attribute [rw] geo_locations
+      #   @return [Array<GeoLocations>] spatial region or named place where the data was gathered or about which the data is focused.
+      array_node :geo_locations, 'geoLocations', 'geoLocation', class: GeoLocation
+
       alias_method :_language, :language
       private :_language
 
@@ -107,6 +115,8 @@ module Datacite
       # @param formats [Array<String>] technical format of the resource, e.g. file extension or MIME type.
       # @param version [String] version number of the resource.
       # @param rights_list [Array<Rights>] rights information for this resource.
+      # @param descriptions [Array<Description>] all additional information that does not fit in any of the other categories.
+      # @param geo_locations [Array<GeoLocations>] spatial region or named place where the data was gathered or about which the data is focused.
       def initialize(identifier:, creators:, titles:, publisher:, publication_year:, subjects: [], contributors: [], dates: [], language: 'en', resource_type: nil, alternate_identifiers: [], related_identifiers: [], sizes: [], formats: [], version: nil, rights_list: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
         self.identifier = identifier
         self.creators = creators
@@ -124,6 +134,8 @@ module Datacite
         self.formats = formats
         self.version = version
         self.rights_list = rights_list
+        self.descriptions = descriptions
+        self.geo_locations = geo_locations
       end
 
       def language

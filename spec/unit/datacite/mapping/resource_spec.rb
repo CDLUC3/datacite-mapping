@@ -1,4 +1,4 @@
-# coding: UTF-8
+# coding: utf-8
 require 'spec_helper'
 
 module Datacite
@@ -89,6 +89,7 @@ module Datacite
           )
           expect(resource.identifier).to eq(@identifier)
         end
+
         it 'sets the creators' do
           resource = Resource.new(
             identifier: @identifier,
@@ -99,6 +100,7 @@ module Datacite
           )
           expect(resource.creators).to eq(@creators)
         end
+
         it 'sets the titles' do
           resource = Resource.new(
             identifier: @identifier,
@@ -109,6 +111,7 @@ module Datacite
           )
           expect(resource.titles).to eq(@titles)
         end
+
         it 'sets the publisher' do
           resource = Resource.new(
             identifier: @identifier,
@@ -119,6 +122,7 @@ module Datacite
           )
           expect(resource.publisher).to eq(@publisher)
         end
+
         it 'sets the publicationYear' do
           resource = Resource.new(
             identifier: @identifier,
@@ -129,6 +133,7 @@ module Datacite
           )
           expect(resource.publication_year).to eq(@pub_year)
         end
+
         it 'requires an identifier' do
           expect do
             Resource.new(
@@ -139,6 +144,7 @@ module Datacite
             )
           end.to raise_error(ArgumentError)
         end
+
         it 'requires creators' do
           expect do
             Resource.new(
@@ -149,6 +155,7 @@ module Datacite
             )
           end.to raise_error(ArgumentError)
         end
+
         it 'requires titles' do
           expect do
             Resource.new(
@@ -159,6 +166,7 @@ module Datacite
             )
           end.to raise_error(ArgumentError)
         end
+
         it 'requires a publisher' do
           expect do
             Resource.new(
@@ -169,6 +177,7 @@ module Datacite
             )
           end.to raise_error(ArgumentError)
         end
+
         it 'requires a publicationYear' do
           expect do
             Resource.new(
@@ -179,6 +188,7 @@ module Datacite
             )
           end.to raise_error(ArgumentError)
         end
+
         it 'allows subjects' do
           subjects = [
             Subject.new(
@@ -204,10 +214,11 @@ module Datacite
           )
           expect(resource.subjects).to eq(subjects)
         end
+
         it 'allows dates' do
           dates = [
-            Date.new(value: DateTime.new(1914, 8, 4, 11, 01, 6.0123, '+1')),
-            Date.new(value: '1914-08-04T11:01:06.0123+01:00')
+            Date.new(value: DateTime.new(1914, 8, 4, 11, 01, 6.0123, '+1'), type: DateType::AVAILABLE),
+            Date.new(value: '1914-08-04T11:01:06.0123+01:00', type: DateType::AVAILABLE)
           ]
           resource = Resource.new(
             identifier: @identifier,
@@ -219,6 +230,7 @@ module Datacite
           )
           expect(resource.dates).to eq(dates)
         end
+
         it 'allows a language' do
           resource = Resource.new(
             identifier: @identifier,
@@ -230,6 +242,7 @@ module Datacite
           )
           expect(resource.language).to eq('en-emodeng')
         end
+
         it 'allows alternate identifiers' do
           alternate_identifiers = [
             AlternateIdentifier.new(type: 'URL', value: 'http://example.org'),
@@ -245,6 +258,7 @@ module Datacite
           )
           expect(resource.alternate_identifiers).to eq(alternate_identifiers)
         end
+
         it 'allows sizes' do
           sizes = ['2 petabytes', '2048 TB']
           resource = Resource.new(
@@ -257,6 +271,7 @@ module Datacite
           )
           expect(resource.sizes).to eq(sizes)
         end
+
         it 'allows related identifiers' do
           related_identifiers = [
             RelatedIdentifier.new(
@@ -283,6 +298,7 @@ module Datacite
           )
           expect(resource.related_identifiers).to eq(related_identifiers)
         end
+
         it 'allows formats' do
           formats = %w(application/xml text/html)
           resource = Resource.new(
@@ -295,6 +311,7 @@ module Datacite
           )
           expect(resource.formats).to eq(formats)
         end
+
         it 'allows a version' do
           version = '3.1'
           resource = Resource.new(
@@ -307,6 +324,7 @@ module Datacite
           )
           expect(resource.version).to eq(version)
         end
+
         it 'allows rights' do
           rights_list = [
             Rights.new(value: 'CC0 1.0 Universal', uri: URI('http://creativecommons.org/publicdomain/zero/1.0/')),
@@ -493,6 +511,15 @@ module Datacite
       describe 'geo_locations=' do
         it 'overwrites the geolocation list'
         it 'accepts an empty list'
+      end
+
+      describe 'XML mapping' do
+        it 'round-trips' do
+          xml_text = File.read('spec/data/resource.xml')
+          xml = REXML::Document.new(xml_text).root
+          resource = Resource.load_from_xml(xml)
+          expect(resource.save_to_xml).to be_xml(xml_text)
+        end
       end
     end
   end
