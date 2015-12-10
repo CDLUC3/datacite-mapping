@@ -14,7 +14,7 @@ module Datacite
         @values[:iso8601] = '1914-08-04T11:01+01:00'
         @values[:iso8601_secs] = '1914-08-04T11:01:06+01:00'
         @values[:iso8601_frac] = '1914-08-04T11:01:06.0123+01:00'
-        @dates = @values.map { |format, v| [format, Date.new(value: v)] }.to_h
+        @dates = @values.map { |format, v| [format, Date.new(type: DateType::AVAILABLE, value: v)] }.to_h
       end
 
       describe '#initialize' do
@@ -87,17 +87,31 @@ module Datacite
         it 'supports RKMS-ISO8601 date ranges'
 
         it 'rejects invalid dates' do
-          d = Date.new(value: 1914)
+          d = Date.new(value: 1914, type: DateType::AVAILABLE)
           old_value = d.value
           expect { d.value = 'elvis' }.to raise_error(ArgumentError)
           expect(d.value).to eq(old_value)
         end
 
         it 'rejects nil' do
-          d = Date.new(value: 1914)
+          d = Date.new(value: 1914, type: DateType::AVAILABLE)
           old_value = d.value
           expect { d.value = nil }.to raise_error(ArgumentError)
           expect(d.value).to eq(old_value)
+        end
+      end
+
+      describe 'type=' do
+        it 'sets the type' do
+          d = Date.allocate
+          d.type = DateType::COLLECTED
+          expect(d.type).to eq(DateType::COLLECTED)
+        end
+
+        it 'rejects nil' do
+          d = Date.new(value: 1914, type: DateType::COLLECTED)
+          expect { d.type = nil }.to raise_error(ArgumentError)
+          expect(d.type).to eq(DateType::COLLECTED)
         end
       end
 
@@ -217,6 +231,16 @@ module Datacite
           end
         end
       end
+
+      describe '#save_to_xml' do
+        it 'writes XML' do
+          d = Date.new(value: '1914-08-04T11:01:06.0123+01:00', type: DateType::AVAILABLE)
+          expected_xml = '<date dateType="Available">1914-08-04T11:01:06.0123+01:00</date>'
+          expect(d.save_to_xml).to be_xml(expected_xml)
+        end
+      end
+
+      describe '#load_from_xml'
     end
   end
 end

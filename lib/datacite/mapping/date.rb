@@ -2,6 +2,20 @@ require 'xml/mapping_extensions'
 
 module Datacite
   module Mapping
+
+    # Controlled vocabulary of date types
+    class DateType < TypesafeEnum::Base
+      new :ACCEPTED, 'Accepted'
+      new :AVAILABLE, 'Available'
+      new :COPYRIGHTED, 'Copyrighted'
+      new :COLLECTED, 'Collected'
+      new :CREATED, 'Created'
+      new :ISSUED, 'Issued'
+      new :SUBMITTED, 'Submitted'
+      new :UPDATED, 'Updated'
+      new :VALID, 'Valid'
+    end
+
     # Represents a DataCite `<date/>` field, which can be a year, date (year-month-day or just year-month),
     # or ISO8601 datetime.
     #
@@ -22,6 +36,12 @@ module Datacite
     class Date
       include XML::Mapping
 
+      # @!attribute [rw] type
+      #  @return [DateType] the type of date. Cannot be nil.
+      typesafe_enum_node :type, '@dateType', class: DateType
+      alias_method :_type=, :type=
+      private :_type=
+
       # @!method value
       #   @return [String] The value as a string. May be any [W3C DateTime format](http://www.w3.org/TR/NOTE-datetime).
       text_node :value, 'text()'
@@ -38,10 +58,17 @@ module Datacite
 
       # Initializes a new `Date`
       #
+      # @param type [DateType] the type of date. Cannot be nil.
       # @param value [DateTime, Date, Integer, String] The value, as a `DateTime`, `Date`, or `Integer`,
       #   or as a `String` in any [W3C DateTime format](http://www.w3.org/TR/NOTE-datetime)
-      def initialize(value:)
+      def initialize(type:, value:)
+        self.type = type
         self.value = value
+      end
+
+      def type=(val)
+        fail ArgumentError, 'Date type cannot be nil' unless val
+        self._type = val
       end
 
       # Sets the value.
