@@ -88,7 +88,7 @@ module Datacite
 
       # @!attribute [rw] affiliations
       #   @return [Array<String>] the contributor's affiliations. Defaults to an empty list.
-      array_node :affiliations, 'affiliation', class: String
+      array_node :affiliations, 'affiliation', class: String, default_value: []
 
       # @!attribute [rw] type
       #   @return [ContributorType] the contributor type. Cannot be nil.

@@ -23,11 +23,11 @@ module Datacite
 
       # @!attribute [rw] creators
       #   @return [Array<Creator>] the main researchers involved working on the data, or the authors of the publication in priority order.
-      array_node :creators, 'creators', 'creator', class: Creator
+      array_node :creators, 'creators', 'creator', class: Creator, default_value: []
 
       # @!attribute [rw] titles
       #   @return [Array<Title>] the names or titles by which a resource is known.
-      array_node :titles, 'titles', 'title', class: Title
+      array_node :titles, 'titles', 'title', class: Title, default_value: []
 
       # @!attribute [rw] publisher
       #   @return [String] the name of the entity that holds, archives, publishes prints, distributes, releases, issues, or produces the resource.
@@ -39,15 +39,15 @@ module Datacite
 
       # @!attribute [rw] subjects
       #   @return [Array<Subject>] subjects, keywords, classification codes, or key phrases describing the resource.
-      array_node :subjects, 'subjects', 'subject', class: Subject
+      array_node :subjects, 'subjects', 'subject', class: Subject, default_value: []
 
       # @!attribute [rw] contributors
       #   @return [Array<Contributor>] institutions or persons responsible for collecting, creating, or otherwise contributing to the developement of the dataset.
-      array_node :contributors, 'contributors', 'contributor', class: Contributor
+      array_node :contributors, 'contributors', 'contributor', class: Contributor, default_value: []
 
       # @!attribute [rw] dates
       #   @return [Array<Date>] different dates relevant to the work.
-      array_node :dates, 'dates', 'date', class: Date
+      array_node :dates, 'dates', 'date', class: Date, default_value: []
 
       # @!attribute [rw] language
       #   @return [String] Primary language of the resource: an IETF BCP 47, ISO 639-1 language code.
@@ -60,19 +60,19 @@ module Datacite
 
       # @!attribute [rw] alternate_identifiers
       #   @return [Array<AlternateIdentifier>] an identifier or identifiers other than the primary {Identifier} applied to the resource being registered.
-      array_node :alternate_identifiers, 'alternateIdentifiers', 'alternateIdentifier', class: AlternateIdentifier
+      array_node :alternate_identifiers, 'alternateIdentifiers', 'alternateIdentifier', class: AlternateIdentifier, default_value: []
 
       # @!attribute [rw] related_identifiers
       #   @return [Array<RelatedIdentifier>] identifiers of related resources.
-      array_node :related_identifiers, 'relatedIdentifiers', 'relatedIdentifier', class: RelatedIdentifier
+      array_node :related_identifiers, 'relatedIdentifiers', 'relatedIdentifier', class: RelatedIdentifier, default_value: []
 
       # @!attribute [rw] sizes
       #   @return [Array<String>] unstructured size information about the resource.
-      array_node :sizes, 'sizes', 'size', class: String
+      array_node :sizes, 'sizes', 'size', class: String, default_value: []
 
       # @!attribute [rw] formats
       #   @return [Array<String>] technical format of the resource, e.g. file extension or MIME type.
-      array_node :formats, 'formats', 'format', class: String
+      array_node :formats, 'formats', 'format', class: String, default_value: []
 
       # @!attribute [rw] version
       #   @return [String] version number of the resource.
@@ -80,15 +80,15 @@ module Datacite
 
       # @!attribute [rw] rights_list
       #   @return [Array<Rights>] rights information for this resource.
-      array_node :rights_list, 'rightsList', 'rights', class: Rights
+      array_node :rights_list, 'rightsList', 'rights', class: Rights, default_value: []
 
       # @!attribute [rw] descriptions
       #   @return [Array<Description>] all additional information that does not fit in any of the other categories.
-      array_node :descriptions, 'descriptions', 'description', class: Description
+      array_node :descriptions, 'descriptions', 'description', class: Description, default_value: []
 
       # @!attribute [rw] geo_locations
       #   @return [Array<GeoLocations>] spatial region or named place where the data was gathered or about which the data is focused.
-      array_node :geo_locations, 'geoLocations', 'geoLocation', class: GeoLocation
+      array_node :geo_locations, 'geoLocations', 'geoLocation', class: GeoLocation, default_value: []
 
       alias_method :_language, :language
       private :_language
