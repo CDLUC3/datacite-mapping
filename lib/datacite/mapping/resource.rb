@@ -146,6 +146,16 @@ module Datacite
         self._language = value.strip if value
       end
 
+      # Overrides +::XML::Mapping.pre_save+ to write namespace information.
+      # Used for writing.
+      def pre_save(options = { mapping: :_default })
+        xml = super(options)
+        xml.add_namespace('http://datacite.org/schema/kernel-3')
+        xml.add_namespace('xsi', 'http://www.w3.org/2001/XMLSchema-instance')
+        xml.add_attribute('xsi:schemaLocation', 'http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd')
+        xml
+      end
+
     end
   end
 end
