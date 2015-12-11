@@ -23,11 +23,11 @@ module Datacite
 
       # @!attribute [rw] creators
       #   @return [Array<Creator>] the main researchers involved working on the data, or the authors of the publication in priority order.
-      array_node :creators, 'creators', 'creator', class: Creator, default_value: []
+      array_node :creators, 'creators', 'creator', class: Creator
 
       # @!attribute [rw] titles
       #   @return [Array<Title>] the names or titles by which a resource is known.
-      array_node :titles, 'titles', 'title', class: Title, default_value: []
+      array_node :titles, 'titles', 'title', class: Title
 
       # @!attribute [rw] publisher
       #   @return [String] the name of the entity that holds, archives, publishes prints, distributes, releases, issues, or produces the resource.
@@ -55,8 +55,8 @@ module Datacite
       text_node :language, 'language'
 
       # @!attribute [rw] resource_type
-      #   @return [ResourceType, nil] the type of the resource
-      object_node :resource_type, 'resourceType', class: ResourceType
+      #   @return [ResourceType, nil] the type of the resource. Optional.
+      object_node :resource_type, 'resourceType', class: ResourceType, default_value: nil
 
       # @!attribute [rw] alternate_identifiers
       #   @return [Array<AlternateIdentifier>] an identifier or identifiers other than the primary {Identifier} applied to the resource being registered.
@@ -89,12 +89,6 @@ module Datacite
       # @!attribute [rw] geo_locations
       #   @return [Array<GeoLocations>] spatial region or named place where the data was gathered or about which the data is focused.
       array_node :geo_locations, 'geoLocations', 'geoLocation', class: GeoLocation, default_value: []
-
-      alias_method :_language, :language
-      private :_language
-
-      alias_method :_language=, :language=
-      private :_language=
 
       # Initialies a new {Resource}
       #
@@ -138,12 +132,58 @@ module Datacite
         self.geo_locations = geo_locations
       end
 
+      alias_method :_language, :language
+      private :_language
+
+      alias_method :_language=, :language=
+      private :_language=
+
       def language
         _language || 'en'
       end
 
       def language=(value)
         self._language = value.strip if value
+      end
+
+      alias_method :_identifier=, :identifier=
+      private :_identifier=
+
+      def identifier=(value)
+        fail ArgumentError, 'Resource must have an identifier' unless value
+        self._identifier = value
+      end
+
+      alias_method :_creators=, :creators=
+      private :_creators=
+
+      def creators=(value)
+        fail ArgumentError, 'Resource must have at least one creator' unless value && value.size > 0
+        self._creators = value
+      end
+
+      alias_method :_titles=, :titles=
+      private :_titles=
+
+      def titles=(value)
+        fail ArgumentError, 'Resource must have at least one title' unless value && value.size > 0
+        self._titles = value
+      end
+
+      alias_method :_publisher=, :publisher=
+      private :_publisher=
+
+      def publisher=(value)
+        fail ArgumentError, 'Resource must have at least one publisher' unless value && value.size > 0
+        self._publisher = value.strip
+      end
+
+      alias_method :_publication_year=, :publication_year=
+      private :_publication_year=
+
+      def publication_year=(value)
+        fail ArgumentError, 'Resource must have a four-digit publication year' unless value && value.to_i.between?(1000, 9999)
+        self._publication_year = value.to_i
       end
 
       # Overrides +::XML::Mapping.pre_save+ to write namespace information.

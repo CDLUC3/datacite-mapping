@@ -81,57 +81,62 @@ module Datacite
       describe '#initialize' do
         it 'sets the identifier' do
           resource = Resource.new(
-            identifier: @identifier,
+            identifier: @id,
             creators: @creators,
             titles: @titles,
             publisher: @publisher,
             publication_year: @pub_year
           )
-          expect(resource.identifier).to eq(@identifier)
+          expect(resource.identifier).to eq(@id)
+          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
         end
 
         it 'sets the creators' do
           resource = Resource.new(
-            identifier: @identifier,
+            identifier: @id,
             creators: @creators,
             titles: @titles,
             publisher: @publisher,
             publication_year: @pub_year
           )
           expect(resource.creators).to eq(@creators)
+          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
         end
 
         it 'sets the titles' do
           resource = Resource.new(
-            identifier: @identifier,
+            identifier: @id,
             creators: @creators,
             titles: @titles,
             publisher: @publisher,
             publication_year: @pub_year
           )
           expect(resource.titles).to eq(@titles)
+          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
         end
 
         it 'sets the publisher' do
           resource = Resource.new(
-            identifier: @identifier,
+            identifier: @id,
             creators: @creators,
             titles: @titles,
             publisher: @publisher,
             publication_year: @pub_year
           )
           expect(resource.publisher).to eq(@publisher)
+          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
         end
 
         it 'sets the publicationYear' do
           resource = Resource.new(
-            identifier: @identifier,
+            identifier: @id,
             creators: @creators,
             titles: @titles,
             publisher: @publisher,
             publication_year: @pub_year
           )
           expect(resource.publication_year).to eq(@pub_year)
+          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
         end
 
         it 'requires an identifier' do
@@ -143,15 +148,42 @@ module Datacite
               publication_year: @pub_year
             )
           end.to raise_error(ArgumentError)
+          expect do
+            Resource.new(
+              creators: @creators,
+              titles: @titles,
+              publisher: @publisher,
+              publication_year: @pub_year,
+              identifier: nil
+            )
+          end.to raise_error(ArgumentError)
         end
 
         it 'requires creators' do
           expect do
             Resource.new(
-              identifier: @identifier,
+              identifier: @id,
               titles: @titles,
               publisher: @publisher,
               publication_year: @pub_year
+            )
+          end.to raise_error(ArgumentError)
+          expect do
+            Resource.new(
+              identifier: @id,
+              titles: @titles,
+              publisher: @publisher,
+              publication_year: @pub_year,
+              creators: []
+            )
+          end.to raise_error(ArgumentError)
+          expect do
+            Resource.new(
+              identifier: @id,
+              titles: @titles,
+              publisher: @publisher,
+              publication_year: @pub_year,
+              creators: nil
             )
           end.to raise_error(ArgumentError)
         end
@@ -159,10 +191,28 @@ module Datacite
         it 'requires titles' do
           expect do
             Resource.new(
-              identifier: @identifier,
+              identifier: @id,
               creators: @creators,
               publisher: @publisher,
               publication_year: @pub_year
+            )
+          end.to raise_error(ArgumentError)
+          expect do
+            Resource.new(
+              identifier: @id,
+              creators: @creators,
+              publisher: @publisher,
+              publication_year: @pub_year,
+              titles: nil
+            )
+          end.to raise_error(ArgumentError)
+          expect do
+            Resource.new(
+              identifier: @id,
+              creators: @creators,
+              publisher: @publisher,
+              publication_year: @pub_year,
+              titles: []
             )
           end.to raise_error(ArgumentError)
         end
@@ -170,10 +220,37 @@ module Datacite
         it 'requires a publisher' do
           expect do
             Resource.new(
-              identifier: @identifier,
+              identifier: @id,
               creators: @creators,
               titles: @titles,
               publication_year: @pub_year
+            )
+          end.to raise_error(ArgumentError)
+          expect do
+            Resource.new(
+              identifier: @id,
+              creators: @creators,
+              titles: @titles,
+              publication_year: @pub_year,
+              publisher: nil
+            )
+          end.to raise_error(ArgumentError)
+          expect do
+            Resource.new(
+              identifier: @id,
+              creators: @creators,
+              titles: @titles,
+              publication_year: @pub_year,
+              publisher: []
+            )
+          end.to raise_error(ArgumentError)
+          expect do
+            Resource.new(
+              identifier: @id,
+              creators: @creators,
+              titles: @titles,
+              publication_year: @pub_year,
+              publisher: ''
             )
           end.to raise_error(ArgumentError)
         end
@@ -181,10 +258,46 @@ module Datacite
         it 'requires a publicationYear' do
           expect do
             Resource.new(
-              identifier: @identifier,
+              identifier: @id,
               creators: @creators,
               titles: @titles,
               publisher: @publisher
+            )
+          end.to raise_error(ArgumentError)
+          expect do
+            Resource.new(
+              identifier: @id,
+              creators: @creators,
+              titles: @titles,
+              publisher: @publisher,
+              publication_year: nil
+            )
+          end.to raise_error(ArgumentError)
+          expect do
+            Resource.new(
+              identifier: @id,
+              creators: @creators,
+              titles: @titles,
+              publisher: @publisher,
+              publication_year: -1
+            )
+          end.to raise_error(ArgumentError)
+          expect do
+            Resource.new(
+              identifier: @id,
+              creators: @creators,
+              titles: @titles,
+              publisher: @publisher,
+              publication_year: 999
+            )
+          end.to raise_error(ArgumentError)
+          expect do
+            Resource.new(
+              identifier: @id,
+              creators: @creators,
+              titles: @titles,
+              publisher: @publisher,
+              publication_year: 10_000
             )
           end.to raise_error(ArgumentError)
         end
@@ -205,7 +318,7 @@ module Datacite
             )
           ]
           resource = Resource.new(
-            identifier: @identifier,
+            identifier: @id,
             creators: @creators,
             titles: @titles,
             publisher: @publisher,
@@ -213,6 +326,7 @@ module Datacite
             subjects: subjects
           )
           expect(resource.subjects).to eq(subjects)
+          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
         end
 
         it 'allows dates' do
@@ -221,7 +335,7 @@ module Datacite
             Date.new(value: '1914-08-04T11:01:06.0123+01:00', type: DateType::AVAILABLE)
           ]
           resource = Resource.new(
-            identifier: @identifier,
+            identifier: @id,
             creators: @creators,
             titles: @titles,
             publisher: @publisher,
@@ -229,11 +343,12 @@ module Datacite
             dates: dates
           )
           expect(resource.dates).to eq(dates)
+          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
         end
 
         it 'allows a language' do
           resource = Resource.new(
-            identifier: @identifier,
+            identifier: @id,
             creators: @creators,
             titles: @titles,
             publisher: @publisher,
@@ -241,6 +356,7 @@ module Datacite
             language: 'en-emodeng'
           )
           expect(resource.language).to eq('en-emodeng')
+          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
         end
 
         it 'allows alternate identifiers' do
@@ -249,7 +365,7 @@ module Datacite
             AlternateIdentifier.new(type: 'URL', value: 'http://example.com')
           ]
           resource = Resource.new(
-            identifier: @identifier,
+            identifier: @id,
             creators: @creators,
             titles: @titles,
             publisher: @publisher,
@@ -257,12 +373,13 @@ module Datacite
             alternate_identifiers: alternate_identifiers
           )
           expect(resource.alternate_identifiers).to eq(alternate_identifiers)
+          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
         end
 
         it 'allows sizes' do
           sizes = ['2 petabytes', '2048 TB']
           resource = Resource.new(
-            identifier: @identifier,
+            identifier: @id,
             creators: @creators,
             titles: @titles,
             publisher: @publisher,
@@ -270,12 +387,13 @@ module Datacite
             sizes: sizes
           )
           expect(resource.sizes).to eq(sizes)
+          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
         end
 
         it 'allows related identifiers' do
           related_identifiers = [
             RelatedIdentifier.new(
-              identifier_type: 'URL',
+              identifier_type: RelatedIdentifierType::URL,
               relation_type: RelationType::HAS_METADATA,
               related_metadata_scheme: 'citeproc+json',
               scheme_type: 'Turtle',
@@ -283,13 +401,13 @@ module Datacite
               value: 'http://data.datacite.org/application/citeproc+json/10.5072/example-full'
             ),
             RelatedIdentifier.new(
-              identifier_type: 'arXiv',
+              identifier_type: RelatedIdentifierType::ARXIV,
               relation_type: RelationType::IS_REVIEWED_BY,
               value: 'arXiv:0706.0001'
             )
           ]
           resource = Resource.new(
-            identifier: @identifier,
+            identifier: @id,
             creators: @creators,
             titles: @titles,
             publisher: @publisher,
@@ -297,12 +415,13 @@ module Datacite
             related_identifiers: related_identifiers
           )
           expect(resource.related_identifiers).to eq(related_identifiers)
+          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
         end
 
         it 'allows formats' do
           formats = %w(application/xml text/html)
           resource = Resource.new(
-            identifier: @identifier,
+            identifier: @id,
             creators: @creators,
             titles: @titles,
             publisher: @publisher,
@@ -310,12 +429,13 @@ module Datacite
             formats: formats
           )
           expect(resource.formats).to eq(formats)
+          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
         end
 
         it 'allows a version' do
           version = '3.1'
           resource = Resource.new(
-            identifier: @identifier,
+            identifier: @id,
             creators: @creators,
             titles: @titles,
             publisher: @publisher,
@@ -323,6 +443,7 @@ module Datacite
             version: version
           )
           expect(resource.version).to eq(version)
+          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
         end
 
         it 'allows rights' do
@@ -331,7 +452,7 @@ module Datacite
             Rights.new(value: 'This work is free of known copyright restrictions.', uri: URI('http://creativecommons.org/publicdomain/mark/1.0/'))
           ]
           resource = Resource.new(
-            identifier: @identifier,
+            identifier: @id,
             creators: @creators,
             titles: @titles,
             publisher: @publisher,
@@ -339,6 +460,7 @@ module Datacite
             rights_list: rights_list
           )
           expect(resource.rights_list).to eq(rights_list)
+          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
         end
       end
 
