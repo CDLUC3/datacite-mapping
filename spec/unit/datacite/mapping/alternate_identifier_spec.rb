@@ -41,8 +41,7 @@ module Datacite
       describe '#load_from_xml' do
         it 'parses XML' do
           xml_text = '<alternateIdentifier alternateIdentifierType="URL">http://schema.datacite.org/schema/meta/kernel-3.1/example/datacite-example-full-v3.1.xml</alternateIdentifier>'
-          xml = REXML::Document.new(xml_text).root
-          id = AlternateIdentifier.load_from_xml(xml)
+          id = AlternateIdentifier.parse_xml(xml_text)
           expect(id.type).to eq('URL')
           expect(id.value).to eq('http://schema.datacite.org/schema/meta/kernel-3.1/example/datacite-example-full-v3.1.xml')
         end

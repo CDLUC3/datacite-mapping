@@ -717,8 +717,7 @@ module Datacite
 
         it 'round-trips' do
           xml_text = File.read('spec/data/resource.xml')
-          xml = REXML::Document.new(xml_text).root
-          resource = Resource.load_from_xml(xml)
+          resource = Resource.parse_xml(xml_text)
           expect(resource.save_to_xml).to be_xml(xml_text)
         end
       end

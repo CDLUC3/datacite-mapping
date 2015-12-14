@@ -63,8 +63,7 @@ module Datacite
       describe '#load_from_xml' do
         it 'parses XML' do
           xml_text = '<subject xml:lang="en-us" schemeURI="http://id.loc.gov/authorities/subjects" subjectScheme="LCSH">Mammals--Embryology</subject>'
-          xml = REXML::Document.new(xml_text).root
-          subject = Subject.load_from_xml(xml)
+          subject = Subject.parse_xml(xml_text)
 
           value = 'Mammals--Embryology'
           lang = 'en-us'
@@ -79,8 +78,7 @@ module Datacite
 
         it 'treats missing language as en' do
           xml_text = '<subject schemeURI="http://id.loc.gov/authorities/subjects" subjectScheme="LCSH">Mammals--Embryology</subject>'
-          xml = REXML::Document.new(xml_text).root
-          subject = Subject.load_from_xml(xml)
+          subject = Subject.parse_xml(xml_text)
           expect(subject.language).to eq('en')
         end
       end

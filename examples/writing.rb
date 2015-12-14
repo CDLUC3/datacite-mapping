@@ -43,7 +43,4 @@ resource = Resource.new(
   ]
 )
 
-xml = resource.save_to_xml
-formatter = REXML::Formatters::Pretty.new
-formatter.compact = true
-formatter.write(xml, $stdout)
+puts resource.write_xml

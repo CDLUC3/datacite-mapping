@@ -88,8 +88,7 @@ module Datacite
                         <affiliation>Gaumont Buena Vista International</affiliation>
                         <affiliation>20th Century Fox</affiliation>
                       </contributor>'
-          xml = REXML::Document.new(xml_text).root
-          contributor = Contributor.load_from_xml(xml)
+          contributor = Contributor.parse_xml(xml_text)
           expect(contributor.name).to eq('Hershlag, Natalie')
           expect(contributor.affiliations).to eq(['Gaumont Buena Vista International', '20th Century Fox'])
           id = contributor.identifier
@@ -105,8 +104,7 @@ module Datacite
                         <contributorName>Hedy Lamarr</contributorName>
                         <nameIdentifier schemeURI="http://isni.org/" nameIdentifierScheme="ISNI">0000-0001-1690-159X</nameIdentifier>
                       </contributor>'
-          xml = REXML::Document.new(xml_text).root
-          contributor = Contributor.load_from_xml(xml)
+          contributor = Contributor.parse_xml(xml_text)
           expect(contributor.affiliations).to eq([])
         end
       end

@@ -15,9 +15,9 @@
 *.a
 mkmf.log
 
-# Database
+# Gem
 
-db/*.sqlite3
+datacite*gem
 
 # Logs
 

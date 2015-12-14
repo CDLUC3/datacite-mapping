@@ -50,8 +50,7 @@ module Datacite
       describe '#load_from_xml' do
         it 'parses XML' do
           xml_text = '<resourceType resourceTypeGeneral="Software">XML</resourceType>'
-          xml = REXML::Document.new(xml_text).root
-          rt = ResourceType.load_from_xml(xml)
+          rt = ResourceType.parse_xml(xml_text)
           expect(rt.resource_type_general).to eq(ResourceTypeGeneral::SOFTWARE)
           expect(rt.value).to eq('XML')
         end

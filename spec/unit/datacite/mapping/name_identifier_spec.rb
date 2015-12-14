@@ -69,8 +69,7 @@ module Datacite
       describe '#load_from_xml' do
         it 'parses XML' do
           xml_text = '<nameIdentifier schemeURI="http://orcid.org/" nameIdentifierScheme="ORCID">0000-0003-1632-8708</nameIdentifier>'
-          xml = REXML::Document.new(xml_text).root
-          id = NameIdentifier.load_from_xml(xml)
+          id = NameIdentifier.parse_xml(xml_text)
           expect(id.scheme).to eq('ORCID')
           expect(id.scheme_uri).to eq(URI('http://orcid.org/'))
           expect(id.value).to eq('0000-0003-1632-8708')

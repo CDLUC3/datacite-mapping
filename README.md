@@ -15,23 +15,25 @@ require 'datacite/mapping'
 
 include Datacite::Mapping
 
-xml_text = File.read('resource.xml')
-resource = Resource.load_from_xml(xml.root)
-creators = resource.creators
-citation = ''
-citation << creators.map(&:name).join('; ')
-citation << ' '
-citation << "(#{resource.publication_year})"
-citation << ': '
-title = resource.titles[0].value
-citation << title
-citation << (title.end_with?('.') ? ' ' : '. ')
-citation << resource.publisher
+File.open('resource.xml', 'r') do |xml_file|
+  resource = Resource.parse_xml(xml_file)
 
-puts("Citation: #{citation}")
+  creators = resource.creators
+  citation = ''
+  citation << creators.map(&:name).join('; ')
+  citation << ' '
+  citation << "(#{resource.publication_year})"
+  citation << ': '
+  title = resource.titles[0].value
+  citation << title
+  citation << (title.end_with?('.') ? ' ' : '. ')
+  citation << resource.publisher
 
-abstract = resource.descriptions.find { |d| d.type = DescriptionType::ABSTRACT }
-puts("Abstract: #{abstract.value}")
+  puts("Citation: #{citation}")
+
+  abstract = resource.descriptions.find { |d| d.type = DescriptionType::ABSTRACT }
+  puts("Abstract: #{abstract.value}")
+end
 ```
 
 Results:
@@ -110,10 +112,7 @@ resource = Resource.new(
   ]
 )
 
-xml = resource.save_to_xml
-formatter = REXML::Formatters::Pretty.new
-formatter.compact = true
-formatter.write(xml, $stdout)
+puts resource.write_xml
 ```
 
 Results:

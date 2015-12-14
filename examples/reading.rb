@@ -55,8 +55,7 @@ xml_text = '<?xml version="1.0" encoding="UTF-8"?>
               </geoLocations>
             </resource>'
 
-xml = REXML::Document.new(xml_text)
-resource = Resource.load_from_xml(xml.root)
+resource = Resource.parse_xml(xml_text)
 
 creators = resource.creators
 citation = ''

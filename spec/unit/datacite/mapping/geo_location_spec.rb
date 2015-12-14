@@ -77,8 +77,7 @@ module Datacite
                         <geoLocationBox>41.090 -71.032 42.893 -68.211</geoLocationBox>
                         <geoLocationPlace>Atlantic Ocean</geoLocationPlace>
                       </geoLocation>'
-          xml = REXML::Document.new(xml_text).root
-          loc = GeoLocation.load_from_xml(xml)
+          loc = GeoLocation.parse_xml(xml_text)
           expect(loc.point).to eq(GeoLocationPoint.new(31.233, -67.302))
           expect(loc.box).to eq(GeoLocationBox.new(41.09, -71.032, 42.893, -68.211))
           expect(loc.place).to eq('Atlantic Ocean')
@@ -90,8 +89,7 @@ module Datacite
                           Atlantic Ocean
                         </geoLocationPlace>
                       </geoLocation>'
-          xml = REXML::Document.new(xml_text).root
-          loc = GeoLocation.load_from_xml(xml)
+          loc = GeoLocation.parse_xml(xml_text)
           expect(loc.place).to eq('Atlantic Ocean')
         end
       end

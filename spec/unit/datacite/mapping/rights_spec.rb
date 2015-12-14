@@ -51,8 +51,7 @@ module Datacite
       describe '#load_from_xml' do
         it 'reads XML' do
           xml_text = '<rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 Universal</rights>'
-          xml = REXML::Document.new(xml_text).root
-          rights = Rights.load_from_xml(xml)
+          rights = Rights.parse_xml(xml_text)
           expect(rights.value).to eq('CC0 1.0 Universal')
           expect(rights.uri).to eq(URI('http://creativecommons.org/publicdomain/zero/1.0/'))
         end
@@ -60,8 +59,7 @@ module Datacite
           xml_text = '<rights>
                         CC0 1.0 Universal
                       </rights>'
-          xml = REXML::Document.new(xml_text).root
-          rights = Rights.load_from_xml(xml)
+          rights = Rights.parse_xml(xml_text)
           expect(rights.value).to eq('CC0 1.0 Universal')
         end
       end

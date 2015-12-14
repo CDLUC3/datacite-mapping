@@ -120,8 +120,7 @@ module Datacite
       describe '#load_from_xml' do
         it 'parses XML' do
           xml_text = '<relatedIdentifier relatedIdentifierType="URL" relationType="HasMetadata" relatedMetadataScheme="citeproc+json" schemeType="Turtle" schemeURI="https://github.com/citation-style-language/schema/raw/master/csl-data.json">http://data.datacite.org/application/citeproc+json/10.5072/example-full</relatedIdentifier>'
-          xml = REXML::Document.new(xml_text).root
-          id = RelatedIdentifier.load_from_xml(xml)
+          id = RelatedIdentifier.parse_xml(xml_text)
 
           expected_id_type = RelatedIdentifierType::URL
           expected_rel_type = RelationType::HAS_METADATA

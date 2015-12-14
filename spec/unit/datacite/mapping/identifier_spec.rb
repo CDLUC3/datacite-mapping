@@ -55,8 +55,7 @@ module Datacite
       describe '#load_from_xml' do
         it 'parses XML' do
           xml_text = "<identifier identifierType='DOI'>10.14749/1407399498</identifier>"
-          xml = REXML::Document.new(xml_text).root
-          id = Identifier.load_from_xml(xml)
+          id = Identifier.parse_xml(xml_text)
           expect(id.identifier_type).to eq('DOI')
           expect(id.value).to eq('10.14749/1407399498')
         end

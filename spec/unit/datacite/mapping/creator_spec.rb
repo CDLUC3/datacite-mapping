@@ -86,8 +86,7 @@ module Datacite
                         <affiliation>United Artists</affiliation>
                         <affiliation>Metro-Goldwyn-Mayer</affiliation>
                       </creator>'
-          xml = REXML::Document.new(xml_text).root
-          creator = Creator.load_from_xml(xml)
+          creator = Creator.parse_xml(xml_text)
           expect(creator.name).to eq('Hedy Lamarr')
           expect(creator.affiliations).to eq(['United Artists', 'Metro-Goldwyn-Mayer'])
           id = creator.identifier
@@ -101,8 +100,7 @@ module Datacite
                         <creatorName>Hedy Lamarr</creatorName>
                         <nameIdentifier schemeURI="http://isni.org/" nameIdentifierScheme="ISNI">0000-0001-1690-159X</nameIdentifier>
                       </creator>'
-          xml = REXML::Document.new(xml_text).root
-          creator = Creator.load_from_xml(xml)
+          creator = Creator.parse_xml(xml_text)
           expect(creator.affiliations).to eq([])
         end
       end

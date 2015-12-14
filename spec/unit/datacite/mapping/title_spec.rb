@@ -68,8 +68,7 @@ module Datacite
       describe '#load_from_xml' do
         it 'parses XML' do
           xml_text = '<title xml:lang="en-emodeng" titleType="Subtitle">Together with an Appendix of the Same, Containing an Answer to Some Objections, Made by Severall Persons against That Hypothesis</title>'
-          xml = REXML::Document.new(xml_text).root
-          title = Title.load_from_xml(xml)
+          title = Title.parse_xml(xml_text)
 
           expected_lang = 'en-emodeng'
           expected_type = TitleType::SUBTITLE
@@ -82,8 +81,7 @@ module Datacite
 
         it 'treats missing language as en' do
           xml_text = '<title>Physical oceanography from BT during cruise U99XX00542B_1979</title>'
-          xml = REXML::Document.new(xml_text).root
-          title = Title.load_from_xml(xml)
+          title = Title.parse_xml(xml_text)
           expect(title.language).to eq('en')
         end
 
@@ -91,8 +89,7 @@ module Datacite
           xml_text = '<title>
                          Physical oceanography from BT during cruise U99XX00542B_1979
                       </title>'
-          xml = REXML::Document.new(xml_text).root
-          title = Title.load_from_xml(xml)
+          title = Title.parse_xml(xml_text)
           expect(title.value).to eq('Physical oceanography from BT during cruise U99XX00542B_1979')
         end
       end
