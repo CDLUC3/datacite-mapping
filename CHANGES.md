@@ -1,3 +1,7 @@
+## 0.1.3 (17 Dec 2015)
+
+- Update to [TypesafeEnum](https://github.com/dmolesUC3/typesafe_enum) 0.1.4.
+
 ## 0.1.2 (17 Dec 2015)
 
 - Update to [TypesafeEnum](https://github.com/dmolesUC3/typesafe_enum) 0.1.3.
