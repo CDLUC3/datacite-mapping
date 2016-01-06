@@ -2,6 +2,7 @@
 
 - Fix issue where missing `xml:lang` attribute in `<resource>` would produce a `no value, and no default value`
   error instead of defaulting to `'en'` as documented
+- Ensure that YARD formats README correctly when converting from GitHub-flavored Markdown to HTML
 - Update to [XML::MappingExtensions](https://github.com/dmolesUC3/xml-mapping_extensions) 0.3.3
 
 ## 0.1.3 (18 Dec 2015)

@@ -1,2 +1,3 @@
---markup markdown
+--markup-provider=redcarpet
+--markup=markdown
 --default-return ''
