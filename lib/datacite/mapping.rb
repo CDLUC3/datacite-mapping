@@ -1,3 +1,5 @@
+require 'logger'
+
 # Module for working with the [DataCite metadata schema](https://schema.datacite.org/meta/kernel-3/index.html)
 module Datacite
   # Maps DataCite XML to Ruby objects

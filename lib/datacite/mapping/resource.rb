@@ -52,7 +52,7 @@ module Datacite
       # @!attribute [rw] language
       #   @return [String] Primary language of the resource: an IETF BCP 47, ISO 639-1 language code.
       #   It's unclear from the spec whether language is required; to play it safe, if it's missing, we default to 'en'.
-      text_node :language, 'language'
+      text_node :language, 'language', default_value: nil
 
       # @!attribute [rw] resource_type
       #   @return [ResourceType, nil] the type of the resource. Optional.

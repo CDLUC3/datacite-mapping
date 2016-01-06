@@ -16,7 +16,7 @@ module Datacite
       object_node :identifier, 'nameIdentifier', class: NameIdentifier, default_value: nil
 
       # @!attribute [rw] affiliations
-      #   @return [Array<Affiliation>, nil] The creator's affiliations. Defaults to an empty list.
+      #   @return [Array<String>, nil] The creator's affiliations. Defaults to an empty list.
       array_node :affiliations, 'affiliation', class: String, default_value: []
 
       alias_method :_name=, :name=
@@ -28,7 +28,7 @@ module Datacite
       # Initializes a new {Creator}.
       # @param name [String] The personal name of the creator, in the format `Family, Given`. Cannot be empty or nil.
       # @param identifier [NameIdentifier, nil] An identifier for the creator. Optional.
-      # @param affiliations [Array<Affiliation>, nil] The creator's affiliations. Defaults to an empty list.
+      # @param affiliations [Array<String>, nil] The creator's affiliations. Defaults to an empty list.
       def initialize(name:, identifier: nil, affiliations: [])
         self.name = name
         self.identifier = identifier

@@ -464,6 +464,55 @@ module Datacite
         end
       end
 
+      describe '#parse_xml' do
+        before(:each) do
+          identifier = Identifier.new(value: '10.5072/example-full').save_to_xml
+
+          creators = REXML::Element.new('creators')
+          creators.add_element(Creator.new(
+            name: 'Miller, Elizabeth',
+            identifier: NameIdentifier.new(scheme: 'ORCID', scheme_uri: URI('http://orcid.org'), value: '0000-0001-5000-0007'),
+            affiliations: ['DataCite']
+          ).save_to_xml)
+
+          titles = REXML::Element.new('titles')
+          titles.add_element(Title.new(
+            language: 'en-us',
+            value: 'Full DataCite XML Example'
+          ).save_to_xml)
+          titles.add_element(Title.new(
+            language: 'en-us',
+            type: TitleType::SUBTITLE,
+            value: 'Demonstration of DataCite Properties.'
+          ).save_to_xml)
+
+          publisher = REXML::Element.new('publisher')
+          publisher.text = 'DataCite'
+
+          publication_year = REXML::Element.new('publicationYear')
+          publication_year.text = '2014'
+
+          resource = REXML::Element.new('resource')
+          resource.add_namespace('http://datacite.org/schema/kernel-3')
+          resource.add_namespace('xsi', 'http://www.w3.org/2001/XMLSchema-instance')
+          resource.add_attribute('xsi:schemaLocation', 'http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd')
+          resource.add_element(identifier)
+          resource.add_element(creators)
+          resource.add_element(titles)
+          resource.add_element(publisher)
+          resource.add_element(publication_year)
+
+          @required_xml = resource
+        end
+
+        it 'parses a resource with only required attributes' do
+          resource = Resource.parse_xml(@required_xml)
+          expect(resource.language).to eq('en')
+        end
+
+        it 'correctly differentiates required and optional attributes'
+      end
+
       describe '#save_to_xml' do
         it 'sets the namespace to http://datacite.org/schema/kernel-3'
         it "doesn't clobber the namespace on the various xml:lang attributes"
