@@ -1,3 +1,9 @@
+## 0.1.5 (27 Jan 2016)
+
+- Make gemspec smart enough to handle SSH checkouts
+- Update to [XML::MappingExtensions](https://github.com/dmolesUC3/xml-mapping_extensions) 0.3.4
+- Update to [TypesafeEnum](https://github.com/dmolesUC3/typesafe_enum) 0.1.5
+
 ## 0.1.4 (6 Jan 2016)
 
 - Fix issue where missing `xml:lang` attribute in `<resource>` would produce a `no value, and no default value`
