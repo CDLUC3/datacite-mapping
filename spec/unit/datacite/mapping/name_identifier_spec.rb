@@ -34,7 +34,7 @@ module Datacite
         end
 
         it 'requires a non-empty value' do
-          expect { NameIdentifier.new(scheme: '', scheme: 'ORCID') }.to raise_error(ArgumentError)
+          expect { NameIdentifier.new(value: '', scheme: 'ORCID') }.to raise_error(ArgumentError)
         end
       end
 
