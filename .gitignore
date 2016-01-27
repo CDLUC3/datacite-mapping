@@ -15,6 +15,10 @@
 *.a
 mkmf.log
 
+# Bundler local gem installations
+
+/vendor/
+
 # Gem
 
 datacite*gem
