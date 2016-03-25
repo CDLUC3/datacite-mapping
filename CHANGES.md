@@ -1,3 +1,10 @@
+## 0.1.7 (Next)
+
+## 0.1.6 (24 March 2016)
+
+- Make validation method aliasing more robust against double-require problems, hopefully preventing
+  `SystemStackError (stack level too deep)` on misconfigured systems
+
 ## 0.1.5 (27 Jan 2016)
 
 - Make gemspec smart enough to handle SSH checkouts

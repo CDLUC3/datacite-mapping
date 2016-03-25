@@ -167,11 +167,11 @@ module Datacite
       #   @return [String, nil] the type of the metadata scheme. Used only with `HasMetadata`/`IsMetadataFor`. Optional.
       text_node :scheme_type, '@schemeType', default_value: nil
 
-      alias_method :_relation_type=, :relation_type=
+      maybe_alias :_relation_type=, :relation_type=
       private :_relation_type=
-      alias_method :_value=, :value=
+      maybe_alias :_value=, :value=
       private :_value=
-      alias_method :_identifier_type=, :identifier_type=
+      maybe_alias :_identifier_type=, :identifier_type=
       private :_identifier_type=
 
       # Initializes a new {RelatedIdentifier}.

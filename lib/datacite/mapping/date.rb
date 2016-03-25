@@ -57,13 +57,13 @@ module Datacite
       # @!attribute [rw] type
       #  @return [DateType] the type of date. Cannot be nil.
       typesafe_enum_node :type, '@dateType', class: DateType
-      alias_method :_type=, :type=
+      maybe_alias :_type=, :type=
       private :_type=
 
       # @!method value
       #   @return [String] The value as a string. May be any [W3C DateTime format](http://www.w3.org/TR/NOTE-datetime).
       text_node :value, 'text()'
-      alias_method :_value=, :value=
+      maybe_alias :_value=, :value=
       private :_value=
 
       attr_reader :year

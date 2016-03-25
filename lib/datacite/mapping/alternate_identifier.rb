@@ -13,9 +13,9 @@ module Datacite
       text_node :type, '@alternateIdentifierType'
       text_node :value, 'text()'
 
-      alias_method :_type=, :type=
+      maybe_alias :_type=, :type=
       private :_type=
-      alias_method :_value=, :value=
+      maybe_alias :_value=, :value=
       private :_value=
 
       # Initializes a new {AlternateIdentifier}

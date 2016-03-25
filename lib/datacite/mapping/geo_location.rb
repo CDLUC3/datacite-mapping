@@ -37,7 +37,7 @@ module Datacite
         self.place = place
       end
 
-      alias_method :_place=, :place=
+      maybe_alias :_place=, :place=
       private :_place=
 
       def place=(value)

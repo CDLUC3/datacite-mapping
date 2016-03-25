@@ -24,7 +24,7 @@ module Datacite
         self.value = value
       end
 
-      alias_method :_value=, :value=
+      maybe_alias :_value=, :value=
       private :_value=
 
       def value=(v)

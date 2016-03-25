@@ -22,10 +22,10 @@ module Datacite
         self.value = value
       end
 
-      alias_method :_value=, :value=
+      maybe_alias :_value=, :value=
       private :_value=
 
-      alias_method :_identifier_type=, :identifier_type=
+      maybe_alias :_identifier_type=, :identifier_type=
       private :_identifier_type=
 
       def value=(v)

@@ -33,10 +33,10 @@ module Datacite
       #   @return [String] the title itself.
       text_node :value, 'text()'
 
-      alias_method :_language, :language
+      maybe_alias :_language, :language
       private :_language
 
-      alias_method :_language=, :language=
+      maybe_alias :_language=, :language=
       private :_language=
 
       # Initializes a new {Title}.
@@ -58,7 +58,7 @@ module Datacite
         self._language = value.strip if value
       end
 
-      alias_method :_value=, :value=
+      maybe_alias :_value=, :value=
 
       def value=(v)
         fail ArgumentError, 'Value cannot be empty or nil' unless v && !v.empty?

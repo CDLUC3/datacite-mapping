@@ -94,8 +94,8 @@ module Datacite
       #   @return [ContributorType] the contributor type. Cannot be nil.
       typesafe_enum_node :type, '@contributorType', class: ContributorType
 
-      alias_method :_name=, :name=
-      alias_method :_type=, :type=
+      maybe_alias :_name=, :name=
+      maybe_alias :_type=, :type=
       private :_name=
       private :_type=
 

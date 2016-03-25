@@ -90,10 +90,10 @@ module Datacite
       #     handling of `<br/>` tags.
       break_preserving_value_node :value, 'node()'
 
-      alias_method :_language, :language
+      maybe_alias :_language, :language
       private :_language
 
-      alias_method :_language=, :language=
+      maybe_alias :_language=, :language=
       private :_language=
 
       # Initializes a new {Description}

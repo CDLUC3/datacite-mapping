@@ -18,10 +18,10 @@ module Datacite
       #   @return [String] the identifier value. Cannot be nil.
       text_node :value, 'text()'
 
-      alias_method :_scheme=, :scheme=
+      maybe_alias :_scheme=, :scheme=
       private :_scheme=
 
-      alias_method :_value=, :value=
+      maybe_alias :_value=, :value=
       private :_value=
 
       # Initializes a new {NameIdentifier}

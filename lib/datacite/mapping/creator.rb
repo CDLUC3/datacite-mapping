@@ -19,10 +19,10 @@ module Datacite
       #   @return [Array<String>, nil] The creator's affiliations. Defaults to an empty list.
       array_node :affiliations, 'affiliation', class: String, default_value: []
 
-      alias_method :_name=, :name=
+      maybe_alias :_name=, :name=
       private :_name=
 
-      alias_method :_affiliations=, :affiliations=
+      maybe_alias :_affiliations=, :affiliations=
       private :_affiliations=
 
       # Initializes a new {Creator}.

@@ -132,10 +132,10 @@ module Datacite
         self.geo_locations = geo_locations
       end
 
-      alias_method :_language, :language
+      maybe_alias :_language, :language
       private :_language
 
-      alias_method :_language=, :language=
+      maybe_alias :_language=, :language=
       private :_language=
 
       def language
@@ -146,7 +146,7 @@ module Datacite
         self._language = value.strip if value
       end
 
-      alias_method :_identifier=, :identifier=
+      maybe_alias :_identifier=, :identifier=
       private :_identifier=
 
       def identifier=(value)
@@ -154,7 +154,7 @@ module Datacite
         self._identifier = value
       end
 
-      alias_method :_creators=, :creators=
+      maybe_alias :_creators=, :creators=
       private :_creators=
 
       def creators=(value)
@@ -162,7 +162,7 @@ module Datacite
         self._creators = value
       end
 
-      alias_method :_titles=, :titles=
+      maybe_alias :_titles=, :titles=
       private :_titles=
 
       def titles=(value)
@@ -170,7 +170,7 @@ module Datacite
         self._titles = value
       end
 
-      alias_method :_publisher=, :publisher=
+      maybe_alias :_publisher=, :publisher=
       private :_publisher=
 
       def publisher=(value)
@@ -178,7 +178,7 @@ module Datacite
         self._publisher = value.strip
       end
 
-      alias_method :_publication_year=, :publication_year=
+      maybe_alias :_publication_year=, :publication_year=
       private :_publication_year=
 
       def publication_year=(value)

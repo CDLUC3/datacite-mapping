@@ -63,7 +63,7 @@ module Datacite
       #    @return [String] additional free text description of the resource type. Optional.
       text_node :value, 'text()', default_value: nil
 
-      alias_method :_resource_type_general=, :resource_type_general=
+      maybe_alias :_resource_type_general=, :resource_type_general=
       private :_resource_type_general=
 
       # Initializes a new {ResourceType}
