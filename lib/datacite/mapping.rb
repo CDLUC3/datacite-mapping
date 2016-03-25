@@ -4,7 +4,7 @@ module XML
   module Mapping
     module ClassMethods
       def maybe_alias(new_name, old_name)
-        return alias_method new_name, old_name unless respond_to?(new_name)
+        return alias_method new_name, old_name unless method_defined?(new_name)
         self
       end
     end
