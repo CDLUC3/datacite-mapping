@@ -1,4 +1,9 @@
-## 0.1.7 (Next)
+## 0.1.8 (Next)
+
+## 0.1.7 (28 March 2016)
+
+- Stop having XML::Mapping generate accessors for fields that need validation (& stop using aliasing
+  to layer validation on top of generated accessors)
 
 ## 0.1.6 (24 March 2016)
 
