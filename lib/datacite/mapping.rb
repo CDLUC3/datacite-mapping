@@ -47,4 +47,3 @@ module Datacite
     end
   end
 end
-

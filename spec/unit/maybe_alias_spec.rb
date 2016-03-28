@@ -7,6 +7,7 @@ class Foo
     'foo'
   end
 
+  # rubocop:disable Style/ClassVars
   @@result = maybe_alias :bar, :foo
 
   def self.result
@@ -17,7 +18,7 @@ end
 module XML
   module Mapping
     module ClassMethods
-      describe "#maybe_alias" do
+      describe '#maybe_alias' do
         it 'aliases a method' do
           expect(Foo.result).to be(Foo)
           expect(Foo.new.bar).to eq('foo')
