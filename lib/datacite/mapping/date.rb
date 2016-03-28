@@ -54,18 +54,6 @@ module Datacite
     class Date
       include XML::Mapping
 
-      # @!attribute [rw] type
-      #  @return [DateType] the type of date. Cannot be nil.
-      typesafe_enum_node :type, '@dateType', class: DateType
-      maybe_alias :_type=, :type=
-      private :_type=
-
-      # @!method value
-      #   @return [String] The value as a string. May be any [W3C DateTime format](http://www.w3.org/TR/NOTE-datetime).
-      text_node :value, 'text()'
-      maybe_alias :_value=, :value=
-      private :_value=
-
       attr_reader :year
       attr_reader :month
       attr_reader :day
@@ -86,7 +74,7 @@ module Datacite
 
       def type=(val)
         fail ArgumentError, 'Date type cannot be nil' unless val
-        self._type = val
+        @type = val
       end
 
       # Sets the value.
@@ -107,7 +95,7 @@ module Datacite
           @nsec = @date_time.to_time.nsec if @date_time
         end
         fail ArgumentError, "Unable to parse date value '#{val}'" unless @year
-        self._value = new_value
+        @value = new_value
       end
 
       private
@@ -148,6 +136,13 @@ module Datacite
         nil
       end
 
+      # @!attribute [rw] type
+      #  @return [DateType] the type of date. Cannot be nil.
+      typesafe_enum_node :type, '@dateType', class: DateType
+
+      # @!method value
+      #   @return [String] The value as a string. May be any [W3C DateTime format](http://www.w3.org/TR/NOTE-datetime).
+      text_node :value, 'text()'
     end
   end
 end

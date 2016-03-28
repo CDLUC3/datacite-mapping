@@ -53,19 +53,6 @@ module Datacite
     class ResourceType
       include XML::Mapping
 
-      root_element_name 'resourceType'
-
-      # @!attribute [rw] resource_type_general
-      #    @return [ResourceTypeGeneral] the general resource type
-      typesafe_enum_node :resource_type_general, '@resourceTypeGeneral', class: ResourceTypeGeneral
-
-      # @!attribute [rw] value
-      #    @return [String] additional free text description of the resource type. Optional.
-      text_node :value, 'text()', default_value: nil
-
-      maybe_alias :_resource_type_general=, :resource_type_general=
-      private :_resource_type_general=
-
       # Initializes a new {ResourceType}
       # @param resource_type_general [ResourceTypeGeneral] the general resource type
       # @param value [String] additional free text description of the resource type.
@@ -76,8 +63,18 @@ module Datacite
 
       def resource_type_general=(val)
         fail ArgumentError, 'General resource type cannot be nil' unless val
-        self._resource_type_general = val
+        @resource_type_general = val
       end
+
+      root_element_name 'resourceType'
+
+      # @!attribute [rw] resource_type_general
+      #    @return [ResourceTypeGeneral] the general resource type
+      typesafe_enum_node :resource_type_general, '@resourceTypeGeneral', class: ResourceTypeGeneral
+
+      # @!attribute [rw] value
+      #    @return [String] additional free text description of the resource type. Optional.
+      text_node :value, 'text()', default_value: nil
     end
   end
 end

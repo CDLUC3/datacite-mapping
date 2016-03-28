@@ -17,6 +17,91 @@ module Datacite
     class Resource
       include XML::Mapping
 
+      # Initialies a new {Resource}
+      #
+      # @param identifier [Identifier] a persistent identifier that identifies a resource.
+      # @param creators [Array<Creator>] the main researchers involved working on the data, or the authors of the publication in priority order.
+      # @param titles [Array<Title>] the names or titles by which a resource is known.
+      # @param publisher [String] the name of the entity that holds, archives, publishes prints, distributes, releases, issues, or produces the resource.
+      # @param publication_year [Integer] year when the resource is made publicly available.
+      # @param subjects [Array<Subject>] subjects, keywords, classification codes, or key phrases describing the resource.
+      # @param contributors [Array<Contributor>] institutions or persons responsible for collecting, creating, or otherwise contributing to the developement of the dataset.
+      # @param dates [Array<Date>] different dates relevant to the work.
+      # @param language [String] Primary language of the resource: an IETF BCP 47, ISO 639-1 language code.
+      #   It's unclear from the spec whether language is required; to play it safe, if it's missing, we default to 'en'.
+      # @param resource_type [ResourceType, nil] the type of the resource
+      # @param alternate_identifiers [Array<AlternateIdentifier>] an identifier or identifiers other than the primary {Identifier} applied to the resource being registered.
+      # @param related_identifiers [Array<RelatedIdentifier>] identifiers of related resources.
+      # @param sizes [Array<String>] unstructured size information about the resource.
+      # @param formats [Array<String>] technical format of the resource, e.g. file extension or MIME type.
+      # @param version [String] version number of the resource.
+      # @param rights_list [Array<Rights>] rights information for this resource.
+      # @param descriptions [Array<Description>] all additional information that does not fit in any of the other categories.
+      # @param geo_locations [Array<GeoLocations>] spatial region or named place where the data was gathered or about which the data is focused.
+      def initialize(identifier:, creators:, titles:, publisher:, publication_year:, subjects: [], contributors: [], dates: [], language: 'en', resource_type: nil, alternate_identifiers: [], related_identifiers: [], sizes: [], formats: [], version: nil, rights_list: [], descriptions: [], geo_locations: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
+        self.identifier = identifier
+        self.creators = creators
+        self.titles = titles
+        self.publisher = publisher
+        self.publication_year = publication_year
+        self.subjects = subjects
+        self.contributors = contributors
+        self.dates = dates
+        self.language = language
+        self.resource_type = resource_type
+        self.alternate_identifiers = alternate_identifiers
+        self.related_identifiers = related_identifiers
+        self.sizes = sizes
+        self.formats = formats
+        self.version = version
+        self.rights_list = rights_list
+        self.descriptions = descriptions
+        self.geo_locations = geo_locations
+      end
+
+      def language
+        @language || 'en'
+      end
+
+      def language=(value)
+        @language = value.strip if value
+      end
+
+      def identifier=(value)
+        fail ArgumentError, 'Resource must have an identifier' unless value
+        @identifier = value
+      end
+
+      def creators=(value)
+        fail ArgumentError, 'Resource must have at least one creator' unless value && value.size > 0
+        @creators = value
+      end
+
+      def titles=(value)
+        fail ArgumentError, 'Resource must have at least one title' unless value && value.size > 0
+        @titles = value
+      end
+
+      def publisher=(value)
+        fail ArgumentError, 'Resource must have at least one publisher' unless value && value.size > 0
+        @publisher = value.strip
+      end
+
+      def publication_year=(value)
+        fail ArgumentError, 'Resource must have a four-digit publication year' unless value && value.to_i.between?(1000, 9999)
+        @publication_year = value.to_i
+      end
+
+      # Overrides +::XML::Mapping.pre_save+ to write namespace information.
+      # Used for writing.
+      def pre_save(options = { mapping: :_default })
+        xml = super(options)
+        xml.add_namespace('http://datacite.org/schema/kernel-3')
+        xml.add_namespace('xsi', 'http://www.w3.org/2001/XMLSchema-instance')
+        xml.add_attribute('xsi:schemaLocation', 'http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd')
+        xml
+      end
+
       # @!attribute [rw] identifier
       #   @return [Identifier] a persistent identifier that identifies a resource.
       object_node :identifier, 'identifier', class: Identifier
@@ -89,112 +174,6 @@ module Datacite
       # @!attribute [rw] geo_locations
       #   @return [Array<GeoLocations>] spatial region or named place where the data was gathered or about which the data is focused.
       array_node :geo_locations, 'geoLocations', 'geoLocation', class: GeoLocation, default_value: []
-
-      # Initialies a new {Resource}
-      #
-      # @param identifier [Identifier] a persistent identifier that identifies a resource.
-      # @param creators [Array<Creator>] the main researchers involved working on the data, or the authors of the publication in priority order.
-      # @param titles [Array<Title>] the names or titles by which a resource is known.
-      # @param publisher [String] the name of the entity that holds, archives, publishes prints, distributes, releases, issues, or produces the resource.
-      # @param publication_year [Integer] year when the resource is made publicly available.
-      # @param subjects [Array<Subject>] subjects, keywords, classification codes, or key phrases describing the resource.
-      # @param contributors [Array<Contributor>] institutions or persons responsible for collecting, creating, or otherwise contributing to the developement of the dataset.
-      # @param dates [Array<Date>] different dates relevant to the work.
-      # @param language [String] Primary language of the resource: an IETF BCP 47, ISO 639-1 language code.
-      #   It's unclear from the spec whether language is required; to play it safe, if it's missing, we default to 'en'.
-      # @param resource_type [ResourceType, nil] the type of the resource
-      # @param alternate_identifiers [Array<AlternateIdentifier>] an identifier or identifiers other than the primary {Identifier} applied to the resource being registered.
-      # @param related_identifiers [Array<RelatedIdentifier>] identifiers of related resources.
-      # @param sizes [Array<String>] unstructured size information about the resource.
-      # @param formats [Array<String>] technical format of the resource, e.g. file extension or MIME type.
-      # @param version [String] version number of the resource.
-      # @param rights_list [Array<Rights>] rights information for this resource.
-      # @param descriptions [Array<Description>] all additional information that does not fit in any of the other categories.
-      # @param geo_locations [Array<GeoLocations>] spatial region or named place where the data was gathered or about which the data is focused.
-      def initialize(identifier:, creators:, titles:, publisher:, publication_year:, subjects: [], contributors: [], dates: [], language: 'en', resource_type: nil, alternate_identifiers: [], related_identifiers: [], sizes: [], formats: [], version: nil, rights_list: [], descriptions: [], geo_locations: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
-        self.identifier = identifier
-        self.creators = creators
-        self.titles = titles
-        self.publisher = publisher
-        self.publication_year = publication_year
-        self.subjects = subjects
-        self.contributors = contributors
-        self.dates = dates
-        self.language = language
-        self.resource_type = resource_type
-        self.alternate_identifiers = alternate_identifiers
-        self.related_identifiers = related_identifiers
-        self.sizes = sizes
-        self.formats = formats
-        self.version = version
-        self.rights_list = rights_list
-        self.descriptions = descriptions
-        self.geo_locations = geo_locations
-      end
-
-      maybe_alias :_language, :language
-      private :_language
-
-      maybe_alias :_language=, :language=
-      private :_language=
-
-      def language
-        _language || 'en'
-      end
-
-      def language=(value)
-        self._language = value.strip if value
-      end
-
-      maybe_alias :_identifier=, :identifier=
-      private :_identifier=
-
-      def identifier=(value)
-        fail ArgumentError, 'Resource must have an identifier' unless value
-        self._identifier = value
-      end
-
-      maybe_alias :_creators=, :creators=
-      private :_creators=
-
-      def creators=(value)
-        fail ArgumentError, 'Resource must have at least one creator' unless value && value.size > 0
-        self._creators = value
-      end
-
-      maybe_alias :_titles=, :titles=
-      private :_titles=
-
-      def titles=(value)
-        fail ArgumentError, 'Resource must have at least one title' unless value && value.size > 0
-        self._titles = value
-      end
-
-      maybe_alias :_publisher=, :publisher=
-      private :_publisher=
-
-      def publisher=(value)
-        fail ArgumentError, 'Resource must have at least one publisher' unless value && value.size > 0
-        self._publisher = value.strip
-      end
-
-      maybe_alias :_publication_year=, :publication_year=
-      private :_publication_year=
-
-      def publication_year=(value)
-        fail ArgumentError, 'Resource must have a four-digit publication year' unless value && value.to_i.between?(1000, 9999)
-        self._publication_year = value.to_i
-      end
-
-      # Overrides +::XML::Mapping.pre_save+ to write namespace information.
-      # Used for writing.
-      def pre_save(options = { mapping: :_default })
-        xml = super(options)
-        xml.add_namespace('http://datacite.org/schema/kernel-3')
-        xml.add_namespace('xsi', 'http://www.w3.org/2001/XMLSchema-instance')
-        xml.add_attribute('xsi:schemaLocation', 'http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd')
-        xml
-      end
 
     end
   end

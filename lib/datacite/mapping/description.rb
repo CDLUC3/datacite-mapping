@@ -76,26 +76,6 @@ module Datacite
     class Description
       include XML::Mapping
 
-      # @!attribute [rw] language
-      #   @return [String] an IETF BCP 47, ISO 639-1 language code identifying the language.
-      #     It's unclear from the spec whether language is required; to play it safe, if it's missing, we default to 'en'.
-      text_node :language, '@xml:lang', default_value: nil
-
-      # @!attribute [rw] type
-      #   @return [DescriptionType] the description type.
-      typesafe_enum_node :type, '@descriptionType', class: DescriptionType
-
-      # @!attribute [rw] value
-      #   @return [String] the description itself. See {Description} for notes on special
-      #     handling of `<br/>` tags.
-      break_preserving_value_node :value, 'node()'
-
-      maybe_alias :_language, :language
-      private :_language
-
-      maybe_alias :_language=, :language=
-      private :_language=
-
       # Initializes a new {Description}
       # @param language [String] an IETF BCP 47, ISO 639-1 language code identifying the language.
       #   It's unclear from the spec whether language is required; to play it safe, if it's missing, we default to 'en'.
@@ -109,12 +89,26 @@ module Datacite
       end
 
       def language
-        _language || 'en'
+        @language || 'en'
       end
 
       def language=(value)
-        self._language = value.strip if value
+        @language = value.strip if value
       end
+
+      # @!attribute [rw] language
+      #   @return [String] an IETF BCP 47, ISO 639-1 language code identifying the language.
+      #     It's unclear from the spec whether language is required; to play it safe, if it's missing, we default to 'en'.
+      text_node :language, '@xml:lang', default_value: nil
+
+      # @!attribute [rw] type
+      #   @return [DescriptionType] the description type.
+      typesafe_enum_node :type, '@descriptionType', class: DescriptionType
+
+      # @!attribute [rw] value
+      #   @return [String] the description itself. See {Description} for notes on special
+      #     handling of `<br/>` tags.
+      break_preserving_value_node :value, 'node()'
 
     end
   end

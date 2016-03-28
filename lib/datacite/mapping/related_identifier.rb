@@ -141,6 +141,37 @@ module Datacite
     class RelatedIdentifier
       include XML::Mapping
 
+      # Initializes a new {RelatedIdentifier}.
+      # @param relation_type [RelationType] the relationship of the {Resource} to the related resource. Cannot be nil.
+      # @param value [String] the identifier value. Cannot be nil.
+      # @param identifier_type [RelatedIdentifierType] the type of the related identifier. Cannot be nil.
+      # @param related_metadata_scheme [String, nil] the name of the metadata scheme. Used only with `HasMetadata`/`IsMetadataFor`. Optional.
+      # @param scheme_uri [URI, nil] the URI of the metadata scheme. Used only with `HasMetadata`/`IsMetadataFor`. Optional.
+      # @param scheme_type [String, nil] the type of the metadata scheme. Used only with `HasMetadata`/`IsMetadataFor`. Optional.
+      def initialize(relation_type:, value:, identifier_type:, related_metadata_scheme: nil, scheme_uri: nil, scheme_type: nil) # rubocop:disable Metrics/ParameterLists
+        self.relation_type = relation_type
+        self.value = value
+        self.identifier_type = identifier_type
+        self.related_metadata_scheme = related_metadata_scheme
+        self.scheme_uri = scheme_uri
+        self.scheme_type = scheme_type
+      end
+
+      def value=(value)
+        fail ArgumentError, 'Value cannot be empty or nil' unless value && !value.empty?
+        @value = value
+      end
+
+      def identifier_type=(value)
+        fail ArgumentError, 'Identifier type cannot be empty or nil' unless value
+        @identifier_type = value
+      end
+
+      def relation_type=(value)
+        fail ArgumentError, 'Relation type cannot be nil' unless value
+        @relation_type = value
+      end
+
       root_element_name 'relatedIdentifier'
 
       # @!attribute [rw] relation_type
@@ -167,43 +198,6 @@ module Datacite
       #   @return [String, nil] the type of the metadata scheme. Used only with `HasMetadata`/`IsMetadataFor`. Optional.
       text_node :scheme_type, '@schemeType', default_value: nil
 
-      maybe_alias :_relation_type=, :relation_type=
-      private :_relation_type=
-      maybe_alias :_value=, :value=
-      private :_value=
-      maybe_alias :_identifier_type=, :identifier_type=
-      private :_identifier_type=
-
-      # Initializes a new {RelatedIdentifier}.
-      # @param relation_type [RelationType] the relationship of the {Resource} to the related resource. Cannot be nil.
-      # @param value [String] the identifier value. Cannot be nil.
-      # @param identifier_type [RelatedIdentifierType] the type of the related identifier. Cannot be nil.
-      # @param related_metadata_scheme [String, nil] the name of the metadata scheme. Used only with `HasMetadata`/`IsMetadataFor`. Optional.
-      # @param scheme_uri [URI, nil] the URI of the metadata scheme. Used only with `HasMetadata`/`IsMetadataFor`. Optional.
-      # @param scheme_type [String, nil] the type of the metadata scheme. Used only with `HasMetadata`/`IsMetadataFor`. Optional.
-      def initialize(relation_type:, value:, identifier_type:, related_metadata_scheme: nil, scheme_uri: nil, scheme_type: nil) # rubocop:disable Metrics/ParameterLists
-        self.relation_type = relation_type
-        self.value = value
-        self.identifier_type = identifier_type
-        self.related_metadata_scheme = related_metadata_scheme
-        self.scheme_uri = scheme_uri
-        self.scheme_type = scheme_type
-      end
-
-      def value=(value)
-        fail ArgumentError, 'Value cannot be empty or nil' unless value && !value.empty?
-        self._value = value
-      end
-
-      def identifier_type=(value)
-        fail ArgumentError, 'Identifier type cannot be empty or nil' unless value
-        self._identifier_type = value
-      end
-
-      def relation_type=(value)
-        fail ArgumentError, 'Relation type cannot be nil' unless value
-        self._relation_type = value
-      end
     end
   end
 end

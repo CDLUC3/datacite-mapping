@@ -7,24 +7,6 @@ module Datacite
     class Creator
       include XML::Mapping
 
-      # @!attribute [rw] name
-      #   @return [String] The personal name of the creator, in the format `Family, Given`. Cannot be empty or nil.
-      text_node :name, 'creatorName'
-
-      # @!attribute [rw] identifier
-      #   @return [NameIdentifier, nil] An identifier for the creator. Optional.
-      object_node :identifier, 'nameIdentifier', class: NameIdentifier, default_value: nil
-
-      # @!attribute [rw] affiliations
-      #   @return [Array<String>, nil] The creator's affiliations. Defaults to an empty list.
-      array_node :affiliations, 'affiliation', class: String, default_value: []
-
-      maybe_alias :_name=, :name=
-      private :_name=
-
-      maybe_alias :_affiliations=, :affiliations=
-      private :_affiliations=
-
       # Initializes a new {Creator}.
       # @param name [String] The personal name of the creator, in the format `Family, Given`. Cannot be empty or nil.
       # @param identifier [NameIdentifier, nil] An identifier for the creator. Optional.
@@ -37,12 +19,25 @@ module Datacite
 
       def name=(value)
         fail ArgumentError, 'Name cannot be empty or nil' unless value && !value.empty?
-        self._name = value
+        @name = value
       end
 
       def affiliations=(value)
-        self._affiliations = value || []
+        @affiliations = value || []
       end
+
+      # @!attribute [rw] name
+      #   @return [String] The personal name of the creator, in the format `Family, Given`. Cannot be empty or nil.
+      text_node :name, 'creatorName'
+
+      # @!attribute [rw] identifier
+      #   @return [NameIdentifier, nil] An identifier for the creator. Optional.
+      object_node :identifier, 'nameIdentifier', class: NameIdentifier, default_value: nil
+
+      # @!attribute [rw] affiliations
+      #   @return [Array<String>, nil] The creator's affiliations. Defaults to an empty list.
+      array_node :affiliations, 'affiliation', class: String, default_value: []
+
     end
   end
 end

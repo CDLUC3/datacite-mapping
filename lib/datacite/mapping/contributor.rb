@@ -78,6 +78,28 @@ module Datacite
     class Contributor
       include XML::Mapping
 
+      # Initializes a new {Contributor}.
+      # @param name [String] the personal name of the contributor, in the format `Family, Given`. Cannot be empty or nil
+      # @param identifier [NameIdentifier, nil] an identifier for the contributor. Optional.
+      # @param affiliations [Array<Affiliation>] the contributor's affiliations. Defaults to an empty list.
+      # @param type [ContributorType] the contributor type. Cannot be nil.
+      def initialize(name:, identifier: nil, affiliations: nil, type:)
+        self.name = name
+        self.identifier = identifier
+        self.affiliations = affiliations || []
+        self.type = type
+      end
+
+      def name=(value)
+        fail ArgumentError, 'Name cannot be empty or nil' unless value && !value.empty?
+        @name = value
+      end
+
+      def type=(value)
+        fail ArgumentError, 'Type cannot be nil' unless value
+        @type = value
+      end
+
       # @!attribute [rw] name
       #   @return [String] the personal name of the contributor, in the format `Family, Given`. Cannot be empty or nil
       text_node :name, 'contributorName'
@@ -93,33 +115,6 @@ module Datacite
       # @!attribute [rw] type
       #   @return [ContributorType] the contributor type. Cannot be nil.
       typesafe_enum_node :type, '@contributorType', class: ContributorType
-
-      maybe_alias :_name=, :name=
-      maybe_alias :_type=, :type=
-      private :_name=
-      private :_type=
-
-      # Initializes a new {Contributor}.
-      # @param name [String] the personal name of the contributor, in the format `Family, Given`. Cannot be empty or nil
-      # @param identifier [NameIdentifier, nil] an identifier for the contributor. Optional.
-      # @param affiliations [Array<Affiliation>] the contributor's affiliations. Defaults to an empty list.
-      # @param type [ContributorType] the contributor type. Cannot be nil.
-      def initialize(name:, identifier: nil, affiliations: nil, type:)
-        self.name = name
-        self.identifier = identifier
-        self.affiliations = affiliations || []
-        self.type = type
-      end
-
-      def name=(value)
-        fail ArgumentError, 'Name cannot be empty or nil' unless value && !value.empty?
-        self._name = value
-      end
-
-      def type=(value)
-        fail ArgumentError, 'Type cannot be nil' unless value
-        self._type = value
-      end
     end
   end
 end

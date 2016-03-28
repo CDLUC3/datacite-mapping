@@ -20,6 +20,30 @@ module Datacite
     class Title
       include XML::Mapping
 
+      # Initializes a new {Title}.
+      # @param language [String] an IETF BCP 47, ISO 639-1 language code identifying the language.
+      #   It's unclear from the spec whether language is required; to play it safe, if it's missing, we default to 'en'.
+      # @param value [String] the title itself.
+      # @param type [TitleType, nil] the title type. Optional.
+      def initialize(language: 'en', value:, type: nil)
+        self.language = language
+        self.type = type
+        self.value = value
+      end
+
+      def language
+        @language || 'en'
+      end
+
+      def language=(value)
+        @language = value.strip if value
+      end
+
+      def value=(v)
+        fail ArgumentError, 'Value cannot be empty or nil' unless v && !v.empty?
+        @value = v.strip
+      end
+
       # @!attribute [rw] language
       #   @return [String] an IETF BCP 47, ISO 639-1 language code identifying the language.
       #     It's unclear from the spec whether language is required; to play it safe, if it's missing, we default to 'en'.
@@ -33,37 +57,6 @@ module Datacite
       #   @return [String] the title itself.
       text_node :value, 'text()'
 
-      maybe_alias :_language, :language
-      private :_language
-
-      maybe_alias :_language=, :language=
-      private :_language=
-
-      # Initializes a new {Title}.
-      # @param language [String] an IETF BCP 47, ISO 639-1 language code identifying the language.
-      #   It's unclear from the spec whether language is required; to play it safe, if it's missing, we default to 'en'.
-      # @param value [String] the title itself.
-      # @param type [TitleType, nil] the title type. Optional.
-      def initialize(language: 'en', value:, type: nil)
-        self.language = language
-        self.type = type
-        self.value = value
-      end
-
-      def language
-        _language || 'en'
-      end
-
-      def language=(value)
-        self._language = value.strip if value
-      end
-
-      maybe_alias :_value=, :value=
-
-      def value=(v)
-        fail ArgumentError, 'Value cannot be empty or nil' unless v && !v.empty?
-        self._value = v.strip
-      end
     end
   end
 end
