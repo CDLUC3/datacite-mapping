@@ -2,6 +2,8 @@ require 'xml/mapping'
 
 module Datacite
   module Mapping
+    DOI_PATTERN = %r{10\..+/.+}
+
     # The persistent identifier that identifies the resource.
     #
     # @!attribute [r] identifier_type
@@ -20,7 +22,7 @@ module Datacite
       end
 
       def value=(v)
-        fail ArgumentError, "Identifier value '#{v}' is not a valid DOI" unless v.match(%r{10\..+/.+})
+        fail ArgumentError, "Identifier value '#{v}' is not a valid DOI" unless v.match(DOI_PATTERN)
         @value = v
       end
 
@@ -30,6 +32,14 @@ module Datacite
       def identifier_type=(v)
         fail ArgumentError, "Identifier type '#{v}' must be 'DOI'" unless 'DOI' == v
         @identifier_type = v
+      end
+
+      # Converts a string DOI value to an `Identifier`.
+      # @param doi_string [String]
+      def self.from_doi(doi_string)
+        match = doi_string.match(DOI_PATTERN)
+        fail ArgumentError, "'#{doi_string}' does not appear to contain a valid DOI" unless match
+        Identifier.new(value: match[0])
       end
 
       text_node :identifier_type, '@identifierType'

@@ -1,4 +1,9 @@
-## 0.1.8 (Next)
+## 0.1.9 (Next)
+
+## 0.1.8 (7 April 2016)
+
+- Add convenience method `Identifier.from_doi()` to parse DOI strings in various formats (`doi:`,
+  `http://dx.doi.org/`, etc.)
 
 ## 0.1.7 (28 March 2016)
 

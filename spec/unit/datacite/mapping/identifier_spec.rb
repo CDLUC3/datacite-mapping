@@ -30,6 +30,50 @@ module Datacite
         end
       end
 
+      describe '#from_doi' do
+        it 'creates an identifier from a doi: string' do
+          doi_value = '10.1594/WDCC/CCSRNIES_SRES_B2'
+          doi_string = "doi:#{doi_value}"
+          id = Identifier.from_doi(doi_string)
+          expect(id).to be_an(Identifier)
+          expect(id.value).to eq(doi_value)
+          expect(id.identifier_type).to eq('DOI')
+        end
+
+        it 'creates an identifier from a plain DOI value' do
+          doi_value = '10.1594/WDCC/CCSRNIES_SRES_B2'
+          id = Identifier.from_doi(doi_value)
+          expect(id).to be_an(Identifier)
+          expect(id.value).to eq(doi_value)
+          expect(id.identifier_type).to eq('DOI')
+        end
+
+        it 'creates an identifier from a DOI in URL format' do
+          doi_value = '10.1594/WDCC/CCSRNIES_SRES_B2'
+          doi_string = "http://dx.doi.org/#{doi_value}"
+          id = Identifier.from_doi(doi_string)
+          expect(id).to be_an(Identifier)
+          expect(id.value).to eq(doi_value)
+          expect(id.identifier_type).to eq('DOI')
+        end
+
+        it 'raises ArgumentError if it is passed a bad DOI' do
+          bad_dois = %w(
+            20.14749/1407399495
+            11.14749/1407399495
+            10./1407399495
+            10.14749\1407399495
+            10.14749/
+          )
+          bad_dois.each do |doi|
+            expect { Identifier.from_doi(doi) }.to raise_error do |e|
+              expect(e).to be_an(ArgumentError)
+              expect(e.message).to include(doi)
+            end
+          end
+        end
+      end
+
       describe '#value=' do
         it 'sets the value' do
           id = Identifier.allocate
