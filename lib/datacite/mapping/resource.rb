@@ -175,26 +175,39 @@ module Datacite
       #   @return [Array<GeoLocations>] spatial region or named place where the data was gathered or about which the data is focused.
       array_node :geo_locations, 'geoLocations', 'geoLocation', class: GeoLocation, default_value: []
 
+      # Convenience method to get the creators' names.
+      # @return [[Array[String]] An array of the creators' names.
       def creator_names
         creators.map(&:name)
       end
 
+      # Convenience method to get the creators' affiliations. (Bear in mind that each creator
+      # can have multiple affiliations.)
+      # @return [Array[Array[String]]] An array containing each creator's array of affiliations.
       def creator_affiliations
         creators.map(&:affiliations)
       end
 
+      # Convenience method to get the funding contributor.
+      # @return [Contributor, nil] the contributor of type FUNDER, if any.
       def funder_contrib
         @funder_contrib ||= contributors.find { |c| c.type == ContributorType::FUNDER }
       end
 
+      # Convenience method to get the name of the funding contributor.
+      # @return [String, nil] the name of the funding contributor, if any.
       def funder_name
         funder_contrib.name if funder_contrib
       end
 
+      # Convenience method to get the funding contributor identifier.
+      # @return [NameIdentifier, nil] the identifier of the funding contributor, if any.
       def funder_id
         funder_contrib.identifier if funder_contrib
       end
 
+      # Convenience method to get the funding contributor identifier as a string.
+      # @return [String, nil] the string value of the funding contributor's identifier, if any.
       def funder_id_value
         funder_id.value if funder_id
       end
