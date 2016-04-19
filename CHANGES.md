@@ -1,4 +1,7 @@
-## 0.1.9 (Next)
+## 0.1.9 (19 April 2016)
+
+- Added convenience methods to directly access creator names and affiliations
+- Added convenience methods to directly access funder attributes
 
 ## 0.1.8 (7 April 2016)
 
