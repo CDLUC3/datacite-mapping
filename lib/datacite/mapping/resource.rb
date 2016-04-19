@@ -175,6 +175,30 @@ module Datacite
       #   @return [Array<GeoLocations>] spatial region or named place where the data was gathered or about which the data is focused.
       array_node :geo_locations, 'geoLocations', 'geoLocation', class: GeoLocation, default_value: []
 
+      def creator_names
+        creators.map(&:name)
+      end
+
+      def creator_affiliations
+        creators.map(&:affiliations)
+      end
+
+      def funder_contrib
+        @funder_contrib ||= contributors.find { |c| c.type == ContributorType::FUNDER }
+      end
+
+      def funder_name
+        funder_contrib.name if funder_contrib
+      end
+
+      def funder_id
+        funder_contrib.identifier if funder_contrib
+      end
+
+      def funder_id_value
+        funder_id.value if funder_id
+      end
+
     end
   end
 end

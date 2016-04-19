@@ -770,6 +770,60 @@ module Datacite
           expect(resource.save_to_xml).to be_xml(xml_text)
         end
       end
+
+      describe 'convenience accessors' do
+
+        before :each do
+          xml_text = File.read('spec/data/resource.xml')
+          @resource = Resource.parse_xml(xml_text)
+
+          @funder = Contributor.new(
+            name: 'The Ministry of Magic',
+            identifier: NameIdentifier.new(
+              scheme: 'IATI',
+              scheme_uri: URI('http://iatistandard.org/201/codelists/OrganisationIdentifier/'),
+              value: 'GR-9¾'
+            ),
+            type: ContributorType::FUNDER)
+          @resource.contributors << @funder
+        end
+
+        describe 'creator_names' do
+          it 'extracts the creator names' do
+            expect(@resource.creator_names).to eq(['Miller, Elizabeth'])
+          end
+        end
+
+        describe 'creator_affiliations' do
+          it 'extracts the creator affiliations' do
+            expect(@resource.creator_affiliations).to eq([['DataCite']])
+          end
+        end
+
+        describe 'funder_contrib' do
+          it 'extracts the funder contrib' do
+            expect(@resource.funder_contrib).to eq(@funder)
+          end
+        end
+
+        describe 'funder_name' do
+          it 'extracts the funder name' do
+            expect(@resource.funder_name).to eq(@funder.name)
+          end
+        end
+
+        describe 'funder_id' do
+          it 'extracts the funder id' do
+            expect(@resource.funder_id).to eq(@funder.identifier)
+          end
+        end
+
+        describe 'funder_id_value' do
+          it 'extracts the funder id value' do
+            expect(@resource.funder_id_value).to eq(@funder.identifier.value)
+          end
+        end
+      end
     end
   end
 end
