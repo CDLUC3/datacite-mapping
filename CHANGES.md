@@ -1,3 +1,9 @@
+## 0.1.11 (Next)
+
+## 0.1.10 (25 April 2016)
+
+- Replace all `require_relative` with absolute `require` to avoid symlink issues
+
 ## 0.1.9 (19 April 2016)
 
 - Added convenience methods to directly access creator names and affiliations

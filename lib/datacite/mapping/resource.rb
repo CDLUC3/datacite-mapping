@@ -1,12 +1,12 @@
 require 'xml/mapping'
-require_relative 'identifier'
-require_relative 'creator'
-require_relative 'title'
-require_relative 'subject'
-require_relative 'resource_type'
-require_relative 'alternate_identifier'
-require_relative 'related_identifier'
-require_relative 'rights'
+require 'datacite/mapping/identifier'
+require 'datacite/mapping/creator'
+require 'datacite/mapping/title'
+require 'datacite/mapping/subject'
+require 'datacite/mapping/resource_type'
+require 'datacite/mapping/alternate_identifier'
+require 'datacite/mapping/related_identifier'
+require 'datacite/mapping/rights'
 
 module Datacite
   module Mapping

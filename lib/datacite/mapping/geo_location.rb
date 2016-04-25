@@ -1,6 +1,6 @@
 require 'xml/mapping_extensions'
-require_relative 'geo_location_point'
-require_relative 'geo_location_box'
+require 'datacite/mapping/geo_location_point'
+require 'datacite/mapping/geo_location_box'
 
 module Datacite
   module Mapping

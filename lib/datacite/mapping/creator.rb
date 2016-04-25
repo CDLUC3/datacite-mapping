@@ -1,5 +1,5 @@
 require 'xml/mapping'
-require_relative 'name_identifier'
+require 'datacite/mapping/name_identifier'
 
 module Datacite
   module Mapping
