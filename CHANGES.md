@@ -1,4 +1,6 @@
-## 0.1.11 (Next)
+## 0.1.11 (28 April 2016)
+
+- Update to XML::MappingExtensions 0.3.5
 
 ## 0.1.10 (25 April 2016)
 
