@@ -769,6 +769,45 @@ module Datacite
           resource = Resource.parse_xml(xml_text)
           expect(resource.save_to_xml).to be_xml(xml_text)
         end
+
+        it 'allows a namespace prefix' do
+          resource = Resource.new(
+            identifier: @id,
+            creators: @creators,
+            titles: @titles,
+            publisher: @publisher,
+            publication_year: @pub_year
+          )
+          resource.namespace_prefix = 'dcs'
+          expect(resource.namespace.prefix).to eq('dcs')
+
+          expected = '<dcs:resource xmlns:dcs="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+                        <dcs:identifier identifierType="DOI">10.14749/1407399495</dcs:identifier>
+                        <dcs:creators>
+                          <dcs:creator>
+                            <dcs:creatorName>Hedy Lamarr</dcs:creatorName>
+                            <dcs:nameIdentifier nameIdentifierScheme="ISNI" schemeURI="http://isni.org/">0000-0001-1690-159X</dcs:nameIdentifier>
+                            <dcs:affiliation>United Artists</dcs:affiliation>
+                            <dcs:affiliation>Metro-Goldwyn-Mayer</dcs:affiliation>
+                          </dcs:creator>
+                          <dcs:creator>
+                            <dcs:creatorName>Herschlag, Natalie</dcs:creatorName>
+                            <dcs:nameIdentifier nameIdentifierScheme="ISNI" schemeURI="http://isni.org/">0000-0001-0907-8419</dcs:nameIdentifier>
+                            <dcs:affiliation>Gaumont Buena Vista International</dcs:affiliation>
+                            <dcs:affiliation>20th Century Fox</dcs:affiliation>
+                          </dcs:creator>
+                        </dcs:creators>
+                        <dcs:titles>
+                          <dcs:title xml:lang="en-emodeng">An Account of a Very Odd Monstrous Calf</dcs:title>
+                          <dcs:title xml:lang="en-emodeng" titleType="Subtitle">And a Contest between Two Artists about Optick Glasses, &amp;c</dcs:title>
+                        </dcs:titles>
+                        <dcs:publisher>California Digital Library</dcs:publisher>
+                        <dcs:publicationYear>2015</dcs:publicationYear>
+                        <dcs:language>en</dcs:language>
+                      </dcs:resource>'
+
+          expect(resource.save_to_xml).to be_xml(expected)
+        end
       end
 
       describe 'convenience accessors' do

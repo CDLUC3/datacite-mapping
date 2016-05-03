@@ -1,6 +1,16 @@
-## 0.1.11 (28 April 2016)
+## 0.1.13 (2 May 2016)
+
+- Update to XML::MappingExtensions 0.3.6 for improved namespace support
+- Added `namespace_prefix` accessor to `Resource` to support explicit namespace prefixing
+- Update to TypesafeEnum 0.1.7 for improved debug output
+
+## 0.1.12 (28 April 2016)
 
 - Update to XML::MappingExtensions 0.3.5
+
+## 0.1.11 (28 April 2016)
+
+- (withdrawn)
 
 ## 0.1.10 (25 April 2016)
 
