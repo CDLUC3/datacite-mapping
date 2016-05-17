@@ -69,7 +69,7 @@ module Datacite
       #   unprefixed namespace
       def self.namespace_prefix=(prefix)
         old_namespace = namespace
-        self.namespace ::XML::MappingExtensions::Namespace.new(uri: old_namespace.uri, schema_location: old_namespace.schema_location, prefix: prefix)
+        namespace ::XML::MappingExtensions::Namespace.new(uri: old_namespace.uri, schema_location: old_namespace.schema_location, prefix: prefix)
       end
 
       def language
