@@ -15,9 +15,9 @@ module Datacite
     # of a resource for citation and retrieval purposes, along with recommended use instructions.
     # The resource that is being identified can be of any kind, but it is typically a dataset.
     class Resource
-      include XML::Mapping
+      include XML::MappingExtensions::Namespaced
 
-      NAMESPACE = XML::MappingExtensions::Namespace.new(
+      namespace XML::MappingExtensions::Namespace.new(
         uri: 'http://datacite.org/schema/kernel-3',
         schema_location: 'http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd'
       )
@@ -44,7 +44,6 @@ module Datacite
       # @param descriptions [Array<Description>] all additional information that does not fit in any of the other categories.
       # @param geo_locations [Array<GeoLocations>] spatial region or named place where the data was gathered or about which the data is focused.
       def initialize(identifier:, creators:, titles:, publisher:, publication_year:, subjects: [], contributors: [], dates: [], language: 'en', resource_type: nil, alternate_identifiers: [], related_identifiers: [], sizes: [], formats: [], version: nil, rights_list: [], descriptions: [], geo_locations: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
-        self.namespace = NAMESPACE
         self.identifier = identifier
         self.creators = creators
         self.titles = titles
@@ -65,20 +64,12 @@ module Datacite
         self.geo_locations = geo_locations
       end
 
-      # Overrides `Class.allocate`, used by `XML::Mapping` on read, to make sure
-      # the namespace gets set even when we don't call the initializer
-      def self.allocate
-        res = super
-        res.namespace = NAMESPACE
-        res
-      end
-
       # Sets the namespace prefix to be used when writing out XML (defaults to nil)
       # @param prefix [String, nil] The new prefix, or nil to use the default,
       #   unprefixed namespace
-      def namespace_prefix=(prefix)
+      def self.namespace_prefix=(prefix)
         old_namespace = namespace
-        self.namespace = ::XML::MappingExtensions::Namespace.new(uri: old_namespace.uri, schema_location: old_namespace.schema_location, prefix: prefix)
+        self.namespace ::XML::MappingExtensions::Namespace.new(uri: old_namespace.uri, schema_location: old_namespace.schema_location, prefix: prefix)
       end
 
       def language

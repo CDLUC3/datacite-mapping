@@ -778,8 +778,8 @@ module Datacite
             publisher: @publisher,
             publication_year: @pub_year
           )
-          resource.namespace_prefix = 'dcs'
-          expect(resource.namespace.prefix).to eq('dcs')
+          Resource.namespace_prefix = 'dcs'
+          expect(Resource.namespace.prefix).to eq('dcs')
 
           expected = '<dcs:resource xmlns:dcs="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
                         <dcs:identifier identifierType="DOI">10.14749/1407399495</dcs:identifier>

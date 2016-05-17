@@ -1,3 +1,7 @@
+## 0.1.14 (17 May 2016)
+
+- Fix issues with XML::MappingExtensions 0.4.x
+
 ## 0.1.13 (2 May 2016)
 
 - Update to XML::MappingExtensions 0.3.6 for improved namespace support
