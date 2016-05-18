@@ -19,7 +19,7 @@ module Datacite
 
       namespace XML::MappingExtensions::Namespace.new(
         uri: 'http://datacite.org/schema/kernel-3',
-        schema_location: 'http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd'
+        schema_location: 'http://schema.datacite.org/meta/kernel-3/metadata.xsd'
       )
 
       # Initialies a new {Resource}
