@@ -1,3 +1,7 @@
+## 0.1.16 (Next)
+
+- Provide better error messages for missing identifier values.
+
 ## 0.1.15 (18 May 2016)
 
 - Update to XML::MappingExtensions 0.4.1

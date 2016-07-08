@@ -22,6 +22,7 @@ module Datacite
       end
 
       def value=(v)
+        fail ArgumentError, 'Identifier must have a non-nil value' unless v
         fail ArgumentError, "Identifier value '#{v}' is not a valid DOI" unless v.match(DOI_PATTERN)
         @value = v
       end
@@ -42,8 +43,16 @@ module Datacite
         Identifier.new(value: match[0])
       end
 
+      def self.extract_and_set_value(obj, xml)
+        obj.value = xml.text
+      end
+      private_class_method :extract_and_set_value
+
       text_node :identifier_type, '@identifierType'
-      text_node :value, 'text()'
+
+      # The default reader throws an opaque XPath error if there's no element text,
+      # so we extract it manually and let the accessor raise an error instead
+      text_node :value, 'text()', reader: method(:extract_and_set_value)
     end
   end
 end
