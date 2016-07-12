@@ -1,21 +1,13 @@
 require 'xml/mapping_extensions'
-require 'datacite/mapping/identifier'
-require 'datacite/mapping/creator'
-require 'datacite/mapping/title'
-require 'datacite/mapping/subject'
-require 'datacite/mapping/resource_type'
 require 'datacite/mapping/alternate_identifier'
+require 'datacite/mapping/creator'
+require 'datacite/mapping/identifier'
+require 'datacite/mapping/nonvalidating'
 require 'datacite/mapping/related_identifier'
+require 'datacite/mapping/resource_type'
 require 'datacite/mapping/rights'
-
-module XML
-  module Mapping
-    class Node
-      attr_reader :attrname
-      attr_accessor :mapping
-    end
-  end
-end
+require 'datacite/mapping/subject'
+require 'datacite/mapping/title'
 
 module Datacite
   module Mapping
@@ -159,7 +151,7 @@ module Datacite
       # @!attribute [rw] language
       #   @return [String] Primary language of the resource: an IETF BCP 47, ISO 639-1 language code.
       #   It's unclear from the spec whether language is required; to play it safe, if it's missing, we default to 'en'.
-      text_node :language, 'language', default_value: nil
+      text_node :language, 'language', default_value: 'en'
 
       # @!attribute [rw] resource_type
       #   @return [ResourceType, nil] the type of the resource. Optional.
@@ -234,31 +226,12 @@ module Datacite
         funder_id.value if funder_id
       end
 
-      # TODO: Figure out how to get this to work, be less hacky, move to xml-mapping_extensions
-
-      # Loose mapping for invalid XML files
-      default_nodes = xml_mapping_nodes_hash[:_default]
-      loose_nodes = (default_nodes.map do |m|
-        m2 = m.clone
-        m2.mapping = :loose
-        m2
-      end).delete_if do |m|
-        m.attrname == :identifier
-      end
-      xml_mapping_nodes_hash[:loose] = loose_nodes
-
-      use_mapping :loose
+      use_mapping :nonvalidating
 
       # Ignore missing or invalid identifiers
-      object_node :identifier, 'identifier', class: Identifier, reader: (proc do |obj, xml|
-        obj.identifier = begin
-          Identifier.parse_xml(xml.elements['identifier'])
-        rescue => e
-          Datacite::Mapping.log.warn(e)
-          Identifier.allocate
-        end
-      end)
+      object_node :identifier, 'identifier', class: Nonvalidating::Identifier
 
+      fallback_mapping :nonvalidating, :_default
     end
   end
 end

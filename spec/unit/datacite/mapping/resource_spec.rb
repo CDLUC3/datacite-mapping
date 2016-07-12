@@ -688,11 +688,12 @@ module Datacite
 
         describe '#parse_xml' do
           it 'handles sketchy documents' do
-            xml_text = File.read('spec/data/mrt-datacite.xml')
-            resource = Resource.parse_xml(xml_text, mapping: :loose)
+            xml_text = File.read('spec/data/mrt-datacite.xml').sub("'", '&apos;')
+            resource = Resource.parse_xml(xml_text, mapping: :nonvalidating)
             expect(resource).to be_a(Resource)
 
             identifier = resource.identifier
+            expect(identifier).to be_a(Nonvalidating::Identifier)
             expect(identifier.identifier_type).to eq('DOI')
             expect(identifier.value).to be_nil
 
@@ -702,6 +703,11 @@ module Datacite
             creator = creators[0]
             expect(creator).to be_a(Creator)
             expect(creator.name).to eq('Baldassare, Mark')
+
+            actual_xml = resource.write_xml(mapping: :nonvalidating)
+            # File.open('tmp/expected.xml', 'w') { |f| f.write(xml_text) }
+            # File.open('tmp/actual.xml', 'w') { |f| f.write(actual_xml) }
+            expect(actual_xml).to be_xml(xml_text)
           end
         end
 
