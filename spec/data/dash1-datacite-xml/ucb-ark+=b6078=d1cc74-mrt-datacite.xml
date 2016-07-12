@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI">10.6078/D1CC74</identifier>
+  <creators>
+    <creator>
+      <creatorName>Srouji, John</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Xu, Anting</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Park, Annsea</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Kirsch, Jack</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Brenner, Steven</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>The Evolution of Function within the Nudix Superfamily</title>
+  </titles>
+  <publisher>UC Berkeley</publisher>
+  <publicationYear>2015</publicationYear>
+  <subjects>
+    <subject>hydrolase</subject>
+    <subject>homoplasy</subject>
+    <subject>Nudix</subject>
+    <subject>sequence alignment</subject>
+    <subject>structural alignment</subject>
+  </subjects>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/d17p4v</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/d13w2x</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/d1059d</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/d1vc7g</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/d1qp46</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/d1kw28</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/d1g59r</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/d1bc7t</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/d16p4j</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/d1301k</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/d1z593</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/d1tg6t</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/d1pp4w</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/D1K01X</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/D1F59F</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/D19G65</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/D15P47</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/D12018</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/D1X59S</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/D1SG6H</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/D1NP4K</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/D1J01M</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/D1D594</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/D18G6V</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/D14S3K</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/D1101Z</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="HasPart">10.6078/D1W884</relatedIdentifier>
+  </relatedIdentifiers>
+  <resourceType resourceTypeGeneral="Collection">Data and software</resourceType>
+  <sizes>
+    <size>292902042</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">The Nudix superfamily encompasses over 80,000 protein domains from all three domains of life. These proteins fall into four general functional classes: isopentenyl diphosphate isomerases (IDIs), adenine/guanine mismatch-specific adenine glycosylases (A/G-specific adenine glycosylases), pyrophosphohydrolases, and non-enzymatic activities such as protein/protein interaction and transcriptional regulation. The largest group, pyrophosphohydrolases, encompasses more than 100 distinct hydrolase specificities. To understand the evolution of this vast number of activities, we assembled and analyzed experimental and structural data for 205 Nudix proteins collected from the literature. We corrected erroneous functions or provided more appropriate descriptions for 53 annotations described in the Gene Ontology Annotation database in this family, and propose 275 new experimentally-based annotations. We manually constructed structure-guided sequence alignment of 78 Nudix proteins. Using the structural alignment as a seed, we then made an alignment of 347 “select” Nudix domains, curated from structurally determined, functionally characterized, or phylogenetically important Nudix domains. Based on our review of Nudix pyrophosphohydrolase structures and specificities, we further analyzed a loop region downstream of the Nudix hydrolase motif previously shown to contact the substrate molecule and possess known functional motifs. This loop region provides a potential structural basis for the functional radiation and evolution of substrate specificity within the hydrolase family. Finally, phylogenetic analyses of the 347 select protein domains and of the complete Nudix clan revealed general monophyly with regard to function and a few instances of probable homoplasy.</description>
+  </descriptions>
+</resource>

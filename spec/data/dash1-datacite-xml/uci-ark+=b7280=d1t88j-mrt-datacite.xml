@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Crystal Cove Alliance</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Crystal Cove Marine Conservation Area Citizen Science Monitoring</title>
+  </titles>
+  <publisher>UC Irvine</publisher>
+  <publicationYear>2015</publicationYear>
+  <subjects>
+    <subject>fish</subject>
+    <subject>water quality</subject>
+    <subject>plankton</subject>
+    <subject>Marine Protected Area</subject>
+    <subject>Crystal Cove State Park</subject>
+    <subject>monitoring</subject>
+    <subject>citizen science</subject>
+    <subject>near shore</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>McKinley;McKinley, Matthew J.</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="URL" relationType="IsSupplementedBy">http://www.crystalcovealliance.org/</relatedIdentifier>
+  </relatedIdentifiers>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>45558</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">Crystal Cove Alliance operates the Crystal Cove Marine Protected Area Citizen Science Cruise in partnership with Newport Landing Sportfishing.  Under the supervision of trained Crystal Cove Alliance staff, junior high school and high school students collect data on fish and plankton biodiversity and nearshore water quality in the Crystal Cove Marine Conservation Area, following protocols designed in partnership with UCI and other researchers. Data made available in the OC Data Portal in partnership with UCI Libraries. See README file for more detailed information.</description>
+    <description descriptionType="Methods">Contact Crystal Cove Alliance for detailed protocols.
+Fish biodiversity: Used an underwater camera to perform a vertical transect within the kelp forest or rocky reef to look for presence or absence of 6 key fish species. Videos available upon request
+Plankton biodiversity: Used 3 plankton nets to perform a surface horizontal tow and identified presence or absence of 9 key species using a microscope. 
+Water Quality: Used Van Dorn bottles to collect water from the surface to 16 meters in two meter intervals. Tested for temperature, salinity and pH.</description>
+  </descriptions>
+  <geoLocations>
+    <geoLocation>
+      <geoLocationPlace>Orange County (Calif.)</geoLocationPlace>
+    </geoLocation>
+    <geoLocation>
+      <geoLocationBox>33.55402 -117.877293 33.589527 -117.820001</geoLocationBox>
+    </geoLocation>
+  </geoLocations>
+</resource>

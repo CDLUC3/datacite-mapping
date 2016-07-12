@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Baldassare, Mark</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Annual Survey of Orange County 1983</title>
+  </titles>
+  <publisher>UC Irvine</publisher>
+  <publicationYear>2014</publicationYear>
+  <subjects>
+    <subject>Growth</subject>
+    <subject>Environmental Waste</subject>
+    <subject>Public School</subject>
+    <subject>Police</subject>
+    <subject>Health</subject>
+    <subject>Transportation</subject>
+    <subject>Schools</subject>
+    <subject>Parenting</subject>
+    <subject>Depression</subject>
+    <subject>Politics</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>McKinley, Matthew J.</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>University of California, Irvine</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="URL" relationType="IsSupplementedBy">http://data.lib.uci.edu/ocs/</relatedIdentifier>
+  </relatedIdentifiers>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>3266843</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">The Orange County Annual Survey begins in 1982 to monitor the demographic, economic, and political character of Orange County and the changes in this character over time. Areas of primary concentration are housing, mobility, growth, transportation, public services, politics and government, and demographics. The survey of 1983 builds on its predecessor in each of these areas with a view toward the implications of current trends for the future of Orange County. The sample size is 1,003 Orange County adult residents.
+
+Online data analysis &amp; additional documentation in Link below.</description>
+    <description descriptionType="Methods">The sample for the 1983 Orange County Survey consists of 1,003 randomly selected residents who were interviewed by telephone.  The sample is stratified geographically, with half of the sample selected from the north of the Santa Ana River and half from the south.  For data analyses, the sample is statistically weighted to represent the actual distribution of the Orange County population. 
+The sample in each area was chosen using a computer program, which randomly generates telephone numbers from among working blocks of telephone exchanges.  A working block is one that contains numbers in use.  The total of telephone numbers generated within an exchange was in proportion to the number of residential phones represented by that exchange in the northern part of the county or the southern part of the county.  Using this procedure, approximately 1,800 telephone numbers from the south and approximately 1,800 telephone numbers from the north were drawn.  This procedure of random digit dialing ensures that unlisted as well as listed numbers are included in the sample.  Also, since 95% of the households in Orange County have telephones, random dialing yields a sample representative of the population of Orange County.
+	The Troldahl-Carter Method was used in randomly selecting which adult member of the household was to be interviewed. This method consists of enumerating the total number of adults in the household and the total number of men in the household.  Then, using a prearranged grid, the interviewer selects the individual in the household for interviewing.
+	As further evidence of the representativeness of the sample chosen by the above methods, characteristics of the sample were compared to characteristics of the total Orange County population using the 1980 census.  On the basis of age, income, sex, marital status, household size, and home ownership, the sample is representative of the population of Orange County.  Characteristics of the 1982 Orange County Survey sample were also contrasted with the characteristics of the 1983 Orange County 
+Survey sample.  Marital status, ethnicity, age, sex, and education were closely comparable in the two surveys. 
+	The sampling error for this survey is plus or minus three percentage points.  This means that if this survey were to be repeated on hundred times, in 95 out of the 100 times the answers obtained for a particular question would match those we obtained in this survey within three points.  The sampling error for any particular sub-group would be greater.  These calculations assume that the data were collected under ideal circumstances.  Since there are a large number of practical problems in conducting social surveys, the actual sampling error for any particular result might be slightly larger.
+	As noted above, the interviewing for the Orange County Survey was done by telephone.  Cost considerations and methodological improvements have led to telephone surveys' increased adoption in the social sciences.  In addition, several studies show similar quality in telephone and face-to-face interviews. 
+	Interviewers were closely supervised during the data collection.  Interviewers participated in a two-hour training session on the Orange County Survey instrument.  Supervisors were available during the telephone interviewing to answer questions of interviewers or respondents.  The telephone system used also allowed supervisors to monitor interviews to correct for errors in administering the questionnaire.
+</description>
+  </descriptions>
+  <geoLocations>
+    <geoLocation>
+      <geoLocationPlace>Orange County (Calif.)</geoLocationPlace>
+    </geoLocation>
+  </geoLocations>
+</resource>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Britten, Kenneth H.</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Thatcher, Timothy D.</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Caro, Tim</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Data associated with Britten, Thatcher and Caro (PLOS One, 2016). &quot;Zebras and biting flies: quantitative analysis of reflected light from zebra coats in their natural habitat.&quot;</title>
+  </titles>
+  <publisher>DataONE</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>zebra</subject>
+    <subject>tabanid</subject>
+    <subject>light polarization</subject>
+    <subject>predator-prey interaction</subject>
+    <subject>parasite</subject>
+    <subject>Africa</subject>
+    <subject>horseflies</subject>
+    <subject>glossinid</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Britten, Kenneth</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>National Geographic Society and National Eye Institute, NIH, US.</contributorName>
+    </contributor>
+  </contributors>
+
+  <resourceType resourceTypeGeneral="Image">Image</resourceType>
+  <sizes>
+    <size>783494600</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication (CC0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">The images are of 21 scenes containing plains zebras (Equus burchelli) taken in their natural habitat in Katavi National Park, Tanzania. Each scene was photographed 7 times through a polarizing filter set to angles varying by 30 degrees, to allow the reconstruction of the polarized light signature emitted from different regions and stripes on the zebras' pelage. The scenes contain either individual zebras or small groups of zebras against a background of low vegetation dominated by dry grass. The images were captured in the dry season, July-September, 2012. </description>
+    <description descriptionType="Methods">A Nikon D50 was used with a Digital Quantaray polarizing filter. The images are in 14-bit resolution, RGB mode. Each series was captured using full manual control, and the images are in Nikon's raw format, containing full metadata. Additional methods can be found in the PLOS One paper. The files are stored in a zip-compressed file, and the directory 'nef_files/' contains the image data, with each of the 21 image series in a separate subdirectory. Additional metadata is in the 'metadata.[xls,csv]' files in the package. </description>
+    <description descriptionType="Other">NGS W104-10 and NIH EY022087</description>
+  </descriptions>
+</resource>

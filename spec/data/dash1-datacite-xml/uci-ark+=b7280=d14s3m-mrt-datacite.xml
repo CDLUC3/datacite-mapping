@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Pataki, Diane</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Physiology of Urban Trees, 3 of 7</title>
+  </titles>
+  <publisher>UC Irvine</publisher>
+  <publicationYear>2015</publicationYear>
+  <subjects>
+    <subject>urban ecology</subject>
+    <subject>SLA</subject>
+    <subject>Specific leaf area</subject>
+    <subject>carbon isotope analysis</subject>
+    <subject>silver birch</subject>
+    <subject>lacebark elm</subject>
+    <subject>kurrajong</subject>
+    <subject>swamp she-oak</subject>
+    <subject>bitter orange</subject>
+    <subject>lemon</subject>
+    <subject>laurel</subject>
+    <subject>snailseed</subject>
+    <subject>rose gum</subject>
+    <subject>strangler fig</subject>
+    <subject>Moreton Bay fig</subject>
+    <subject>chinese banyan</subject>
+    <subject>honeylocust</subject>
+    <subject>goldenrain tree</subject>
+    <subject>crape myrtle</subject>
+    <subject>avocado</subject>
+    <subject>victorian box</subject>
+    <subject>lucky nut</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>McKinley;McKinley, Matthew J.</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="URL" relationType="IsSupplementedBy">http://bioweb.biology.utah.edu/pataki/</relatedIdentifier>
+  </relatedIdentifiers>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>890</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">Measurements of water use by trees planted in urban environments. For more detailed metadata, including data access and usage instructions, please download and consult README.txt file.</description>
+    <description descriptionType="Other"/>
+  </descriptions>
+  <geoLocations>
+    <geoLocation>
+      <geoLocationPlace>Orange County (Calif.)</geoLocationPlace>
+    </geoLocation>
+    <geoLocation>
+      <geoLocationPoint>34.13 -118.05</geoLocationPoint>
+    </geoLocation>
+  </geoLocations>
+</resource>

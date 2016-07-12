@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Miller, Suellen</creatorName>
+    </creator>
+    <creator>
+      <creatorName>El Ayadi, Alison</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Shock Index for Predicting Adverse Obstetric Hemorrhage Outcome</title>
+  </titles>
+  <publisher>UC San Francisco</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>shock index</subject>
+    <subject>obstetric hemorrhage</subject>
+    <subject>hypovolemic shock </subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>El Ayadi, Alison</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>Funding for the preparation of this data was supported by the Bill &amp; Melinda Gates Foundation. The original data collection was supported by grants from the MacArthur Foundation, National Institutes of Health, and the Bill &amp; Melinda Gates Foundation. </contributorName>
+    </contributor>
+  </contributors>
+
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>124024</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">This dataset includes clinical data for 958 women comprising pre-intervention/control participants from four studies conducted by the Safe Motherhood Program at the University of California, San Francisco that evaluated the effectiveness of the non-pneumatic anti-shock garment (NASG) to reduce adverse maternal outcomes for women with hypovolemic shock secondary to severe obstetric hemorrhage: Egypt 2004 (n=158), Egypt 2006-2008 (n=430), Nigeria 2004-2007 (n=179) and Zambia and Zimbabwe 2007-2012 (n=191) and were not missing data on vital signs or death. Three of these studies, based at the tertiary level, followed a quasi-experimental design where a pre-intervention period was temporally followed by an NASG intervention period, and one was a cluster-randomized control trial (CRCT) of NASG application at the primary health clinic (PHC) level, prior to transport to tertiary facility for definitive treatment. The  pre-intervention/control participants in all studies received standardized evidence-based hemorrhage and shock management. Women in all trials were eligible for study participation if they reached a threshold estimated blood loss and one or more of the following: SBP &lt; 100 mm Hg and/or pulse &gt; 100 BPM. In the tertiary facility studies in Egypt and Nigeria, the threshold estimated blood loss was &gt;750ml, while in the Zambia and Zimbabwe PHC-enrolled study the threshold EBL was &gt;500 mL. The majority of facilities were under-staffed, under-resourced, and characterized by long delays in obtaining definitive care (surgery, blood transfusions). Initial study protocols, including informed consent procedures, were approved by institutional review boards at the University of California, San Francisco, and for each study, respectively, by the following institutions: University of Zambia, Lusaka Research Ethics Committee; Medical Research Council of Zimbabwe; Department of Reproductive Health and Research of the World Health Organization Ethics Review Committee; National Reproductive Health Research Committee of the Nigerian Federal Ministry of Health, El Galaa Maternity Teaching Hospital; Assiut University Women’s Health Center; Alexandria University Teaching Hospital; and Al Minya University Teaching Hospital. All women provided written or thumbprint (if illiterate) informed consent for study participation; all ethics committees provided a waiver of consent from women who were unconscious or confused at time of admission until they recovered or written consent was obtained from a relative as proxy. </description>
+    <description descriptionType="Methods">Data captured included participant vital sign values at the measurement interval with the highest shock index (pulse/SBP) within the first hour after study entry: pulse, systolic blood pressure, diastolic blood pressure, mean arterial pressure (MAP= (2 x DBP + SBP)/3), SI (pulse/SBP), and pulse pressure (SBP-DBP). Severe shock at study entry was defined as MAP less than 60 mmHg, below which perfusion of vital organs has been proposed to be inadequate. BP was measured via an automated blood pressure device or auscultatory technique with mercury sphygmomanometer. Outcomes comprised any severe adverse maternal event related to obstetric hemorrhage, and included organ system dysfunction-based criteria and intervention-based criteria. Although the outcomes for the original trials were determined prior to the development of the WHO “Near-Miss” criteria, they are very similar. The original outcomes for the studies were maternal mortality; end-organ system failure morbidity defined as clinically-diagnosed major organ failure (respiratory, renal, neurological, cardiac) lasting for 24 hours post-resuscitation; and the intervention variables ICU admission, blood transfusion, and emergency hysterectomy for intractable uterine atony. These outcomes were selected because in the majority of our study sites, laboratory-based criteria (e.g., determining DIC by platelets), were not consistently available. For the purposes of the present analysis we used the WHO maternal near-miss indicators for our outcomes. We evaluated maternal status as 1) death or 2) severe maternal outcome (SMO), a composite indicator of death or severe end-organ failure maternal morbidity. Finally we combined SMO with the WHO intervention-based near-miss criteria ICU admission, blood transfusion ≥5 units and emergency hysterectomy (uterine atony diagnoses only). WHO labels these as “critical interventions”; therefore, to be consistent with WHO criteria, we called our composite indicator of SMO and the critical interventions SMO-CI.</description>
+    <description descriptionType="Other">Current dataset preparation: Bill and Melinda Gates Foundation (OPP1086183). Original data collection: MacArthur Foundation (05-84956-000-GSS), National Institutes of Health (R01HD053129) and Bill and Melinda Gates Foundation (48541).</description>
+  </descriptions>
+</resource>

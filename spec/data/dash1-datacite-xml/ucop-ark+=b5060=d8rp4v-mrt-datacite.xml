@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Kratz, John</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Strasser, Carly</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Researcher perspectives on publication and peer review of data</title>
+  </titles>
+  <publisher>UC Office of the President</publisher>
+  <publicationYear>2014</publicationYear>
+  <subjects>
+    <subject>data publication</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Kratz, John</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="IsSupplementTo">10.1371/journal.pone.0117619</relatedIdentifier>
+  </relatedIdentifiers>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>514575</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">Data ``publication'' seeks to appropriate the prestige of authorship in the peer-reviewed literature to reward researchers who create useful and well-documented datasets. The scholarly communication community has embraced data publication as an incentive to document and share data.
+But, numerous new and ongoing experiments in implementation have not yet resolved what a data publication should be, when data should be peer-reviewed, or how data peer review should work. While researchers have been surveyed extensively regarding data management and sharing, their perceptions and expectations of data publication are largely unknown. To bring this important yet neglected perspective into the conversation, we surveyed ~250 researchers across the sciences and social sciences-- asking what expectations``data publication'' raises and what features would be useful to evaluate the trustworthiness, evaluate the impact, and enhance the prestige of a data publication. This data offers practical guidance for data publishers seeking to meet researcher expectations and enhance the value of published data.
+</description>
+    <description descriptionType="Methods">All results were drawn from a survey approved by the University of California, Berkeley Committee for Protection of Human Subjects/Office for the Protection of Human Subjects (protocol ID 2013-11-5841).
+Respondents completed the survey anonymously.
+Researchers affiliated with the University of California (UC) could supply an email address for follow-up assistance with data publication, but neither the fact of affiliation nor any UC-specific information is included here.
+
+The survey contained 34 questions in three categories: demographics, data sharing interest and experience, and data publication perceptions. Demographic questions collected information on respondent's country, type of institution, research role, and discipline.
+Questions to assess respondent's existing knowledge of data sharing and publication focused on knowledge of several relevant US governmental policies and an invitation to name data journals.
+Data publication perceptions consisted of ``mark all that apply'' questions concerning definitions of data publication and peer review and Likert scale questions about the value of various possible features of a data publication. The number of required questions was kept to a minimum. Some questions were displayed dynamically based on previous answers.  Consequently, n varies considerably from question to question.
+
+The survey was administered as a Google Form, officially open from January 22 to February 28 of 2014; two late responses received in March were included in the analysis.
+Solicitations were distributed via social media (Twitter, Facebook, Google+), emails to listservs, and a blog post on Data Pub.
+
+Although the topic of the survey is benign and identification would be unlikely to negatively impact respondents, light anonymization was performed prior to release of the response data. UC affiliation and answers to UC-specific questions were redacted. Respondent locations were grouped into United States and ``other;'' this distinction was preserved only because some questions asked about US government policies. Sub-disciplines with fewer than three respondents were re-coded with the corresponding discipline.
+Listed data journal names were standardized manually, and free text answers to other questions were replaced with ``other.''</description>
+  </descriptions>
+</resource>

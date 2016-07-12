@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Kosenkov, Alexandr</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>IDEA Data API Specification</title>
+  </titles>
+  <publisher>DataONE</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>IDEA</subject>
+    <subject>Moorea</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Kosenkov, Alex</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>Alexandr Kosenkov</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="URL" relationType="IsPartOf">mooreaidea.org</relatedIdentifier>
+  </relatedIdentifiers>
+  <resourceType resourceTypeGeneral="Text">Text</resourceType>
+  <sizes>
+    <size>716</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication (CC0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">The specification of IDEA Data API.</description>
+    <description descriptionType="Methods">Typing</description>
+    <description descriptionType="Other">0</description>
+  </descriptions>
+</resource>

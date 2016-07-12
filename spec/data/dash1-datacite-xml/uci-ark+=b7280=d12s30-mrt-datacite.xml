@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Suding, Katherine</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Dickens, Sara Jo</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Orange County Invasive Plant Management Project</title>
+  </titles>
+  <publisher>UC Irvine</publisher>
+  <publicationYear>2015</publicationYear>
+  <subjects>
+    <subject>OCIM</subject>
+    <subject>restoration</subject>
+    <subject>UC Berkeley</subject>
+    <subject>plant</subject>
+    <subject>invasive plant</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>McKinley;McKinley, Matthew J.</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>US Department of Agriculture</contributorName>
+    </contributor>
+  </contributors>
+
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>1209</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">Assess restoration success county wide and identify environmental and management variables useful in predicting restoration success. For more detailed metadata, including data access and usage instructions, please download and consult README.txt file.</description>
+    <description descriptionType="Other"/>
+  </descriptions>
+  <geoLocations>
+    <geoLocation>
+      <geoLocationPlace>Orange County (Calif.)</geoLocationPlace>
+    </geoLocation>
+    <geoLocation>
+      <geoLocationPoint>33.667979 -117.766877</geoLocationPoint>
+    </geoLocation>
+  </geoLocations>
+</resource>

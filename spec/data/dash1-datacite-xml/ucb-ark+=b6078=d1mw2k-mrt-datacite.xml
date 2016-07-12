@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>MacNell, Lillian</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Driscoll, Adam</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Hunt, Andrea</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title> Student Ratings of Teaching by Instructor Gender and Perceived Gender</title>
+  </titles>
+  <publisher>UC Berkeley</publisher>
+  <publicationYear>2015</publicationYear>
+  <subjects>
+    <subject>Student ratings of teaching</subject>
+    <subject>gender inequality</subject>
+    <subject>gender bias</subject>
+    <subject>student evaluations</subject>
+  </subjects>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="IsSupplementTo">10.1007/s10755-017-9313-4</relatedIdentifier>
+  </relatedIdentifiers>
+  <resourceType resourceTypeGeneral="Collection">Collection</resourceType>
+  <sizes>
+    <size>40210</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">Student ratings of teaching play an important role in decisions about hiring, tenure, and compensation for instructors in higher education. In face-to-face classrooms, researchers are limited in their ability to test for the existence of bias in such ratings, as it is difficult to mask or misrepresent the gender of an instructor in the classroom. However, in the online environment is it possible to disguise an instructor’s gender identity, and therefore isolate the effects of gender bias independent of instructor performance. These data were collected during a controlled pseudo-experiment in which a male and female assistant instructor helped teach an online class, each under both male and female identities. Students were asked to rate their instructors on 12 measures, and overall. Data include the group to which students were assigned, their responses to the evaluation, and demographic information including their gender and birth year. The data also include course grades for each group. </description>
+    <description descriptionType="Methods">Students in the class were randomly assigned to one of four work groups, which were divided between two instructors, one male and one female. Unbeknownst to the students, each instructor interacted with one group under their own identity and a second under their fellow instructor’s identity. We created a survey asking students to rate their instructors on 12 measures, and overall. Six questions asked about “effectiveness” traits, e.g. professionalism and promptness. Six questions asked about “interpersonal” traits, e.g. enthusiasm and giving praise. </description>
+  </descriptions>
+</resource>

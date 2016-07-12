@@ -688,7 +688,7 @@ module Datacite
 
         describe '#parse_xml' do
           it 'handles sketchy documents' do
-            xml_text = File.read('spec/data/mrt-datacite.xml').sub("'", '&apos;')
+            xml_text = File.read('spec/data/mrt-datacite.xml').gsub("'", '&apos;').gsub('"', "'")
             resource = Resource.parse_xml(xml_text, mapping: :nonvalidating)
             expect(resource).to be_a(Resource)
 
@@ -708,6 +708,39 @@ module Datacite
             # File.open('tmp/expected.xml', 'w') { |f| f.write(xml_text) }
             # File.open('tmp/actual.xml', 'w') { |f| f.write(actual_xml) }
             expect(actual_xml).to be_xml(xml_text)
+          end
+
+          it 'handles all Dash 1 documents' do
+            Dir.glob('/Users/dmoles/Work/datacite-mapping/spec/data/dash1-datacite-xml/*mrt-datacite.xml') do |f|
+              basename = File.basename(f)
+              xml_text = File.read(f).gsub("'", '&apos;').gsub('"', "'")
+
+              resource = nil
+              begin
+                resource = Resource.parse_xml(xml_text, mapping: :nonvalidating)
+              rescue Exception => e
+                puts "Error parsing #{basename}: #{e}"
+                raise
+              end
+              next unless resource
+
+              actual_xml = nil
+              begin
+                actual_xml = resource.write_xml(mapping: :nonvalidating)
+              rescue Exception => e
+                puts "Error writing #{basename}: #{e}"
+                raise
+              end
+              next unless actual_xml
+
+              begin
+                expect(actual_xml).to be_xml(xml_text)
+              rescue Exception
+                File.open("tmp/#{basename}-expected.xml", 'w') { |f| f.write(xml_text) }
+                File.open("tmp/#{basename}-actual.xml", 'w') { |f| f.write(actual_xml) }
+                raise
+              end
+            end
           end
         end
 

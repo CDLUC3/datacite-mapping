@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Flores, German</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Manduchi, Roberto</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>The WeAllWalk Data Set</title>
+  </titles>
+  <publisher>UC Santa Cruz</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>inertial sensing</subject>
+    <subject>step counting</subject>
+    <subject>orientation and mobility</subject>
+    <subject>blindness</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Manduchi, Roberto</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>Center for Information Technology Research in the Interest of Society</contributorName>
+    </contributor>
+  </contributors>
+
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>536605415</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">This data set contains time series from inertial sensors carried by blind subjects walking through pre-determined routes In two buildings in the UCSC campus. The sensors include two MetaWear CPRO (obtaining a tai-axial accelerometer and gyroscope) and two iPhone 6 containing try-axial accelerometer, gyroscopes, and magnetometers.</description>
+    <description descriptionType="Methods">The data is timestamped and annotated. In particular, the paths taken by the blind subjects are subdivided into continuous non-overlapping intervals corresponding, for example, to straight segments or left/right turns. In addition, our annotations contain specific &quot;features&quot;, such as when a blind subject bumped onto an obstacles or stopped momentarily. Intervals and features are specified by their start and end time. An XML schema (WeAllWalk.xsd) has been defined to format these annotations, and is contained in the data set. </description>
+    <description descriptionType="Other">2015-321</description>
+  </descriptions>
+</resource>

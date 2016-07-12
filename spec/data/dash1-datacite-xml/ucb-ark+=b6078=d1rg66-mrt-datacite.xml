@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Brenner, Steven</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Giacomini, Kathleen</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Scherer, Steven</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Pharmacogenomics Research Network: Transcriptomic variation of pharmacogenes in multiple human tissues and lymphoblastoid cell lines</title>
+  </titles>
+  <publisher>UC Berkeley</publisher>
+  <publicationYear>2015</publicationYear>
+  <subjects>
+    <subject>RNA-seq</subject>
+    <subject>pharmacogenetic</subject>
+    <subject>splicing</subject>
+    <subject>biomarkers</subject>
+    <subject>transporter</subject>
+    <subject>gene expression</subject>
+    <subject>enzyme</subject>
+    <subject>drug target</subject>
+    <subject>transcriptome</subject>
+  </subjects>
+
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>3397657</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+
+</resource>

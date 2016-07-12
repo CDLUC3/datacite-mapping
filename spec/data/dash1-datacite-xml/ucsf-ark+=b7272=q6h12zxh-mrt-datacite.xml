@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>UCSF Library</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>UCSF LibQUAL Library Survey Results 2015</title>
+  </titles>
+  <publisher>UC San Francisco</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>Library</subject>
+    <subject>Survey</subject>
+    <subject>Customer Satisfaction</subject>
+    <subject>User Experience</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Deardorff, Ariel</contributorName>
+    </contributor>
+  </contributors>
+
+  <resourceType resourceTypeGeneral="Collection">Collection</resourceType>
+  <sizes>
+    <size>2165128</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">These datasets contain the Mission Bay and Parnassus responses to the 2015 UCSF Library Survey. The Library Survey asks about three distinct aspects of the library: Affect of Service (people), Information Control (resources) and Library as Place (spaces). For each question, survey respondents are asked to select the minimum service level they would expect from the library, the level of service they desire, and where they think the library is currently performing. Using these three measures provides valuable information about how the Library’s users think it is performing relative to their needs.
+
+The survey was produced by LibQUAL+® for UCSF Library. LibQUAL+® is a suite of services that libraries use to solicit, track, understand, and act upon users’ opinions of service quality. These services are offered to the library community by the Association of Research Libraries (ARL). For more information, visit http://libqual.org 
+</description>
+    <description descriptionType="Methods">Data Collection:
+The Library survey, which was administered from Nov 2-29 2015, was sent to all UCSF students, faculty, and staff via UCSF campus email lists. The complete survey instrument consists of demographic questions, 22 survey questions and a comment box. To reduce the time commitment, UCSF respondents were given a random subset of the 22 survey questions.
+
+Analysis:
+The quantitative dataset, consisting of survey respondents rating of minimum, desired, and perceived level of service, was cleaned and arranged into a format more suitable for analysis.
+
+The qualitative dataset, consisting of the comments portion of the survey, was coded by a group of library staff in order to highlight the different topics discussed. Because a comment often touched on many different topics each comment could receive multiple codes. Once the comments had all been coded the spreadsheet was transformed into a format more suitable for filtering and analysis.
+</description>
+  </descriptions>
+</resource>

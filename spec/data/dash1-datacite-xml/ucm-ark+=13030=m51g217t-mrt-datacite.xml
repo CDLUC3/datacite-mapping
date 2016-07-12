@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+    <identifier identifierType="DOI">10.6071/H8RN35SM</identifier>
+<creators>
+<creator>
+<creatorName>Whelan, Mary</creatorName>
+</creator>
+</creators>
+<titles>
+    <title>Data from Whelan, M.E. and R.C. Rhew, 2014 - Carbonyl sulfide produced by abiotic thermal and photo-degradation of soil organic matter from wheat field substrate</title>
+</titles>
+<publisher>UC Merced</publisher>
+<publicationYear>2015</publicationYear>
+<subjects>
+    <subject>Biosphere/atmosphere interactions</subject>
+    <subject>Biogeochemical cycles, processes, and modeling</subject>
+    <subject>Trace gases</subject>
+    <subject>Biosignatures and proxies</subject>
+    <subject>carbonyl sulfide</subject>
+    <subject>soil trace gas exchange</subject>
+</subjects>
+<resourceType resourceTypeGeneral="Dataset">dataset</resourceType>
+<relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="IsReferencedBy">10.1002/2014JG002661</relatedIdentifier>
+</relatedIdentifiers>
+<descriptions>
+    <description descriptionType="Abstract">Carbonyl sulfide (COS) is a reduced sulfur gas that is taken up irreversibly in plant leaves proportionally with CO2, allowing its potential use as a tracer for gross primary production. Recently, wheat field soil at the Southern Great Plains Atmospheric Radiation Measurement site in Lamont, Oklahoma, was found to be a measureable source of COS to the atmosphere. To understand the mechanism of COS production, soil and root samples were collected from the site and incubated in the laboratory over a range of temperatures (15–34°C) and light conditions (light and dark). Samples exhibited mostly COS net uptake from the atmosphere in dark and cool (&lt;22–25°C) trials. COS emission was observed during dark incubations at high temperatures (&gt;25°C), consistent with field observations, and at a lower temperature (19°C) when a full spectrum lamp (max wavelength 600 nm) was applied. Sterilized soil and root samples yielded only COS production that increased with temperature, supporting the hypothesis that (a) COS production in these samples is abiotic, (b) production is directly influenced by temperature and light, and (c) some COS consumption in soil and root samples is biotic.</description>
+</descriptions>
+</resource>

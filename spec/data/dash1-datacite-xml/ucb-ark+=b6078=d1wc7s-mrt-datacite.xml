@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Feinberg, Joshua</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Solheid, Peter</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Swanson-Hysell, Nicholas</creatorName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://www.orcid.org">0000-0003-3215-4648</nameIdentifier>
+    </creator>
+    <creator>
+      <creatorName>Jackson, Mike J.</creatorName>
+      <nameIdentifier nameIdentifierScheme="ORCID" schemeURI="http://www.orcid.org">0000-0003-4778-7157</nameIdentifier>
+    </creator>
+    <creator>
+      <creatorName>Bowles, Julie</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Full vector low-temperature magnetic measurements of geologic materials</title>
+  </titles>
+  <publisher>UC Berkeley</publisher>
+  <publicationYear>2015</publicationYear>
+  <subjects>
+    <subject>rock magnetism</subject>
+    <subject>low-temperature magnetometry</subject>
+    <subject>magnetite</subject>
+    <subject>Verwey transition</subject>
+    <subject>pyrrhotite</subject>
+    <subject>Besnus transition</subject>
+    <subject>hematite</subject>
+    <subject>Morin transition</subject>
+  </subjects>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="URL" relationType="IsDocumentedBy">http://escholarship.org/uc/item/7n65f6gg</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="IsDocumentedBy">10.1002/2014GC005591</relatedIdentifier>
+  </relatedIdentifiers>
+  <resourceType resourceTypeGeneral="Collection">Collection</resourceType>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">The magnetic properties of geologic materials offer insights into an enormous range of important geophysical phenomena ranging from inner core dynamics to paleoclimate. Often it is the low-temperature behavior (&lt;300 K) of magnetic minerals that provides the most useful and highest sensitivity information for a given problem. Conventional measurements of low-temperature remanence are typically conducted on instruments that are limited to measuring one single-axis component of the magnetization vector and are optimized for measurements in strong fields. These instrumental limitations have prevented fully optimized applications and have motivated the development of a low-temperature probe that can be used for low-temperature remanence measurements between 17 and 300 K along three orthogonal axes using a standard 2G Enterprises SQuID rock magnetometer. In this contribution, we describe the design and implementation of this instrument and present data from five case studies that demonstrate the probe's considerable potential for future research: a polycrystalline hematite sample, a polycrystalline hematite and magnetite mixture, a single crystal of magnetite, a single crystal of pyrrhotite, and samples of Umkondo Large Igneous Province diabase sills.</description>
+    <description descriptionType="Methods">The code folder contains an IPython/Jupyter notebook file that is the main supplemental materials associated with the paper as well as non-standard function libraries necessary to run the code within the notebook. To run the code in the notebook it is necessary to both download the code from the Github repository and have an installed Python distribution that includes IPython and the other standard scientific python libraries (http://www.scipy.org/). There are good instructions for installing IPython/jupyter here: http://ipython.org/install.html. Alternatively you can view the notebook online with the jupyter nbviewer at this link: https://nbviewer.jupyter.org/github/swanson-hysell/2015_Feinberg-et-al_low-temp/blob/master/Code/LowT_Data_Analysis.ipynb. The data folder contains the data generated for the case studies presented in this work that are used in the data analysis and presented in the paper. The manuscript folder contains the paper text and figures.</description>
+  </descriptions>
+</resource>

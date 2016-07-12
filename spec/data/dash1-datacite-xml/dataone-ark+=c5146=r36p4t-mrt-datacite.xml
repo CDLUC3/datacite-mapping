@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Laney, Christine M</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Pennington, Deana D</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Tweedie, Craig E</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>A survey of sensor network use and data management among academic ecologists</title>
+  </titles>
+  <publisher>DataONE</publisher>
+  <publicationYear>2015</publicationYear>
+  <subjects>
+    <subject>sensor network</subject>
+    <subject>survey</subject>
+    <subject>ecoinformatics</subject>
+    <subject>data management</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Laney, Christine</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>U.S. Environmental Protection Agency; CYBER-ShARE Center of Excellence National Science Foundation (NSF) CREST grants; CI-Team Grant</contributorName>
+    </contributor>
+  </contributors>
+
+  <resourceType resourceTypeGeneral="Collection">Collection</resourceType>
+  <sizes>
+    <size>3286679</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication (CC0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">Automated sensors are ubiquitous in ecological research networks and academic-led research – the ‘long-tail’ of ecological research. We conducted a survey of academic ecologists to assess the extent of sensor use and how data are managed. Respondents were from 135 groups representing&gt;1,800 researchers from 92 US universities; these collectively match the expenditure, sensor use, and data volumes of several large national research networks. Few reported use of metadata and workflows and almost 70% archive data locally and not in institutional archives, though most recognized the importance of doing so. Most indicated that better access to tools and cyber expertise would enhance their research. Improving access to such datasets may include improved software tools and access to expert knowledge, targeted training, high-profile studies that showcase the participation of academic researchers in large scale syntheses, and incentives for industry to develop, adopt, or adapt technologies that improve data documentation, discovery, and sharing.</description>
+    <description descriptionType="Methods">The survey solicited responses between August 2012 and July 2013 from a diverse pool of &gt;3,800 ecologists within the US-based academic ecological research community identified via the LTER, Organization of Biological Field Sites (OBFS), and university websites. This mixed methods online survey (hosted at SurveyMonkey®; http://www.surveymonkey.com/s/ecodata) was composed of 42 quantitative, categorical, and open-ended questions (included in this data package). The survey was reviewed by the Institutional Review Board (IRB) within the Office of Research and Sponsored Projects (ORSP) at The University of Texas at El Paso and classified as exempt from IRB review. Individual identifying information was not required and if present, was not included in analyses. 
+The questions addressed the following topics:
+1. Research group composition, study area locations, funding, and types of 105 research conducted.
+2. Data collection methods, system infrastructure, replacement costs, and ideal setup (i.e., the setup that they would like to have if resources were not limited).
+3. Affiliations with research networks and perceptions of benefits or disadvantages of such affiliations.
+4. Research groups’ methods of managing data and making data available to other researchers, including data and metadata formats, data archive locations, and the use of controlled vocabularies and scientific workflows.
+5. Publication record, including time from data collection to publication and journal names.
+Responses were downloaded on 28 June 2013 and filtered to omit highly incomplete submissions. The remainder were checked for errors and inconsistencies and summarized. Because the survey focused on a specific research community and was not paired with a follow up survey, data were summarized without any further quantitative analysis. The number of responses for each question varied because respondents could skip questions or end the survey at any time.</description>
+    <description descriptionType="Other">EPA STAR Fellowship 2011; HRD-0734825 and HRD-1242122; OCI-1135525</description>
+  </descriptions>
+</resource>

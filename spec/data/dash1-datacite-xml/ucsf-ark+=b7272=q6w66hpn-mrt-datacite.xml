@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+<identifier identifierType="DOI"/>
+<creators>
+<creator><creatorName>Robert Rodriguez</creatorName></creator>
+</creators>
+<titles>
+<title>NEXUS Chest CT</title>
+</titles>
+<publisher>University of California, San Francisco</publisher>
+<publicationYear>2015</publicationYear>
+<subjects>
+<subject>Chest CT</subject>
+<subject> trauma</subject>
+</subjects>
+<contributors>
+<contributor contributorType="ResearchGroup"><contributorName>UCSF</contributorName></contributor>
+</contributors>
+<resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+<descriptions>
+<description descriptionType="Abstract"/>
+<description descriptionType="Methods"/>
+</descriptions>
+</resource>

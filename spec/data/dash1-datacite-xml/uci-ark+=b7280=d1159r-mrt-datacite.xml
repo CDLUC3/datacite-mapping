@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Baldassare, Mark</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Special Survey of Orange County 2001</title>
+  </titles>
+  <publisher>UC Irvine</publisher>
+  <publicationYear>2014</publicationYear>
+  <subjects>
+    <subject>Consumer Confidence</subject>
+    <subject>Traffic</subject>
+    <subject>Growth</subject>
+    <subject>Government</subject>
+    <subject>Transportation</subject>
+    <subject>Economy</subject>
+    <subject>El Toro Airport</subject>
+    <subject>Great Park</subject>
+    <subject>Gray Davis</subject>
+    <subject>George W. Bush</subject>
+    <subject>Politics</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>McKinley, Matthew J.</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>University of California, Irvine</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="URL" relationType="IsSupplementedBy">http://data.lib.uci.edu/ocs/</relatedIdentifier>
+  </relatedIdentifiers>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>694516</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">The Orange County Survey - a collaborative effort of the Public Policy Institute of California and the School of Social Ecology at the University of California, Irvine - is a special edition of the PPIC Statewide Survey. This is the first of an annual series of PPIC surveys of Orange County. The purpose of this study is to inform policymakers by providing timely, accurate, and objective information about policy preferences and economic, social, and political trends. The sample size is 2,004 Orange County adult residents.
+
+Online data analysis &amp; additional documentation in Link below.</description>
+    <description descriptionType="Methods">The Orange County Survey is a special edition of the PPIC Statewide
+Survey, which is directed by Mark Baldassare, a senior fellow at the
+Public Policy Institute of California, with research assistance from Lisa
+Cole and Eric McGhee. The survey was conducted in collaboration with the
+School of Social Ecology at the University of California, Irvine; however, the survey methodology and questions and the content of this report were solely determined by Mark Baldassare.
+
+The findings of this survey are based on a telephone survey of 2,004 Orange County adult residents interviewed from August 20 to August 31, 2001. Interviewing took place on weekend days and weekday nights, using a computer-generated random sample of telephone numbers, ensuring that both listed and unlisted telephone numbers were called. All telephone exchanges in Orange County were eligible for calling. Telephone numbers in the survey sample were called up to five times to increase the likelihood of reaching eligible households. Once a household was reached, an adult respondent (18 or older) was randomly chosen for interviewing by using the &quot;last birthday method&quot; to avoid biases in age and gender.
+                            
+Each interview took an average of 20 minutes to complete. Interviewing was conducted in English or Spanish. 
+
+We used recent U.S. Census and state figures to compare the demographic characteristics of the survey sample with characteristics of Orange
+County's adult population. The survey sample was closely comparable to the census and state figures.
+
+The survey data in this report were statistically weighted to account for any demographic differences.
+                            
+The sampling error for the total sample of 2,004 adults is +/- 2 percent at the 95 percent confidence level. This means that 95 times out of 100, the results will be within 2 percentage points of what they would be if all Orange County adults were interviewed. The sampling error for subgroups is larger. Sampling error is just one type of error to which surveys are subject.
+                            
+Results may also be affected by factors such as question wording, question order, and survey timing.
+
+Throughout the report, we refer to two geographic regions. North County refers to cities and communities north of the 55 Freeway, including
+Anaheim, Orange, Villa Park, La Habra, Brea, Buena Park, Fullerton, Placentia, Yorba Linda, La Palma, Cypress, Los Alamitos, Rossmoor, Seal Beach, Westminster, Midway City, Stanton, Fountain Valley, Huntington Beach, Santa Ana, Garden Grove, Tustin, Tustin Foothills, and Costa Mesa. South County refers to cities and communities south of the 55 Freeway, including Newport Beach, Irvine, Lake Forest, Newport Coast, Aliso Viejo, Laguna Hills, Laguna Niguel, Laguna Woods, Mission Viejo, Portola Hills, Rancho Santa Margarita, Foothill Ranch, Coto de Caza, Trabuco, Laguna Beach, Dana Point, San Clemente, Capistrano Beach, and San Juan Capistrano. In the analysis of questions on the proposed El Toro airport, we include Newport Beach in the North County. 
+                            
+We also present results for non-Hispanic whites (referred to in the tables as &quot;whites&quot;), Latinos, and Asians because each group accounts for a substantial number of the county's adult population. We also contrast the opinions of Democrats and Republicans with &quot;other&quot; or &quot;independent&quot; registered voters. This third category includes those who are registered to vote as &quot;decline to state&quot; as well as a fewer number who say they are members of other political parties.
+                            
+In some cases, we compare the Orange County Survey responses to responses in the 1982-2000 Orange County Annual Surveys at the University of California, Irvine, the PPIC Statewide Surveys, and national surveys by the University of Michigan and CBS/New York Times.</description>
+  </descriptions>
+  <geoLocations>
+    <geoLocation>
+      <geoLocationPlace>Orange County (Calif.)</geoLocationPlace>
+    </geoLocation>
+  </geoLocations>
+</resource>
