@@ -686,6 +686,25 @@ module Datacite
 
       describe 'XML mapping' do
 
+        describe '#parse_xml' do
+          it 'handles sketchy documents' do
+            xml_text = File.read('spec/data/mrt-datacite.xml')
+            resource = Resource.parse_xml(xml_text, mapping: :loose)
+            expect(resource).to be_a(Resource)
+
+            identifier = resource.identifier
+            expect(identifier.identifier_type).to eq('DOI')
+            expect(identifier.value).to be_nil
+
+            creators = resource.creators
+            expect(creators).not_to be_nil
+            expect(creators.size).to eq(1)
+            creator = creators[0]
+            expect(creator).to be_a(Creator)
+            expect(creator.name).to eq('Baldassare, Mark')
+          end
+        end
+
         describe '#save_to_xml' do
           it 'writes XML' do
             resource = Resource.new(

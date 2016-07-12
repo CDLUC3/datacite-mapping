@@ -13,11 +13,13 @@ module Datacite
     class Identifier
       include XML::Mapping
 
+      DOI = 'DOI'.freeze
+
       # Initializes a new {Identifier}
       # @param value [String]
       #   the identifier value. Must be a valid DOI value (`10.`_registrant code_`/`_suffix_)
       def initialize(value:)
-        self.identifier_type = 'DOI'
+        self.identifier_type = DOI
         self.value = value
       end
 
@@ -31,8 +33,13 @@ module Datacite
       # @param v [String]
       #   the identifier type (always 'DOI')
       def identifier_type=(v)
-        fail ArgumentError, "Identifier type '#{v}' must be 'DOI'" unless 'DOI' == v
+        fail ArgumentError, "Identifier type '#{v}' must be 'DOI'" unless DOI == v
         @identifier_type = v
+      end
+
+      # Gets the identifiery type.
+      def identifier_type
+        @identifier_type ||= DOI
       end
 
       # Converts a string DOI value to an `Identifier`.

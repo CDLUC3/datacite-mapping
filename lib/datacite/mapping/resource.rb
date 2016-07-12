@@ -8,6 +8,15 @@ require 'datacite/mapping/alternate_identifier'
 require 'datacite/mapping/related_identifier'
 require 'datacite/mapping/rights'
 
+module XML
+  module Mapping
+    class Node
+      attr_reader :attrname
+      attr_accessor :mapping
+    end
+  end
+end
+
 module Datacite
   module Mapping
 
@@ -224,6 +233,31 @@ module Datacite
       def funder_id_value
         funder_id.value if funder_id
       end
+
+      # TODO: Figure out how to get this to work, be less hacky, move to xml-mapping_extensions
+
+      # Loose mapping for invalid XML files
+      default_nodes = xml_mapping_nodes_hash[:_default]
+      loose_nodes = (default_nodes.map do |m|
+        m2 = m.clone
+        m2.mapping = :loose
+        m2
+      end).delete_if do |m|
+        m.attrname == :identifier
+      end
+      xml_mapping_nodes_hash[:loose] = loose_nodes
+
+      use_mapping :loose
+
+      # Ignore missing or invalid identifiers
+      object_node :identifier, 'identifier', class: Identifier, reader: (proc do |obj, xml|
+        obj.identifier = begin
+          Identifier.parse_xml(xml.elements['identifier'])
+        rescue => e
+          Datacite::Mapping.log.warn(e)
+          Identifier.allocate
+        end
+      end)
 
     end
   end
