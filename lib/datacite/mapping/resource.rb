@@ -231,6 +231,8 @@ module Datacite
       # Ignore missing or invalid identifiers
       object_node :identifier, 'identifier', class: Nonvalidating::Identifier
 
+      # TODO: Handle nested contributors, date ranges (e.g. spec/data/dash1-datacite-xml/ucsf-ark+=b7272=q6bg2kwf-mrt-datacite.xml)
+
       fallback_mapping :nonvalidating, :_default
     end
   end
