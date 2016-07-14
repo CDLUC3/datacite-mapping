@@ -687,8 +687,10 @@ module Datacite
       describe 'XML mapping' do
 
         describe '#parse_xml' do
+
           it 'handles sketchy documents' do
-            xml_text = File.read('spec/data/mrt-datacite.xml').gsub("'", '&apos;').gsub('"', "'")
+            f = 'spec/data/mrt-datacite.xml'
+            xml_text = File.read(f)
             resource = Resource.parse_xml(xml_text, mapping: :nonvalidating)
             expect(resource).to be_a(Resource)
 
@@ -705,39 +707,66 @@ module Datacite
             expect(creator.name).to eq('Baldassare, Mark')
 
             actual_xml = resource.write_xml(mapping: :nonvalidating)
-            # File.open('tmp/expected.xml', 'w') { |f| f.write(xml_text) }
-            # File.open('tmp/actual.xml', 'w') { |f| f.write(actual_xml) }
-            expect(actual_xml).to be_xml(xml_text)
+
+            actual_tidy = actual_xml
+                          .gsub('<dcs:language>en</dcs:language>', '')
+                          .gsub(" xml:lang='en'", '')
+                          .gsub('<language>en</language>', '')
+            expected_tidy = xml_text
+                            .gsub(Regexp.new('<subjects>\p{space}</subjects>', Regexp::MULTILINE), '')
+                            .gsub("'", '&apos;')
+                            .gsub('"', "'")
+
+            begin
+              expect(actual_tidy).to be_xml(expected_tidy)
+            rescue Exception  # rubocop:disable Lint/RescueException:
+              basename = File.basename(f)
+              File.open("tmp/#{basename}-original.xml", 'w') { |t| t.write(expected_tidy) }
+              File.open("tmp/#{basename}-roundtrip.xml", 'w') { |t| t.write(actual_tidy) }
+              raise
+            end
           end
 
           it 'handles all Dash 1 documents' do
             Dir.glob('/Users/dmoles/Work/datacite-mapping/spec/data/dash1-datacite-xml/*mrt-datacite.xml') do |f|
               basename = File.basename(f)
-              xml_text = File.read(f).gsub("'", '&apos;').gsub('"', "'")
+              bad_contrib_regex = Regexp.new('<contributor contributorType="([^"]+)">\p{Space}*<contributor>([^<]+)</contributor>\p{Space}*</contributor>', Regexp::MULTILINE)
+              good_contrib_replacement = "<contributor contributorType=\"\\1\">\n<contributorName>\\2</contributorName>\n</contributor>"
+              xml_text = File.read(f).gsub(bad_contrib_regex, good_contrib_replacement)
 
               resource = nil
               begin
                 resource = Resource.parse_xml(xml_text, mapping: :nonvalidating)
-              rescue Exception => e
+              rescue Exception => e # rubocop:disable Lint/RescueException:
                 puts "Error parsing #{basename}: #{e}"
+                File.open("tmp/#{basename}-parse_error.xml", 'w') { |t| t.write(xml_text) }
                 raise
               end
               next unless resource
 
               actual_xml = nil
               begin
-                actual_xml = resource.write_xml(mapping: :nonvalidating)
-              rescue Exception => e
+                actual_xml = resource.write_xml
+              rescue Exception => e # rubocop:disable Lint/RescueException:
                 puts "Error writing #{basename}: #{e}"
                 raise
               end
               next unless actual_xml
 
+              actual_tidy = actual_xml
+                            .gsub('<dcs:language>en</dcs:language>', '')
+                            .gsub(" xml:lang='en'", '')
+                            .gsub('<language>en</language>', '')
+              expected_tidy = xml_text
+                              .gsub(Regexp.new('<subjects>\p{space}</subjects>', Regexp::MULTILINE), '')
+                              .gsub("'", '&apos;')
+                              .gsub('"', "'")
+
               begin
-                expect(actual_xml).to be_xml(xml_text)
-              rescue Exception
-                File.open("tmp/#{basename}-expected.xml", 'w') { |f| f.write(xml_text) }
-                File.open("tmp/#{basename}-actual.xml", 'w') { |f| f.write(actual_xml) }
+                expect(actual_tidy).to be_xml(expected_tidy)
+              rescue Exception  # rubocop:disable Lint/RescueException:
+                File.open("tmp/#{basename}-original.xml", 'w') { |t| t.write(expected_tidy) }
+                File.open("tmp/#{basename}-roundtrip.xml", 'w') { |t| t.write(actual_tidy) }
                 raise
               end
             end
@@ -784,8 +813,8 @@ module Datacite
               ]
             )
 
-            expected_xml = '<resource xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd" xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-                              <identifier identifierType="DOI">10.5072/D3P26Q35R-Test</identifier>
+            expected_xml = '<resource xsi:schemaLocation=\'http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd\' xmlns=\'http://datacite.org/schema/kernel-3\' xmlns:xsi=\'http://www.w3.org/2001/XMLSchema-instance\'>
+                              <identifier identifierType=\'DOI\'>10.5072/D3P26Q35R-Test</identifier>
                               <creators>
                                 <creator>
                                   <creatorName>Fosmire, Michael</creatorName>
@@ -798,27 +827,34 @@ module Datacite
                                 </creator>
                               </creators>
                               <titles>
-                                <title xml:lang="en">Critical Engineering Literacy Test (CELT)</title>
+                                <title xml:lang=\'en\'>Critical Engineering Literacy Test (CELT)</title>
                               </titles>
                               <publisher>Purdue University Research Repository (PURR)</publisher>
                               <publicationYear>2013</publicationYear>
                               <subjects>
-                                <subject xml:lang="en">Assessment</subject>
-                                <subject xml:lang="en">Information Literacy</subject>
-                                <subject xml:lang="en">Engineering</subject>
-                                <subject xml:lang="en">Undergraduate Students</subject>
-                                <subject xml:lang="en">CELT</subject>
-                                <subject xml:lang="en">Purdue University</subject>
+                                <subject xml:lang=\'en\'>Assessment</subject>
+                                <subject xml:lang=\'en\'>Information Literacy</subject>
+                                <subject xml:lang=\'en\'>Engineering</subject>
+                                <subject xml:lang=\'en\'>Undergraduate Students</subject>
+                                <subject xml:lang=\'en\'>CELT</subject>
+                                <subject xml:lang=\'en\'>Purdue University</subject>
                               </subjects>
                               <language>en</language>
-                              <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+                              <resourceType resourceTypeGeneral=\'Dataset\'>Dataset</resourceType>
                               <version>1</version>
                               <descriptions>
-                                <description descriptionType="Abstract" xml:lang="en">We developed an instrument, Critical Engineering Literacy Test (CELT), which is a multiple choice instrument designed to measure undergraduate students’ scientific and information literacy skills. It requires students to first read a technical memo and, based on the memo’s arguments, answer eight multiple choice and six open-ended response questions. We collected data from 143 first-year engineering students and conducted an item analysis. The KR-20 reliability of the instrument was .39. Item difficulties ranged between .17 to .83. The results indicate low reliability index but acceptable levels of item difficulties and item discrimination indices. Students were most challenged when answering items measuring scientific and mathematical literacy (i.e., identifying incorrect information).</description>
+                                <description descriptionType=\'Abstract\' xml:lang=\'en\'>We developed an instrument, Critical Engineering Literacy Test (CELT), which is a multiple choice instrument designed to measure undergraduate students’ scientific and information literacy skills. It requires students to first read a technical memo and, based on the memo’s arguments, answer eight multiple choice and six open-ended response questions. We collected data from 143 first-year engineering students and conducted an item analysis. The KR-20 reliability of the instrument was .39. Item difficulties ranged between .17 to .83. The results indicate low reliability index but acceptable levels of item difficulties and item discrimination indices. Students were most challenged when answering items measuring scientific and mathematical literacy (i.e., identifying incorrect information).</description>
                               </descriptions>
                             </resource>'
 
-            expect(resource.save_to_xml).to be_xml(expected_xml)
+            actual_xml = resource.write_xml
+            begin
+              expect(actual_xml).to be_xml(expected_xml)
+            rescue Exception  # rubocop:disable Lint/RescueException:
+              File.open('tmp/expected.xml', 'w') { |t| t.write(expected_xml) }
+              File.open('tmp/actual.xml', 'w') { |t| t.write(actual_xml) }
+              raise
+            end
           end
         end
 

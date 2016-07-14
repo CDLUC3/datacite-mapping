@@ -20,6 +20,8 @@ module Datacite
         text_node :identifier_type, '@identifierType'
         text_node :value, 'text()', default_value: nil
 
+        fallback_mapping(:_default, :nonvalidating)
+
         # Initializes a new {Identifier}
         # @param value [String]
         #   the identifier value. Must be a valid DOI value (`10.`_registrant code_`/`_suffix_)

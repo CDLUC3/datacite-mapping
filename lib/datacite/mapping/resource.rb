@@ -106,15 +106,9 @@ module Datacite
         @publication_year = value.to_i
       end
 
-      # # Overrides +::XML::Mapping.pre_save+ to write namespace information.
-      # # Used for writing.
-      # def pre_save(options = { mapping: :_default })
-      #   xml = super(options)
-      #   xml.add_namespace('http://datacite.org/schema/kernel-3')
-      #   xml.add_namespace('xsi', 'http://www.w3.org/2001/XMLSchema-instance')
-      #   xml.add_attribute('xsi:schemaLocation', 'http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd')
-      #   xml
-      # end
+      def subject
+        (@subjects ||= []).select(&:value)
+      end
 
       # @!attribute [rw] identifier
       #   @return [Identifier] a persistent identifier that identifies a resource.
@@ -151,7 +145,7 @@ module Datacite
       # @!attribute [rw] language
       #   @return [String] Primary language of the resource: an IETF BCP 47, ISO 639-1 language code.
       #   It's unclear from the spec whether language is required; to play it safe, if it's missing, we default to 'en'.
-      text_node :language, 'language', default_value: 'en'
+      text_node :language, 'language', default_value: nil
 
       # @!attribute [rw] resource_type
       #   @return [ResourceType, nil] the type of the resource. Optional.
@@ -228,8 +222,10 @@ module Datacite
 
       use_mapping :nonvalidating
 
-      # Ignore missing or invalid identifiers
+      # Ignore missing or invalid values
       object_node :identifier, 'identifier', class: Nonvalidating::Identifier
+      array_node :subjects, 'subjects', 'subject', class: Nonvalidating::Subject, default_value: []
+      text_node :language, 'language', default_value: nil
 
       # TODO: Handle nested contributors, date ranges (e.g. spec/data/dash1-datacite-xml/ucsf-ark+=b7272=q6bg2kwf-mrt-datacite.xml)
 

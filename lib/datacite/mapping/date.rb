@@ -109,13 +109,13 @@ module Datacite
 
       def to_month(val)
         return val.month if val.respond_to?(:month)
-        matchdata = val.to_s.match(/^[0-9]+-([0-9]+)/)
+        matchdata = val.to_s.match(/^[0-9]+-([0-9]{2})(?![0-9])/)
         matchdata[1].to_i if matchdata
       end
 
       def to_day(val)
         return val.day if val.respond_to?(:day)
-        matchdata = val.to_s.match(/^[0-9]+-[0-9]+-([0-9]+)/)
+        matchdata = val.to_s.match(/^[0-9]+-[0-9]{2}-([0-9]{2})(?![0-9])/)
         matchdata[1].to_i if matchdata
       end
 

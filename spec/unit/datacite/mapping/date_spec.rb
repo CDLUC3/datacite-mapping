@@ -5,15 +5,17 @@ module Datacite
     describe Date do
 
       before(:each) do
-        @values = {}
-        @values[:with_date_time] = DateTime.new(1914, 8, 4, 11, 01, 6.0123, '+1')
-        @values[:with_date] = ::Date.new(1914, 8, 4)
-        @values[:with_year] = 1914
-        @values[:with_year_str] = '1914'
-        @values[:with_year_month] = '1914-08'
-        @values[:iso8601] = '1914-08-04T11:01+01:00'
-        @values[:iso8601_secs] = '1914-08-04T11:01:06+01:00'
-        @values[:iso8601_frac] = '1914-08-04T11:01:06.0123+01:00'
+        @values = {
+          with_date_time: DateTime.new(1914, 8, 4, 11, 01, 6.0123, '+1'),
+          with_date: ::Date.new(1914, 8, 4),
+          with_year: 1914,
+          with_year_str: '1914',
+          with_year_month: '1914-08',
+          iso8601: '1914-08-04T11:01+01:00',
+          iso8601_secs: '1914-08-04T11:01:06+01:00',
+          iso8601_frac: '1914-08-04T11:01:06.0123+01:00',
+          year_range: '1914-1915'
+        }
         @dates = @values.map { |format, v| [format, Date.new(type: DateType::AVAILABLE, value: v)] }.to_h
       end
 
@@ -64,6 +66,12 @@ module Datacite
           d = @dates[:iso8601_frac]
           expect(d).to be_a(Date)
           expect(d.value).not_to be_nil
+        end
+
+        it 'accepts a year range' do
+          d = @dates[:year_range]
+          expect(d).to be_a(Date)
+          expect(d.value).to eq('1914-1915')
         end
 
         it 'rejects invalid dates' do
@@ -154,7 +162,7 @@ module Datacite
         it 'returns the month for all date formats that have it' do
           expected = 8
           @dates.each_pair do |format, d|
-            if [:with_year, :with_year_str].include?(format)
+            if [:with_year, :with_year_str, :year_range].include?(format)
               expect(d.month).to be_nil
             else
               expect(d.month).to eq(expected), "expected #{expected}, got #{d.month} for :#{format} (#{d.value})"
@@ -167,7 +175,7 @@ module Datacite
         it 'returns the day for all date formats that have it' do
           expected = 4
           @dates.each_pair do |format, d|
-            if [:with_year, :with_year_str, :with_year_month].include?(format)
+            if [:with_year, :with_year_str, :with_year_month, :year_range].include?(format)
               expect(d.day).to be_nil
             else
               expect(d.day).to eq(expected), "expected #{expected}, got #{d.day} for :#{format} (#{d.value})"
@@ -180,7 +188,7 @@ module Datacite
         it 'returns the hour for all formats that have it' do
           expected = 11
           @dates.each_pair do |format, d|
-            if [:with_date, :with_year, :with_year_str, :with_year_month].include?(format)
+            if [:with_date, :with_year, :with_year_str, :with_year_month, :year_range].include?(format)
               expect(d.hour).to be_nil, "expected nil, got #{d.hour} for :#{format} (#{d.value})"
             else
               expect(d.hour).to eq(expected), "expected #{expected}, got #{d.hour} for :#{format} (#{d.value})"
@@ -193,7 +201,7 @@ module Datacite
         it 'returns the minutes for all formats that have it' do
           expected = 1
           @dates.each_pair do |format, d|
-            if [:with_date, :with_year, :with_year_str, :with_year_month].include?(format)
+            if [:with_date, :with_year, :with_year_str, :with_year_month, :year_range].include?(format)
               expect(d.minute).to be_nil, "expected nil, got #{d.hour} for :#{format} (#{d.value})"
             else
               expect(d.minute).to eq(expected), "expected #{expected}, got #{d.minute} for :#{format} (#{d.value})"
@@ -206,7 +214,7 @@ module Datacite
         it 'returns the seconds for all formats that have it' do
           expected = 6
           @dates.each_pair do |format, d|
-            if [:with_date, :with_year, :with_year_str, :with_year_month].include?(format)
+            if [:with_date, :with_year, :with_year_str, :with_year_month, :year_range].include?(format)
               expect(d.sec).to be_nil, "expected nil, got #{d.hour} for :#{format} (#{d.value})"
             elsif format == :iso8601
               expect(d.sec).to eq(0)
@@ -221,7 +229,7 @@ module Datacite
         it 'returns the nanoseconds for all formats that have it' do
           expected = 12_300_000
           @dates.each_pair do |format, d|
-            if [:with_date, :with_year, :with_year_str, :with_year_month].include?(format)
+            if [:with_date, :with_year, :with_year_str, :with_year_month, :year_range].include?(format)
               expect(d.nsec).to be_nil, "expected nil, got #{d.hour} for :#{format} (#{d.value})"
             elsif [:iso8601, :iso8601_secs].include?(format)
               expect(d.nsec).to eq(0)

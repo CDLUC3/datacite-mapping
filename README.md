@@ -165,3 +165,24 @@ Results:
   </descriptions>
 </resource>
 ```
+
+## Nonvalidating mapping (experimental)
+
+Version 0.1.16 adds a `:nonvalidating` mapping, meant to deal with some issues we ran into with
+old, noncompliant data files. Specifically, it parses identifiers and subjects without values:
+
+```xml
+<identifier type="DOI"/>
+<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH"/>
+```
+
+The former are imported with a nil value; the latter are skipped.
+
+```ruby
+resource = Resource.parse_xml(xml_text, mapping: :nonvalidating)
+resource.write_xml(mapping: :nonvalidating)
+```
+
+This isn't meant to be exhaustive, only to handle some specific cases we ran into with importing
+old data. If you have additional cases, please file an issue, attaching sample documents, and
+we'll try to accommodate them.

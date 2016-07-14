@@ -47,7 +47,7 @@ module Datacite
       # @!attribute [rw] language
       #   @return [String] an IETF BCP 47, ISO 639-1 language code identifying the language.
       #     It's unclear from the spec whether language is required; to play it safe, if it's missing, we default to 'en'.
-      text_node :language, '@xml:lang', default_value: 'en'
+      text_node :language, '@xml:lang', default_value: nil
 
       # @!attribute [rw] type
       #   @return [TitleType, nil] the title type. Optional.

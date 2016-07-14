@@ -1,5 +1,6 @@
-## 0.1.16 (Next)
+## 0.1.16 (14 July 2016)
 
+- Add new `:nonvalidating` mapping for less strict parsing of problem files.
 - Provide better error messages for missing identifier values.
 
 ## 0.1.15 (18 May 2016)
