@@ -35,7 +35,7 @@
       <contributorName>European Research Council (ERC); UC Institute for the Study of Ecological and Evolutionary Climate Impacts (ISEECI); China Scholarship Council (CSC)</contributorName>
     </contributor>
   </contributors>
-
+  <relatedIdentifiers/>
   <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
   <sizes>
     <size>2024713</size>
@@ -43,5 +43,5 @@
   <rightsList>
     <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication (CC0)</rights>
   </rightsList>
-
+  <descriptions/>
 </resource>

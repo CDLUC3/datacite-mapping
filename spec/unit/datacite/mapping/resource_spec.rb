@@ -687,46 +687,6 @@ module Datacite
       describe 'XML mapping' do
 
         describe '#parse_xml' do
-
-          it 'handles sketchy documents' do
-            f = 'spec/data/mrt-datacite.xml'
-            xml_text = File.read(f)
-            resource = Resource.parse_xml(xml_text, mapping: :nonvalidating)
-            expect(resource).to be_a(Resource)
-
-            identifier = resource.identifier
-            expect(identifier).to be_a(Nonvalidating::Identifier)
-            expect(identifier.identifier_type).to eq('DOI')
-            expect(identifier.value).to be_nil
-
-            creators = resource.creators
-            expect(creators).not_to be_nil
-            expect(creators.size).to eq(1)
-            creator = creators[0]
-            expect(creator).to be_a(Creator)
-            expect(creator.name).to eq('Baldassare, Mark')
-
-            actual_xml = resource.write_xml(mapping: :nonvalidating)
-
-            actual_tidy = actual_xml
-                          .gsub('<dcs:language>en</dcs:language>', '')
-                          .gsub(" xml:lang='en'", '')
-                          .gsub('<language>en</language>', '')
-            expected_tidy = xml_text
-                            .gsub(Regexp.new('<subjects>\p{space}</subjects>', Regexp::MULTILINE), '')
-                            .gsub("'", '&apos;')
-                            .gsub('"', "'")
-
-            begin
-              expect(actual_tidy).to be_xml(expected_tidy)
-            rescue Exception  # rubocop:disable Lint/RescueException:
-              basename = File.basename(f)
-              File.open("tmp/#{basename}-original.xml", 'w') { |t| t.write(expected_tidy) }
-              File.open("tmp/#{basename}-roundtrip.xml", 'w') { |t| t.write(actual_tidy) }
-              raise
-            end
-          end
-
           it 'handles all Dash 1 documents' do
             Dir.glob('/Users/dmoles/Work/datacite-mapping/spec/data/dash1-datacite-xml/*mrt-datacite.xml') do |f|
               basename = File.basename(f)
@@ -758,6 +718,9 @@ module Datacite
                             .gsub(" xml:lang='en'", '')
                             .gsub('<language>en</language>', '')
               expected_tidy = xml_text
+                              .gsub('<br/>', '[BREAK]')
+                              .gsub(Regexp.new('<[a-zA-Z]+/>'), '')
+                              .gsub('[BREAK]', '<br/>')
                               .gsub(Regexp.new('<subjects>\p{space}</subjects>', Regexp::MULTILINE), '')
                               .gsub("'", '&apos;')
                               .gsub('"', "'")

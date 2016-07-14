@@ -27,7 +27,7 @@
     <subject>drug target</subject>
     <subject>transcriptome</subject>
   </subjects>
-
+  <relatedIdentifiers/>
   <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
   <sizes>
     <size>3397657</size>
@@ -35,5 +35,5 @@
   <rightsList>
     <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
   </rightsList>
-
+  <descriptions/>
 </resource>
