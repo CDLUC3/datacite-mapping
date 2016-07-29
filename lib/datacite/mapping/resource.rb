@@ -12,16 +12,18 @@ require 'datacite/mapping/title'
 module Datacite
   module Mapping
 
+    DATACITE_3_NAMESPACE = XML::MappingExtensions::Namespace.new(
+      uri: 'http://datacite.org/schema/kernel-3',
+      schema_location: 'http://schema.datacite.org/meta/kernel-3/metadata.xsd'
+    )
+
     # A collection of metadata properties chosen for the accurate and consistent identification
     # of a resource for citation and retrieval purposes, along with recommended use instructions.
     # The resource that is being identified can be of any kind, but it is typically a dataset.
     class Resource
       include XML::MappingExtensions::Namespaced
 
-      namespace XML::MappingExtensions::Namespace.new(
-        uri: 'http://datacite.org/schema/kernel-3',
-        schema_location: 'http://schema.datacite.org/meta/kernel-3/metadata.xsd'
-      )
+      namespace DATACITE_3_NAMESPACE
 
       # Initialies a new {Resource}
       #
