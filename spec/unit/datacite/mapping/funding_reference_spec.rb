@@ -4,6 +4,21 @@ module Datacite
   module Mapping
     describe FundingReference do
 
+      describe '#initialize' do
+        it 'accepts an AwardNumber object' do
+          award_number = AwardNumber.new(value: '9 3/4')
+          fref = FundingReference.new(name: 'Ministry of Magic', award_number: award_number)
+          expect(fref.award_number).to be(award_number)
+        end
+
+        it 'accepts a text award_number' do
+          fref = FundingReference.new(name: 'Ministry of Magic', award_number: '9 3/4')
+          award_number = fref.award_number
+          expect(award_number).to be_an(AwardNumber)
+          expect(award_number.value).to eq('9 3/4')
+        end
+      end
+
       describe '#parse_xml' do
         attr_reader :fref_xml
         attr_reader :fref

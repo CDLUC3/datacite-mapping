@@ -67,7 +67,7 @@ module Datacite
       #   @return [String] the award number. Cannot be nil.
       text_node :value, 'text()'
     end
-    
+
     class FundingReference
       include XML::Mapping
 
@@ -78,6 +78,14 @@ module Datacite
         self.identifier = identifier
         self.award_number = award_number
         self.award_title = award_title
+      end
+
+      def award_number=(value)
+        if value.nil? || value.is_a?(AwardNumber)
+          @award_number = value
+        else
+          @award_number = AwardNumber.new(value: value.to_s)
+        end
       end
 
       text_node :name, 'funderName'
