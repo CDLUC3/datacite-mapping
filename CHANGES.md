@@ -1,3 +1,7 @@
+## 0.1.17 (Next)
+
+- Experimental support for Datacite 4.0 `<fundingReference/>` tag
+
 ## 0.1.16 (14 July 2016)
 
 - Add new `:nonvalidating` mapping for less strict parsing of problem files.

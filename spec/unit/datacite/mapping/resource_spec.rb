@@ -511,11 +511,28 @@ module Datacite
         end
 
         it 'correctly differentiates required and optional attributes'
+
+        it 'parses a Datacite 4.0 document with FundingReference' do
+          resource = Resource.parse_xml(File.read('spec/data/kernel-4.0/datacite-example-fundingReference-v.4.0.xml'))
+          funding_references = resource.funding_references
+          expect(funding_references.size).to eq(2)
+          funding_references.each do |fref|
+            expect(fref).to be_a(FundingReference)
+          end
+        end
       end
 
       describe '#save_to_xml' do
         it 'sets the namespace to http://datacite.org/schema/kernel-3'
         it "doesn't clobber the namespace on the various xml:lang attributes"
+
+        # TODO: make this work; maybe it's the language that's the issue?
+        xit 'round-trips a Datacite 4.0 document with FundingReference' do
+          xml_text = File.read('spec/data/kernel-4.0/datacite-example-fundingReference-v.4.0.xml')
+          resource = Resource.parse_xml(xml_text)
+          saved_xml = resource.save_to_xml
+          expect(saved_xml).to be_xml(xml_text)
+        end
       end
 
       describe 'identifier' do
@@ -688,6 +705,8 @@ module Datacite
 
         describe '#parse_xml' do
           it 'handles all Dash 1 documents' do
+            versions = []
+
             Dir.glob('/Users/dmoles/Work/datacite-mapping/spec/data/dash1-datacite-xml/*mrt-datacite.xml') do |f|
               basename = File.basename(f)
               bad_contrib_regex = Regexp.new('<contributor contributorType="([^"]+)">\p{Space}*<contributor>([^<]+)</contributor>\p{Space}*</contributor>', Regexp::MULTILINE)
@@ -703,6 +722,8 @@ module Datacite
                 raise
               end
               next unless resource
+
+              versions << resource.version if resource.version
 
               actual_xml = nil
               begin
