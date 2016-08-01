@@ -26,7 +26,7 @@ module Datacite
         before(:all) do
           @fref_xml = '<fundingReference>
                                    <funderName>European Commission</funderName>
-                                   <funderIdentifier funderIdentifierType="Open Funder Registry">http://doi.org/10.13039/501100000780</funderIdentifier>
+                                   <funderIdentifier funderIdentifierType="CrossRef Funder">http://doi.org/10.13039/501100000780</funderIdentifier>
                                    <awardNumber awardURI="http://cordis.europa.eu/project/rcn/100180_en.html">282625</awardNumber>
                                    <awardTitle>MOTivational strength of ecosystem services and alternative ways to express the value of BIOdiversity</awardTitle>
                                  </fundingReference>'.freeze
@@ -39,7 +39,7 @@ module Datacite
 
           id = fref.identifier
           expect(id).to be_a(FunderIdentifier)
-          expect(id.type).to eq(FunderIdentifierType::OPEN_FUNDER_REGISTRY)
+          expect(id.type).to eq(FunderIdentifierType::CROSSREF_FUNDER)
           expect(id.value).to eq('http://doi.org/10.13039/501100000780')
 
           award_number = fref.award_number
