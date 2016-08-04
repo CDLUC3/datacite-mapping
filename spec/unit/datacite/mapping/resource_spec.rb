@@ -707,7 +707,7 @@ module Datacite
           it 'handles all Dash 1 documents' do
             versions = []
 
-            Dir.glob('/Users/dmoles/Work/datacite-mapping/spec/data/dash1-datacite-xml/*mrt-datacite.xml') do |f|
+            Dir.glob('spec/data/dash1-datacite-xml/*mrt-datacite.xml') do |f|
               basename = File.basename(f)
               bad_contrib_regex = Regexp.new('<contributor contributorType="([^"]+)">\p{Space}*<contributor>([^<]+)</contributor>\p{Space}*</contributor>', Regexp::MULTILINE)
               good_contrib_replacement = "<contributor contributorType=\"\\1\">\n<contributorName>\\2</contributorName>\n</contributor>"
