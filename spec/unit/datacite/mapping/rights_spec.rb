@@ -70,6 +70,16 @@ module Datacite
           expected_xml = '<rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 Universal</rights>'
           expect(rights.save_to_xml).to be_xml(expected_xml)
         end
+        it 'works with convenience constants' do
+          rights = Rights::CC_ZERO
+          expected_xml = '<rights rightsURI="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 Universal (CC0 1.0) Public Domain Dedication</rights>'
+          expect(rights.save_to_xml).to be_xml(expected_xml)
+
+          rights = Rights::CC_BY
+          expected_xml = '<rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY)</rights>'
+          expect(rights.save_to_xml).to be_xml(expected_xml)
+        end
+
       end
     end
   end
