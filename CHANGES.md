@@ -1,3 +1,9 @@
+## 0.1.17.1 (5 August 2016)
+
+- In `Rights::CC_BY`, use "Creative Commons Attribution 4.0 International (CC BY 4.0)" 
+  as value, as per [summary](https://creativecommons.org/licenses/by/4.0/), instead of 
+  "Creative Commons Attribution 4.0 International (CC-BY)".
+
 ## 0.1.17 (5 August 2016)
 
 - Added experimental support for Datacite 4.0 `<fundingReference/>` tag

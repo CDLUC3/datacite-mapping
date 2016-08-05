@@ -71,13 +71,21 @@ module Datacite
           expect(rights.save_to_xml).to be_xml(expected_xml)
         end
         it 'works with convenience constants' do
+
           rights = Rights::CC_ZERO
           expected_xml = '<rights rightsURI="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0 Universal (CC0 1.0) Public Domain Dedication</rights>'
           expect(rights.save_to_xml).to be_xml(expected_xml)
 
           rights = Rights::CC_BY
-          expected_xml = '<rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY)</rights>'
+          expected_xml = '<rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC BY 4.0)</rights>'
           expect(rights.save_to_xml).to be_xml(expected_xml)
+
+          [:CC_ZERO, :CC_BY].each do |c|
+            r = Rights.const_get(c)
+            puts "#{c.to_s.downcase.gsub('_zero', '0')}:"
+            puts "  uri: #{r.uri}"
+            puts "  name: #{r.value}"
+          end
         end
 
       end
