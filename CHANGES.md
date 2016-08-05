@@ -1,6 +1,9 @@
-## 0.1.17 (Next)
+## 0.1.17 (5 August 2016)
 
-- Experimental support for Datacite 4.0 `<fundingReference/>` tag
+- Added experimental support for Datacite 4.0 `<fundingReference/>` tag
+- Added convenience constants `Rights::CC_ZERO` and `Rights::CC_BY` for the
+  [CC0](https://creativecommons.org/publicdomain/zero/1.0/legalcode) public domain declaration
+  and [CC-BY](https://creativecommons.org/licenses/by/4.0/) Creative Commons Attribution License
 
 ## 0.1.16 (14 July 2016)
 

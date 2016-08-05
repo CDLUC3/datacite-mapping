@@ -32,13 +32,13 @@ module Datacite
 
     class Rights
       CC_ZERO = Rights.new(
-          uri: URI('https://creativecommons.org/publicdomain/zero/1.0/'),
-          value: 'CC0 1.0 Universal (CC0 1.0) Public Domain Dedication'
+        uri: URI('https://creativecommons.org/publicdomain/zero/1.0/'),
+        value: 'CC0 1.0 Universal (CC0 1.0) Public Domain Dedication'
       )
 
       CC_BY = Rights.new(
-          uri: URI('https://creativecommons.org/licenses/by/4.0/'),
-          value: 'Creative Commons Attribution 4.0 International (CC-BY)'
+        uri: URI('https://creativecommons.org/licenses/by/4.0/'),
+        value: 'Creative Commons Attribution 4.0 International (CC-BY)'
       )
     end
 
