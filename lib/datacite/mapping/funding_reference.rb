@@ -10,8 +10,8 @@ module Datacite
       # @!parse GRID = GRID
       new :GRID, 'GRID'
 
-      # @!parse CROSSREF_FUNDER = 'CrossRef Funder'
-      new :CROSSREF_FUNDER, 'CrossRef Funder'
+      # @!parse CROSSREF_FUNDER = 'Crossref Funder ID'
+      new :CROSSREF_FUNDER_ID, 'Crossref Funder ID'
 
       # @!parse OTHER = Other
       new :OTHER, 'Other'
