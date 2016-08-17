@@ -11,6 +11,10 @@ module Datacite
           expect(id.value).to eq(value)
         end
 
+        it 'requires a non-nil value' do
+          expect { Identifier.new(value: nil) }.to raise_error(ArgumentError)
+        end
+
         it 'sets the type' do
           id = Identifier.new(value: '10.14749/1407399495')
           expect(id.identifier_type).to eq('DOI')

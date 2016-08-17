@@ -2,6 +2,23 @@ require 'spec_helper'
 
 module Datacite
   module Mapping
+
+    describe FunderIdentifier do
+      describe '#new' do
+        it 'requires a non-nil type' do
+          expect do
+            FunderIdentifier.new(type: nil, value: 'http://doi.org/10.13039/501100000780')
+          end.to raise_error(ArgumentError)
+        end
+
+        it 'requires a non-nil value' do
+          expect do
+            FunderIdentifier.new(type: FunderIdentifierType::CROSSREF_FUNDER_ID, value: nil)
+          end.to raise_error(ArgumentError)
+        end
+      end
+    end
+
     describe FundingReference do
 
       describe '#initialize' do

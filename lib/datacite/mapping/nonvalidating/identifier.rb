@@ -9,7 +9,7 @@ module Datacite
       # @!attribute [r] identifier_type
       #   @return [String] the identifier type (always 'DOI')
       # @!attribute [rw] value
-      #   @return [String] the identifier value. Must be a valid DOI value (`10.`_registrant code_`/`_suffix_)
+      #   @return [String, nil] the identifier value. Should be a valid DOI value (`10.`_registrant code_`/`_suffix_)
       class Identifier
         include XML::Mapping
 
@@ -23,8 +23,8 @@ module Datacite
         fallback_mapping(:_default, :nonvalidating)
 
         # Initializes a new {Identifier}
-        # @param value [String]
-        #   the identifier value. Must be a valid DOI value (`10.`_registrant code_`/`_suffix_)
+        # @param value [String, nil]
+        #   the identifier value. Should be a valid DOI value (`10.`_registrant code_`/`_suffix_)
         def initialize(value:)
           self.identifier_type = DOI
           self.value = value

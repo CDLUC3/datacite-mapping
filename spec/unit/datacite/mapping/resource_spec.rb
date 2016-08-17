@@ -587,6 +587,60 @@ module Datacite
       describe 'subjects' do
         it 'returns the subject list'
         it 'returns an editable list'
+
+        describe 'nonvalidating mode' do
+          it 'filters out empty subjects' do
+            xml_text = "<resource xsi:schemaLocation='http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns='http://datacite.org/schema/kernel-3'>
+                        <identifier identifierType='DOI'>10.14749/1407399495</identifier>
+                        <creators>
+                          <creator>
+                            <creatorName>Hedy Lamarr</creatorName>
+                          </creator>
+                          <creator>
+                            <creatorName>Herschlag, Natalie</creatorName>
+                          </creator>
+                        </creators>
+                        <titles>
+                          <title>An Account of a Very Odd Monstrous Calf</title>
+                        </titles>
+                        <publisher>California Digital Library</publisher>
+                        <publicationYear>2015</publicationYear>
+                        <subjects>
+                          <subject subjectScheme='LCSH' schemeURI='http://id.loc.gov/authorities/subjects' xml:lang='en-us'>Mammals--Embryology</subject>
+                          <subject/>
+                          <subject subjectScheme='dewey' schemeURI='http://dewey.info/' xml:lang='fr'>571.8 Croissance, développement, reproduction biologique (fécondation, sexualité)</subject>
+                          <subject subjectScheme='dewey' schemeURI='http://dewey.info/'></subject>
+                        </subjects>
+                       <language>en</language>
+                      </resource>"
+            resource = Resource.parse_xml(xml_text, mapping: :nonvalidating)
+
+            expected = [
+              Subject.new(
+                language: 'en-us',
+                scheme: 'LCSH',
+                scheme_uri: URI('http://id.loc.gov/authorities/subjects'),
+                value: 'Mammals--Embryology'
+              ),
+              Subject.new(
+                language: 'fr',
+                scheme: 'dewey',
+                scheme_uri: URI('http://dewey.info/'),
+                value: '571.8 Croissance, développement, reproduction biologique (fécondation, sexualité)'
+              )
+            ]
+
+            subjects = resource.subjects
+            expect(subjects.size).to eq(expected.size)
+            expected.each_with_index do |ex, i|
+              expect(subjects[i].language).to eq(ex.language)
+              expect(subjects[i].scheme).to eq(ex.scheme)
+              expect(subjects[i].scheme_uri).to eq(ex.scheme_uri)
+              expect(subjects[i].value).to eq(ex.value)
+            end
+          end
+        end
+
       end
 
       describe 'subjects=' do
@@ -745,6 +799,7 @@ module Datacite
                               .gsub(Regexp.new('<subjects>\p{space}</subjects>', Regexp::MULTILINE), '')
                               .gsub("'", '&apos;')
                               .gsub('"', "'")
+                              .gsub("<subject schemeURI='http://www.nlm.nih.gov/mesh/' subjectScheme='MeSH'/>", '')
 
               begin
                 expect(actual_tidy).to be_xml(expected_tidy)

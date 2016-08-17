@@ -4,6 +4,20 @@ module Datacite
   module Mapping
     module Nonvalidating
       describe Identifier do
+
+        describe '#new' do
+          it 'accepts a nil value' do
+            id = Identifier.new(value: nil)
+            expect(id.identifier_type).to eq('DOI')
+          end
+
+          it 'accepts an invalid value' do
+            id = Identifier.new(value: 'elvis')
+            expect(id.value).to eq('elvis')
+          end
+
+        end
+
         describe '#load_from_xml' do
           it 'parses a valid identifier' do
             xml_text = "<identifier identifierType='DOI'>10.14749/1407399498</identifier>"
