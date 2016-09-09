@@ -1,3 +1,7 @@
+## 0.1.17.2 (19 August 2016)
+
+- Filter out `<subject/>` tags without values
+
 ## 0.1.17.1 (5 August 2016)
 
 - In `Rights::CC_BY`, use "Creative Commons Attribution 4.0 International (CC BY 4.0)" 
