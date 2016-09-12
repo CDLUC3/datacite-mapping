@@ -122,25 +122,21 @@ module Datacite
     end
 
     # XML mapping node for `<geoLocationBox/>`
+    # TODO: merge shared code with GeoLocationPointNode
     class GeoLocationBoxNode < XML::MappingExtensions::NodeBase
 
-      ELEMENT_NAMES = { south_latitude: 'southBoundLatitude',
-                        west_longitude: 'westBoundLongitude',
-                        north_latitude: 'northBoundLatitude',
-                        east_longitude: 'eastBoundLongitude' }.freeze
+      COORD_ELEMENTS = { south_latitude: 'southBoundLatitude',
+                         west_longitude: 'westBoundLongitude',
+                         north_latitude: 'northBoundLatitude',
+                         east_longitude: 'eastBoundLongitude' }.freeze
 
       def extract_attr_value(xml)
-        box = @path.first(xml)
-        return from_text(box) || from_children(box)
+        return from_text(xml) || from_children(xml)
       rescue => e
-        bad_value = xml_text ? "'#{xml_text}'" : 'nil'
-        raise e, "#{@owner}.#{@attrname}: Can't parse #{bad_value} as #{self.class}: #{e.message}"
+        raise e, "#{@owner}.#{@attrname}: Can't extract #{self.class} from #{xml}: #{e.message}"
       end
 
-      def from_text(box)
-        xml_text = default_when_xpath_err { box.text }
-        return unless xml_text
-
+      def to_value(xml_text)
         stripped = xml_text.strip
         return if stripped.empty?
 
@@ -148,9 +144,20 @@ module Datacite
         GeoLocationBox.new(*coords)
       end
 
-      def from_children(box)
-        coords_hash = ELEMENT_NAMES.map do |key, element_name|
-          value = box.elements[element_name].text
+      private
+
+      # Parses Datacite 3.x text coordinates
+      def from_text(xml)
+        xml_text = default_when_xpath_err { @path.first(xml).text }
+        return unless xml_text
+        to_value(xml_text)
+      end
+
+      # Parses Datacite 4.x child-element coordinates
+      def from_children(xml)
+        elem = @path.first(xml)
+        coords_hash = COORD_ELEMENTS.map do |key, element_name|
+          value = elem.elements[element_name].text
           [key, value && value.to_f]
         end.to_h
         GeoLocationBox.new(coords_hash)

@@ -142,6 +142,20 @@ module Datacite
           expect(node.to_value(xml_text)).to eq(expected)
         end
       end
+
+      it 'parses a Datacite 4 point' do
+        xml_text = File.read('spec/data/datacite4/datacite-example-full-v4.0.xml')
+        resource = Resource.parse_xml(xml_text)
+        locs = resource.geo_locations
+        expect(locs.size).to eq(1)
+        loc = locs[0]
+        point = loc.point
+        expect(point).to be_a(GeoLocationPoint)
+        expect(point.latitude).to eq(31.233)
+        expect(point.longitude).to eq(-67.302)
+      end
+
+      it 'writes a Datacite 4 point'
     end
 
   end

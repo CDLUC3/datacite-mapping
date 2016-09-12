@@ -87,13 +87,43 @@ module Datacite
     end
 
     # XML mapping node for `<geoLocationPoint/>`
+    # TODO: merge shared code with GeoLocationBoxNode
     class GeoLocationPointNode < XML::MappingExtensions::NodeBase
-      # Converts a whitespace-separated pair of coordinates to a {GeoLocationPoint}.
-      # @param xml_text [String] the coordinates, in the order `lat` `long`.
+
+      COORD_ELEMENTS = { latitude: 'pointLatitude',
+                         longitude: 'pointLongitude' }
+
+      def extract_attr_value(xml)
+        return from_text(xml) || from_children(xml)
+      rescue => e
+        raise e, "#{@owner}.#{@attrname}: Can't extract #{self.class} from #{xml}: #{e.message}"
+      end
+
       def to_value(xml_text)
         stripped = xml_text.strip
+        return if stripped.empty?
+
         coords = stripped.split(/\s+/).map(&:to_f)
         GeoLocationPoint.new(*coords)
+      end
+
+      private
+
+      # Parses Datacite 3.x text coordinates
+      def from_text(xml)
+        xml_text = default_when_xpath_err { @path.first(xml).text }
+        return unless xml_text
+        to_value(xml_text)
+      end
+
+      # Parses Datacite 4.x child-element coordinates
+      def from_children(xml)
+        elem = @path.first(xml)
+        coords_hash = COORD_ELEMENTS.map do |key, element_name|
+          value = elem.elements[element_name].text
+          [key, value && value.to_f]
+        end.to_h
+        GeoLocationPoint.new(coords_hash)
       end
     end
     XML::Mapping.add_node_class GeoLocationPointNode

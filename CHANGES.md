@@ -5,6 +5,8 @@
   - read Datacite 4.0 `<geoLocationBox>` nodes with coordinates in child nodes
     (`<southBoundLatitude>`, `<westBoundLongitude>`, `<northBoundLatitude>`, `<eastBoundLongitude>`)
     rather than element text
+  - read Datacite 4.0 `<geoLocationPoint` nodes coordinates in child nodes
+    (`<pointLatitude>`, `<pointLongitude>`) rather than element text
 
 ## 0.1.17.2 (19 August 2016)
 
