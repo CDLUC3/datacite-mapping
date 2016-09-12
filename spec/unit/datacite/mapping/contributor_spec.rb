@@ -122,6 +122,10 @@ module Datacite
           expect(contributor.save_to_xml).to be_xml(expected_xml)
         end
       end
+
+      describe 'DC4 support' do
+        it 'gives a deprecation warning for contributorType "funder"'
+      end
     end
   end
 end

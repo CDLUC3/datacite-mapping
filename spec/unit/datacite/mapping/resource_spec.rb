@@ -997,5 +997,16 @@ module Datacite
         end
       end
     end
+
+    describe 'DC4 support' do
+      describe 'DC4 mode' do
+        it 'reads FundingReferences'
+        it 'writes FundingReference'
+      end
+      describe 'DC3 mode' do
+        it 'drops FundingReferences'
+        it 'warns when dropping FundingReferences'
+      end
+    end
   end
 end

@@ -109,6 +109,17 @@ module Datacite
           expect(loc.save_to_xml).to be_xml(expected_xml)
         end
       end
+
+      describe 'DC4 support' do
+        describe 'DC4 mode' do
+          it 'reads geoLocationPolygons'
+          it 'writes geoLocationPolygons'
+        end
+        describe 'DC3 mode' do
+          it 'drops geoLocationPolygons'
+          it 'warns when dropping geoLocationPolygons'
+        end
+      end
     end
   end
 end

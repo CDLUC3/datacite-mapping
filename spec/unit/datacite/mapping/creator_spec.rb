@@ -118,6 +118,18 @@ module Datacite
           expect(creator.save_to_xml).to be_xml(expected_xml)
         end
       end
+
+      describe 'DC4 family and given names' do
+        describe 'DC4 mode' do
+          it 'reads DC4 family and given names'
+          it 'writes DC4 family and given names'
+        end
+
+        describe 'DC3 mode' do
+          it 'doesn\'t write DC4 family and given names'
+          it 'uses DC4 family and given names for creatorName if creatorName not given'
+        end
+      end
     end
   end
 end

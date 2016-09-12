@@ -143,19 +143,28 @@ module Datacite
         end
       end
 
-      it 'parses a Datacite 4 point' do
-        xml_text = File.read('spec/data/datacite4/datacite-example-full-v4.0.xml')
-        resource = Resource.parse_xml(xml_text)
-        locs = resource.geo_locations
-        expect(locs.size).to eq(1)
-        loc = locs[0]
-        point = loc.point
-        expect(point).to be_a(GeoLocationPoint)
-        expect(point.latitude).to eq(31.233)
-        expect(point.longitude).to eq(-67.302)
+      describe 'DC4 lat/long tags' do
+        describe 'DC4 mode' do
+          it 'parses a DC4 point' do
+            xml_text = File.read('spec/data/datacite4/datacite-example-full-v4.0.xml')
+            resource = Resource.parse_xml(xml_text)
+            locs = resource.geo_locations
+            expect(locs.size).to eq(1)
+            loc = locs[0]
+            point = loc.point
+            expect(point).to be_a(GeoLocationPoint)
+            expect(point.latitude).to eq(31.233)
+            expect(point.longitude).to eq(-67.302)
+          end
+
+          it 'writes a DC4 point'
+        end
+
+        describe 'DC3 mode' do
+          it 'writes DC4 points as DC3'
+        end
       end
 
-      it 'writes a Datacite 4 point'
     end
 
   end

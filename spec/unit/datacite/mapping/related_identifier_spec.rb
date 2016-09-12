@@ -151,6 +151,17 @@ module Datacite
           expect(id.save_to_xml).to be_xml(expected_xml)
         end
       end
+
+      describe 'DC4 support' do
+        describe 'DC4 mode' do
+          it 'reads ISGN identifiers'
+          it 'writes ISGN identifiers'
+        end
+        describe 'DC3 mode' do
+          it 'converts ISGN identifiers to URLs'
+          it 'documents this in CHANGES.md'
+        end
+      end
     end
   end
 end
