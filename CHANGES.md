@@ -1,3 +1,11 @@
+## 0.1.18 (next)
+
+- Datacite 4.0 support:
+  - read Datacite 4.0 `<fundingReference/>` tag (introduced in 0.1.17)
+  - read Datacite 4.0 `<geoLocationBox>` nodes with coordinates in child nodes
+    (`<southBoundLatitude>`, `<westBoundLongitude>`, `<northBoundLatitude>`, `<eastBoundLongitude>`)
+    rather than element text
+
 ## 0.1.17.2 (19 August 2016)
 
 - Filter out `<subject/>` tags without values
