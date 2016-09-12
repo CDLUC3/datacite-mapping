@@ -236,6 +236,22 @@ module Datacite
           expect(node.to_value(xml_text)).to eq(expected)
         end
       end
+
+      it 'parses a Datacite 4 box' do
+        xml_text = File.read('spec/data/datacite4/datacite-example-Box_dateCollected_DataCollector-v4.0.xml')
+        resource = Resource.parse_xml(xml_text)
+        locs = resource.geo_locations
+        expect(locs.size).to eq(1)
+        loc = locs[0]
+        box = loc.box
+        expect(box).to be_a(GeoLocationBox)
+        expect(box.west_longitude).to eq(-64.2)
+        expect(box.east_longitude).to eq(-63.8)
+        expect(box.south_latitude).to eq(44.7167)
+        expect(box.north_latitude).to eq(44.9667)
+      end
+
+      it 'writes a Datacite 4 box'
     end
   end
 end

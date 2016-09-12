@@ -123,13 +123,39 @@ module Datacite
 
     # XML mapping node for `<geoLocationBox/>`
     class GeoLocationBoxNode < XML::MappingExtensions::NodeBase
-      # Converts a whitespace-separated list of coordinates to a {GeoLocationBox}.
-      # @param xml_text [String] the coordinates, in the order `lat long lat long`.
-      def to_value(xml_text)
+
+      ELEMENT_NAMES = { south_latitude: 'southBoundLatitude',
+                        west_longitude: 'westBoundLongitude',
+                        north_latitude: 'northBoundLatitude',
+                        east_longitude: 'eastBoundLongitude' }.freeze
+
+      def extract_attr_value(xml)
+        box = @path.first(xml)
+        return from_text(box) || from_children(box)
+      rescue => e
+        bad_value = xml_text ? "'#{xml_text}'" : 'nil'
+        raise e, "#{@owner}.#{@attrname}: Can't parse #{bad_value} as #{self.class}: #{e.message}"
+      end
+
+      def from_text(box)
+        xml_text = default_when_xpath_err { box.text }
+        return unless xml_text
+
         stripped = xml_text.strip
+        return if stripped.empty?
+
         coords = stripped.split(/\s+/).map(&:to_f)
         GeoLocationBox.new(*coords)
       end
+
+      def from_children(box)
+        coords_hash = ELEMENT_NAMES.map do |key, element_name|
+          value = box.elements[element_name].text
+          [key, value && value.to_f]
+        end.to_h
+        GeoLocationBox.new(coords_hash)
+      end
+
     end
     XML::Mapping.add_node_class GeoLocationBoxNode
 
