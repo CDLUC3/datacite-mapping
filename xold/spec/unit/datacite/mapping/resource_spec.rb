@@ -57,8 +57,6 @@ module Datacite
       # <xs:element name="formats" minOccurs="0">
       # <xs:element name="format" type="xs:string" minOccurs="0" maxOccurs="unbounded">
       # <xs:element name="version" type="xs:string" minOccurs="0">
-      # <xs:element name="descriptions" minOccurs="0">
-      # <xs:element name="description" minOccurs="0" maxOccurs="unbounded">
       # <xs:element name="br" minOccurs="0" maxOccurs="unbounded">
 
       describe '#initialize' do
@@ -496,16 +494,6 @@ module Datacite
       describe 'version=' do
         it 'sets the languge'
         it 'accepts nil'
-      end
-
-      describe 'descriptions' do
-        it 'returns the description list'
-        it 'returns an editable list'
-      end
-
-      describe 'descriptions=' do
-        it 'overwrites the description list'
-        it 'accepts an empty list'
       end
 
       describe 'XML mapping' do

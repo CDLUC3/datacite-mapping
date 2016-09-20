@@ -96,6 +96,10 @@ module Datacite
         @language = value.strip if value
       end
 
+      def value=(value)
+        @value = value.strip if value
+      end
+
       # @!attribute [rw] language
       #   @return [String] an IETF BCP 47, ISO 639-1 language code identifying the language.
       #     It's unclear from the spec whether language is required; to play it safe, if it's missing, we default to 'en'.

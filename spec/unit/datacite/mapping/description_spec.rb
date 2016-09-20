@@ -3,6 +3,7 @@ require 'spec_helper'
 module Datacite
   module Mapping
     describe Description do
+
       describe '#load_from_xml' do
         it 'reads XML' do
           xml_text = '<description xml:lang="en-us" descriptionType="Abstract">
@@ -16,7 +17,7 @@ module Datacite
 
           expect(desc.language).to eq(expected_lang)
           expect(desc.type).to eq(expected_type)
-          expect(desc.value.strip).to eq(expected_value)
+          expect(desc.value).to eq(expected_value)
         end
 
         it 'handles escaped HTML' do

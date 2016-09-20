@@ -217,7 +217,7 @@ module Datacite
             resource.subjects = subjects
             expect(resource.subjects).to eq(subjects)
           end
-          it 'can\'t be set to nil'do
+          it 'can\'t be set to nil' do
             resource = Resource.new(args)
             resource.subjects = nil
             expect(resource.subjects).to eq([])
@@ -244,8 +244,8 @@ module Datacite
         describe 'funding_references:' do
           it 'can be initialized' do
             funding_references = [
-              FundingReference.new(type: 'URL', value: 'http://example.org'),
-              FundingReference.new(type: 'URL', value: 'http://example.com')
+              FundingReference.new(name: 'Ministry of Magic', award_number: '9¾'),
+              FundingReference.new(name: 'НИИЧАВО', award_number: '164070')
             ]
             args[:funding_references] = funding_references
             resource = Resource.new(args)
@@ -276,7 +276,7 @@ module Datacite
           end
         end
       end
-      
+
       describe '#resource_type' do
         it 'can be initialized' do
           resource_type = ResourceType.new(resource_type_general: ResourceTypeGeneral::DATASET, value: 'Dataset')
@@ -377,6 +377,41 @@ module Datacite
           end
         end
 
+      end
+
+      describe '#descriptions' do
+        it 'defaults to empty' do
+          resource = Resource.new(args)
+          expect(resource.descriptions).to eq([])
+        end
+
+        describe 'descriptions:' do
+          it 'can be initialized' do
+            descriptions = [
+              Description.new(language: 'en-us', type: DescriptionType::ABSTRACT, value: 'Exterminate all the brutes!'),
+              Description.new(language: 'en-us', type: DescriptionType::METHODS, value: 'unsound')
+            ]
+            args[:descriptions] = descriptions
+            resource = Resource.new(args)
+            expect(resource.descriptions).to eq(descriptions)
+          end
+          it 'can\'t be initialized to nil' do
+            args[:descriptions] = nil
+            resource = Resource.new(args)
+            expect(resource.descriptions).to eq([])
+          end
+
+          it 'ignores descriptions without values' do
+            descriptions = [
+              Description.allocate,
+              Description.new(language: 'en-us', type: DescriptionType::METHODS, value: 'unsound'),
+              Description.allocate
+            ]
+            args[:descriptions] = descriptions
+            resource = Resource.new(args)
+            expect(resource.descriptions).to eq([descriptions[1]])
+          end
+        end
       end
 
       describe '#geo_locations' do

@@ -28,8 +28,9 @@ module Datacite
       # @param resource_type [ResourceType, nil] the type of the resource
       # @param alternate_identifiers [Array<AlternateIdentifier>] an identifier or identifiers other than the primary {Identifier} applied to the resource being registered.
       # @param rights_list [Array<Rights>] rights information for this resource.
+      # @param descriptions [Array<Description>] all additional information that does not fit in any of the other categories.
       # @param geo_locations [Array<GeoLocations>] spatial region or named place where the data was gathered or about which the data is focused.
-      def initialize(identifier:, creators:, titles:, subjects: [], resource_type: nil, alternate_identifiers: [], rights_list: [], geo_locations: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
+      def initialize(identifier:, creators:, titles:, subjects: [], funding_references: [], resource_type: nil, alternate_identifiers: [], rights_list: [], descriptions: [], geo_locations: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
         self.identifier = identifier
         self.creators = creators
         self.titles = titles
@@ -38,6 +39,7 @@ module Datacite
         self.resource_type = resource_type
         self.alternate_identifiers = alternate_identifiers
         self.rights_list = rights_list
+        self.descriptions = descriptions
         self.geo_locations = geo_locations
       end
 
@@ -70,6 +72,10 @@ module Datacite
 
       def rights_list=(value)
         @rights_list = value || []
+      end
+
+      def descriptions=(value)
+        @descriptions = (value && value.select(&:value)) || []
       end
 
       def geo_locations=(value)
@@ -107,6 +113,10 @@ module Datacite
       # @!attribute [rw] rights_list
       #   @return [Array<Rights>] rights information for this resource.
       array_node :rights_list, 'rightsList', 'rights', class: Rights, default_value: []
+
+      # @!attribute [rw] descriptions
+      #   @return [Array<Description>] all additional information that does not fit in any of the other categories.
+      array_node :descriptions, 'descriptions', 'description', class: Description, default_value: []
 
       # @!attribute [rw] geo_locations
       #   @return [Array<GeoLocations>] spatial region or named place where the data was gathered or about which the data is focused.
