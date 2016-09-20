@@ -43,6 +43,12 @@ module Datacite
           expect(subject.language).to eq('en')
         end
 
+        it 'strips whitespace' do
+          subject = Subject.new(value: '
+            Mammals--Embryology
+          ', language: 'en-us')
+          expect(subject.value).to eq('Mammals--Embryology')
+        end
       end
 
       describe 'lang=' do

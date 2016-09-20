@@ -6,6 +6,7 @@ module Datacite
     describe Resource do
 
       attr_reader :creators
+      attr_reader :titles
       attr_reader :args
 
       before(:each) do
@@ -22,8 +23,14 @@ module Datacite
           )
         ]
 
+        @titles = [
+          Title.new(value: 'An Account of a Very Odd Monstrous Calf', language: 'en-emodeng'),
+          Title.new(type: TitleType::SUBTITLE, value: 'And a Contest between Two Artists about Optick Glasses, &c', language: 'en-emodeng')
+        ]
+
         @args = {
-          creators: creators
+          creators: creators,
+          titles: titles
         }
       end
 
@@ -75,6 +82,36 @@ module Datacite
             end
           end
         end
+      end
+
+      describe '#titles' do
+        it 'requires a non-nil title list' do
+          args[:titles] = nil
+          expect { Resource.new(args) }.to raise_error(ArgumentError)
+        end
+
+        it 'requires a non-empty title list' do
+          args[:titles] = []
+          expect { Resource.new(args) }.to raise_error(ArgumentError)
+        end
+
+        it 'can be initialized' do
+          resource = Resource.new(args)
+          expect(resource.titles).to eq(titles)
+          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
+        end
+
+        it 'can be set' do
+          new_titles = [Title.new(
+            language: 'en-emodeng',
+            type: TitleType::SUBTITLE,
+            value: 'Together with an Appendix of the Same, Containing an Answer to Some Objections, Made by Severall Persons against That Hypothesis'
+          )]
+          resource = Resource.new(args)
+          resource.titles = new_titles
+          expect(resource.titles).to eq(new_titles)
+        end
+
       end
 
       describe '#subjects' do

@@ -31,6 +31,13 @@ module Datacite
           title = Title.new(value: "Of Some Books Lately Publish't", language: 'en-emodeng')
           expect(title.type).to be_nil
         end
+
+        it 'strips whitespace' do
+          title = Title.new(value: '
+            An Account of a Very Odd Monstrous Calf
+          ', language: 'en-emodeng')
+          expect(title.value).to eq('An Account of a Very Odd Monstrous Calf')
+        end
       end
 
       describe 'value=' do
@@ -47,6 +54,13 @@ module Datacite
         it 'requires a non-empty value' do
           title = Title.new(value: "Of Some Books Lately Publish't", language: 'en-emodeng')
           expect { title.value = '' }.to raise_error(ArgumentError)
+          expect(title.value).to eq("Of Some Books Lately Publish't")
+        end
+        it 'strips whitespace' do
+          title = Title.allocate
+          title.value = "
+            Of Some Books Lately Publish't
+          "
           expect(title.value).to eq("Of Some Books Lately Publish't")
         end
       end

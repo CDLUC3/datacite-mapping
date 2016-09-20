@@ -1,6 +1,7 @@
 require 'xml/mapping_extensions'
 
 require 'datacite/mapping/creator'
+require 'datacite/mapping/title'
 require 'datacite/mapping/subject'
 require 'datacite/mapping/alternate_identifier'
 require 'datacite/mapping/rights'
@@ -18,12 +19,14 @@ module Datacite
       # Initialies a new {Resource}
       #
       # @param creators [Array<Creator>] the main researchers involved working on the data, or the authors of the publication in priority order.
+      # @param titles [Array<Title>] the names or titles by which a resource is known.
       # @param subjects [Array<Subject>] subjects, keywords, classification codes, or key phrases describing the resource.
       # @param alternate_identifiers [Array<AlternateIdentifier>] an identifier or identifiers other than the primary {Identifier} applied to the resource being registered.
       # @param rights_list [Array<Rights>] rights information for this resource.
       # @param geo_locations [Array<GeoLocations>] spatial region or named place where the data was gathered or about which the data is focused.
-      def initialize(creators:, subjects: [], alternate_identifiers: [], rights_list: [], geo_locations: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
+      def initialize(creators:, titles:, subjects: [], alternate_identifiers: [], rights_list: [], geo_locations: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
         self.creators = creators
+        self.titles = titles
         self.subjects = subjects
         self.alternate_identifiers = alternate_identifiers
         self.rights_list = rights_list
@@ -38,6 +41,15 @@ module Datacite
       # @!attribute [rw] creators
       #   @return [Array<Creator>] the main researchers involved working on the data, or the authors of the publication in priority order.
       array_node :creators, 'creators', 'creator', class: Creator
+
+      def titles=(value)
+        fail ArgumentError, 'Resource must have at least one title' unless value && value.size > 0
+        @titles = value
+      end
+
+      # @!attribute [rw] titles
+      #   @return [Array<Title>] the names or titles by which a resource is known.
+      array_node :titles, 'titles', 'title', class: Title
 
       def subjects=(value)
         @subjects = (value && value.select(&:value)) || []
