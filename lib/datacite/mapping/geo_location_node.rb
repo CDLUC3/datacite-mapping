@@ -9,8 +9,8 @@ module Datacite
       attr_reader :coord_elements
 
       def initialize(*args)
-        raise 'No geometry class provided' unless @geom_class
-        raise 'No coordinate elements provided' unless @coord_elements
+        fail 'No geometry class provided' unless @geom_class
+        fail 'No coordinate elements provided' unless @coord_elements
         path, *args = super(*args)
         @path = ::XML::XXPath.new(path)
         args

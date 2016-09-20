@@ -1,5 +1,12 @@
 ## 0.2.0
 
+- Datacite 4.0 support:
+  - reading supports both Datacite 3 and Datacite 4
+  - writing now defaults to Datacite 4
+    - deprecated elements will produce a warning
+  - Datacite 3 support via `mapping: :datacite_3`
+    - invalid elements (`<geoLocationPolygon/>`, `<fundingReference>`)
+      will be dropped, with a warning
 - Remove `Datacite::Mapping.log` in favor of `warn()`
 
 ## 0.1.18 (unreleased)

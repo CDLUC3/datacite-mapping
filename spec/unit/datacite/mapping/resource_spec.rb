@@ -54,6 +54,46 @@ module Datacite
           resource.creators = new_creators
           expect(resource.creators).to eq(new_creators)
         end
+
+        describe 'creator convenience methods' do
+          describe '#creator_names' do
+            it 'extracts the creator names' do
+              resource = Resource.new(args)
+              expect(resource.creator_names)
+                .to eq(['Hedy Lamarr', 'Herschlag, Natalie'])
+            end
+          end
+
+          describe '#creator_affiliations' do
+            it 'extracts the creator affiliations' do
+              resource = Resource.new(args)
+              expect(resource.creator_affiliations)
+                .to eq([
+                  ['United Artists', 'Metro-Goldwyn-Mayer'],
+                  ['Gaumont Buena Vista International', '20th Century Fox']
+                ])
+            end
+          end
+        end
+      end
+
+      describe '#subjects' do
+        it 'defaults to empty' do
+          resource = Resource.new(args)
+          expect(resource.subjects).to eq([])
+        end
+
+        describe 'subjects:' do
+          it 'can be initialized'
+          it 'can\'t be initialized to nil'
+          it 'ignores subjects without values'
+        end
+
+        describe '#subjects=' do
+          it 'can be set'
+          it 'can\'t be set to nil'
+          it 'ignores subjects without values'
+        end
       end
 
       describe '#alternate_identifiers' do
@@ -62,26 +102,84 @@ module Datacite
           expect(resource.alternate_identifiers).to eq([])
         end
 
-        it 'can be initialized' do
-          alternate_identifiers = [
-            AlternateIdentifier.new(type: 'URL', value: 'http://example.org'),
-            AlternateIdentifier.new(type: 'URL', value: 'http://example.com')
-          ]
-          args[:alternate_identifiers] = alternate_identifiers
-          resource = Resource.new(args)
-          expect(resource.alternate_identifiers).to eq(alternate_identifiers)
-          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
+        describe 'alternate_identifiers:' do
+          it 'can be initialized' do
+            alternate_identifiers = [
+              AlternateIdentifier.new(type: 'URL', value: 'http://example.org'),
+              AlternateIdentifier.new(type: 'URL', value: 'http://example.com')
+            ]
+            args[:alternate_identifiers] = alternate_identifiers
+            resource = Resource.new(args)
+            expect(resource.alternate_identifiers).to eq(alternate_identifiers)
+            expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
+          end
+          it 'can\'t be initialized to nil' do
+            args[:alternate_identifiers] = nil
+            resource = Resource.new(args)
+            expect(resource.alternate_identifiers).to eq([])
+          end
         end
 
-        it 'can be set' do
-          resource = Resource.new(args)
-          alternate_identifiers = [
-            AlternateIdentifier.new(type: 'URL', value: 'http://example.org'),
-            AlternateIdentifier.new(type: 'URL', value: 'http://example.com')
-          ]
-          resource.alternate_identifiers = alternate_identifiers
-          expect(resource.alternate_identifiers).to eq(alternate_identifiers)
+        describe '#alternate_identifiers=' do
+          it 'can be set' do
+            resource = Resource.new(args)
+            alternate_identifiers = [
+              AlternateIdentifier.new(type: 'URL', value: 'http://example.org'),
+              AlternateIdentifier.new(type: 'URL', value: 'http://example.com')
+            ]
+            resource.alternate_identifiers = alternate_identifiers
+            expect(resource.alternate_identifiers).to eq(alternate_identifiers)
+          end
+          it 'can\'t be set to nil' do
+            resource = Resource.new(args)
+            resource.alternate_identifiers = nil
+            expect(resource.alternate_identifiers).to eq([])
+          end
         end
+      end
+
+      describe '#rights_list' do
+        it 'defaults to empty' do
+          resource = Resource.new(args)
+          expect(resource.rights_list).to eq([])
+        end
+
+        describe('rights_list:') do
+          it 'can be initialized' do
+            rights_list = [
+              Rights.new(value: 'CC0 1.0 Universal', uri: URI('http://creativecommons.org/publicdomain/zero/1.0/')),
+              Rights.new(value: 'This work is free of known copyright restrictions.', uri: URI('http://creativecommons.org/publicdomain/mark/1.0/'))
+            ]
+            args[:rights_list] = rights_list
+            resource = Resource.new(args)
+            expect(resource.rights_list).to eq(rights_list)
+            expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
+          end
+          it 'can\'t be initialized to nil' do
+            args[:rights_list] = nil
+            resource = Resource.new(args)
+            expect(resource.rights_list).to eq([])
+          end
+        end
+
+        describe '#rights_list=' do
+          it 'can be set' do
+            resource = Resource.new(args)
+            rights_list = [
+              Rights.new(value: 'CC0 1.0 Universal', uri: URI('http://creativecommons.org/publicdomain/zero/1.0/')),
+              Rights.new(value: 'This work is free of known copyright restrictions.', uri: URI('http://creativecommons.org/publicdomain/mark/1.0/'))
+            ]
+            resource.rights_list = rights_list
+            expect(resource.rights_list).to eq(rights_list)
+          end
+
+          it 'can\'t be set to nil' do
+            resource = Resource.new(args)
+            resource.rights_list = nil
+            expect(resource.rights_list).to eq([])
+          end
+        end
+
       end
 
       describe '#geo_locations' do
@@ -90,28 +188,44 @@ module Datacite
           expect(resource.geo_locations).to eq([])
         end
 
-        it 'can be initialized' do
-          geo_locations = [
-            GeoLocation.new(point: GeoLocationPoint.new(47.61, -122.33)),
-            GeoLocation.new(box: GeoLocationBox.new(-33.45, -122.33, 47.61, -70.67))
-          ]
-          args[:geo_locations] = geo_locations
-          resource = Resource.new(args)
-          expect(resource.geo_locations).to eq(geo_locations)
+        describe 'geo_locations:' do
+          it 'can be initialized' do
+            geo_locations = [
+              GeoLocation.new(point: GeoLocationPoint.new(47.61, -122.33)),
+              GeoLocation.new(box: GeoLocationBox.new(-33.45, -122.33, 47.61, -70.67))
+            ]
+            args[:geo_locations] = geo_locations
+            resource = Resource.new(args)
+            expect(resource.geo_locations).to eq(geo_locations)
+          end
+          it 'can\'t be initialized to nil' do
+            args[:geo_locations] = nil
+            resource = Resource.new(args)
+            expect(resource.geo_locations).to eq([])
+          end
+          it 'ignores empty locations'
         end
 
-        it 'can be set' do
-          resource = Resource.new(args)
-          geo_locations = [
-            GeoLocation.new(point: GeoLocationPoint.new(47.61, -122.33)),
-            GeoLocation.new(box: GeoLocationBox.new(-33.45, -122.33, 47.61, -70.67))
-          ]
-          resource.geo_locations = geo_locations
-          expect(resource.geo_locations).to eq(geo_locations)
+        describe '#geo_locations=' do
+          it 'can be set' do
+            resource = Resource.new(args)
+            geo_locations = [
+              GeoLocation.new(point: GeoLocationPoint.new(47.61, -122.33)),
+              GeoLocation.new(box: GeoLocationBox.new(-33.45, -122.33, 47.61, -70.67))
+            ]
+            resource.geo_locations = geo_locations
+            expect(resource.geo_locations).to eq(geo_locations)
+          end
+          it 'can\'t be set to nil' do
+            resource = Resource.new(args)
+            resource.geo_locations = nil
+            expect(resource.geo_locations).to eq([])
+          end
+          it 'ignores empty locations'
         end
       end
 
-      describe 'DC3 support' do
+      describe 'DC3 mapping' do
         it 'reads a DC3 document'
         it 'reads a DC4 document'
 

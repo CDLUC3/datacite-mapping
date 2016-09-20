@@ -27,6 +27,10 @@ module Datacite
         @place = value.respond_to?(:strip) ? value.strip : value
       end
 
+      def has_location?
+        point || box || place
+      end
+
       root_element_name 'geoLocation'
 
       # @!attribute [rw] place

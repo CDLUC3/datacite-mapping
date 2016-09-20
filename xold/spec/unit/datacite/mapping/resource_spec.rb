@@ -45,8 +45,6 @@ module Datacite
       #
       # <xs:element name="nameIdentifier" minOccurs="0">
       # <xs:element name="affiliation" minOccurs="0" maxOccurs="unbounded"/>
-      # <xs:element name="subjects" minOccurs="0">
-      # <xs:element name="subject" minOccurs="0" maxOccurs="unbounded">
       # <xs:element name="contributors" minOccurs="0">
       # <xs:element name="contributor" minOccurs="0" maxOccurs="unbounded">
       # <xs:element name="nameIdentifier" minOccurs="0">
@@ -62,8 +60,6 @@ module Datacite
       # <xs:element name="formats" minOccurs="0">
       # <xs:element name="format" type="xs:string" minOccurs="0" maxOccurs="unbounded">
       # <xs:element name="version" type="xs:string" minOccurs="0">
-      # <xs:element name="rightsList" minOccurs="0">
-      # <xs:element name="rights" minOccurs="0" maxOccurs="unbounded">
       # <xs:element name="descriptions" minOccurs="0">
       # <xs:element name="description" minOccurs="0" maxOccurs="unbounded">
       # <xs:element name="br" minOccurs="0" maxOccurs="unbounded">
@@ -377,23 +373,6 @@ module Datacite
           expect(resource.version).to eq(version)
           expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
         end
-
-        it 'allows rights' do
-          rights_list = [
-            Rights.new(value: 'CC0 1.0 Universal', uri: URI('http://creativecommons.org/publicdomain/zero/1.0/')),
-            Rights.new(value: 'This work is free of known copyright restrictions.', uri: URI('http://creativecommons.org/publicdomain/mark/1.0/'))
-          ]
-          resource = Resource.new(
-            identifier: @id,
-            creators: @creators,
-            titles: @titles,
-            publisher: @publisher,
-            publication_year: @pub_year,
-            rights_list: rights_list
-          )
-          expect(resource.rights_list).to eq(rights_list)
-          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
-        end
       end
 
       describe '#parse_xml' do
@@ -637,16 +616,6 @@ module Datacite
         it 'accepts nil'
       end
 
-      describe 'rights' do
-        it 'returns the rights list'
-        it 'returns an editable list'
-      end
-
-      describe 'rights=' do
-        it 'overwrites the rights list'
-        it 'accepts an empty list'
-      end
-
       describe 'descriptions' do
         it 'returns the description list'
         it 'returns an editable list'
@@ -860,18 +829,6 @@ module Datacite
             ),
             type: ContributorType::FUNDER)
           @resource.contributors << @funder
-        end
-
-        describe 'creator_names' do
-          it 'extracts the creator names' do
-            expect(@resource.creator_names).to eq(['Miller, Elizabeth'])
-          end
-        end
-
-        describe 'creator_affiliations' do
-          it 'extracts the creator affiliations' do
-            expect(@resource.creator_affiliations).to eq([['DataCite']])
-          end
         end
 
         describe 'funder_contrib' do

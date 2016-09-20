@@ -127,9 +127,9 @@ module Datacite
       def initialize(*args)
         @geom_class = GeoLocationBox
         @coord_elements = { south_latitude: 'southBoundLatitude',
-                           west_longitude: 'westBoundLongitude',
-                           north_latitude: 'northBoundLatitude',
-                           east_longitude: 'eastBoundLongitude' }.freeze
+                            west_longitude: 'westBoundLongitude',
+                            north_latitude: 'northBoundLatitude',
+                            east_longitude: 'eastBoundLongitude' }.freeze
         super
       end
     end
