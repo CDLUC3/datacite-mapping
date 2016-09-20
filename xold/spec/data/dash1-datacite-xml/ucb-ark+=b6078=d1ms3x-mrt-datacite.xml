@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Gun, Defne</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Perez, Hector</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Moura, Scott</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Fast Charging Tests</title>
+  </titles>
+  <publisher>UC Berkeley</publisher>
+  <publicationYear>2015</publicationYear>
+  <subjects>
+    <subject>Fast Charging</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="Funder">
+      <contributorName>National Science Foundation</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers/>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>293617695</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">A series of tests were carried out in order to explore alternate charging protocols to the standard CCCV. Using such alternative protocols, it was possible to apply higher currents to achieve faster charging without cell degradation. In addition, baseline tests were carried out in order to study capacity fade.
+</description>
+    <description descriptionType="Methods">First, several CCCV cycles were run at gradually increasing C-rates to examine behavior (particularly temperature increases) at higher C-rates. Then, MCC, CP-CV, and Boostcharge cycles were run at various C-rates. Additional 1C CCCV baseline capacity tests were run in order to examine capacity fade. 
+</description>
+    <description descriptionType="Other">1408107</description>
+  </descriptions>
+</resource>

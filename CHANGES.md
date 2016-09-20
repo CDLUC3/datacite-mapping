@@ -1,4 +1,8 @@
-## 0.1.18 (next)
+## 0.2.0
+
+- Remove `Datacite::Mapping.log` in favor of `warn()`
+
+## 0.1.18 (unreleased)
 
 - Datacite 4.0 support:
   - read Datacite 4.0 `<fundingReference/>` tag (introduced in 0.1.17)

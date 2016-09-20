@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Kratz, John</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Strasser, Carly</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Making Data Count survey responses</title>
+  </titles>
+  <publisher>UC Office of the President</publisher>
+  <publicationYear>2015</publicationYear>
+  <subjects>
+    <subject>data publication</subject>
+    <subject>data metrics</subject>
+    <subject>survey data</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Kratz, John</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>National Science Foundation</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="IsSupplementTo">10.1038/sdata.2015.39</relatedIdentifier>
+  </relatedIdentifiers>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>846715</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">Data is an indispensable part of research, but it isn’t recognized as an important component of a researcher’s scholarly output. The Public Library of Science (PLOS), in partnership with the California Digital Library (CDL)  and DataONE, has undertaken a project called Make Data Count (http://articlemetrics.github.io/MDC/) to develop data-level metrics (DLM). This 12-month NSF-funded project is aimed at piloting a suite of metrics that track and measure data use so that it can be shared to funders, tenure &amp; promotion committees, and other stakeholders. 
+
+The first phase of this project is to gather information about the needs of researchers–  how do they want to get credit for the data they produce? What do they want to know about how their data is used? What do they want to know about others’ data to evaluate quality?  We connected with the community to determine requirements and understand use cases.
+
+In November and December of 2014, we conducted a pair of online surveys of researchers and data managers (i.e., database or repository staff), asking questions about data sharing, discovery, and metrics.
+In recruiting survey respondents, we reached out to researchers from across subject areas, career levels, and affiliations.  We used several tools including social media (Twitter feed, blogs), listservs, face-to-face interactions at conferences, meetings, and other venues.  
+</description>
+    <description descriptionType="Methods">The survey was administered online, via SurveyMonkey. Responses were collected in November and December of 2014.
+
+We solicited responses using social media (Twitter feed, blogs at the CDL and PLOS), listservs, and face-to-face interactions at conferences, meetings, and other venues.  
+</description>
+    <description descriptionType="Other">1448821</description>
+  </descriptions>
+</resource>

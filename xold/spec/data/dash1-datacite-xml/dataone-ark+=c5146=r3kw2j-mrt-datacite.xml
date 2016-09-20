@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI">10.15146/R3KW2J</identifier>
+  <creators>
+    <creator>
+      <creatorName>Hungate, Bruce</creatorName>
+      <nameIdentifier nameIdentifierScheme="ORCID">0000-0002-7337-1887</nameIdentifier>
+    </creator>
+    <creator>
+      <creatorName>Drake, Bert</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Dijkstra, Paul</creatorName>
+      <nameIdentifier nameIdentifierScheme="ORCID">0000-0002-4483-0116</nameIdentifier>
+    </creator>
+  </creators>
+  <titles>
+    <title>Carbon, nitrogen and tracer 15N recovered in aboveground oak tissues in central coastal Florida</title>
+  </titles>
+  <publisher>DataONE</publisher>
+  <publicationYear>2015</publicationYear>
+  <subjects>
+    <subject>elevated CO2</subject>
+    <subject>open-top chamber</subject>
+    <subject>aboveground stem density</subject>
+    <subject>aboveground biomass</subject>
+    <subject>global change</subject>
+    <subject>long-term experiment</subject>
+    <subject>fire</subject>
+    <subject>hurricane</subject>
+    <subject>scrub-oak</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Biogeochemistry, SERC</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>US Department of Energy</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="IsDocumentedBy">10.1111/nph.12409</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="IsDocumentedBy">10.1890/04-1732</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="IsDocumentedBy">10.1111/nph.12333</relatedIdentifier>
+  </relatedIdentifiers>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>304070</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication (CC0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">This dataset contains data on the amount of carbon, nitrogen and tracer 15N recovered in aboveground oak tissues (leaves and stems). Data were collected as part of the Smithsonian Environmental Research Center's elevated CO2 experiment in the subtropical woodland in central coastal Florida (Kennedy Space Center). The data reported here are derived from several measurements. Stem and leaf biomass was estimated using allometry. Stem and leaf tissue samples were also removed and measured for %C, %N, and d15N at the Colorado Plateau Stable Isotope Laboratory. The product of biomass and element concentration gives carbon or nitrogen mass in g/m2. The 15N tracer was applied in June of 1998. Values of 15N mass expressed here are in the mass of tracer 15N, after subtracting naturally occurring 15N.</description>
+    <description descriptionType="Methods">Methods available in Hungate et al, 2013.
+DOI: 10.1111/nph.12409</description>
+    <description descriptionType="Other">DE-FG-02-95ER61993</description>
+  </descriptions>
+</resource>

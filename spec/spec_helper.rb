@@ -26,6 +26,6 @@ end
 require 'rspec_custom_matchers'
 
 # ------------------------------------------------------------
-# Stash::Wrapper
+# Datacite::Mapping
 
 require 'datacite/mapping'

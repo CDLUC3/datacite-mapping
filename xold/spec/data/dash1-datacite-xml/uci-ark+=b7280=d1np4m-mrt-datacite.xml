@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Allison, Steven D.</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Can microbial functional traits predict the response and resilience of decomposition to global change?</title>
+  </titles>
+  <publisher>UC Irvine</publisher>
+  <publicationYear>2015</publicationYear>
+  <subjects>
+    <subject>soil</subject>
+    <subject>microbial community</subject>
+    <subject>litter</subject>
+    <subject>global change</subject>
+    <subject>fungi</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>McKinley;McKinley, Matthew J.</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>U.S. Department of Energy. Select a sub-organization</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="URL" relationType="IsSupplementedBy">http://allison.bio.uci.edu/</relatedIdentifier>
+  </relatedIdentifiers>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>581</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">For more detailed metadata, including data access and usage instructions, please download and consult README.txt file.</description>
+    <description descriptionType="Methods">1) Connect diverse microbial groups with the extracellular enzyme systems that catalyze the decay of organic material 2) Determine whether different groups of microbes and their enzymes respond to environmental changes 3) Determine whether microbes and their functions can recover from environmental changes 4) Develop mathematical models to predict the responses of microbial communities and their associated functions under new environmental conditions</description>
+    <description descriptionType="Other"/>
+  </descriptions>
+  <geoLocations>
+    <geoLocation>
+      <geoLocationPlace>Orange County (Calif.)</geoLocationPlace>
+    </geoLocation>
+    <geoLocation>
+      <geoLocationPoint>33.733548 -117.698078</geoLocationPoint>
+    </geoLocation>
+  </geoLocations>
+</resource>

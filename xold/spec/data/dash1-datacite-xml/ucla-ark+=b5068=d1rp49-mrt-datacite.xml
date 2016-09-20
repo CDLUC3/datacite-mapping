@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+	<identifier identifierType="DOI">10.5068/D1RP49</identifier>
+	<creators>
+		<creator><creatorName>Zangle, Thomas A.</creatorName></creator>
+		<creator><creatorName>Reed, Jason</creatorName></creator>
+		<creator><creatorName>Teitell, Michael A.</creatorName></creator>
+	</creators>
+	<titles>
+		<title>Live cell interferometry cell division tracking data files</title>
+	</titles>
+	<publisher>UCLA</publisher>
+	<publicationYear>2014</publicationYear>
+	<subjects>
+		<subject>Quantitative phase microscopy</subject>
+		<subject>Cell division</subject>
+		<subject>Cytokinesis</subject>
+		<subject>Live cell microscopy</subject>
+		<subject>Cell dry mass</subject>
+	</subjects>
+	<resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+	<relatedIdentifiers>
+		<relatedIdentifier relatedIdentifierType="DOI" relationType="IsCitedBy">10.1371/journal.pone.0115726</relatedIdentifier>
+	</relatedIdentifiers>
+	<rightsList>
+		<rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+	</rightsList>
+	<descriptions>
+		<description descriptionType="Abstract">Cell tracking data from quantitative phase microscopy experiments generated
+			by Matlab analysis of raw image data.</description>
+		<description descriptionType="Methods">Data is stored as x-position, y-position (pixels), cell dry mass (pg), time
+			(h), cell number, area (pixels^2). Cell numbers in the pairtracks array follow the following convention:
+			daughter 1 cell number = parent cell number*1000 + 1
+			daughter 2 cell number = parent cell number*1000 + 2
+		</description>
+	</descriptions>
+</resource>

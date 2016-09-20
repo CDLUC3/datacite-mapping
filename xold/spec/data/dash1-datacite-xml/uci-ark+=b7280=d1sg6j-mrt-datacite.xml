@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI">10.7280/D1SG6J</identifier>
+  <creators>
+    <creator>
+      <creatorName>Kimball, Sarah</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Lulow, Megan E.</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Sorenson, Quinn M.</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Establishment and Management of Native Functional Groups in Restoration</title>
+  </titles>
+  <publisher>UC Irvine</publisher>
+  <publicationYear>2015</publicationYear>
+  <subjects>
+    <subject>coastal sage scrub</subject>
+    <subject>community assembly</subject>
+    <subject>competition</subject>
+    <subject>functional traits</subject>
+    <subject>invasive species</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Kimball, Sarah</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="URL" relationType="Documents">http://onlinelibrary.wiley.com/doi/10.1111/rec.12022/abstract</relatedIdentifier>
+  </relatedIdentifiers>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>118955</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">The limiting similarity hypothesis predicts that communities
+should be more resistant to invasion by non-natives
+when they include natives with a diversity of traits from
+more than one functional group. In restoration, planting
+natives with a diversity of traits may result in competition
+between natives of different functional groups and
+may influence the efficacy of different seeding and maintenance
+methods, potentially impacting native establishment.
+We compare initial establishment and first-year performance
+of natives and the effectiveness of maintenance
+techniques in uniform versus mixed functional group plantings.
+We seeded ruderal herbaceous natives, longer-lived
+shrubby natives, or a mixture of the two functional groups
+using drill- and hand-seeding methods. Non-natives were
+left undisturbed, removed by hand-weeding and mowing,
+or treated with herbicide to test maintenance methods
+in a factorial design. Native functional groups had highest
+establishment, growth, and reproduction when planted
+alone, and hand-seeding resulted in more natives as well
+as more of the most common invasive, Brassica nigra.
+Wick herbicide removed more non-natives and resulted in
+greater reproduction of natives, while hand-weeding and
+mowing increased native density. Our results point to the
+importance of considering competition among native functional
+groups as well as between natives and invasives in
+restoration. Interactions among functional groups, seeding
+methods, and maintenance techniques indicate restoration
+will be easier to implement when natives with different
+traits are planted separately.</description>
+    <description descriptionType="Methods">Using different seeding methods (drill vs. hand seeding)
+and maintenance methods (hand weeding and mowing
+vs. herbicide) we tested initial establishment, growth, and reproduction of natives from seed mixes that contained
+ruderals, shrubs, or a combination of the two.</description>
+    <description descriptionType="Other"/>
+  </descriptions>
+  <geoLocations>
+    <geoLocation>
+      <geoLocationPlace>Orange County (Calif.)</geoLocationPlace>
+    </geoLocation>
+    <geoLocation>
+      <geoLocationPoint>33.7647 -117.7382</geoLocationPoint>
+    </geoLocation>
+  </geoLocations>
+</resource>

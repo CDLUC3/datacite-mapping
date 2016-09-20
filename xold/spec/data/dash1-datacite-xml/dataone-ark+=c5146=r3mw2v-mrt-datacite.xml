@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Lake, Sherry</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>BSEL Shelflist</title>
+  </titles>
+  <publisher>DataONE</publisher>
+  <publicationYear>2014</publicationYear>
+  <subjects>
+    <subject>Library</subject>
+    <subject>Engineering</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Lake, Sherry</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers/>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>77194</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication (CC0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">Shelflist for the Brown Science and Engineering Library Weeding Project</description>
+  </descriptions>
+</resource>

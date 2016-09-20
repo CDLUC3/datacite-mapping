@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+<identifier identifierType="DOI"/>
+<creators>
+<creator><creatorName>Dr. David Wang</creatorName></creator>
+</creators>
+<titles>
+<title>C. elegans RNA Sequence for viral discovery</title>
+</titles>
+<publisher>University of California, San Francisco</publisher>
+<publicationYear>2014</publicationYear>
+<subjects>
+<subject>C. elegans</subject>
+<subject>454 deep sequencing dataset</subject>
+</subjects>
+<contributors>
+<contributor contributorType="ResearchGroup"><contributorName>UCSF</contributorName></contributor>
+</contributors>
+<resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+<descriptions>
+<description descriptionType="Abstract">Nucleic acid from two nematode species, C. elegans JU1580 (isolated from a rotting apple in Orsay, France) and C. briggsae JU1264 (isolated from a snail on a rotting grape in Santeuil, France) were prepared and pyrosequenced on the Roche Titanium Genome Sequencer. Raw sequence reads were filtered for quality and repetitive sequences as described in &quot;Natural and experimental infection of Caenorhabditis nematodes by novel viruses related to nodaviruses&quot; by F?©lix et al (http://www.ncbi.nlm.nih.gov/pubmed/21283608). Two novel members of the Nodaviridae viral family, Orsay nodavirus and Santeuil nodavirus, were discovered in the the 15933 and 20,787 reads, respectively. 1046 Orsay nodavirus reads were found in the C. elegans samples while 2492 Santeuil nodavirus reads were identified in in the C. briggsae sample. The data are provided in FASTA format.</description>
+<description descriptionType="Methods">This is a 454 dataset corresponding to the raw reads from Felix et al., 2011</description>
+<description descriptionType="SeriesInformation">Félix M-A, Ashe A, Piffaretti J, Wu G, Nuez I, et al. (2011) Natural and Experimental Infection of Caenorhabditis Nematodes by Novel Viruses Related to Nodaviruses. PLoS Biol 9: e1000586. doi:10.1371/journal.pbio.1000586. PMC3026760
+</description>
+</descriptions>
+</resource>

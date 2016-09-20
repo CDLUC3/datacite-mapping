@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>OC Public Works</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Newport Bay Water Quality TMDL Annual Data Reports 2001 - 2013</title>
+  </titles>
+  <publisher>UC Irvine</publisher>
+  <publicationYear>2015</publicationYear>
+  <subjects>
+    <subject>bacteria</subject>
+    <subject>feces</subject>
+    <subject>rod</subject>
+    <subject>lactic acid</subject>
+    <subject>phylum firmicutes</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>McKinley;McKinley, Matthew J.</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>The County of Orange</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="URL" relationType="IsSupplementedBy">http://ocwatersheds.com/rainrecords/waterqualitydata/water_quality_monitoring_data</relatedIdentifier>
+  </relatedIdentifiers>
+  <resourceType resourceTypeGeneral="Text">Text</resourceType>
+  <sizes>
+    <size>80428046</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">Summary of bacteriological data collected in Newport Bay from April 1 through March 31 of each year. For more detailed metadata, including data access and usage instructions, please download and consult README.txt file.</description>
+    <description descriptionType="Other"/>
+  </descriptions>
+  <geoLocations>
+    <geoLocation>
+      <geoLocationPlace>Orange County (Calif.)</geoLocationPlace>
+    </geoLocation>
+    <geoLocation>
+      <geoLocationPoint>33.616667 -117.8975</geoLocationPoint>
+    </geoLocation>
+  </geoLocations>
+</resource>

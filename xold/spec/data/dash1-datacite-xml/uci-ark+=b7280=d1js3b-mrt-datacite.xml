@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Lim, Nathan</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Wang, Lingle</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Abel, Robert</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Mobley, David</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>T4 Lysozyme (L99A) LigandFEP Homologous Ligand Series Data</title>
+  </titles>
+  <publisher>UC Irvine</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>free energy</subject>
+    <subject>FEP</subject>
+    <subject>molecular dynamics</subject>
+    <subject>binding free energies</subject>
+    <subject>T4 lysozyme</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Lim;Lim, Nathan</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>National Science Foundation, Schrodinger</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers/>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>7152168321</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">Despite innovations in sampling techniques for molecular dynamics (MD), reliable prediction of protein-ligand binding free energies from MD remains a challenging problem, even in well studied model binding sites like the apolar cavity of T4 Lysozyme L99A. In this study, we model recent experimental results that show the progressive opening of the binding pocket in response to a series of homologous ligands. Even while using enhanced sampling techniques, we demonstrate that the predicted relative binding free energies (RBFE) are still highly sensitive to the initial protein conformational state. Particularly, we highlight the importance of sufficient sampling of protein conformational changes and possible techniques for addressing the issue.</description>
+    <description descriptionType="Methods">free energy pertubation, molecular dynamics, replica exchange with solute tempering,</description>
+    <description descriptionType="Other">DGE-1321846, </description>
+  </descriptions>
+  <geoLocations>
+    <geoLocation>
+      <geoLocationPlace>false</geoLocationPlace>
+    </geoLocation>
+  </geoLocations>
+</resource>

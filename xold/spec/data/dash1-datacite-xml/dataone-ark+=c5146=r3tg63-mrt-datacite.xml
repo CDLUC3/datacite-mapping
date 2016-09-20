@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Batista, Andre</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Rain Gauge Rainfall Collection Data obtained at 620 Sao Bento Street, Guarulhos, Sao Paulo, Brazil, Zip Code 07070-000, from Aug. 24, 2015 to Nov, 24, 2015</title>
+  </titles>
+  <publisher>DataONE</publisher>
+  <publicationYear>2015</publicationYear>
+  <subjects>
+    <subject>Environmental Informatics</subject>
+    <subject>Rain Gauge</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Filipe, André</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers/>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>25735</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication (CC0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">The dataset shows the amount of rainfall collected in a rain gauge outside my house in Guarulhos, Sao Paulo, Brazil, from Aug. 24,2015 to Nov. 24, 2015. Data were gathered in order to test the following hypothesis: In Guarulhos-SP (Brazil), between the months of August and November (08/24/2015-11/24/2015), we will have a slightly fall in the amount of rain in comparison with 2014 and 2013 (not together) over the same period. Since Brazil has been in an intensive drought over the last two years, I suppose that we will not have large amounts of rain.</description>
+    <description descriptionType="Methods">- Rainfall data was record at 9:00 AM (UTC-3) every day.
+- Rainfall data was recorded in millimeters and it was converted into inches
+- Rain gauge was cleaned after recording</description>
+  </descriptions>
+</resource>

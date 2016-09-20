@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Drew, Nancy</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Baldo, Danny</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Grosberg, Anna</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title> Experimental data for manuscript &quot;Metrics for Assessing Cytoskeletal Orientational Correlations and Consistency&quot;</title>
+  </titles>
+  <publisher>UC Irvine</publisher>
+  <publicationYear>2015</publicationYear>
+  <subjects>
+    <subject>COOP</subject>
+    <subject>tissue engineering</subject>
+    <subject>cardiac</subject>
+    <subject>cytoskeleton</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Drew;Drew, Nancy</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers/>
+  <resourceType resourceTypeGeneral="Collection">Collection</resourceType>
+  <sizes>
+    <size>8224215090</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">Experimental data used to validate the co-orientational order parameter (COOP). The data is composed of microscopy images of triangular shaped neonatal rat ventricular myocytes and engineered cardiac tissues.</description>
+    <description descriptionType="Methods">Neonatal rat ventricular myocytes (NRVMs) prepared from two-day old Sprague-Dawley rats. NRVMs were engineered into isotropic tissues and triangular shaped single cells. These samples were fixed and stained with DAPI, phalloidin, and alpha-actinin. Microscopy images were taken of each stain, and MATLAB was used to determine construct orientation. For detailed methods please refer to the publication (Drew et al., PLosCB, 2015)</description>
+  </descriptions>
+  <geoLocations>
+    <geoLocation>
+      <geoLocationPlace>false</geoLocationPlace>
+    </geoLocation>
+  </geoLocations>
+</resource>

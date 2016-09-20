@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Stanish, Charles</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Levine, Abigail</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>14c dates from Taraco, Peru</title>
+  </titles>
+  <publisher>UC Los Angeles</publisher>
+  <publicationYear>2015</publicationYear>
+  <subjects>
+    <subject>Archaeology</subject>
+    <subject>carbon dates</subject>
+    <subject>PUcara</subject>
+    <subject>Qaluyu</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="Funder">
+      <contributorName> National Science Foundation</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="URL" relationType="IsPartOf">http://www.pnas.org/content/108/34/13901.short</relatedIdentifier>
+  </relatedIdentifiers>
+  <resourceType resourceTypeGeneral="Text">Text</resourceType>
+  <sizes>
+    <size>18437</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">Carbon dates from excavated contexts at the site of Taraco, Peru</description>
+    <description descriptionType="Methods">Ran through UC-Irvine</description>
+  </descriptions>
+</resource>

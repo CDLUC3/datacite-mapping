@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Copenhagen, David R</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Delwig, Anton</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Retinofugal projections from melanopsin-expressing retinal ganglion cells revealed by intraocular injections of Cre-dependent virus</title>
+  </titles>
+  <publisher>UC San Francisco</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>melanopsin ganglion cell</subject>
+    <subject>retinofugal projections</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Copenhagen, David</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>National Institutes of Health. National Eye Institute</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers/>
+  <resourceType resourceTypeGeneral="Image">Image</resourceType>
+  <sizes>
+    <size>22422601</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">To understand visual functions mediated by intrinsically photosensitive melanopsin-expressing retinal ganglion cells (mRGCs), it is important to elucidate axonal projections from these cells into the brain.  Initial studies reported that melanopsin is expressed only in retinal ganglion cells within the eye. However, recent studies in Opn4-Cre mice revealed Cre-mediated marker expression in multiple brain areas. These discoveries complicate the use of melanopsin-driven genetic labeling techniques to identify retinofugal projections specifically from mRGCs. To restrict labeling to mRGCs, we developed a recombinant adeno-associated virus (AAV) carrying a Cre-dependent reporter (human placental alkaline phosphatase) that was injected into the vitreous of Opn4-Cre mouse eyes. The labeling observed in the brain of these mice was necessarily restricted specifically to retinofugal projections from mRGCs in the injected eye. We found that mRGCs innervate multiple nuclei in the basal forebrain, hypothalamus, amygdala, thalamus and midbrain. Midline structures tended to be bilaterally innervated whereas the lateral structures received mostly contralateral innervation. As validation of our approach, we found projection patterns largely corresponded with previously published results; however, we have also identified a few novel targets. Our discovery of projections to the central amygdala suggests a possible direct neural pathway for aversive responses to light in neonates. In addition, projections to the accessory optic system suggest that mRGCs play a direct role in visual tracking, responses that were previously attributed to other classes of retinal ganglion cells. Moreover, projections to the zona incerta raise the possibility that mRGCs could regulate visceral and sensory functions.  However, additional studies are needed to investigate the actual photosensitivity of mRGCs that project to the different brain areas. Also, there is a concern of &quot;overlabeling&quot; with very sensitive reporters that uncover low levels of expression.  Light evoked signaling from these cells must be shown to be of sufficient sensitivity to elicit physiologically relevant responses.</description>
+    <description descriptionType="Methods">Methods
+
+Generating AAV-flex-plap
+This virus was generated using standard sub-cloning with a modified pAAV-MCS backbone. The cDNA encoding human placental alkaline phosphatase (PLAP, NM_001632) was flanked by loxP (Fig.1A, open triangles) and lox2722 (Fig. 1A, closed triangles) sites to yield the flex-plap transgene.  This transgene was inserted in reverse orientation into a modified pAAV-MCS plasmid 3’ to a CMV promoter and 5’ to a woodchuck hepatitis virus post-transcriptional regulatory element (WPRE) and bovine growth hormone polyadenylation (pA) sequence to generate pAAV-flex-plap.  High titer virus of serotype 2/1 (4x1012 IU/mL) was generated from this plasmid at the University of North Carolina, Chapel Hill Vector Core facility.
+Fig 1. Selective labeling of mRGCs. (A) Map of the AAV-flex-plap vector that expresses alkaline phosphatase in a Cre-dependent manner (see methods for detailed description). (B, C) Representative flat-mount retinas from an Opn4cre mouse that received intravitreal injection into the right eye. (B) Retina from the injected right eye. (C) Retina from the non-injected left eye. Scale bar: 200 um.
+
+Animals
+Mice were housed in an AALAC-accredited pathogen-free animal facility with ad libitum access to food and water and with a 12-hour light-dark cycle with lights on at 7AM and off at 7PM. The University of California, San Francisco Institutional Animal Care and Use Committee (IACUC) specifically approved this study. The protocols, animal care procedures and the experimental methods meet all of the guidelines on the care and use of laboratory animals by the U.S. Public Health Service.  
+
+The following animals were used in this study: 1) C57BL/6J wild-type mice (Jackson Laboratory); 2) mice homozygous for Opn4cre allele (gift from Samar Hattar [5]), which express Cre under the melanopsin (Opn4) promoter; and 3) mice homozygous for Ai14 allele (Jackson Lab [8]), which is a Cre-dependent tdTomato reporter. Mice were genotyped by PCR with allele-specific primers [5]. 
+
+Intravitreal injections
+The age of the mice ranged from P38 to P96 at the time of injection. Mice were anesthetized with Isoflurane and topical administration of proparacaine (0.5%; Bausch &amp; Lomb). The pupils were dilated by topical administration of phenylephrine (2.5%; Bausch &amp; Lomb) and atropine sulfate (1%; Bausch &amp; Lomb) eye drops. A 32-gauge Hamilton syringe was used to inject 2 microliters of AAV-flex-plap into the superior part of the vitreous of right eyes.  A total of 13 injections were made (11 into Opn4cre mice and 2 into C57BL/6J wild-type mice). No PLAP signal was detected in the retinas of wild-type mice. Visually detectible PLAP labeling was examined and quantified in the brains of 5 animals. 
+
+Tissue processing for PLAP histochemistry
+PLAP histochemistry was performed as previously described [9, 10]. Two to eight weeks after the intravitreal injection the mice were euthanized by CO2 and transcardially perfused with 10 ml HEPES-buffered saline (HBS; 8.2 g/l NaCl, 6 g/l HEPES, 0.1 g/l Na2HPO4, pH to 7.4 with NaOH) followed by 20 ml cold 4% paraformaldehyde (PFA) in HBS. All subsequent solutions were prepared with HBS unless otherwise noted. Brains and eyes were dissected and post-fixed in 4% PFA for 3-4 hours at 4°C. The brains were embedded in 3% agar and cut on a vibratome (Model 3000, Vibratome Company) into 100 μm sections. The retina was dissected from the fixed eyes and flat-mounted. Following rinsing in HBS, the endogenous alkaline phosphatase was heat-inactivated by incubation at 72°C for 1 hour. Tissue was then washed twice in buffer 1 (100 mM Tris pH 7.5, 150 mM NaCl) and then twice again in buffer 2 (100 mM Tris pH 9.5, 100 mM NaCl, 50 mM MgCl2). PLAP reporter was visualized by incubating tissue in buffer two with BCIP (5-bromo-4-chloro-3-indolyl phosphate, 0.2 mg/ml) and NBT (nitro blue tetrazolium, 1 mg/ml) at room temperature for 1 to 12 hours. PLAP reaction was monitored and stopped before background staining became excessive by rinsing 3 times in 1mM EDTA followed by post-fixation in 4% PFA for 1 hour. To remove background staining, the tissue was cleared by immersing in ethanol series (30%-70%-95%-100%-95%-70%-30%) for 1-3 minutes in each series and the subsequent wash in the HBS. Brain sections were counterstained (see below). Brain sections and whole mount retinas were mounted on microscope slides, briefly rinsed in distilled water and cover slipped using Aqua/Poly mount (Polysciences, Cat. # 18606).
+
+Counterstaining
+To visualize brain nuclei, all brain sections were counterstained with ToPro3 (Life Technologies, Cat. # T3605), a fluorescent nuclear stain, at 1:5,000 dilutions. To better visualize thalamic nuclei, alternate sections were processed for Cytochrome Oxidase staining [11] by immersing slices in Cytochrome Oxidase staining solution (30 mg Cytochrome C, 20 mg Catalase, 50 mg DAB in 100 ml PBS) for 2-4 hours at room temperature. 
+</description>
+    <description descriptionType="Other">EY 01869</description>
+  </descriptions>
+</resource>

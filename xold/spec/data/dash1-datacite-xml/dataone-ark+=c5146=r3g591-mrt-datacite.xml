@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Guy Fitzgerald</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Information Systems Doctoral Dissertations (UK)</title>
+  </titles>
+  <publisher>DataONE</publisher>
+  <publicationYear>2015</publicationYear>
+  <subjects>
+    <subject>information system</subject>
+    <subject>dissertation</subject>
+    <subject>thesis</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Fitzgerald, Guy</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers/>
+  <resourceType resourceTypeGeneral="Collection">Collection</resourceType>
+  <sizes>
+    <size>25779</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication (CC0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">This is the collection of information systems PhDs</description>
+    <description descriptionType="Methods">All research methodologies are acceptable</description>
+  </descriptions>
+</resource>

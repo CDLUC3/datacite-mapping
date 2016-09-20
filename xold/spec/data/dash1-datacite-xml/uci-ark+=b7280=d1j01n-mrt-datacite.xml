@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Mooney, Kailen</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Preston, Kris</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Burger, Jutta</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Assessing the importance of arthropod abundance, community composition, and habitat structure as determinants of habitat quality for Cactus Wren (Campylorhynchus brunneicapillus)</title>
+  </titles>
+  <publisher>UC Irvine</publisher>
+  <publicationYear>2015</publicationYear>
+  <subjects>
+    <subject>threatened species</subject>
+    <subject>Center for Environmental Biology</subject>
+    <subject>coastal sage scrub</subject>
+    <subject>CSS</subject>
+    <subject>Nature Reserve of Orange County</subject>
+    <subject>Irvine Ranch Conservancy</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>McKinley;McKinley, Matthew J.</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>Center for Environmental Biology, University of California, Irvine</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="URL" relationType="IsSupplementedBy">http://kmooney.bio.uci.edu/lab/home.html</relatedIdentifier>
+  </relatedIdentifiers>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>599</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">To document arthropod community structure across multiple cactus wren habitat elements, wren use of these different elements, and wren diet. For more detailed metadata, including data access and usage instructions, please download and consult README.txt file.</description>
+    <description descriptionType="Other"/>
+  </descriptions>
+  <geoLocations>
+    <geoLocation>
+      <geoLocationPlace>Orange County (Calif.)</geoLocationPlace>
+    </geoLocation>
+    <geoLocation>
+      <geoLocationPoint>33.634835 -117.84648</geoLocationPoint>
+    </geoLocation>
+    <geoLocation>
+      <geoLocationPoint>33.62236 -117.80172</geoLocationPoint>
+    </geoLocation>
+  </geoLocations>
+</resource>

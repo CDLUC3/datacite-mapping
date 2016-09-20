@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Sun, Wu</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Maseyk, Kadmiel</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Lett, Céline</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Seibt, Ulli</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Data from Sun, W., Maseyk, K., Lett, C. and Seibt, U. (2016). Litter dominates surface fluxes of carbonyl sulfide (COS) in a Californian oak woodland</title>
+  </titles>
+  <publisher>DataONE</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>carbonyl sulfide (COS)</subject>
+    <subject>soil COS flux</subject>
+    <subject>litter COS flux</subject>
+    <subject>drying-rewetting effects</subject>
+    <subject>mediterranean ecosystem</subject>
+    <subject>COS diffusion-reaction model</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>SUN, WU</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>European Research Council (ERC); UC Institute for the Study of Ecological and Evolutionary Climate Impacts (ISEECI); China Scholarship Council (CSC)</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers/>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>2024713</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication (CC0)</rights>
+  </rightsList>
+  <descriptions/>
+</resource>

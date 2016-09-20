@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Baldassare, Mark</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Annual Survey of Orange County 1995</title>
+  </titles>
+  <publisher>UC Irvine</publisher>
+  <publicationYear>2014</publicationYear>
+  <subjects>
+    <subject>Consumer Confidence</subject>
+    <subject>Economy</subject>
+    <subject>Social Issues</subject>
+    <subject>Crime</subject>
+    <subject>Transportation</subject>
+    <subject>Charitable Giving</subject>
+    <subject>Bill Clinton</subject>
+    <subject>Bob Dole</subject>
+    <subject>Pete Wilson</subject>
+    <subject>Politics</subject>
+    <subject>County Bankruptcy</subject>
+    <subject>Quality of Life</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>McKinley, Matthew J.</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>University of California, Irvine</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="URL" relationType="IsSupplementedBy">http://data.lib.uci.edu/ocs/</relatedIdentifier>
+  </relatedIdentifiers>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>404721</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">This fourteenth Orange County Annual Survey, UCI, spotlights several top concerns of Orange County residents. This year's survey focuses on the Orange County financial crisis that began last December when the county government declared bankruptcy. It seeks to determine how the financial crisis has affected attitudes about the local economy and quality of life. The sample size is 1,001 Orange County adult residents.
+
+Online data analysis &amp; additional documentation in Link below.</description>
+    <description descriptionType="Methods">The Orange County Annual Survey, UCI, was co-directed by Mark Baldassare, professor and chair of urban and regional planning, and Cheryl Katz, research associate. The random telephone survey included interviews with 1,001 Orange County adult residents conducted August 18 to 27, 1995. 
+
+We follow the methodology used in the 13 previous surveys. 
+
+Interviewing was conducted on weekend days and weekday nights, using a computer-generated random sample of telephone numbers. Within a household, adult respondents were randomly chosen for interview. Each interview included 94 questions and took an average of 20 minutes to complete. The interviewing was conducted in English and Spanish, as needed. 
+
+The completion rate for the survey was 74 percent. This rate is consistent with earlier Orange County Annual Surveys. Of the telephone numbers called, 20 percent resulted in completed interviews and 7 percent were refusals. The field work was conducted by Interviewing Services of America in Van Nuys, CA. 
+
+The sample was compared to the U.S. Census and state figures by city for Orange County, and was found to represent the actual regional distribution of Orange County residents. The sample's demographic characteristics were also closely comparable to the Census and other survey data for Orange County residents. 
+
+The sampling error for this survey is +/- 3 percent at the 95 percent confidence level. This means that 95 times out of 100, the results will be within 3 percentage points of what they would be if all adults in Orange County were interviewed. The sampling error for any subgroup would be larger. Sampling error is just one type of error to which surveys are subject. Results may also be affected by question wording, ordering, and survey timing.</description>
+  </descriptions>
+  <geoLocations>
+    <geoLocation>
+      <geoLocationPlace>Orange County (Calif.)</geoLocationPlace>
+    </geoLocation>
+  </geoLocations>
+</resource>

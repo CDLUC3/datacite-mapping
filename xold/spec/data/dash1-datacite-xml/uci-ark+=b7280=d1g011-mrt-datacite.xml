@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>The Nature Conservancy San Diego Field Office</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Nolina cismontana focus surveys</title>
+  </titles>
+  <publisher>UC Irvine</publisher>
+  <publicationYear>2015</publicationYear>
+  <subjects>
+    <subject>beargrass</subject>
+    <subject>nolina cismontana</subject>
+    <subject>rare plant surveys</subject>
+    <subject>TNC</subject>
+    <subject>The Nature Conservancy</subject>
+    <subject>monitoring</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>McKinley;McKinley, Matthew J.</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>The Nature Conservancy</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="URL" relationType="IsSupplementedBy">http://www.nature.org/ourinitiatives/regions/northamerica/unitedstates/california/contact/index.htm</relatedIdentifier>
+  </relatedIdentifiers>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>540</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">For more detailed metadata, including data access and usage instructions, please download and consult README.txt file.</description>
+    <description descriptionType="Methods">Document current distribution and relative abundance</description>
+    <description descriptionType="Other"/>
+  </descriptions>
+  <geoLocations>
+    <geoLocation>
+      <geoLocationPlace>Orange County (Calif.)</geoLocationPlace>
+    </geoLocation>
+    <geoLocation>
+      <geoLocationBox>33.763718 -117.738676 33.789402 -117.688551</geoLocationBox>
+    </geoLocation>
+  </geoLocations>
+</resource>

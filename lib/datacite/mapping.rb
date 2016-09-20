@@ -1,38 +1,21 @@
 require 'logger'
+require 'xml/mapping_extensions'
 
-# Module for working with the [DataCite metadata schema](https://schema.datacite.org/meta/kernel-3/index.html)
+# Module for working with the [DataCite metadata schema](https://schema.datacite.org/)
 module Datacite
   # Maps DataCite XML to Ruby objects
   module Mapping
 
+    DATACITE_3_NAMESPACE = XML::MappingExtensions::Namespace.new(
+      uri: 'http://datacite.org/schema/kernel-3',
+      schema_location: 'http://schema.datacite.org/meta/kernel-3/metadata.xsd'
+    )
+
+    DATACITE_4_NAMESPACE = XML::MappingExtensions::Namespace.new(
+      uri: 'http://datacite.org/schema/kernel-4.0',
+      schema_location: 'https://schema.labs.datacite.org/meta/kernel-4.0/metadata.xsd'
+    )
+
     Dir.glob(File.expand_path('../mapping/*.rb', __FILE__)).sort.each(&method(:require))
-
-    class << self
-      attr_writer :log
-    end
-
-    # Gets the logger for the module. Default logger logs to `$stdout`.
-    # @return [Logger] the logger
-    def self.log
-      self.log_device = $stdout unless @log
-      @log
-    end
-
-    # Sets the log device. Defaults to `$stdout`
-    # @param value [IO] the log device
-    def self.log_device=(value)
-      @log = new_logger(logdev: value)
-    end
-
-    private
-
-    def self.new_logger(logdev:, level: Logger::DEBUG, shift_age: 10, shift_size: 1024 * 1024)
-      logger = Logger.new(logdev, shift_age, shift_size)
-      logger.level = level
-      logger.formatter = proc do |severity, datetime, progname, msg|
-        "#{datetime.to_time.utc} #{severity} -#{progname}- #{msg}\n"
-      end
-      logger
-    end
   end
 end

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Bannan, Caitlin C</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Calabró, Gaetano</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Kyu, Daisy Y</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Mobley, David L</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Simulation input and out and data analysis for calculating partition coefficients of small molecules in octanol/water and cyclohexane/water </title>
+  </titles>
+  <publisher>UC Irvine</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>Partition Coefficient</subject>
+    <subject>Solvation Free Energy</subject>
+    <subject>Molecular Dynamics</subject>
+    <subject>Free Energy Calculations</subject>
+    <subject>Alchemical Calculations</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Bannan;Bannan, Caitlin Colleen</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>National Institute of Health and National Science Foundation</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers/>
+  <resourceType resourceTypeGeneral="Collection">Collection</resourceType>
+  <sizes>
+    <size>332099654</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">Below are summaries for each archived file. There are READMEs in each sub-directory detailing the contents. 
+
+RunFiles.tar - These are a set of GROMACS molecular dynamics parameter files and an example run script
+
+Data.tar.gz - This directory contains all data produced by the project including input files created by Solvation Toolkit, output files from the GROMACS simulations, Alchemical Analysis, average density convergence plots, and dictionaries and text files with all calculated and experimental data.
+
+pythonScripts.tar - These are python scripts that were used for the project as a whole. 
+
+ErythromycinConformations.tar - This directory contains all the python scripts and analysis related to repeated erythromycin calculations with different initial conformations. 
+
+Density_followup.tar - This directory includes python scripts and data analysis for the example density convergence plots that are referenced in the text. 
+</description>
+    <description descriptionType="Methods">Associated article is still in review, but we will link it to this database if it is accepted. </description>
+    <description descriptionType="Other">1R01GM108889-01 (NIH), CHE 1352608 and CHE-0840513 (NSF)</description>
+  </descriptions>
+  <geoLocations>
+    <geoLocation>
+      <geoLocationPlace>false</geoLocationPlace>
+    </geoLocation>
+  </geoLocations>
+</resource>
