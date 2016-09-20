@@ -24,6 +24,7 @@ module Datacite
       # @param creators [Array<Creator>] the main researchers involved working on the data, or the authors of the publication in priority order.
       # @param titles [Array<Title>] the names or titles by which a resource is known.
       # @param subjects [Array<Subject>] subjects, keywords, classification codes, or key phrases describing the resource.
+      # @param funding_references [Array<FundingReference>] information about financial support (funding) for the resource being registered.
       # @param resource_type [ResourceType, nil] the type of the resource
       # @param alternate_identifiers [Array<AlternateIdentifier>] an identifier or identifiers other than the primary {Identifier} applied to the resource being registered.
       # @param rights_list [Array<Rights>] rights information for this resource.
@@ -33,6 +34,7 @@ module Datacite
         self.creators = creators
         self.titles = titles
         self.subjects = subjects
+        self.funding_references = funding_references
         self.resource_type = resource_type
         self.alternate_identifiers = alternate_identifiers
         self.rights_list = rights_list
@@ -56,6 +58,10 @@ module Datacite
 
       def subjects=(value)
         @subjects = (value && value.select(&:value)) || []
+      end
+
+      def funding_references=(value)
+        @funding_references = value || []
       end
 
       def alternate_identifiers=(value)
@@ -85,6 +91,10 @@ module Datacite
       # @!attribute [rw] subjects
       #   @return [Array<Subject>] subjects, keywords, classification codes, or key phrases describing the resource.
       array_node :subjects, 'subjects', 'subject', class: Subject, default_value: []
+
+      # @!attribute [rw] fundingReferences
+      #   @return [Array<FundingReference>] information about financial support (funding) for the resource being registered.
+      array_node :funding_references, 'fundingReferences', 'fundingReference', class: FundingReference, default_value: []
 
       # @!attribute [rw] resource_type
       #   @return [ResourceType, nil] the type of the resource. Optional.

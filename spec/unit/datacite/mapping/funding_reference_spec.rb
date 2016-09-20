@@ -42,11 +42,11 @@ module Datacite
 
         before(:all) do
           @fref_xml = '<fundingReference>
-                                   <funderName>European Commission</funderName>
-                                   <funderIdentifier funderIdentifierType="Crossref Funder ID">http://doi.org/10.13039/501100000780</funderIdentifier>
-                                   <awardNumber awardURI="http://cordis.europa.eu/project/rcn/100180_en.html">282625</awardNumber>
-                                   <awardTitle>MOTivational strength of ecosystem services and alternative ways to express the value of BIOdiversity</awardTitle>
-                                 </fundingReference>'.freeze
+                         <funderName>European Commission</funderName>
+                         <funderIdentifier funderIdentifierType="Crossref Funder ID">http://doi.org/10.13039/501100000780</funderIdentifier>
+                         <awardNumber awardURI="http://cordis.europa.eu/project/rcn/100180_en.html">282625</awardNumber>
+                         <awardTitle>MOTivational strength of ecosystem services and alternative ways to express the value of BIOdiversity</awardTitle>
+                       </fundingReference>'.freeze
 
           @fref = FundingReference.parse_xml(fref_xml)
         end

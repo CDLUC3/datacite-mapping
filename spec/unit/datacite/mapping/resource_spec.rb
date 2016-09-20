@@ -235,6 +235,48 @@ module Datacite
         end
       end
 
+      describe '#funding_references' do
+        it 'defaults to empty' do
+          resource = Resource.new(args)
+          expect(resource.funding_references).to eq([])
+        end
+
+        describe 'funding_references:' do
+          it 'can be initialized' do
+            funding_references = [
+              FundingReference.new(type: 'URL', value: 'http://example.org'),
+              FundingReference.new(type: 'URL', value: 'http://example.com')
+            ]
+            args[:funding_references] = funding_references
+            resource = Resource.new(args)
+            expect(resource.funding_references).to eq(funding_references)
+            expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
+          end
+          it 'can\'t be initialized to nil' do
+            args[:funding_references] = nil
+            resource = Resource.new(args)
+            expect(resource.funding_references).to eq([])
+          end
+        end
+
+        describe '#funding_references=' do
+          it 'can be set' do
+            resource = Resource.new(args)
+            funding_references = [
+              FundingReference.new(name: 'Ministry of Magic', award_number: '9¾'),
+              FundingReference.new(name: 'НИИЧАВО', award_number: '164070')
+            ]
+            resource.funding_references = funding_references
+            expect(resource.funding_references).to eq(funding_references)
+          end
+          it 'can\'t be set to nil' do
+            resource = Resource.new(args)
+            resource.funding_references = nil
+            expect(resource.funding_references).to eq([])
+          end
+        end
+      end
+      
       describe '#resource_type' do
         it 'can be initialized' do
           resource_type = ResourceType.new(resource_type_general: ResourceTypeGeneral::DATASET, value: 'Dataset')
