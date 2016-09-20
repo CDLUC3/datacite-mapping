@@ -34,9 +34,6 @@ module Datacite
       # Required:
       #
       # <xs:element name="resource">
-      # <xs:element name="identifier">
-      # <xs:element name="titles">
-      # <xs:element name="title" maxOccurs="unbounded">
       # <xs:element name="publisher">
       # <xs:element name="publicationYear">
       # <xs:element name="contributorName">
@@ -65,29 +62,6 @@ module Datacite
       # <xs:element name="br" minOccurs="0" maxOccurs="unbounded">
 
       describe '#initialize' do
-        it 'sets the identifier' do
-          resource = Resource.new(
-            identifier: @id,
-            creators: @creators,
-            titles: @titles,
-            publisher: @publisher,
-            publication_year: @pub_year
-          )
-          expect(resource.identifier).to eq(@id)
-          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
-        end
-
-        it 'sets the titles' do
-          resource = Resource.new(
-            identifier: @id,
-            creators: @creators,
-            titles: @titles,
-            publisher: @publisher,
-            publication_year: @pub_year
-          )
-          expect(resource.titles).to eq(@titles)
-          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
-        end
 
         it 'sets the publisher' do
           resource = Resource.new(
@@ -111,55 +85,6 @@ module Datacite
           )
           expect(resource.publication_year).to eq(@pub_year)
           expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
-        end
-
-        it 'requires an identifier' do
-          expect do
-            Resource.new(
-              creators: @creators,
-              titles: @titles,
-              publisher: @publisher,
-              publication_year: @pub_year
-            )
-          end.to raise_error(ArgumentError)
-          expect do
-            Resource.new(
-              creators: @creators,
-              titles: @titles,
-              publisher: @publisher,
-              publication_year: @pub_year,
-              identifier: nil
-            )
-          end.to raise_error(ArgumentError)
-        end
-
-        it 'requires titles' do
-          expect do
-            Resource.new(
-              identifier: @id,
-              creators: @creators,
-              publisher: @publisher,
-              publication_year: @pub_year
-            )
-          end.to raise_error(ArgumentError)
-          expect do
-            Resource.new(
-              identifier: @id,
-              creators: @creators,
-              publisher: @publisher,
-              publication_year: @pub_year,
-              titles: nil
-            )
-          end.to raise_error(ArgumentError)
-          expect do
-            Resource.new(
-              identifier: @id,
-              creators: @creators,
-              publisher: @publisher,
-              publication_year: @pub_year,
-              titles: []
-            )
-          end.to raise_error(ArgumentError)
         end
 
         it 'requires a publisher' do

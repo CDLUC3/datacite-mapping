@@ -18,13 +18,15 @@ module Datacite
 
       # Initialies a new {Resource}
       #
+      # @param identifier [Identifier] a persistent identifier that identifies a resource.
       # @param creators [Array<Creator>] the main researchers involved working on the data, or the authors of the publication in priority order.
       # @param titles [Array<Title>] the names or titles by which a resource is known.
       # @param subjects [Array<Subject>] subjects, keywords, classification codes, or key phrases describing the resource.
       # @param alternate_identifiers [Array<AlternateIdentifier>] an identifier or identifiers other than the primary {Identifier} applied to the resource being registered.
       # @param rights_list [Array<Rights>] rights information for this resource.
       # @param geo_locations [Array<GeoLocations>] spatial region or named place where the data was gathered or about which the data is focused.
-      def initialize(creators:, titles:, subjects: [], alternate_identifiers: [], rights_list: [], geo_locations: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
+      def initialize(identifier:, creators:, titles:, subjects: [], alternate_identifiers: [], rights_list: [], geo_locations: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
+        self.identifier = identifier
         self.creators = creators
         self.titles = titles
         self.subjects = subjects
@@ -33,51 +35,60 @@ module Datacite
         self.geo_locations = geo_locations
       end
 
+      def identifier=(value)
+        fail ArgumentError, 'Resource must have an identifier' unless value
+        @identifier = value
+      end
+
       def creators=(value)
         fail ArgumentError, 'Resource must have at least one creator' unless value && value.size > 0
         @creators = value
       end
-
-      # @!attribute [rw] creators
-      #   @return [Array<Creator>] the main researchers involved working on the data, or the authors of the publication in priority order.
-      array_node :creators, 'creators', 'creator', class: Creator
 
       def titles=(value)
         fail ArgumentError, 'Resource must have at least one title' unless value && value.size > 0
         @titles = value
       end
 
-      # @!attribute [rw] titles
-      #   @return [Array<Title>] the names or titles by which a resource is known.
-      array_node :titles, 'titles', 'title', class: Title
-
       def subjects=(value)
         @subjects = (value && value.select(&:value)) || []
       end
-
-      # @!attribute [rw] subjects
-      #   @return [Array<Subject>] subjects, keywords, classification codes, or key phrases describing the resource.
-      array_node :subjects, 'subjects', 'subject', class: Subject, default_value: []
 
       def alternate_identifiers=(value)
         @alternate_identifiers = value || []
       end
 
-      # @!attribute [rw] alternate_identifiers
-      #   @return [Array<AlternateIdentifier>] an identifier or identifiers other than the primary {Identifier} applied to the resource being registered.
-      array_node :alternate_identifiers, 'alternateIdentifiers', 'alternateIdentifier', class: AlternateIdentifier, default_value: []
-
       def rights_list=(value)
         @rights_list = value || []
       end
 
-      # @!attribute [rw] rights_list
-      #   @return [Array<Rights>] rights information for this resource.
-      array_node :rights_list, 'rightsList', 'rights', class: Rights, default_value: []
-
       def geo_locations=(value)
         @geo_locations = (value && value.select(&:location?)) || []
       end
+
+      # @!attribute [rw] identifier
+      #   @return [Identifier] a persistent identifier that identifies a resource.
+      object_node :identifier, 'identifier', class: Identifier
+
+      # @!attribute [rw] alternate_identifiers
+      #   @return [Array<AlternateIdentifier>] an identifier or identifiers other than the primary {Identifier} applied to the resource being registered.
+      array_node :alternate_identifiers, 'alternateIdentifiers', 'alternateIdentifier', class: AlternateIdentifier, default_value: []
+
+      # @!attribute [rw] creators
+      #   @return [Array<Creator>] the main researchers involved working on the data, or the authors of the publication in priority order.
+      array_node :creators, 'creators', 'creator', class: Creator
+
+      # @!attribute [rw] titles
+      #   @return [Array<Title>] the names or titles by which a resource is known.
+      array_node :titles, 'titles', 'title', class: Title
+
+      # @!attribute [rw] subjects
+      #   @return [Array<Subject>] subjects, keywords, classification codes, or key phrases describing the resource.
+      array_node :subjects, 'subjects', 'subject', class: Subject, default_value: []
+
+      # @!attribute [rw] rights_list
+      #   @return [Array<Rights>] rights information for this resource.
+      array_node :rights_list, 'rightsList', 'rights', class: Rights, default_value: []
 
       # @!attribute [rw] geo_locations
       #   @return [Array<GeoLocations>] spatial region or named place where the data was gathered or about which the data is focused.

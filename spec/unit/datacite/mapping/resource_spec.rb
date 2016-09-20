@@ -5,11 +5,14 @@ module Datacite
   module Mapping
     describe Resource do
 
+      attr_reader :identifier
       attr_reader :creators
       attr_reader :titles
       attr_reader :args
 
       before(:each) do
+        @identifier = Identifier.new(value: '10.14749/1407399495')
+
         @creators = [
           Creator.new(
             name: 'Hedy Lamarr',
@@ -29,12 +32,43 @@ module Datacite
         ]
 
         @args = {
+          identifier: identifier,
           creators: creators,
           titles: titles
         }
       end
 
+      describe '#identifier' do
+        it 'requires an identifier' do
+          args.delete(:identifier)
+          expect { Resource.new(args) }.to raise_error(ArgumentError)
+        end
+
+        it 'requires a non-nil identifier' do
+          args[:identifier] = nil
+          expect { Resource.new(args) }.to raise_error(ArgumentError)
+        end
+
+        it 'can be initialized' do
+          resource = Resource.new(args)
+          expect(resource.identifier).to eq(identifier)
+        end
+
+        it 'can be set' do
+          new_id = Identifier.new(value: '10.1594/WDCC/CCSRNIES_SRES_B2')
+          resource = Resource.new(args)
+          resource.identifier = new_id
+          expect(resource.identifier).to eq(new_id)
+        end
+      end
+
       describe '#creators' do
+
+        it 'requires a creator list' do
+          args.delete(:creators)
+          expect { Resource.new(args) }.to raise_error(ArgumentError)
+        end
+
         it 'requires a non-nil creator list' do
           args[:creators] = nil
           expect { Resource.new(args) }.to raise_error(ArgumentError)
@@ -85,6 +119,11 @@ module Datacite
       end
 
       describe '#titles' do
+        it 'requires a title list' do
+          args.delete(:titles)
+          expect { Resource.new(args) }.to raise_error(ArgumentError)
+        end
+
         it 'requires a non-nil title list' do
           args[:titles] = nil
           expect { Resource.new(args) }.to raise_error(ArgumentError)
@@ -126,7 +165,7 @@ module Datacite
               Subject.new(
                 language: 'en-us',
                 scheme: 'LCSH',
-                scheme_uri: URI('http://id.loc.gov/authorities/subjects'),
+                scheme_uri: URI('http://identifier.loc.gov/authorities/subjects'),
                 value: 'Mammals--Embryology'
               ),
               Subject.new(
@@ -164,7 +203,7 @@ module Datacite
               Subject.new(
                 language: 'en-us',
                 scheme: 'LCSH',
-                scheme_uri: URI('http://id.loc.gov/authorities/subjects'),
+                scheme_uri: URI('http://identifier.loc.gov/authorities/subjects'),
                 value: 'Mammals--Embryology'
               ),
               Subject.new(
