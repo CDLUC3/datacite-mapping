@@ -11,10 +11,21 @@ module Datacite
 
       # Initialies a new {Resource}
       #
+      # @param creators [Array<Creator>] the main researchers involved working on the data, or the authors of the publication in priority order.
       # @param alternate_identifiers [Array<AlternateIdentifier>] an identifier or identifiers other than the primary {Identifier} applied to the resource being registered.
-      def initialize(alternate_identifiers: [])
+      def initialize(creators:, alternate_identifiers: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
+        self.creators = creators
         self.alternate_identifiers = alternate_identifiers
       end
+
+      def creators=(value)
+        fail ArgumentError, 'Resource must have at least one creator' unless value && value.size > 0
+        @creators = value
+      end
+
+      # @!attribute [rw] creators
+      #   @return [Array<Creator>] the main researchers involved working on the data, or the authors of the publication in priority order.
+      array_node :creators, 'creators', 'creator', class: Creator
 
       # @!attribute [rw] alternate_identifiers
       #   @return [Array<AlternateIdentifier>] an identifier or identifiers other than the primary {Identifier} applied to the resource being registered.

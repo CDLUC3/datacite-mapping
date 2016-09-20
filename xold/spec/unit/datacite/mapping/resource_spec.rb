@@ -35,9 +35,6 @@ module Datacite
       #
       # <xs:element name="resource">
       # <xs:element name="identifier">
-      # <xs:element name="creators">
-      # <xs:element name="creator" maxOccurs="unbounded">
-      # <xs:element name="creatorName">
       # <xs:element name="titles">
       # <xs:element name="title" maxOccurs="unbounded">
       # <xs:element name="publisher">
@@ -58,8 +55,6 @@ module Datacite
       # <xs:element name="date" minOccurs="0" maxOccurs="unbounded">
       # <xs:element name="language" type="xs:language" minOccurs="0">
       # <xs:element name="resourceType" minOccurs="0">
-      # <xs:element name="alternateIdentifiers" minOccurs="0">
-      # <xs:element name="alternateIdentifier" minOccurs="0" maxOccurs="unbounded">
       # <xs:element name="relatedIdentifiers" minOccurs="0">
       # <xs:element name="relatedIdentifier" minOccurs="0" maxOccurs="unbounded">
       # <xs:element name="sizes" minOccurs="0">
@@ -88,18 +83,6 @@ module Datacite
             publication_year: @pub_year
           )
           expect(resource.identifier).to eq(@id)
-          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
-        end
-
-        it 'sets the creators' do
-          resource = Resource.new(
-            identifier: @id,
-            creators: @creators,
-            titles: @titles,
-            publisher: @publisher,
-            publication_year: @pub_year
-          )
-          expect(resource.creators).to eq(@creators)
           expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
         end
 
@@ -155,35 +138,6 @@ module Datacite
               publisher: @publisher,
               publication_year: @pub_year,
               identifier: nil
-            )
-          end.to raise_error(ArgumentError)
-        end
-
-        it 'requires creators' do
-          expect do
-            Resource.new(
-              identifier: @id,
-              titles: @titles,
-              publisher: @publisher,
-              publication_year: @pub_year
-            )
-          end.to raise_error(ArgumentError)
-          expect do
-            Resource.new(
-              identifier: @id,
-              titles: @titles,
-              publisher: @publisher,
-              publication_year: @pub_year,
-              creators: []
-            )
-          end.to raise_error(ArgumentError)
-          expect do
-            Resource.new(
-              identifier: @id,
-              titles: @titles,
-              publisher: @publisher,
-              publication_year: @pub_year,
-              creators: nil
             )
           end.to raise_error(ArgumentError)
         end
@@ -356,23 +310,6 @@ module Datacite
             language: 'en-emodeng'
           )
           expect(resource.language).to eq('en-emodeng')
-          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
-        end
-
-        it 'allows alternate identifiers' do
-          alternate_identifiers = [
-            AlternateIdentifier.new(type: 'URL', value: 'http://example.org'),
-            AlternateIdentifier.new(type: 'URL', value: 'http://example.com')
-          ]
-          resource = Resource.new(
-            identifier: @id,
-            creators: @creators,
-            titles: @titles,
-            publisher: @publisher,
-            publication_year: @pub_year,
-            alternate_identifiers: alternate_identifiers
-          )
-          expect(resource.alternate_identifiers).to eq(alternate_identifiers)
           expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
         end
 

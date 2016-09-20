@@ -5,10 +5,55 @@ module Datacite
   module Mapping
     describe Resource do
 
+      attr_reader :creators
       attr_reader :args
 
       before(:each) do
-        @args = {}
+        @creators = [
+          Creator.new(
+            name: 'Hedy Lamarr',
+            identifier: NameIdentifier.new(scheme: 'ISNI', scheme_uri: URI('http://isni.org/'), value: '0000-0001-1690-159X'),
+            affiliations: ['United Artists', 'Metro-Goldwyn-Mayer']
+          ),
+          Creator.new(
+            name: 'Herschlag, Natalie',
+            identifier: NameIdentifier.new(scheme: 'ISNI', scheme_uri: URI('http://isni.org/'), value: '0000-0001-0907-8419'),
+            affiliations: ['Gaumont Buena Vista International', '20th Century Fox']
+          )
+        ]
+
+        @args = {
+          creators: creators
+        }
+      end
+
+      describe '#creators' do
+        it 'requires a non-nil creator list' do
+          args[:creators] = nil
+          expect { Resource.new(args) }.to raise_error(ArgumentError)
+        end
+
+        it 'requires a non-empty creator list' do
+          args[:creators] = []
+          expect { Resource.new(args) }.to raise_error(ArgumentError)
+        end
+
+        it 'can be initialized' do
+          resource = Resource.new(args)
+          expect(resource.creators).to eq(creators)
+          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
+        end
+
+        it 'can be set' do
+          new_creators = [ Creator.new(
+            name: 'Danica McKellar',
+            identifier: NameIdentifier.new(scheme: 'ISNI', scheme_uri: URI('http://isni.org/'), value: '0000 0001 1678 4522'),
+            affiliations: ['Disney–ABC Television Group']
+          )]
+          resource = Resource.new(args)
+          resource.creators = new_creators
+          expect(resource.creators).to eq(new_creators)
+        end
       end
 
       describe '#alternate_identifiers' do
