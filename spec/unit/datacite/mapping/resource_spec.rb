@@ -235,6 +235,22 @@ module Datacite
         end
       end
 
+      describe '#resource_type' do
+        it 'can be initialized' do
+          resource_type = ResourceType.new(resource_type_general: ResourceTypeGeneral::DATASET, value: 'Dataset')
+          args[:resource_type] = resource_type
+          resource = Resource.new(args)
+          expect(resource.resource_type).to eq(resource_type)
+        end
+
+        it 'can be set' do
+          resource_type = ResourceType.new(resource_type_general: ResourceTypeGeneral::DATASET, value: 'Dataset')
+          resource = Resource.new(args)
+          resource.resource_type = resource_type
+          expect(resource.resource_type).to eq(resource_type)
+        end
+      end
+
       describe '#alternate_identifiers' do
         it 'defaults to empty' do
           resource = Resource.new(args)

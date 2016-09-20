@@ -1,8 +1,10 @@
 require 'xml/mapping_extensions'
 
+require 'datacite/mapping/identifier'
 require 'datacite/mapping/creator'
 require 'datacite/mapping/title'
 require 'datacite/mapping/subject'
+require 'datacite/mapping/resource_type'
 require 'datacite/mapping/alternate_identifier'
 require 'datacite/mapping/rights'
 require 'datacite/mapping/geo_location'
@@ -22,14 +24,16 @@ module Datacite
       # @param creators [Array<Creator>] the main researchers involved working on the data, or the authors of the publication in priority order.
       # @param titles [Array<Title>] the names or titles by which a resource is known.
       # @param subjects [Array<Subject>] subjects, keywords, classification codes, or key phrases describing the resource.
+      # @param resource_type [ResourceType, nil] the type of the resource
       # @param alternate_identifiers [Array<AlternateIdentifier>] an identifier or identifiers other than the primary {Identifier} applied to the resource being registered.
       # @param rights_list [Array<Rights>] rights information for this resource.
       # @param geo_locations [Array<GeoLocations>] spatial region or named place where the data was gathered or about which the data is focused.
-      def initialize(identifier:, creators:, titles:, subjects: [], alternate_identifiers: [], rights_list: [], geo_locations: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
+      def initialize(identifier:, creators:, titles:, subjects: [], resource_type: nil, alternate_identifiers: [], rights_list: [], geo_locations: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
         self.identifier = identifier
         self.creators = creators
         self.titles = titles
         self.subjects = subjects
+        self.resource_type = resource_type
         self.alternate_identifiers = alternate_identifiers
         self.rights_list = rights_list
         self.geo_locations = geo_locations
@@ -70,10 +74,6 @@ module Datacite
       #   @return [Identifier] a persistent identifier that identifies a resource.
       object_node :identifier, 'identifier', class: Identifier
 
-      # @!attribute [rw] alternate_identifiers
-      #   @return [Array<AlternateIdentifier>] an identifier or identifiers other than the primary {Identifier} applied to the resource being registered.
-      array_node :alternate_identifiers, 'alternateIdentifiers', 'alternateIdentifier', class: AlternateIdentifier, default_value: []
-
       # @!attribute [rw] creators
       #   @return [Array<Creator>] the main researchers involved working on the data, or the authors of the publication in priority order.
       array_node :creators, 'creators', 'creator', class: Creator
@@ -85,6 +85,14 @@ module Datacite
       # @!attribute [rw] subjects
       #   @return [Array<Subject>] subjects, keywords, classification codes, or key phrases describing the resource.
       array_node :subjects, 'subjects', 'subject', class: Subject, default_value: []
+
+      # @!attribute [rw] resource_type
+      #   @return [ResourceType, nil] the type of the resource. Optional.
+      object_node :resource_type, 'resourceType', class: ResourceType, default_value: nil
+
+      # @!attribute [rw] alternate_identifiers
+      #   @return [Array<AlternateIdentifier>] an identifier or identifiers other than the primary {Identifier} applied to the resource being registered.
+      array_node :alternate_identifiers, 'alternateIdentifiers', 'alternateIdentifier', class: AlternateIdentifier, default_value: []
 
       # @!attribute [rw] rights_list
       #   @return [Array<Rights>] rights information for this resource.
@@ -109,7 +117,6 @@ module Datacite
 
       use_mapping :datacite_3
       fallback_mapping :datacite_3, :_default
-
     end
 
   end

@@ -459,15 +459,6 @@ module Datacite
         it 'requires a language'
       end
 
-      describe 'resource_type' do
-        it 'returns the resource type'
-      end
-
-      describe 'resource_type=' do
-        it 'sets the resource type'
-        it 'requires a resource type'
-      end
-
       describe 'related_identifiers' do
         it 'returns the related identifier list'
         it 'returns an editable list'
