@@ -26,9 +26,10 @@ module Datacite
         raise e, "#{@owner}.#{@attrname}: Can't extract #{self.class} from #{xml}: #{e.message}"
       end
 
-      def set_attr_value(xml, value)
+      def set_attr_value(xml, value) # rubocop:disable Metrics/AbcSize
         fail "Invalid value: expected #{geom_class} instance, was #{value || 'nil'}" unless value && value.is_a?(geom_class)
         element = @path.first(xml, ensure_created: true)
+
         if datacite_3?
           element.text = value.to_s
         else
