@@ -67,11 +67,6 @@ module Datacite
       # <xs:element name="descriptions" minOccurs="0">
       # <xs:element name="description" minOccurs="0" maxOccurs="unbounded">
       # <xs:element name="br" minOccurs="0" maxOccurs="unbounded">
-      # <xs:element name="geoLocations" minOccurs="0">
-      # <xs:element name="geoLocation" minOccurs="0" maxOccurs="unbounded">
-      # <xs:element name="geoLocationPoint" type="point" minOccurs="0"/>
-      # <xs:element name="geoLocationBox" type="box" minOccurs="0"/>
-      # <xs:element name="geoLocationPlace" minOccurs="0"/>
 
       describe '#initialize' do
         it 'sets the identifier' do
@@ -481,16 +476,6 @@ module Datacite
         it 'rejects nil'
       end
 
-      describe 'creators' do
-        it 'returns the creator list'
-        it 'returns an editable list'
-      end
-
-      describe 'creators=' do
-        it 'overwrites the creator list'
-        it 'requires at least one creator'
-      end
-
       describe 'titles' do
         it 'returns the title list'
         it 'returns an editable list'
@@ -613,16 +598,6 @@ module Datacite
         it 'requires a resource type'
       end
 
-      describe 'alternate_identifiers' do
-        it 'returns the alternate identifier list'
-        it 'returns an editable list'
-      end
-
-      describe 'alternate_identifiers=' do
-        it 'overwrites the alternate identifier list'
-        it 'accepts an empty list'
-      end
-
       describe 'related_identifiers' do
         it 'returns the related identifier list'
         it 'returns an editable list'
@@ -679,16 +654,6 @@ module Datacite
 
       describe 'descriptions=' do
         it 'overwrites the description list'
-        it 'accepts an empty list'
-      end
-
-      describe 'geo_locations' do
-        it 'returns the geolocation list'
-        it 'returns an editable list'
-      end
-
-      describe 'geo_locations=' do
-        it 'overwrites the geolocation list'
         it 'accepts an empty list'
       end
 

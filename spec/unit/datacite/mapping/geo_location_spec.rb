@@ -71,11 +71,35 @@ module Datacite
       end
 
       describe '#load_from_xml' do
-        it 'parses XML' do
+        it 'reads geoLocationPolygons'
+        it 'reads DC3 points'
+        it 'reads DC3 boxes'
+
+        it 'parses DC3' do
           xml_text = '<geoLocation>
+                        <geoLocationPlace>Atlantic Ocean</geoLocationPlace>
                         <geoLocationPoint>31.233 -67.302</geoLocationPoint>
                         <geoLocationBox>41.090 -71.032 42.893 -68.211</geoLocationBox>
+                      </geoLocation>'
+          loc = GeoLocation.parse_xml(xml_text)
+          expect(loc.point).to eq(GeoLocationPoint.new(31.233, -67.302))
+          expect(loc.box).to eq(GeoLocationBox.new(41.09, -71.032, 42.893, -68.211))
+          expect(loc.place).to eq('Atlantic Ocean')
+        end
+
+        it 'parses DC4' do
+          xml_text = '<geoLocation>
                         <geoLocationPlace>Atlantic Ocean</geoLocationPlace>
+                        <geoLocationPoint>
+                          <pointLatitude>31.233</pointLatitude>
+                          <pointLongitude>-67.302</pointLongitude>
+                        </geoLocationPoint>
+                        <geoLocationBox>
+                          <southBoundLatitude>41.090</southBoundLatitude>
+                          <westBoundLongitude>-71.032</westBoundLongitude>
+                          <northBoundLatitude>42.893</northBoundLatitude>
+                          <eastBoundLongitude>-68.211</eastBoundLongitude>
+                        </geoLocationBox>
                       </geoLocation>'
           loc = GeoLocation.parse_xml(xml_text)
           expect(loc.point).to eq(GeoLocationPoint.new(31.233, -67.302))
@@ -95,29 +119,48 @@ module Datacite
       end
 
       describe '#save_to_xml' do
-        it 'writes XML' do
-          loc = GeoLocation.new(
+
+        attr_reader :loc
+
+        before(:each) do
+          @loc = GeoLocation.new(
             point: GeoLocationPoint.new(31.233, -67.302),
             box: GeoLocationBox.new(41.09, -71.032, 42.893, -68.211),
             place: 'Atlantic Ocean'
           )
-          expected_xml = '<geoLocation>
+        end
+
+        describe 'DC4 mode' do
+          it 'writes geoLocationPolygons'
+          it 'writes DC4 points and boxes' do
+            expected_xml = '<geoLocation>
+                              <geoLocationPlace>Atlantic Ocean</geoLocationPlace>
+                              <geoLocationPoint>
+                                <pointLatitude>31.233</pointLatitude>
+                                <pointLongitude>-67.302</pointLongitude>
+                              </geoLocationPoint>
+                              <geoLocationBox>
+                                <southBoundLatitude>41.09</southBoundLatitude>
+                                <westBoundLongitude>-71.032</westBoundLongitude>
+                                <northBoundLatitude>42.893</northBoundLatitude>
+                                <eastBoundLongitude>-68.211</eastBoundLongitude>
+                              </geoLocationBox>
+                            </geoLocation>'
+            expect(loc.save_to_xml).to be_xml(expected_xml)
+          end
+        end
+
+        describe 'DC3 mapping' do
+          it 'drops geoLocationPolygons'
+          it 'warns when dropping geoLocationPolygons'
+          it 'writes DC3 points and boxes' do
+            expected_xml = '<geoLocation>
                             <geoLocationPoint>31.233 -67.302</geoLocationPoint>
                             <geoLocationBox>41.09 -71.032 42.893 -68.211</geoLocationBox>
                             <geoLocationPlace>Atlantic Ocean</geoLocationPlace>
                           </geoLocation>'
-          expect(loc.save_to_xml).to be_xml(expected_xml)
-        end
-      end
-
-      describe 'DC4 support' do
-        describe 'DC4 mode' do
-          it 'reads geoLocationPolygons'
-          it 'writes geoLocationPolygons'
-        end
-        describe 'DC3 mode' do
-          it 'drops geoLocationPolygons'
-          it 'warns when dropping geoLocationPolygons'
+            expect(loc.save_to_xml(mapping: :datacite_3)).to be_xml(expected_xml)
+          end
         end
       end
     end

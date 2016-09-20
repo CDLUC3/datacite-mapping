@@ -45,7 +45,7 @@ module Datacite
         end
 
         it 'can be set' do
-          new_creators = [ Creator.new(
+          new_creators = [Creator.new(
             name: 'Danica McKellar',
             identifier: NameIdentifier.new(scheme: 'ISNI', scheme_uri: URI('http://isni.org/'), value: '0000 0001 1678 4522'),
             affiliations: ['Disney–ABC Television Group']
@@ -82,7 +82,33 @@ module Datacite
           resource.alternate_identifiers = alternate_identifiers
           expect(resource.alternate_identifiers).to eq(alternate_identifiers)
         end
+      end
 
+      describe '#geo_locations' do
+        it 'defaults to empty' do
+          resource = Resource.new(args)
+          expect(resource.geo_locations).to eq([])
+        end
+
+        it 'can be initialized' do
+          geo_locations = [
+            GeoLocation.new(point: GeoLocationPoint.new(47.61, -122.33)),
+            GeoLocation.new(box: GeoLocationBox.new(-33.45, -122.33, 47.61, -70.67))
+          ]
+          args[:geo_locations] = geo_locations
+          resource = Resource.new(args)
+          expect(resource.geo_locations).to eq(geo_locations)
+        end
+
+        it 'can be set' do
+          resource = Resource.new(args)
+          geo_locations = [
+            GeoLocation.new(point: GeoLocationPoint.new(47.61, -122.33)),
+            GeoLocation.new(box: GeoLocationBox.new(-33.45, -122.33, 47.61, -70.67))
+          ]
+          resource.geo_locations = geo_locations
+          expect(resource.geo_locations).to eq(geo_locations)
+        end
       end
 
       describe 'DC3 support' do
