@@ -266,7 +266,16 @@ module Datacite
             resource = Resource.new(args)
             expect(resource.geo_locations).to eq([])
           end
-          it 'ignores empty locations'
+          it 'ignores empty locations' do
+            geo_locations = [
+              GeoLocation.new,
+              GeoLocation.new(point: GeoLocationPoint.new(47.61, -122.33)),
+              GeoLocation.new
+            ]
+            args[:geo_locations] = geo_locations
+            resource = Resource.new(args)
+            expect(resource.geo_locations).to eq([geo_locations[1]])
+          end
         end
 
         describe '#geo_locations=' do
@@ -284,7 +293,16 @@ module Datacite
             resource.geo_locations = nil
             expect(resource.geo_locations).to eq([])
           end
-          it 'ignores empty locations'
+          it 'ignores empty locations' do
+            resource = Resource.new(args)
+            geo_locations = [
+              GeoLocation.new,
+              GeoLocation.new(point: GeoLocationPoint.new(47.61, -122.33)),
+              GeoLocation.new
+            ]
+            resource.geo_locations = geo_locations
+            expect(resource.geo_locations).to eq([geo_locations[1]])
+          end
         end
       end
 
