@@ -27,7 +27,7 @@ module Datacite
         @place = value.respond_to?(:strip) ? value.strip : value
       end
 
-      def has_location?
+      def location?
         point || box || place
       end
 

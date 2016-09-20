@@ -64,7 +64,7 @@ module Datacite
       array_node :rights_list, 'rightsList', 'rights', class: Rights, default_value: []
 
       def geo_locations=(value)
-        @geo_locations = (value && value.select(&:has_location?)) || []
+        @geo_locations = (value && value.select(&:location?)) || []
       end
 
       # @!attribute [rw] geo_locations

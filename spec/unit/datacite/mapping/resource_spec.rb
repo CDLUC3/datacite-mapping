@@ -84,15 +84,78 @@ module Datacite
         end
 
         describe 'subjects:' do
-          it 'can be initialized'
-          it 'can\'t be initialized to nil'
-          it 'ignores subjects without values'
+          it 'can be initialized' do
+            subjects = [
+              Subject.new(
+                language: 'en-us',
+                scheme: 'LCSH',
+                scheme_uri: URI('http://id.loc.gov/authorities/subjects'),
+                value: 'Mammals--Embryology'
+              ),
+              Subject.new(
+                language: 'fr',
+                scheme: 'dewey',
+                scheme_uri: URI('http://dewey.info/'),
+                value: '571.8 Croissance, développement, reproduction biologique (fécondation, sexualité)'
+              )
+            ]
+            args[:subjects] = subjects
+            resource = Resource.new(args)
+            expect(resource.subjects).to eq(subjects)
+          end
+          it 'can\'t be initialized to nil' do
+            args[:subjects] = nil
+            resource = Resource.new(args)
+            expect(resource.subjects).to eq([])
+          end
+
+          it 'ignores subjects without values' do
+            subjects = [
+              Subject.allocate,
+              Subject.new(value: 'Mammals--Embryology'),
+              Subject.allocate
+            ]
+            args[:subjects] = subjects
+            resource = Resource.new(args)
+            expect(resource.subjects).to eq([subjects[1]])
+          end
         end
 
         describe '#subjects=' do
-          it 'can be set'
-          it 'can\'t be set to nil'
-          it 'ignores subjects without values'
+          it 'can be set' do
+            subjects = [
+              Subject.new(
+                language: 'en-us',
+                scheme: 'LCSH',
+                scheme_uri: URI('http://id.loc.gov/authorities/subjects'),
+                value: 'Mammals--Embryology'
+              ),
+              Subject.new(
+                language: 'fr',
+                scheme: 'dewey',
+                scheme_uri: URI('http://dewey.info/'),
+                value: '571.8 Croissance, développement, reproduction biologique (fécondation, sexualité)'
+              )
+            ]
+            resource = Resource.new(args)
+            resource.subjects = subjects
+            expect(resource.subjects).to eq(subjects)
+          end
+          it 'can\'t be set to nil'do
+            resource = Resource.new(args)
+            resource.subjects = nil
+            expect(resource.subjects).to eq([])
+          end
+          it 'ignores subjects without values' do
+            subjects = [
+              Subject.allocate,
+              Subject.new(value: 'Mammals--Embryology'),
+              Subject.allocate
+            ]
+            resource = Resource.new(args)
+            resource.subjects = subjects
+            expect(resource.subjects).to eq([subjects[1]])
+          end
         end
       end
 

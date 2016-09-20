@@ -247,33 +247,6 @@ module Datacite
           end.to raise_error(ArgumentError)
         end
 
-        it 'allows subjects' do
-          subjects = [
-            Subject.new(
-              language: 'en-us',
-              scheme: 'LCSH',
-              scheme_uri: URI('http://id.loc.gov/authorities/subjects'),
-              value: 'Mammals--Embryology'
-            ),
-            Subject.new(
-              language: 'fr',
-              scheme: 'dewey',
-              scheme_uri: URI('http://dewey.info/'),
-              value: '571.8 Croissance, développement, reproduction biologique (fécondation, sexualité)'
-            )
-          ]
-          resource = Resource.new(
-            identifier: @id,
-            creators: @creators,
-            titles: @titles,
-            publisher: @publisher,
-            publication_year: @pub_year,
-            subjects: subjects
-          )
-          expect(resource.subjects).to eq(subjects)
-          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
-        end
-
         it 'allows dates' do
           dates = [
             Date.new(value: DateTime.new(1914, 8, 4, 11, 01, 6.0123, '+1'), type: DateType::AVAILABLE),
@@ -486,8 +459,6 @@ module Datacite
       end
 
       describe 'subjects' do
-        it 'returns the subject list'
-        it 'returns an editable list'
 
         describe 'nonvalidating mode' do
           it 'filters out empty subjects' do
@@ -542,11 +513,6 @@ module Datacite
           end
         end
 
-      end
-
-      describe 'subjects=' do
-        it 'overwrites the subject list'
-        it 'accepts an empty list'
       end
 
       describe 'dates' do
