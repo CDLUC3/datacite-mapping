@@ -119,53 +119,5 @@ module Datacite
         end
       end
     end
-
-    describe GeoLocationPointNode do
-
-      class SomeElement
-        include XML::Mapping
-      end
-
-      describe '#to_value' do
-        it 'parses the value' do
-          node = GeoLocationPointNode.new(SomeElement, :point, 'point')
-          xml_text = '-33.45 -122.33'
-          expected = GeoLocationPoint.new(-33.45, -122.33)
-          expect(node.to_value(xml_text)).to eq(expected)
-        end
-        it 'deals with weird whitespace' do
-          node = GeoLocationPointNode.new(SomeElement, :point, 'point')
-          xml_text = %(
-                        -33.45\t-122.33
-                     )
-          expected = GeoLocationPoint.new(-33.45, -122.33)
-          expect(node.to_value(xml_text)).to eq(expected)
-        end
-      end
-
-      describe 'DC4 lat/long tags' do
-        describe 'DC4 mode' do
-          it 'parses a DC4 point' do
-            xml_text = File.read('spec/data/datacite4/datacite-example-full-v4.0.xml')
-            resource = Resource.parse_xml(xml_text)
-            locs = resource.geo_locations
-            expect(locs.size).to eq(1)
-            loc = locs[0]
-            point = loc.point
-            expect(point).to be_a(GeoLocationPoint)
-            expect(point.latitude).to eq(31.233)
-            expect(point.longitude).to eq(-67.302)
-          end
-
-          it 'writes a DC4 point'
-        end
-
-        describe 'DC3 mode' do
-          it 'writes DC4 points as DC3'
-        end
-      end
-
-    end
-
   end
 end
