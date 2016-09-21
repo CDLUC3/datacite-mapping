@@ -25,6 +25,12 @@ module Datacite
           creator = Creator.new(name: 'Hedy Lamarr')
           expect(creator.affiliations).to eq([])
         end
+
+        it 'sets the given and family names' do
+          creator = Creator.new(name: 'Hedy Lamarr', given_name: 'Hedy', family_name: 'Lamarr')
+          expect(creator.given_name).to eq('Hedy')
+          expect(creator.family_name).to eq('Lamarr')
+        end
       end
 
       describe '#name=' do
@@ -42,6 +48,43 @@ module Datacite
           creator = Creator.new(name: 'Hedy Lamarr')
           expect { creator.name = '' }.to raise_error(ArgumentError)
           expect(creator.name).to eq('Hedy Lamarr')
+        end
+        it 'strips' do
+          creator = Creator.allocate
+          creator.name = '
+            Hedy Lamarr
+          '
+          expect(creator.name).to eq('Hedy Lamarr')
+        end
+      end
+
+      describe '#given_name=' do
+        it 'sets the given_name' do
+          creator = Creator.allocate
+          creator.given_name = 'Hedy'
+          expect(creator.given_name).to eq('Hedy')
+        end
+        it 'strips' do
+          creator = Creator.allocate
+          creator.given_name = '
+            Hedy
+          '
+          expect(creator.given_name).to eq('Hedy')
+        end
+      end
+
+      describe '#family_name=' do
+        it 'sets the family_name' do
+          creator = Creator.allocate
+          creator.family_name = 'Lamarr'
+          expect(creator.family_name).to eq('Lamarr')
+        end
+        it 'strips' do
+          creator = Creator.allocate
+          creator.family_name = '
+            Lamarr
+          '
+          expect(creator.family_name).to eq('Lamarr')
         end
       end
 
