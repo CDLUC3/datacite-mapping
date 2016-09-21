@@ -27,74 +27,6 @@ module Datacite
         @pub_year = 2015
       end
 
-      # TODO: double-check all required/optional attributes
-
-      it 'correctly differentiates required and optional attributes'
-
-      # Required:
-      #
-      # <xs:element name="resource">
-
-      # Optional:
-      #
-      # <xs:element name="language" type="xs:language" minOccurs="0">
-      # <xs:element name="resourceType" minOccurs="0">
-      # <xs:element name="relatedIdentifiers" minOccurs="0">
-      # <xs:element name="relatedIdentifier" minOccurs="0" maxOccurs="unbounded">
-      # <xs:element name="sizes" minOccurs="0">
-      # <xs:element name="size" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-      # <xs:element name="formats" minOccurs="0">
-      # <xs:element name="format" type="xs:string" minOccurs="0" maxOccurs="unbounded">
-      # <xs:element name="version" type="xs:string" minOccurs="0">
-      # <xs:element name="br" minOccurs="0" maxOccurs="unbounded">
-
-      describe '#initialize' do
-
-
-        it 'allows sizes' do
-          sizes = ['2 petabytes', '2048 TB']
-          resource = Resource.new(
-            identifier: @id,
-            creators: @creators,
-            titles: @titles,
-            publisher: @publisher,
-            publication_year: @pub_year,
-            sizes: sizes
-          )
-          expect(resource.sizes).to eq(sizes)
-          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
-        end
-
-
-        it 'allows formats' do
-          formats = %w(application/xml text/html)
-          resource = Resource.new(
-            identifier: @id,
-            creators: @creators,
-            titles: @titles,
-            publisher: @publisher,
-            publication_year: @pub_year,
-            formats: formats
-          )
-          expect(resource.formats).to eq(formats)
-          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
-        end
-
-        it 'allows a version' do
-          version = '3.1'
-          resource = Resource.new(
-            identifier: @id,
-            creators: @creators,
-            titles: @titles,
-            publisher: @publisher,
-            publication_year: @pub_year,
-            version: version
-          )
-          expect(resource.version).to eq(version)
-          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
-        end
-      end
-
       describe '#parse_xml' do
         before(:each) do
           identifier = Identifier.new(value: '10.5072/example-full').save_to_xml
@@ -221,54 +153,6 @@ module Datacite
           end
         end
 
-      end
-
-      describe 'language' do
-        it 'returns the language'
-      end
-
-      describe 'language=' do
-        it 'sets the languge'
-        it 'requires a language'
-      end
-
-      describe 'related_identifiers' do
-        it 'returns the related identifier list'
-        it 'returns an editable list'
-      end
-
-      describe 'related_identifiers=' do
-        it 'overwrites the related identifier list'
-        it 'accepts an empty list'
-      end
-
-      describe 'sizes' do
-        it 'returns the size list'
-        it 'returns an editable list'
-      end
-
-      describe 'sizes=' do
-        it 'overwrites the size list'
-        it 'accepts an empty list'
-      end
-
-      describe 'formats' do
-        it 'returns the size list'
-        it 'returns an editable list'
-      end
-
-      describe 'formats=' do
-        it 'overwrites the size list'
-        it 'accepts an empty list'
-      end
-
-      describe 'version' do
-        it 'returns the version'
-      end
-
-      describe 'version=' do
-        it 'sets the languge'
-        it 'accepts nil'
       end
 
       describe 'XML mapping' do

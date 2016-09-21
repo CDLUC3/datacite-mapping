@@ -35,10 +35,13 @@ module Datacite
       # @param resource_type [ResourceType, nil] the type of the resource
       # @param alternate_identifiers [Array<AlternateIdentifier>] an identifier or identifiers other than the primary {Identifier} applied to the resource being registered.
       # @param related_identifiers [Array<RelatedIdentifier>] identifiers of related resources.
+      # @param sizes [Array<String>] unstructured size information about the resource.
+      # @param formats [Array<String>] technical format of the resource, e.g. file extension or MIME type.
+      # @param version [String] version number of the resource.
       # @param rights_list [Array<Rights>] rights information for this resource.
       # @param descriptions [Array<Description>] all additional information that does not fit in any of the other categories.
       # @param geo_locations [Array<GeoLocations>] spatial region or named place where the data was gathered or about which the data is focused.
-      def initialize(identifier:, creators:, titles:, publisher:, publication_year:, subjects: [], contributors: [], dates: [], language: nil, funding_references: [], resource_type: nil, alternate_identifiers: [], related_identifiers: [], rights_list: [], descriptions: [], geo_locations: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
+      def initialize(identifier:, creators:, titles:, publisher:, publication_year:, subjects: [], contributors: [], dates: [], language: nil, funding_references: [], resource_type: nil, alternate_identifiers: [], related_identifiers: [], sizes: [], formats: [], version: nil, rights_list: [], descriptions: [], geo_locations: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
         self.identifier = identifier
         self.creators = creators
         self.titles = titles
@@ -52,9 +55,20 @@ module Datacite
         self.resource_type = resource_type
         self.alternate_identifiers = alternate_identifiers
         self.related_identifiers = related_identifiers
+        self.sizes = sizes
+        self.formats = formats
+        self.version = version
         self.rights_list = rights_list
         self.descriptions = descriptions
         self.geo_locations = geo_locations
+      end
+
+      # Sets the namespace prefix to be used when writing out XML (defaults to nil)
+      # @param prefix [String, nil] The new prefix, or nil to use the default,
+      #   unprefixed namespace
+      def self.namespace_prefix=(prefix)
+        old_namespace = namespace
+        namespace ::XML::MappingExtensions::Namespace.new(uri: old_namespace.uri, schema_location: old_namespace.schema_location, prefix: prefix)
       end
 
       def identifier=(value)
@@ -74,7 +88,7 @@ module Datacite
 
       def publisher=(value)
         new_value = value && value.strip
-        fail ArgumentError, 'Resource must have at least one publisher' unless new_value && new_value.size > 0
+        fail ArgumentError, 'Resource must have a publisher' unless new_value && new_value.size > 0
         @publisher = new_value.strip
       end
 
@@ -105,6 +119,18 @@ module Datacite
 
       def related_identifiers=(value)
         @related_identifiers = value || []
+      end
+
+      def sizes=(value)
+        @sizes = value || []
+      end
+
+      def formats=(value)
+        @formats = value || []
+      end
+
+      def version=(value)
+        @version = value && value.strip
       end
 
       def rights_list=(value)
@@ -170,6 +196,18 @@ module Datacite
       # @!attribute [rw] related_identifiers
       #   @return [Array<RelatedIdentifier>] identifiers of related resources.
       array_node :related_identifiers, 'relatedIdentifiers', 'relatedIdentifier', class: RelatedIdentifier, default_value: []
+
+      # @!attribute [rw] sizes
+      #   @return [Array<String>] unstructured size information about the resource.
+      array_node :sizes, 'sizes', 'size', class: String, default_value: []
+
+      # @!attribute [rw] formats
+      #   @return [Array<String>] technical format of the resource, e.g. file extension or MIME type.
+      array_node :formats, 'formats', 'format', class: String, default_value: []
+
+      # @!attribute [rw] version
+      #   @return [String] version number of the resource. Optional.
+      text_node :version, 'version', default_value: nil
 
       # @!attribute [rw] rights_list
       #   @return [Array<Rights>] rights information for this resource.

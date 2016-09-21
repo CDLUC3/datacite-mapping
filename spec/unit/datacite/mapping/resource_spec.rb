@@ -614,6 +614,108 @@ module Datacite
         end
       end
 
+      describe '#sizes' do
+        it 'defaults to empty' do
+          resource = Resource.new(args)
+          expect(resource.sizes).to eq([])
+        end
+
+        describe 'sizes:' do
+          it 'can be initialized' do
+            sizes = %w(48K 128K)
+            args[:sizes] = sizes
+            resource = Resource.new(args)
+            expect(resource.sizes).to eq(sizes)
+          end
+          it 'can\'t be initialized to nil' do
+            args[:sizes] = nil
+            resource = Resource.new(args)
+            expect(resource.sizes).to eq([])
+          end
+        end
+
+        describe '#sizes=' do
+          it 'can be set' do
+            sizes = %w(48K 128K)
+            resource = Resource.new(args)
+            resource.sizes = sizes
+            expect(resource.sizes).to eq(sizes)
+          end
+          it 'can\'t be set to nil' do
+            resource = Resource.new(args)
+            resource.sizes = nil
+            expect(resource.sizes).to eq([])
+          end
+        end
+      end
+
+      describe '#formats' do
+        it 'defaults to empty' do
+          resource = Resource.new(args)
+          expect(resource.formats).to eq([])
+        end
+
+        describe 'formats:' do
+          it 'can be initialized' do
+            formats = %w(D64 DSK)
+            args[:formats] = formats
+            resource = Resource.new(args)
+            expect(resource.formats).to eq(formats)
+          end
+          it 'can\'t be initialized to nil' do
+            args[:formats] = nil
+            resource = Resource.new(args)
+            expect(resource.formats).to eq([])
+          end
+        end
+
+        describe '#formats=' do
+          it 'can be set' do
+            formats = %w(D64 DSK)
+            resource = Resource.new(args)
+            resource.formats = formats
+            expect(resource.formats).to eq(formats)
+          end
+          it 'can\'t be set to nil' do
+            resource = Resource.new(args)
+            resource.formats = nil
+            expect(resource.formats).to eq([])
+          end
+        end
+      end
+
+      describe '#version' do
+        it 'defaults to nil' do
+          resource = Resource.new(args)
+          expect(resource.version).to be_nil
+        end
+        it 'can be initialized' do
+          args[:version] = '9.2.2'
+          resource = Resource.new(args)
+          expect(resource.version).to eq('9.2.2')
+        end
+        it 'can be set' do
+          new_version = '9.2.2'
+          resource = Resource.new(args)
+          resource.version = new_version
+          expect(resource.version).to eq(new_version)
+        end
+        it 'strips on initialization' do
+          args[:version] = '
+            9.2.2
+          '
+          resource = Resource.new(args)
+          expect(resource.version).to eq('9.2.2')
+        end
+        it 'strips on set' do
+          resource = Resource.new(args)
+          resource.version = '
+            9.2.2
+          '
+          expect(resource.version).to eq('9.2.2')
+        end
+      end
+
       describe '#rights_list' do
         it 'defaults to empty' do
           resource = Resource.new(args)
@@ -687,6 +789,34 @@ module Datacite
             ]
             args[:descriptions] = descriptions
             resource = Resource.new(args)
+            expect(resource.descriptions).to eq([descriptions[1]])
+          end
+        end
+
+        describe '#descriptions=' do
+          it 'can be set' do
+            descriptions = [
+              Description.new(language: 'en-us', type: DescriptionType::ABSTRACT, value: 'Exterminate all the brutes!'),
+              Description.new(language: 'en-us', type: DescriptionType::METHODS, value: 'unsound')
+            ]
+            resource = Resource.new(args)
+            resource.descriptions = descriptions
+            expect(resource.descriptions).to eq(descriptions)
+          end
+          it 'can\'t be set to nil' do
+            resource = Resource.new(args)
+            resource.descriptions = nil
+            expect(resource.descriptions).to eq([])
+          end
+
+          it 'ignores descriptions without values' do
+            descriptions = [
+              Description.allocate,
+              Description.new(language: 'en-us', type: DescriptionType::METHODS, value: 'unsound'),
+              Description.allocate
+            ]
+            resource = Resource.new(args)
+            resource.descriptions = descriptions
             expect(resource.descriptions).to eq([descriptions[1]])
           end
         end
