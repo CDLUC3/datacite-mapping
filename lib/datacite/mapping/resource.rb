@@ -27,18 +27,20 @@ module Datacite
       # @param subjects [Array<Subject>] subjects, keywords, classification codes, or key phrases describing the resource.
       # @param funding_references [Array<FundingReference>] information about financial support (funding) for the resource being registered.
       # @param contributors [Array<Contributor>] institutions or persons responsible for collecting, creating, or otherwise contributing to the developement of the dataset.
+      # @param dates [Array<Date>] different dates relevant to the work.
       # @param resource_type [ResourceType, nil] the type of the resource
       # @param alternate_identifiers [Array<AlternateIdentifier>] an identifier or identifiers other than the primary {Identifier} applied to the resource being registered.
       # @param rights_list [Array<Rights>] rights information for this resource.
       # @param descriptions [Array<Description>] all additional information that does not fit in any of the other categories.
       # @param geo_locations [Array<GeoLocations>] spatial region or named place where the data was gathered or about which the data is focused.
-      def initialize(identifier:, creators:, titles:, subjects: [], contributors: [], funding_references: [], resource_type: nil, alternate_identifiers: [], rights_list: [], descriptions: [], geo_locations: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
+      def initialize(identifier:, creators:, titles:, subjects: [], contributors: [], dates: [], funding_references: [], resource_type: nil, alternate_identifiers: [], rights_list: [], descriptions: [], geo_locations: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
         self.identifier = identifier
         self.creators = creators
         self.titles = titles
         self.subjects = subjects
         self.funding_references = funding_references
         self.contributors = contributors
+        self.dates = dates
         self.resource_type = resource_type
         self.alternate_identifiers = alternate_identifiers
         self.rights_list = rights_list
@@ -67,6 +69,10 @@ module Datacite
 
       def contributors=(value)
         @contributors = value || []
+      end
+
+      def dates=(value)
+        @dates = value || []
       end
 
       def funding_references=(value)
@@ -112,6 +118,10 @@ module Datacite
       # @!attribute [rw] contributors
       #   @return [Array<Contributor>] institutions or persons responsible for collecting, creating, or otherwise contributing to the developement of the dataset.
       array_node :contributors, 'contributors', 'contributor', class: Contributor, default_value: []
+
+      # @!attribute [rw] dates
+      #   @return [Array<Date>] different dates relevant to the work.
+      array_node :dates, 'dates', 'date', class: Date, default_value: []
 
       # @!attribute [rw] resource_type
       #   @return [ResourceType, nil] the type of the resource. Optional.

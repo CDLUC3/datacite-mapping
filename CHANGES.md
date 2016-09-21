@@ -8,6 +8,8 @@
     - invalid elements (`<geoLocationPolygon/>`, `<fundingReference>`)
       will be dropped, with a warning
 - Remove `Datacite::Mapping.log` in favor of `warn()`
+- Array fields can no longer be set to nil; if set to nil they will instead
+  return an empty array.
 
 ## 0.1.18 (unreleased)
 

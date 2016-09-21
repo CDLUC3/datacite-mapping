@@ -44,8 +44,6 @@ module Datacite
       # <xs:element name="affiliation" minOccurs="0" maxOccurs="unbounded"/>
       # <xs:element name="nameIdentifier" minOccurs="0">
       # <xs:element name="affiliation" minOccurs="0" maxOccurs="unbounded"/>
-      # <xs:element name="dates" minOccurs="0">
-      # <xs:element name="date" minOccurs="0" maxOccurs="unbounded">
       # <xs:element name="language" type="xs:language" minOccurs="0">
       # <xs:element name="resourceType" minOccurs="0">
       # <xs:element name="relatedIdentifiers" minOccurs="0">
@@ -166,23 +164,6 @@ module Datacite
               publication_year: 10_000
             )
           end.to raise_error(ArgumentError)
-        end
-
-        it 'allows dates' do
-          dates = [
-            Date.new(value: DateTime.new(1914, 8, 4, 11, 01, 6.0123, '+1'), type: DateType::AVAILABLE),
-            Date.new(value: '1914-08-04T11:01:06.0123+01:00', type: DateType::AVAILABLE)
-          ]
-          resource = Resource.new(
-            identifier: @id,
-            creators: @creators,
-            titles: @titles,
-            publisher: @publisher,
-            publication_year: @pub_year,
-            dates: dates
-          )
-          expect(resource.dates).to eq(dates)
-          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
         end
 
         it 'allows a language' do
@@ -434,16 +415,6 @@ module Datacite
           end
         end
 
-      end
-
-      describe 'dates' do
-        it 'returns the date list'
-        it 'returns an editable list'
-      end
-
-      describe 'dates=' do
-        it 'overwrites the date list'
-        it 'accepts an empty list'
       end
 
       describe 'language' do

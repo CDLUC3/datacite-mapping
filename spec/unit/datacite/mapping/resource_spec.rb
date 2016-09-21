@@ -250,7 +250,6 @@ module Datacite
             args[:funding_references] = funding_references
             resource = Resource.new(args)
             expect(resource.funding_references).to eq(funding_references)
-            expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
           end
           it 'can\'t be initialized to nil' do
             args[:funding_references] = nil
@@ -293,7 +292,6 @@ module Datacite
             args[:contributors] = contributors
             resource = Resource.new(args)
             expect(resource.contributors).to eq(contributors)
-            expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
           end
           it 'can\'t be initialized to nil' do
             args[:contributors] = nil
@@ -359,6 +357,47 @@ module Datacite
         end
       end
 
+      describe '#dates' do
+        it 'defaults to empty' do
+          resource = Resource.new(args)
+          expect(resource.funding_references).to eq([])
+        end
+
+        describe 'dates:' do
+          it 'can be initialized' do
+            dates = [
+              Date.new(value: DateTime.new(1914, 8, 4, 11, 01, 6.0123, '+1'), type: DateType::AVAILABLE),
+              Date.new(value: '1914-08-04T11:01:06.0123+01:00', type: DateType::AVAILABLE)
+            ]
+            args[:dates] = dates
+            resource = Resource.new(args)
+            expect(resource.dates).to eq(dates)
+          end
+          it 'can\'t be initialized to nil' do
+            args[:dates] = nil
+            resource = Resource.new(args)
+            expect(resource.dates).to eq([])
+          end
+        end
+
+        describe '#dates=' do
+          it 'can be set' do
+            resource = Resource.new(args)
+            dates = [
+              Date.new(value: DateTime.new(1914, 8, 4, 11, 01, 6.0123, '+1'), type: DateType::AVAILABLE),
+              Date.new(value: '1914-08-04T11:01:06.0123+01:00', type: DateType::AVAILABLE)
+            ]
+            resource.dates = dates
+            expect(resource.dates).to eq(dates)
+          end
+          it 'can\'t be set to nil' do
+            resource = Resource.new(args)
+            resource.dates = nil
+            expect(resource.dates).to eq([])
+          end
+        end
+      end
+
       describe '#resource_type' do
         it 'can be initialized' do
           resource_type = ResourceType.new(resource_type_general: ResourceTypeGeneral::DATASET, value: 'Dataset')
@@ -390,7 +429,6 @@ module Datacite
             args[:alternate_identifiers] = alternate_identifiers
             resource = Resource.new(args)
             expect(resource.alternate_identifiers).to eq(alternate_identifiers)
-            expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
           end
           it 'can\'t be initialized to nil' do
             args[:alternate_identifiers] = nil
@@ -432,7 +470,6 @@ module Datacite
             args[:rights_list] = rights_list
             resource = Resource.new(args)
             expect(resource.rights_list).to eq(rights_list)
-            expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
           end
           it 'can\'t be initialized to nil' do
             args[:rights_list] = nil
