@@ -21,22 +21,17 @@ module Datacite
       include XML::Mapping
 
       # Initializes a new {Title}.
-      # @param language [String] an IETF BCP 47, ISO 639-1 language code identifying the language.
-      #   It's unclear from the spec whether language is required; to play it safe, if it's missing, we default to 'en'.
+      # @param language [String, nil] an IETF BCP 47, ISO 639-1 language code identifying the language.
       # @param value [String] the title itself.
       # @param type [TitleType, nil] the title type. Optional.
-      def initialize(language: 'en', value:, type: nil)
+      def initialize(language: nil, value:, type: nil)
         self.language = language
         self.type = type
         self.value = value
       end
 
-      def language
-        @language || 'en'
-      end
-
       def language=(value)
-        @language = value.strip if value
+        @language = value && value.strip
       end
 
       def value=(v)
@@ -47,7 +42,6 @@ module Datacite
 
       # @!attribute [rw] language
       #   @return [String] an IETF BCP 47, ISO 639-1 language code identifying the language.
-      #     It's unclear from the spec whether language is required; to play it safe, if it's missing, we default to 'en'.
       text_node :language, '@xml:lang', default_value: nil
 
       # @!attribute [rw] type

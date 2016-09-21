@@ -31,13 +31,14 @@ module Datacite
       # @param funding_references [Array<FundingReference>] information about financial support (funding) for the resource being registered.
       # @param contributors [Array<Contributor>] institutions or persons responsible for collecting, creating, or otherwise contributing to the developement of the dataset.
       # @param dates [Array<Date>] different dates relevant to the work.
+      # @param language [String, nil] Primary language of the resource: an IETF BCP 47, ISO 639-1 language code.
       # @param resource_type [ResourceType, nil] the type of the resource
       # @param alternate_identifiers [Array<AlternateIdentifier>] an identifier or identifiers other than the primary {Identifier} applied to the resource being registered.
       # @param related_identifiers [Array<RelatedIdentifier>] identifiers of related resources.
       # @param rights_list [Array<Rights>] rights information for this resource.
       # @param descriptions [Array<Description>] all additional information that does not fit in any of the other categories.
       # @param geo_locations [Array<GeoLocations>] spatial region or named place where the data was gathered or about which the data is focused.
-      def initialize(identifier:, creators:, titles:, publisher:, publication_year:, subjects: [], contributors: [], dates: [], funding_references: [], resource_type: nil, alternate_identifiers: [], related_identifiers: [], rights_list: [], descriptions: [], geo_locations: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
+      def initialize(identifier:, creators:, titles:, publisher:, publication_year:, subjects: [], contributors: [], dates: [], language: nil, funding_references: [], resource_type: nil, alternate_identifiers: [], related_identifiers: [], rights_list: [], descriptions: [], geo_locations: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
         self.identifier = identifier
         self.creators = creators
         self.titles = titles
@@ -47,6 +48,7 @@ module Datacite
         self.funding_references = funding_references
         self.contributors = contributors
         self.dates = dates
+        self.language = language
         self.resource_type = resource_type
         self.alternate_identifiers = alternate_identifiers
         self.related_identifiers = related_identifiers
@@ -152,6 +154,10 @@ module Datacite
       # @!attribute [rw] dates
       #   @return [Array<Date>] different dates relevant to the work.
       array_node :dates, 'dates', 'date', class: Date, default_value: []
+
+      # @!attribute [rw] language
+      #   @return [String] Primary language of the resource: an IETF BCP 47, ISO 639-1 language code.
+      text_node :language, 'language', default_value: nil
 
       # @!attribute [rw] resource_type
       #   @return [ResourceType, nil] the type of the resource. Optional.

@@ -353,6 +353,25 @@ module Datacite
         end
       end
 
+      describe '#language' do
+        it 'defaults to nil' do
+          resource = Resource.new(args)
+          expect(resource.language).to be_nil
+        end
+
+        it 'can be initialized' do
+          args[:language] = 'en-emodeng'
+          resource = Resource.new(args)
+          expect(resource.language).to eq('en-emodeng')
+        end
+
+        it 'can be set' do
+          resource = Resource.new(args)
+          resource.language = 'en-emodeng'
+          expect(resource.language).to eq('en-emodeng')
+        end
+      end
+
       describe '#contributors' do
 
         it 'defaults to empty' do

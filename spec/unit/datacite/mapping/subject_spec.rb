@@ -38,9 +38,9 @@ module Datacite
           expect(subject.scheme_uri).to be_nil
         end
 
-        it 'defaults language to "en"' do
+        it 'defaults language to nil' do
           subject = Subject.new(value: 'Mammals--Embryology')
-          expect(subject.language).to eq('en')
+          expect(subject.language).to be_nil
         end
 
         it 'strips whitespace' do
@@ -59,10 +59,10 @@ module Datacite
           expect(subject.language).to eq(new_lang)
         end
 
-        it 'ignores nil' do
+        it 'allows nil' do
           subject = Subject.new(value: 'Mammals--Embryology', language: 'en-us')
           subject.language = nil
-          expect(subject.language).to eq('en-us')
+          expect(subject.language).to be_nil
         end
       end
 
@@ -82,10 +82,10 @@ module Datacite
           expect(subject.scheme_uri).to eq(scheme_uri)
         end
 
-        it 'treats missing language as en' do
+        it 'treats missing language as nil' do
           xml_text = '<subject schemeURI="http://id.loc.gov/authorities/subjects" subjectScheme="LCSH">Mammals--Embryology</subject>'
           subject = Subject.parse_xml(xml_text)
-          expect(subject.language).to eq('en')
+          expect(subject.language).to be_nil
         end
       end
 

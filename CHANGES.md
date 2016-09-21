@@ -9,8 +9,12 @@
       will be dropped, with a warning
     - ISGN identifiers will be converted to URL identifiers
 - Remove `Datacite::Mapping.log` in favor of `warn()`
-- Array fields can no longer be set to nil; if set to nil they will instead
-  return an empty array.
+- Array fields (`subjects`, `contributors`, etc.) can no longer be set to nil; if set to 
+  nil they will instead return an empty array.
+- `language` and `xml:lang` attributes no longer default to `'en'` and are 
+  now fully optional.
+- `<subject/>` and `<description/>` tags without text are ignored on read, as are `<geoLocation>`
+  tags with no child elements.
 
 ## 0.1.18 (unreleased)
 

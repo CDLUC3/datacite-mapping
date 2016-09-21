@@ -50,18 +50,6 @@ module Datacite
 
       describe '#initialize' do
 
-        it 'allows a language' do
-          resource = Resource.new(
-            identifier: @id,
-            creators: @creators,
-            titles: @titles,
-            publisher: @publisher,
-            publication_year: @pub_year,
-            language: 'en-emodeng'
-          )
-          expect(resource.language).to eq('en-emodeng')
-          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
-        end
 
         it 'allows sizes' do
           sizes = ['2 petabytes', '2048 TB']

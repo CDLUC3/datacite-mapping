@@ -16,9 +16,9 @@ module Datacite
           expect(title.language).to eq(lang)
         end
 
-        it 'defaults language to "en"' do
+        it 'defaults language to nil' do
           title = Title.new(value: 'A Relation of an Accident by Thunder and Lightning, at Oxford')
-          expect(title.language).to eq('en')
+          expect(title.language).to be_nil
         end
 
         it 'sets the type' do
@@ -72,10 +72,10 @@ module Datacite
           title.language = new_lang
           expect(title.language).to eq(new_lang)
         end
-        it 'ignores nil' do
+        it 'allows nil' do
           title = Title.new(value: "Of Some Books Lately Publish't", language: 'en-emodeng')
           title.language = nil
-          expect(title.language).to eq('en-emodeng')
+          expect(title.language).to be_nil
         end
       end
 
@@ -93,10 +93,10 @@ module Datacite
           expect(title.value).to eq(expected_value)
         end
 
-        it 'treats missing language as en' do
+        it 'treats missing language as nil' do
           xml_text = '<title>Physical oceanography from BT during cruise U99XX00542B_1979</title>'
           title = Title.parse_xml(xml_text)
-          expect(title.language).to eq('en')
+          expect(title.language).to be_nil
         end
 
         it 'trims the value' do
