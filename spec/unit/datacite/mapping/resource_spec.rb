@@ -82,7 +82,6 @@ module Datacite
         it 'can be initialized' do
           resource = Resource.new(args)
           expect(resource.creators).to eq(creators)
-          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
         end
 
         it 'can be set' do
@@ -137,7 +136,6 @@ module Datacite
         it 'can be initialized' do
           resource = Resource.new(args)
           expect(resource.titles).to eq(titles)
-          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
         end
 
         it 'can be set' do
@@ -451,6 +449,69 @@ module Datacite
             resource = Resource.new(args)
             resource.alternate_identifiers = nil
             expect(resource.alternate_identifiers).to eq([])
+          end
+        end
+      end
+
+      describe '#related_identifiers' do
+        it 'defaults to empty' do
+          resource = Resource.new(args)
+          expect(resource.related_identifiers).to eq([])
+        end
+
+        describe 'related_identifiers:' do
+          it 'can be initialized' do
+            related_identifiers = [
+              RelatedIdentifier.new(
+                identifier_type: RelatedIdentifierType::URL,
+                relation_type: RelationType::HAS_METADATA,
+                related_metadata_scheme: 'citeproc+json',
+                scheme_type: 'Turtle',
+                scheme_uri: URI('https://github.com/citation-style-language/schema/raw/master/csl-data.json'),
+                value: 'http://data.datacite.org/application/citeproc+json/10.5072/example-full'
+              ),
+              RelatedIdentifier.new(
+                identifier_type: RelatedIdentifierType::ARXIV,
+                relation_type: RelationType::IS_REVIEWED_BY,
+                value: 'arXiv:0706.0001'
+              )
+            ]
+            args[:related_identifiers] = related_identifiers
+            resource = Resource.new(args)
+            expect(resource.related_identifiers).to eq(related_identifiers)
+          end
+          it 'can\'t be initialized to nil' do
+            args[:related_identifiers] = nil
+            resource = Resource.new(args)
+            expect(resource.related_identifiers).to eq([])
+          end
+        end
+
+        describe '#related_identifiers=' do
+          it 'can be set' do
+            resource = Resource.new(args)
+            related_identifiers = [
+              RelatedIdentifier.new(
+                identifier_type: RelatedIdentifierType::URL,
+                relation_type: RelationType::HAS_METADATA,
+                related_metadata_scheme: 'citeproc+json',
+                scheme_type: 'Turtle',
+                scheme_uri: URI('https://github.com/citation-style-language/schema/raw/master/csl-data.json'),
+                value: 'http://data.datacite.org/application/citeproc+json/10.5072/example-full'
+              ),
+              RelatedIdentifier.new(
+                identifier_type: RelatedIdentifierType::ARXIV,
+                relation_type: RelationType::IS_REVIEWED_BY,
+                value: 'arXiv:0706.0001'
+              )
+            ]
+            resource.related_identifiers = related_identifiers
+            expect(resource.related_identifiers).to eq(related_identifiers)
+          end
+          it 'can\'t be set to nil' do
+            resource = Resource.new(args)
+            resource.related_identifiers = nil
+            expect(resource.related_identifiers).to eq([])
           end
         end
       end

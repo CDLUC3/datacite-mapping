@@ -5,6 +5,7 @@ require 'datacite/mapping/creator'
 require 'datacite/mapping/title'
 require 'datacite/mapping/subject'
 require 'datacite/mapping/contributor'
+require 'datacite/mapping/date'
 require 'datacite/mapping/resource_type'
 require 'datacite/mapping/alternate_identifier'
 require 'datacite/mapping/rights'
@@ -30,10 +31,11 @@ module Datacite
       # @param dates [Array<Date>] different dates relevant to the work.
       # @param resource_type [ResourceType, nil] the type of the resource
       # @param alternate_identifiers [Array<AlternateIdentifier>] an identifier or identifiers other than the primary {Identifier} applied to the resource being registered.
+      # @param related_identifiers [Array<RelatedIdentifier>] identifiers of related resources.
       # @param rights_list [Array<Rights>] rights information for this resource.
       # @param descriptions [Array<Description>] all additional information that does not fit in any of the other categories.
       # @param geo_locations [Array<GeoLocations>] spatial region or named place where the data was gathered or about which the data is focused.
-      def initialize(identifier:, creators:, titles:, subjects: [], contributors: [], dates: [], funding_references: [], resource_type: nil, alternate_identifiers: [], rights_list: [], descriptions: [], geo_locations: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
+      def initialize(identifier:, creators:, titles:, subjects: [], contributors: [], dates: [], funding_references: [], resource_type: nil, alternate_identifiers: [], related_identifiers: [], rights_list: [], descriptions: [], geo_locations: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
         self.identifier = identifier
         self.creators = creators
         self.titles = titles
@@ -43,6 +45,7 @@ module Datacite
         self.dates = dates
         self.resource_type = resource_type
         self.alternate_identifiers = alternate_identifiers
+        self.related_identifiers = related_identifiers
         self.rights_list = rights_list
         self.descriptions = descriptions
         self.geo_locations = geo_locations
@@ -81,6 +84,10 @@ module Datacite
 
       def alternate_identifiers=(value)
         @alternate_identifiers = value || []
+      end
+
+      def related_identifiers=(value)
+        @related_identifiers = value || []
       end
 
       def rights_list=(value)
@@ -130,6 +137,10 @@ module Datacite
       # @!attribute [rw] alternate_identifiers
       #   @return [Array<AlternateIdentifier>] an identifier or identifiers other than the primary {Identifier} applied to the resource being registered.
       array_node :alternate_identifiers, 'alternateIdentifiers', 'alternateIdentifier', class: AlternateIdentifier, default_value: []
+
+      # @!attribute [rw] related_identifiers
+      #   @return [Array<RelatedIdentifier>] identifiers of related resources.
+      array_node :related_identifiers, 'relatedIdentifiers', 'relatedIdentifier', class: RelatedIdentifier, default_value: []
 
       # @!attribute [rw] rights_list
       #   @return [Array<Rights>] rights information for this resource.

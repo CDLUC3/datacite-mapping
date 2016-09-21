@@ -7,6 +7,7 @@
   - Datacite 3 support via `mapping: :datacite_3`
     - invalid elements (`<geoLocationPolygon/>`, `<fundingReference>`)
       will be dropped, with a warning
+    - ISGN identifiers will be converted to URL identifiers
 - Remove `Datacite::Mapping.log` in favor of `warn()`
 - Array fields can no longer be set to nil; if set to nil they will instead
   return an empty array.

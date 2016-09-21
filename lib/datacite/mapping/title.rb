@@ -40,8 +40,9 @@ module Datacite
       end
 
       def value=(v)
-        fail ArgumentError, 'Value cannot be empty or nil' unless v && !v.empty?
-        @value = v.strip
+        new_value = v && v.strip
+        fail ArgumentError, 'Value cannot be empty or nil' unless new_value && !new_value.empty?
+        @value = new_value.strip
       end
 
       # @!attribute [rw] language

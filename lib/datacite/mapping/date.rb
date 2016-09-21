@@ -123,7 +123,7 @@ module Datacite
         return val if val.is_a?(DateTime)
         DateTime.parse(val.to_s)
       rescue ArgumentError => e
-        Mapping.log.debug("Can't extract DateTime from date value '#{val}': #{e}")
+        warn("Can't extract DateTime from date value '#{val}': #{e}")
         nil
       end
 
@@ -132,7 +132,7 @@ module Datacite
         return ::Date.parse(val.iso8601) if val.respond_to?(:iso8601)
         ::Date.parse(val.to_s)
       rescue ArgumentError => e
-        Mapping.log.debug("Can't extract Date from date value '#{val}': #{e}")
+        warn("Can't extract Date from date value '#{val}': #{e}")
         nil
       end
 

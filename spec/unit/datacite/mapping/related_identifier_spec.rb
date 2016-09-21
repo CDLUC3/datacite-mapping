@@ -159,7 +159,7 @@ module Datacite
         end
         describe 'DC3 mode' do
           it 'converts ISGN identifiers to URLs'
-          it 'documents this in CHANGES.md'
+          it 'warns of conversion'
         end
       end
     end

@@ -92,8 +92,9 @@ module Datacite
       end
 
       def name=(value)
-        fail ArgumentError, 'Name cannot be empty or nil' unless value && !value.empty?
-        @name = value
+        new_value = value && value.strip
+        fail ArgumentError, 'Name cannot be empty or nil' unless new_value && !new_value.empty?
+        @name = new_value
       end
 
       def type=(value)

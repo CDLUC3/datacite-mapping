@@ -28,6 +28,12 @@ module Datacite
         @language = value.strip if value
       end
 
+      def value=(v)
+        new_value = v && v.strip
+        fail ArgumentError, 'Value cannot be empty or nil' unless new_value && !new_value.empty?
+        @value = new_value.strip
+      end
+
       # @!attribute [rw] scheme
       #   @return [String, nil] the subject scheme or classification code or authority if one is used. Optional.
       text_node :scheme, '@subjectScheme', default_value: nil
