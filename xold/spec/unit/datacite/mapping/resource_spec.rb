@@ -73,16 +73,6 @@ module Datacite
           expect(resource.language).to eq('en')
         end
 
-        it 'correctly differentiates required and optional attributes'
-
-        it 'parses a Datacite 4.0 document with FundingReference' do
-          resource = Resource.parse_xml(File.read('spec/data/kernel-4.0/datacite-example-fundingReference-v.4.0.xml'))
-          funding_references = resource.funding_references
-          expect(funding_references.size).to eq(2)
-          funding_references.each do |fref|
-            expect(fref).to be_a(FundingReference)
-          end
-        end
       end
 
       describe '#save_to_xml' do
