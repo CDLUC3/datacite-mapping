@@ -65,6 +65,13 @@ module Datacite
           expect { contrib.name = '' }.to raise_error(ArgumentError)
           expect(contrib.name).to eq('Hershlag, Natalie')
         end
+        it 'strips' do
+          contrib = Contributor.allocate
+          contrib.name = '
+            Hershlag, Natalie
+          '
+          expect(contrib.name).to eq('Hershlag, Natalie')
+        end
       end
 
       describe '#type=' do

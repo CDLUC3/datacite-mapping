@@ -277,6 +277,88 @@ module Datacite
         end
       end
 
+      describe '#contributors' do
+
+        it 'defaults to empty' do
+          resource = Resource.new(args)
+          expect(resource.funding_references).to eq([])
+        end
+
+        describe 'contributors:' do
+          it 'can be initialized' do
+            contributors = [
+              Contributor.new(name: 'Hershlag, Natalie', type: ContributorType::PROJECT_MEMBER),
+              Contributor.new(name: 'Hedy Lamarr', type: ContributorType::RESEARCHER)
+            ]
+            args[:contributors] = contributors
+            resource = Resource.new(args)
+            expect(resource.contributors).to eq(contributors)
+            expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
+          end
+          it 'can\'t be initialized to nil' do
+            args[:contributors] = nil
+            resource = Resource.new(args)
+            expect(resource.contributors).to eq([])
+          end
+        end
+
+        describe '#contributors=' do
+          it 'can be set' do
+            resource = Resource.new(args)
+            contributors = [
+              Contributor.new(name: 'Hershlag, Natalie', type: ContributorType::PROJECT_MEMBER),
+              Contributor.new(name: 'Hedy Lamarr', type: ContributorType::RESEARCHER)
+            ]
+            resource.contributors = contributors
+            expect(resource.contributors).to eq(contributors)
+          end
+          it 'can\'t be set to nil' do
+            resource = Resource.new(args)
+            resource.contributors = nil
+            expect(resource.contributors).to eq([])
+          end
+        end
+
+        describe 'contributor convenience methods' do
+          before(:each) do
+            @resource = Resource.new(args)
+            @funder = Contributor.new(
+              name: 'The Ministry of Magic',
+              identifier: NameIdentifier.new(
+                scheme: 'IATI',
+                scheme_uri: URI('http://iatistandard.org/201/codelists/OrganisationIdentifier/'),
+                value: 'GR-9¾'
+              ),
+              type: ContributorType::FUNDER)
+            @resource.contributors << @funder
+          end
+
+          describe 'funder_contrib' do
+            it 'extracts the funder contrib' do
+              expect(@resource.funder_contrib).to eq(@funder)
+            end
+          end
+
+          describe 'funder_name' do
+            it 'extracts the funder name' do
+              expect(@resource.funder_name).to eq(@funder.name)
+            end
+          end
+
+          describe 'funder_id' do
+            it 'extracts the funder id' do
+              expect(@resource.funder_id).to eq(@funder.identifier)
+            end
+          end
+
+          describe 'funder_id_value' do
+            it 'extracts the funder id value' do
+              expect(@resource.funder_id_value).to eq(@funder.identifier.value)
+            end
+          end
+        end
+      end
+
       describe '#resource_type' do
         it 'can be initialized' do
           resource_type = ResourceType.new(resource_type_general: ResourceTypeGeneral::DATASET, value: 'Dataset')

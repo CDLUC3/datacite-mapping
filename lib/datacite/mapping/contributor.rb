@@ -24,6 +24,7 @@ module Datacite
       # @!parse EDITOR = Editor
       new :EDITOR, 'Editor'
 
+      # @deprecated contributor type 'funder' is deprecated. Use {FundingReference} instead.
       # @!parse FUNDER = Funder
       new :FUNDER, 'Funder'
 
