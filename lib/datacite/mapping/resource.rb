@@ -26,7 +26,7 @@ module Datacite
       end
 
       # Overrides Namespaced::InstanceMethods.fill_into_xml to check mapping
-      def fill_into_xml(xml, options={ mapping: :_default })
+      def fill_into_xml(xml, options = { mapping: :_default })
         @namespace = DATACITE_3_NAMESPACE if options[:mapping] == :datacite_3
         super
       end
