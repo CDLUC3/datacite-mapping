@@ -938,6 +938,11 @@ module Datacite
             Dir.glob('spec/data/datacite3/datacite-example-*.xml') { |f| it_round_trips(f, mapping: :datacite_3) }
           end
         end
+        describe 'dash 1' do
+          it 'reads all dash 1 docs' do
+            Dir.glob('spec/data/dash1/*.xml') { |f| it_round_trips(f, mapping: :datacite_3) }
+          end
+        end
       end
 
       describe 'DC3 mapping' do
