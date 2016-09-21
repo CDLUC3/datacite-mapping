@@ -3,6 +3,7 @@ require 'spec_helper'
 
 module Datacite
   module Mapping
+
     describe Resource do
 
       def parse_file(xml_text, basename)
@@ -18,6 +19,29 @@ module Datacite
       rescue Exception => e # rubocop:disable Lint/RescueException:
         warn "Error writing #{basename}: #{e}"
         raise
+      end
+
+      def normalize(xml_str)
+        xml_str
+          .gsub(%r{<([^>]+tude)>([0-9.-]+?)(0?)0+</\1>}, "<\\1>\\2\\3</\\1>")
+          .gsub(%r{ "([^"]+)"}, " &quot;\\1&quot;")
+          .gsub('&lt;br /&gt;', '<br/>')
+          .gsub('"', "'")
+      end
+
+      def it_round_trips(f)
+        basename = File.basename(f)
+        xml_text = File.read(f)
+        resource = parse_file(xml_text, basename)
+        actual_xml = write_xml(resource, basename)
+        expected_xml = normalize(xml_text)
+        begin
+          expect(actual_xml).to be_xml(expected_xml)
+        rescue Exception # rubocop:disable Lint/RescueException:
+          File.open("tmp/#{basename}-expected.xml", 'w') { |t| t.write(expected_xml) }
+          File.open("tmp/#{basename}-actual.xml", 'w') { |t| t.write(actual_xml) }
+          raise
+        end
       end
 
       attr_reader :identifier
@@ -905,19 +929,7 @@ module Datacite
       describe 'compatibility' do
         describe 'datacite 4' do
           it 'reads all datacite 4 example documents' do
-            Dir.glob('spec/data/datacite4/datacite-example-*.xml') do |f|
-              basename = File.basename(f)
-              xml_text = File.read(f)
-              resource = parse_file(xml_text, basename)
-              actual_xml = write_xml(resource, basename)
-              begin
-                expect(actual_xml).to be_xml(xml_text)
-              rescue Exception  # rubocop:disable Lint/RescueException:
-                File.open("tmp/#{basename}-expected.xml", 'w') { |t| t.write(xml_text.gsub('"', "'")) }
-                File.open("tmp/#{basename}-actual.xml", 'w') { |t| t.write(actual_xml) }
-                raise
-              end
-            end
+            Dir.glob('spec/data/datacite4/datacite-example-*.xml') { |f| it_round_trips(f) }
           end
         end
       end
