@@ -20,6 +20,17 @@ module Datacite
     class Resource # rubocop:disable Metrics/ClassLength
       include XML::MappingExtensions::Namespaced
 
+      # Shadows Namespaced::ClassMethods.namespace
+      def namespace
+        @namespace ||= DATACITE_4_NAMESPACE
+      end
+
+      # Overrides Namespaced::InstanceMethods.fill_into_xml to check mapping
+      def fill_into_xml(xml, options={ mapping: :_default })
+        @namespace = DATACITE_3_NAMESPACE if options[:mapping] == :datacite_3
+        super
+      end
+
       # Initialies a new {Resource}
       #
       # @param identifier [Identifier] a persistent identifier that identifies a resource.

@@ -12,8 +12,8 @@ module Datacite
     )
 
     DATACITE_4_NAMESPACE = XML::MappingExtensions::Namespace.new(
-      uri: 'http://datacite.org/schema/kernel-4.0',
-      schema_location: 'https://schema.labs.datacite.org/meta/kernel-4.0/metadata.xsd'
+      uri: 'http://datacite.org/schema/kernel-4',
+      schema_location: 'https://schema.labs.datacite.org/meta/kernel-4/metadata.xsd'
     )
 
     Dir.glob(File.expand_path('../mapping/*.rb', __FILE__)).sort.each(&method(:require))
