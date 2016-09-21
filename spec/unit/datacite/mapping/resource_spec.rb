@@ -14,8 +14,8 @@ module Datacite
         raise
       end
 
-      def write_xml(resource, basename)
-        return resource.write_xml
+      def write_xml(resource, basename, options)
+        return resource.write_xml(options)
       rescue Exception => e # rubocop:disable Lint/RescueException:
         warn "Error writing #{basename}: #{e}"
         raise
@@ -29,11 +29,11 @@ module Datacite
           .gsub('"', "'")
       end
 
-      def it_round_trips(f)
+      def it_round_trips(f, options = {mapping: :_default})
         basename = File.basename(f)
         xml_text = File.read(f)
         resource = parse_file(xml_text, basename)
-        actual_xml = write_xml(resource, basename)
+        actual_xml = write_xml(resource, basename, options)
         expected_xml = normalize(xml_text)
         begin
           expect(actual_xml).to be_xml(expected_xml)
@@ -930,6 +930,11 @@ module Datacite
         describe 'datacite 4' do
           it 'reads all datacite 4 example documents' do
             Dir.glob('spec/data/datacite4/datacite-example-*.xml') { |f| it_round_trips(f) }
+          end
+        end
+        describe 'datacite 3' do
+          it 'reads all datacite 3 example documents' do
+            Dir.glob('spec/data/datacite3/datacite-example-*.xml') { |f| it_round_trips(f, {mapping: :datacite_3}) }
           end
         end
       end
