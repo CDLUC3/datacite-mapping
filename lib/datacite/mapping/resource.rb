@@ -25,6 +25,8 @@ module Datacite
       # @param identifier [Identifier] a persistent identifier that identifies a resource.
       # @param creators [Array<Creator>] the main researchers involved working on the data, or the authors of the publication in priority order.
       # @param titles [Array<Title>] the names or titles by which a resource is known.
+      # @param publisher [String] the name of the entity that holds, archives, publishes prints, distributes, releases, issues, or produces the resource.
+      # @param publication_year [Integer] year when the resource is made publicly available.
       # @param subjects [Array<Subject>] subjects, keywords, classification codes, or key phrases describing the resource.
       # @param funding_references [Array<FundingReference>] information about financial support (funding) for the resource being registered.
       # @param contributors [Array<Contributor>] institutions or persons responsible for collecting, creating, or otherwise contributing to the developement of the dataset.
@@ -35,10 +37,12 @@ module Datacite
       # @param rights_list [Array<Rights>] rights information for this resource.
       # @param descriptions [Array<Description>] all additional information that does not fit in any of the other categories.
       # @param geo_locations [Array<GeoLocations>] spatial region or named place where the data was gathered or about which the data is focused.
-      def initialize(identifier:, creators:, titles:, subjects: [], contributors: [], dates: [], funding_references: [], resource_type: nil, alternate_identifiers: [], related_identifiers: [], rights_list: [], descriptions: [], geo_locations: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
+      def initialize(identifier:, creators:, titles:, publisher:, publication_year:, subjects: [], contributors: [], dates: [], funding_references: [], resource_type: nil, alternate_identifiers: [], related_identifiers: [], rights_list: [], descriptions: [], geo_locations: []) # rubocop:disable Metrics/MethodLength, Metrics/ParameterLists, Metrics/AbcSize
         self.identifier = identifier
         self.creators = creators
         self.titles = titles
+        self.publisher = publisher
+        self.publication_year = publication_year
         self.subjects = subjects
         self.funding_references = funding_references
         self.contributors = contributors
@@ -64,6 +68,17 @@ module Datacite
       def titles=(value)
         fail ArgumentError, 'Resource must have at least one title' unless value && value.size > 0
         @titles = value
+      end
+
+      def publisher=(value)
+        new_value = value && value.strip
+        fail ArgumentError, 'Resource must have at least one publisher' unless new_value && new_value.size > 0
+        @publisher = new_value.strip
+      end
+
+      def publication_year=(value)
+        fail ArgumentError, 'Resource must have a four-digit publication year' unless value && value.to_i.between?(1000, 9999)
+        @publication_year = value.to_i
       end
 
       def subjects=(value)
@@ -113,6 +128,14 @@ module Datacite
       # @!attribute [rw] titles
       #   @return [Array<Title>] the names or titles by which a resource is known.
       array_node :titles, 'titles', 'title', class: Title
+
+      # @!attribute [rw] publisher
+      #   @return [String] the name of the entity that holds, archives, publishes prints, distributes, releases, issues, or produces the resource.
+      text_node :publisher, 'publisher'
+
+      # @!attribute [rw] publication_year
+      #   @return [Integer] year when the resource is made publicly available.
+      numeric_node :publication_year, 'publicationYear'
 
       # @!attribute [rw] subjects
       #   @return [Array<Subject>] subjects, keywords, classification codes, or key phrases describing the resource.

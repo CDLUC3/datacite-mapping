@@ -8,6 +8,8 @@ module Datacite
       attr_reader :identifier
       attr_reader :creators
       attr_reader :titles
+      attr_reader :publisher
+      attr_reader :publication_year
       attr_reader :args
 
       before(:each) do
@@ -31,10 +33,15 @@ module Datacite
           Title.new(type: TitleType::SUBTITLE, value: 'And a Contest between Two Artists about Optick Glasses, &c', language: 'en-emodeng')
         ]
 
+        @publisher = 'California Digital Library'
+        @publication_year = 2015
+
         @args = {
           identifier: identifier,
           creators: creators,
-          titles: titles
+          titles: titles,
+          publisher: publisher,
+          publication_year: publication_year
         }
       end
 
@@ -149,6 +156,78 @@ module Datacite
           expect(resource.titles).to eq(new_titles)
         end
 
+      end
+
+      describe '#publisher' do
+        it 'requires a publisher' do
+          args.delete(:publisher)
+          expect { Resource.new(args) }.to raise_error(ArgumentError)
+        end
+        it 'requires a non-nil publisher' do
+          args[:publisher] = nil
+          expect { Resource.new(args) }.to raise_error(ArgumentError)
+        end
+        it 'requires a non-blank publisher' do
+          args[:publisher] = "\n  \n"
+          expect { Resource.new(args) }.to raise_error(ArgumentError)
+        end
+        it 'can be initialized' do
+          resource = Resource.new(args)
+          expect(resource.publisher).to eq(publisher)
+        end
+        it 'can be set' do
+          new_publisher = 'University of California'
+          resource = Resource.new(args)
+          resource.publisher = new_publisher
+          expect(resource.publisher).to eq(new_publisher)
+        end
+        it 'strips on initialization' do
+          args[:publisher] = '
+            University of California
+          '
+          resource = Resource.new(args)
+          expect(resource.publisher).to eq('University of California')
+        end
+        it 'strips on set' do
+          resource = Resource.new(args)
+          resource.publisher = '
+            University of California
+          '
+          expect(resource.publisher).to eq('University of California')
+        end
+      end
+
+      describe '#publication_year' do
+        it 'requires a publication_year' do
+          args.delete(:publication_year)
+          expect { Resource.new(args) }.to raise_error(ArgumentError)
+        end
+        it 'requires a non-nil publication_year' do
+          args[:publication_year] = nil
+          expect { Resource.new(args) }.to raise_error(ArgumentError)
+        end
+        it 'requires a four-digit publication_year' do
+          args[:publication_year] = 999
+          expect { Resource.new(args) }.to raise_error(ArgumentError)
+          args[:publication_year] = 10_000
+          expect { Resource.new(args) }.to raise_error(ArgumentError)
+        end
+        it 'can be initialized' do
+          resource = Resource.new(args)
+          expect(resource.publication_year).to eq(publication_year)
+        end
+        it 'can be set' do
+          new_pub_year = 1963
+          resource = Resource.new(args)
+          resource.publication_year = new_pub_year
+          expect(resource.publication_year).to eq(new_pub_year)
+        end
+        it 'converts strings to integers' do
+          new_pub_year = 1963
+          resource = Resource.new(args)
+          resource.publication_year = "#{new_pub_year}"
+          expect(resource.publication_year).to eq(new_pub_year)
+        end
       end
 
       describe '#subjects' do

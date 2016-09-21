@@ -34,16 +34,9 @@ module Datacite
       # Required:
       #
       # <xs:element name="resource">
-      # <xs:element name="publisher">
-      # <xs:element name="publicationYear">
-      # <xs:element name="contributorName">
 
       # Optional:
       #
-      # <xs:element name="nameIdentifier" minOccurs="0">
-      # <xs:element name="affiliation" minOccurs="0" maxOccurs="unbounded"/>
-      # <xs:element name="nameIdentifier" minOccurs="0">
-      # <xs:element name="affiliation" minOccurs="0" maxOccurs="unbounded"/>
       # <xs:element name="language" type="xs:language" minOccurs="0">
       # <xs:element name="resourceType" minOccurs="0">
       # <xs:element name="relatedIdentifiers" minOccurs="0">
@@ -56,115 +49,6 @@ module Datacite
       # <xs:element name="br" minOccurs="0" maxOccurs="unbounded">
 
       describe '#initialize' do
-
-        it 'sets the publisher' do
-          resource = Resource.new(
-            identifier: @id,
-            creators: @creators,
-            titles: @titles,
-            publisher: @publisher,
-            publication_year: @pub_year
-          )
-          expect(resource.publisher).to eq(@publisher)
-          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
-        end
-
-        it 'sets the publicationYear' do
-          resource = Resource.new(
-            identifier: @id,
-            creators: @creators,
-            titles: @titles,
-            publisher: @publisher,
-            publication_year: @pub_year
-          )
-          expect(resource.publication_year).to eq(@pub_year)
-          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
-        end
-
-        it 'requires a publisher' do
-          expect do
-            Resource.new(
-              identifier: @id,
-              creators: @creators,
-              titles: @titles,
-              publication_year: @pub_year
-            )
-          end.to raise_error(ArgumentError)
-          expect do
-            Resource.new(
-              identifier: @id,
-              creators: @creators,
-              titles: @titles,
-              publication_year: @pub_year,
-              publisher: nil
-            )
-          end.to raise_error(ArgumentError)
-          expect do
-            Resource.new(
-              identifier: @id,
-              creators: @creators,
-              titles: @titles,
-              publication_year: @pub_year,
-              publisher: []
-            )
-          end.to raise_error(ArgumentError)
-          expect do
-            Resource.new(
-              identifier: @id,
-              creators: @creators,
-              titles: @titles,
-              publication_year: @pub_year,
-              publisher: ''
-            )
-          end.to raise_error(ArgumentError)
-        end
-
-        it 'requires a publicationYear' do
-          expect do
-            Resource.new(
-              identifier: @id,
-              creators: @creators,
-              titles: @titles,
-              publisher: @publisher
-            )
-          end.to raise_error(ArgumentError)
-          expect do
-            Resource.new(
-              identifier: @id,
-              creators: @creators,
-              titles: @titles,
-              publisher: @publisher,
-              publication_year: nil
-            )
-          end.to raise_error(ArgumentError)
-          expect do
-            Resource.new(
-              identifier: @id,
-              creators: @creators,
-              titles: @titles,
-              publisher: @publisher,
-              publication_year: -1
-            )
-          end.to raise_error(ArgumentError)
-          expect do
-            Resource.new(
-              identifier: @id,
-              creators: @creators,
-              titles: @titles,
-              publisher: @publisher,
-              publication_year: 999
-            )
-          end.to raise_error(ArgumentError)
-          expect do
-            Resource.new(
-              identifier: @id,
-              creators: @creators,
-              titles: @titles,
-              publisher: @publisher,
-              publication_year: 10_000
-            )
-          end.to raise_error(ArgumentError)
-        end
 
         it 'allows a language' do
           resource = Resource.new(
@@ -193,33 +77,6 @@ module Datacite
           expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
         end
 
-        it 'allows related identifiers' do
-          related_identifiers = [
-            RelatedIdentifier.new(
-              identifier_type: RelatedIdentifierType::URL,
-              relation_type: RelationType::HAS_METADATA,
-              related_metadata_scheme: 'citeproc+json',
-              scheme_type: 'Turtle',
-              scheme_uri: URI('https://github.com/citation-style-language/schema/raw/master/csl-data.json'),
-              value: 'http://data.datacite.org/application/citeproc+json/10.5072/example-full'
-            ),
-            RelatedIdentifier.new(
-              identifier_type: RelatedIdentifierType::ARXIV,
-              relation_type: RelationType::IS_REVIEWED_BY,
-              value: 'arXiv:0706.0001'
-            )
-          ]
-          resource = Resource.new(
-            identifier: @id,
-            creators: @creators,
-            titles: @titles,
-            publisher: @publisher,
-            publication_year: @pub_year,
-            related_identifiers: related_identifiers
-          )
-          expect(resource.related_identifiers).to eq(related_identifiers)
-          expect(resource.save_to_xml).to be_a(REXML::Element) # sanity check
-        end
 
         it 'allows formats' do
           formats = %w(application/xml text/html)
@@ -319,45 +176,6 @@ module Datacite
           saved_xml = resource.save_to_xml
           expect(saved_xml).to be_xml(xml_text)
         end
-      end
-
-      describe 'identifier' do
-        it 'returns the identifier'
-      end
-
-      describe 'identifier=' do
-        it 'sets the identifier'
-        it 'rejects nil'
-      end
-
-      describe 'titles' do
-        it 'returns the title list'
-        it 'returns an editable list'
-      end
-
-      describe 'titles=' do
-        it 'overwrites the title list'
-        it 'requires at least one title'
-      end
-
-      describe 'publisher' do
-        it 'returns the publisher'
-      end
-
-      describe 'publisher=' do
-        it 'sets the publisher'
-        it 'rejects nil'
-        it 'rejects the empty string'
-      end
-
-      describe 'publication_year' do
-        it 'returns the publication year'
-        it 'rejects nil'
-        it 'accepts only 4-digit integers'
-      end
-
-      describe 'publication_year=' do
-        it 'sets the publication year'
       end
 
       describe 'subjects' do
