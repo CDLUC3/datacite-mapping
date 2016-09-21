@@ -45,7 +45,6 @@ module Datacite
       #   @return [GeoLocationBox, nil] the latitude-longitude quadrangle containing the area where the data was gathered or about which the data is focused.
       geo_location_box_node :box, 'geoLocationBox', default_value: nil
 
-      use_mapping :datacite_3
       fallback_mapping :datacite_3, :_default
     end
   end

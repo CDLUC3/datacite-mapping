@@ -23,13 +23,14 @@ module Datacite
 
       def normalize(xml_str)
         xml_str
-          .gsub(%r{<([^>]+tude)>([0-9.-]+?)(0?)0+</\1>}, "<\\1>\\2\\3</\\1>")
-          .gsub(%r{ "([^"]+)"}, " &quot;\\1&quot;")
+          .gsub(%r{<([^>]+tude)>([0-9.-]+?)(0?)0+</\1>}, '<\\1>\\2\\3</\\1>')
+          .gsub(/ "([^"]+)"/, ' &quot;\\1&quot;')
           .gsub('&lt;br /&gt;', '<br/>')
           .gsub('"', "'")
+          .gsub(%r{<(geoLocation[^>]+)>[^<]+</\1>}) { |loc| loc.gsub(/([0-9\-]+\.[0-9]+?)0+([^0-9])/, '\\1\\2') }
       end
 
-      def it_round_trips(f, options = {mapping: :_default})
+      def it_round_trips(f, options = { mapping: :_default })
         basename = File.basename(f)
         xml_text = File.read(f)
         resource = parse_file(xml_text, basename)
@@ -934,7 +935,7 @@ module Datacite
         end
         describe 'datacite 3' do
           it 'reads all datacite 3 example documents' do
-            Dir.glob('spec/data/datacite3/datacite-example-*.xml') { |f| it_round_trips(f, {mapping: :datacite_3}) }
+            Dir.glob('spec/data/datacite3/datacite-example-*.xml') { |f| it_round_trips(f, mapping: :datacite_3) }
           end
         end
       end

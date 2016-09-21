@@ -108,6 +108,7 @@ module Datacite
       #     handling of `<br/>` tags.
       break_preserving_value_node :value, 'node()'
 
+      fallback_mapping :datacite_3, :_default
     end
   end
 end

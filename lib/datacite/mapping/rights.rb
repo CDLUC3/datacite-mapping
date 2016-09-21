@@ -28,6 +28,8 @@ module Datacite
       # @!attribute [rw] value
       #   @return [String] the rights statement. Cannot be empty or nil.
       text_node :value, 'text()'
+
+      fallback_mapping :datacite_3, :_default
     end
 
     class Rights

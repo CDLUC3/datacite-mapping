@@ -143,6 +143,8 @@ module Datacite
       # @!method value
       #   @return [String] The value as a string. May be any [W3C DateTime format](http://www.w3.org/TR/NOTE-datetime).
       text_node :value, 'text()'
+
+      fallback_mapping :datacite_3, :_default
     end
   end
 end

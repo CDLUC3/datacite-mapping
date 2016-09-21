@@ -276,7 +276,6 @@ module Datacite
       deprecate(:funder_id, FundingReference, 2016, 9)
       deprecate(:funder_id_value, FundingReference, 2016, 9)
 
-      use_mapping :datacite_3
       fallback_mapping :datacite_3, :_default
     end
 

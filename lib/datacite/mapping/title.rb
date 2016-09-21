@@ -52,6 +52,7 @@ module Datacite
       #   @return [String] the title itself.
       text_node :value, 'text()'
 
+      fallback_mapping :datacite_3, :_default
     end
   end
 end

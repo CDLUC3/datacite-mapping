@@ -198,6 +198,7 @@ module Datacite
       #   @return [String, nil] the type of the metadata scheme. Used only with `HasMetadata`/`IsMetadataFor`. Optional.
       text_node :scheme_type, '@schemeType', default_value: nil
 
+      fallback_mapping :datacite_3, :_default
     end
   end
 end

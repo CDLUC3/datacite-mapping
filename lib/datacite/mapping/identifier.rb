@@ -60,6 +60,8 @@ module Datacite
       # The default reader throws an opaque XPath error if there's no element text,
       # so we extract it manually and let the accessor raise an error instead
       text_node :value, 'text()', reader: method(:extract_and_set_value)
+
+      fallback_mapping :datacite_3, :_default
     end
   end
 end

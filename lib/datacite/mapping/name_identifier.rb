@@ -38,6 +38,7 @@ module Datacite
       #   @return [String] the identifier value. Cannot be nil.
       text_node :value, 'text()'
 
+      fallback_mapping :datacite_3, :_default
     end
   end
 end

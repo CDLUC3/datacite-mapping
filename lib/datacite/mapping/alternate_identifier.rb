@@ -33,6 +33,8 @@ module Datacite
       root_element_name 'alternateIdentifier'
       text_node :type, '@alternateIdentifierType'
       text_node :value, 'text()'
+
+      fallback_mapping :datacite_3, :_default
     end
   end
 end

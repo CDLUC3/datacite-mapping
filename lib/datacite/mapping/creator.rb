@@ -61,6 +61,7 @@ module Datacite
       #   @return [Array<String>, nil] The creator's affiliations. Defaults to an empty list.
       array_node :affiliations, 'affiliation', class: String, default_value: []
 
+      fallback_mapping :datacite_3, :_default
     end
   end
 end

@@ -117,6 +117,8 @@ module Datacite
       # @!attribute [rw] type
       #   @return [ContributorType] the contributor type. Cannot be nil.
       typesafe_enum_node :type, '@contributorType', class: ContributorType
+
+      fallback_mapping :datacite_3, :_default
     end
   end
 end

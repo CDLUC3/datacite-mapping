@@ -92,6 +92,8 @@ module Datacite
       object_node :identifier, 'funderIdentifier', class: FunderIdentifier, default_value: nil
       object_node :award_number, 'awardNumber', class: AwardNumber, default_value: nil
       text_node :award_title, 'awardTitle', default_value: nil
+
+      fallback_mapping :datacite_3, :_default
     end
   end
 end
