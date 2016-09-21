@@ -23,7 +23,7 @@
 	 <subject>Germany</subject>
 	 <subject>Mikrozensus</subject>
 	 <subject>Gender survey</subject>
-	 <subject subjectScheme="GESIS">10300 Demography, Population Research subjectURI="http://www.gesis.org/classification</subject>
+	 <subject subjectScheme="GESIS" schemeURI="http://www.gesis.org/classification">10300 Demography, Population Research</subject>
 	</subjects>
 	<language>eng</language>
 	<resourceType resourceTypeGeneral="Text">Article</resourceType>
