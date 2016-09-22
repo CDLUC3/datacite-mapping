@@ -26,7 +26,7 @@ module Datacite
       def value=(v)
         new_value = v && v.strip
         fail ArgumentError, 'Value cannot be empty or nil' unless new_value && !new_value.empty?
-        @value = new_value.strip
+        @value = new_value
       end
 
       # @!attribute [rw] scheme

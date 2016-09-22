@@ -158,7 +158,7 @@ module Datacite
 
       # @!attribute [rw] identifier
       #   @return [Identifier] a persistent identifier that identifies a resource.
-      object_node :identifier, 'identifier', class: Identifier
+      identifier_node :identifier, 'identifier', class: Identifier
 
       # @!attribute [rw] creators
       #   @return [Array<Creator>] the main researchers involved working on the data, or the authors of the publication in priority order.

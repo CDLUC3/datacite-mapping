@@ -32,6 +32,15 @@ module Datacite
             expect { Identifier.new(value: doi) }.to raise_error(ArgumentError)
           end
         end
+
+        it 'strips' do
+          value = '10.14749/1407399495'
+          id = Identifier.new(value: "
+            #{value}
+          ")
+          expect(id.value).to eq(value)
+        end
+
       end
 
       describe '#from_doi' do

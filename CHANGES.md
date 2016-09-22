@@ -13,8 +13,11 @@
   nil they will instead return an empty array.
 - `language` and `xml:lang` attributes no longer default to `'en'` and are 
   now fully optional.
-- `<subject/>` and `<description/>` tags without text are ignored on read, as are `<geoLocation>`
-  tags with no child elements.
+- `:nonvalidating` mapping has been removed. Instead:
+  - `<subject/>` and `<description/>` tags without text are ignored on read, as are `<geoLocation>`
+    tags with no child elements.
+  - missing `<identifiers/>` and `<identifiers/>` with missing values are ignored on read, but
+    the `Resource` must be given a valid `Identifier` before writing it back out.
 
 ## 0.1.18 (unreleased)
 

@@ -6,15 +6,24 @@ module Datacite
 
     describe Resource do
 
+      def xml_text_from(file, fix_dash1)
+        xml_text = File.read(file)
+        xml_text = fix_dash1(xml_text) if fix_dash1
+        xml_text
+      end
+
       def parse_file(xml_text, basename)
         return Resource.parse_xml(xml_text)
       rescue Exception => e # rubocop:disable Lint/RescueException:
         warn "Error parsing #{basename}: #{e}"
+        File.open("tmp/#{basename}-xml_text.xml", 'w') { |t| t.write(xml_text) }
         File.open("tmp/#{basename}-parse_error.xml", 'w') { |t| t.write(xml_text) }
         raise
       end
 
       def write_xml(resource, basename, options)
+        # Workaround for Dash 1 datacite.xml with missing DOI
+        resource.identifier = Identifier.from_doi('10.5555/12345678') unless resource.identifier
         return resource.write_xml(options)
       rescue Exception => e # rubocop:disable Lint/RescueException:
         warn "Error writing #{basename}: #{e}"
@@ -30,17 +39,31 @@ module Datacite
           .gsub(%r{<(geoLocation[^>]+)>[^<]+</\1>}) { |loc| loc.gsub(/([0-9\-]+\.[0-9]+?)0+([^0-9])/, '\\1\\2') }
       end
 
-      def it_round_trips(f, options = { mapping: :_default })
-        basename = File.basename(f)
-        xml_text = File.read(f)
+      def fix_dash1(xml_str)
+        # Workaround for Dash 1 datacite.xml with:
+        # - missing DOI
+        # - empty tags
+        # - nested contributors instead of contributorNames
+        xml_str
+          .gsub('<identifier identifierType="DOI"/>', '<identifier identifierType="DOI">10.5555/12345678</identifier>')
+          .gsub(%r{<[^>]+/>}, '') # TODO: make sure there's no attribute-only tags
+          .gsub(%r{<([^>]+)>\s+</\1>}, '')
+          .gsub(%r{(<contributor[^>/]+>\s*)<contributor>([^<]+)</contributor>(\s*</contributor>)}, '\\1<contributorName>\\2</contributorName>\\3')
+      end
+
+      def it_round_trips(file:, mapping: :_default, fix_dash1: false)
+        options = { mapping: mapping }
+        basename = File.basename(file)
+        xml_text = xml_text_from(file, fix_dash1)
         resource = parse_file(xml_text, basename)
         actual_xml = write_xml(resource, basename, options)
         expected_xml = normalize(xml_text)
+        File.open("tmp/#{basename}-actual.xml", 'w') { |t| t.write(actual_xml) }
         begin
           expect(actual_xml).to be_xml(expected_xml)
         rescue Exception # rubocop:disable Lint/RescueException:
           File.open("tmp/#{basename}-expected.xml", 'w') { |t| t.write(expected_xml) }
-          File.open("tmp/#{basename}-actual.xml", 'w') { |t| t.write(actual_xml) }
+          # File.open("tmp/#{basename}-actual.xml", 'w') { |t| t.write(actual_xml) }
           raise
         end
       end
@@ -928,20 +951,14 @@ module Datacite
       end
 
       describe 'compatibility' do
-        describe 'datacite 4' do
-          it 'reads all datacite 4 example documents' do
-            Dir.glob('spec/data/datacite4/datacite-example-*.xml') { |f| it_round_trips(f) }
-          end
+        it 'reads all datacite 4 example documents' do
+          Dir.glob('spec/data/datacite4/datacite-example-*.xml') { |f| it_round_trips(file: f) }
         end
-        describe 'datacite 3' do
-          it 'reads all datacite 3 example documents' do
-            Dir.glob('spec/data/datacite3/datacite-example-*.xml') { |f| it_round_trips(f, mapping: :datacite_3) }
-          end
+        it 'reads all datacite 3 example documents' do
+          Dir.glob('spec/data/datacite3/datacite-example-*.xml') { |f| it_round_trips(file: f, mapping: :datacite_3) }
         end
-        describe 'dash 1' do
-          it 'reads all dash 1 docs' do
-            Dir.glob('spec/data/dash1/*.xml') { |f| it_round_trips(f, mapping: :datacite_3) }
-          end
+        it 'reads all dash 1 docs, with caveats' do
+          Dir.glob('spec/data/dash1/*.xml') { |f| it_round_trips(file: f, mapping: :datacite_3, fix_dash1: true) }
         end
       end
 
@@ -988,5 +1005,6 @@ module Datacite
         end
       end
     end
+
   end
 end

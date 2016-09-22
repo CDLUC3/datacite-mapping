@@ -91,8 +91,10 @@ module Datacite
         @language = value && value.strip
       end
 
-      def value=(value)
-        @value = value && value.strip
+      def value=(v)
+        new_value = v && v.strip
+        fail ArgumentError, 'Value cannot be empty or nil' unless new_value && !new_value.empty?
+        @value = new_value
       end
 
       # @!attribute [rw] language
