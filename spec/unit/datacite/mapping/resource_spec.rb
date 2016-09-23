@@ -6,68 +6,6 @@ module Datacite
 
     describe Resource do
 
-      def xml_text_from(file, fix_dash1)
-        xml_text = File.read(file)
-        xml_text = fix_dash1(xml_text) if fix_dash1
-        xml_text
-      end
-
-      def parse_file(xml_text, basename)
-        return Resource.parse_xml(xml_text)
-      rescue Exception => e # rubocop:disable Lint/RescueException
-        warn "Error parsing #{basename}: #{e}"
-        File.open("tmp/#{basename}-xml_text.xml", 'w') { |t| t.write(xml_text) }
-        File.open("tmp/#{basename}-parse_error.xml", 'w') { |t| t.write(xml_text) }
-        raise
-      end
-
-      def write_xml(resource, basename, options)
-        # Workaround for Dash 1 datacite.xml with missing DOI
-        resource.identifier = Identifier.from_doi('10.5555/12345678') unless resource.identifier
-        return resource.write_xml(options)
-      rescue Exception => e # rubocop:disable Lint/RescueException
-        warn "Error writing #{basename}: #{e}"
-        raise
-      end
-
-      def normalize(xml_str)
-        xml_str
-          .gsub(%r{<([^>]+tude)>([0-9.-]+?)(0?)0+</\1>}, '<\\1>\\2\\3</\\1>') # strip trailing coordinate zeroes
-          .gsub(/ "([^"]+)"/, ' &quot;\\1&quot;') # entity-escape quotes in text
-          .gsub('&lt;br /&gt;', '<br/>') # entity-de-escape <br/> tags
-          .gsub('"', "'") # swap double for single quotes
-          .gsub(%r{<(geoLocation[^>]+)>[^<]+</\1>}) { |loc| loc.gsub(/([0-9\-]+\.[0-9]+?)0+([^0-9])/, '\\1\\2') } # strip trailing coordinate zeroes
-      end
-
-      def fix_dash1(xml_str)
-        # Workaround for Dash 1 datacite.xml with:
-        # - missing DOI
-        # - empty tags
-        # - nested contributors instead of contributorNames
-        xml_str
-          .gsub(%r{<[^>]+/>}, '') # remove empty tags
-          .gsub(%r{<([^>]+)>\s+</\1>}, '') # remove empty tag pairs
-          .gsub(%r{(<date[^>]*>)(\d{4})-(\d{4})(</date>)}, '\\1\\2/\\3\\4') # fix date ranges
-          .gsub(%r{(<contributor[^>/]+>\s*)<contributor>([^<]+)</contributor>(\s*</contributor>)}, '\\1<contributorName>\\2</contributorName>\\3') # fix broken contributors
-      end
-
-      def it_round_trips(file:, mapping: :_default, fix_dash1: false) # rubocop:disable Metrics/AbcSize
-        options = { mapping: mapping }
-        basename = File.basename(file)
-        xml_text = xml_text_from(file, fix_dash1)
-        resource = parse_file(xml_text, basename)
-        actual_xml = write_xml(resource, basename, options)
-        expected_xml = normalize(xml_text)
-        expected_xml.gsub!(/(<resource[^>]+>)\s+(<creators>)/, "\\1\n  <identifier identifierType=\"DOI\">10.5555/12345678</identifier>\n  \\2") if fix_dash1
-        begin
-          expect(actual_xml).to be_xml(expected_xml)
-        rescue Exception # rubocop:disable Lint/RescueException
-          File.open("tmp/#{basename}-expected.xml", 'w') { |t| t.write(expected_xml) }
-          File.open("tmp/#{basename}-actual.xml", 'w') { |t| t.write(actual_xml) }
-          raise
-        end
-      end
-
       attr_reader :identifier
       attr_reader :creators
       attr_reader :titles
@@ -951,6 +889,69 @@ module Datacite
       end
 
       describe 'compatibility' do
+
+        def xml_text_from(file, fix_dash1)
+          xml_text = File.read(file)
+          xml_text = fix_dash1(xml_text) if fix_dash1
+          xml_text
+        end
+
+        def parse_file(xml_text, basename)
+          return Resource.parse_xml(xml_text)
+        rescue Exception => e # rubocop:disable Lint/RescueException
+          warn "Error parsing #{basename}: #{e}"
+          File.open("tmp/#{basename}-xml_text.xml", 'w') { |t| t.write(xml_text) }
+          File.open("tmp/#{basename}-parse_error.xml", 'w') { |t| t.write(xml_text) }
+          raise
+        end
+
+        def write_xml(resource, basename, options)
+          # Workaround for Dash 1 datacite.xml with missing DOI
+          resource.identifier = Identifier.from_doi('10.5555/12345678') unless resource.identifier
+          return resource.write_xml(options)
+        rescue Exception => e # rubocop:disable Lint/RescueException
+          warn "Error writing #{basename}: #{e}"
+          raise
+        end
+
+        def normalize(xml_str)
+          xml_str
+            .gsub(%r{<([^>]+tude)>([0-9.-]+?)(0?)0+</\1>}, '<\\1>\\2\\3</\\1>') # strip trailing coordinate zeroes
+            .gsub(/ "([^"]+)"/, ' &quot;\\1&quot;') # entity-escape quotes in text
+            .gsub('&lt;br /&gt;', '<br/>') # entity-de-escape <br/> tags
+            .gsub('"', "'") # swap double for single quotes
+            .gsub(%r{<(geoLocation[^>]+)>[^<]+</\1>}) { |loc| loc.gsub(/([0-9\-]+\.[0-9]+?)0+([^0-9])/, '\\1\\2') } # strip trailing coordinate zeroes
+        end
+
+        def fix_dash1(xml_str)
+          # Workaround for Dash 1 datacite.xml with:
+          # - missing DOI
+          # - empty tags
+          # - nested contributors instead of contributorNames
+          xml_str
+            .gsub(%r{<[^>]+/>}, '') # remove empty tags
+            .gsub(%r{<([^>]+)>\s+</\1>}, '') # remove empty tag pairs
+            .gsub(%r{(<date[^>]*>)(\d{4})-(\d{4})(</date>)}, '\\1\\2/\\3\\4') # fix date ranges
+            .gsub(%r{(<contributor[^>/]+>\s*)<contributor>([^<]+)</contributor>(\s*</contributor>)}, '\\1<contributorName>\\2</contributorName>\\3') # fix broken contributors
+        end
+
+        def it_round_trips(file:, mapping: :_default, fix_dash1: false) # rubocop:disable Metrics/AbcSize
+          options = { mapping: mapping }
+          basename = File.basename(file)
+          xml_text = xml_text_from(file, fix_dash1)
+          resource = parse_file(xml_text, basename)
+          actual_xml = write_xml(resource, basename, options)
+          expected_xml = normalize(xml_text)
+          expected_xml.gsub!(/(<resource[^>]+>)\s+(<creators>)/, "\\1\n  <identifier identifierType=\"DOI\">10.5555/12345678</identifier>\n  \\2") if fix_dash1
+          begin
+            expect(actual_xml).to be_xml(expected_xml)
+          rescue Exception # rubocop:disable Lint/RescueException
+            File.open("tmp/#{basename}-expected.xml", 'w') { |t| t.write(expected_xml) }
+            File.open("tmp/#{basename}-actual.xml", 'w') { |t| t.write(actual_xml) }
+            raise
+          end
+        end
+
         it 'reads all datacite 4 example documents' do
           Dir.glob('spec/data/datacite4/datacite-example-*.xml') { |f| it_round_trips(file: f) }
         end
@@ -962,26 +963,37 @@ module Datacite
         end
       end
 
-      describe 'DC3 mapping' do
-        it 'reads a DC3 document'
-        it 'reads a DC4 document'
+      describe 'DC4 to DC3' do
+
+        before(:each) do
+
+        end
 
         describe '#write_xml' do
           it 'sets the kernel-3 namespace'
           it 'writes a DC4 document as DC3'
           it 'warns about FundingReferences'
+          it 'warns about givenNames and familyNames'
+          it 'warns about ISGN identifiers'
+          it 'warns about geoLocationPolygons'
         end
 
         describe '#save_to_xml' do
           it 'sets the kernel-3 namespace'
           it 'writes a DC4 document as DC3'
           it 'warns about FundingReferences'
+          it 'warns about givenNames and familyNames'
+          it 'warns about ISGN identifiers'
+          it 'warns about geoLocationPolygons'
         end
 
         describe '#save_to_file' do
           it 'sets the kernel-3 namespace'
           it 'writes a DC4 document as DC3'
           it 'warns about FundingReferences'
+          it 'warns about givenNames and familyNames'
+          it 'warns about ISGN identifiers'
+          it 'warns about geoLocationPolygons'
         end
       end
 
