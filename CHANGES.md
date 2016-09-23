@@ -7,7 +7,7 @@
   - Datacite 3 support via `mapping: :datacite_3`
     - invalid elements (`<geoLocationPolygon/>`, `<fundingReference>`)
       will be dropped, with a warning
-    - ISGN identifiers will be converted to URL identifiers
+    - [IGSN](http://igsn.github.io/overview/) identifiers will be converted to Handle identifiers
 - `language` and `xml:lang` attributes no longer default to `'en'` and are 
   now fully optional.
 - `Date` now properly supports [RKMS-ISO8601](http://www.ukoln.ac.uk/metadata/dcmi/collection-RKMS-ISO8601/)

@@ -152,13 +152,37 @@ module Datacite
         end
       end
 
+      describe 'IGSN support' do
+
+        attr_reader :igsn_xml
+        attr_reader :id
+
+        before(:each) do
+          @igsn_xml = '<relatedIdentifier relatedIdentifierType="IGSN" relationType="References">IECUR0097</relatedIdentifier>'
+          @id = RelatedIdentifier.parse_xml(igsn_xml)
+        end
+
+        it 'reads an IGSN' do
+          expect(id.identifier_type).to eq(RelatedIdentifierType::IGSN)
+        end
+
+        it 'writes an IGSN' do
+          expect(id.save_to_xml).to be_xml(igsn_xml)
+        end
+
+        it 'writes an IGSN as a handle when using DC3 mapping' do
+          expected_xml = '<relatedIdentifier relatedIdentifierType="Handle" relationType="References">http://hdl.handle.net/10273/IECUR0097</relatedIdentifier>'
+          expect(id.save_to_xml(mapping: :datacite_3)).to be_xml(expected_xml)
+        end
+      end
+
       describe 'DC4 support' do
         describe 'DC4 mode' do
-          it 'reads ISGN identifiers'
-          it 'writes ISGN identifiers'
+          it 'reads IGSN identifiers'
+          it 'writes IGSN identifiers'
         end
         describe 'DC3 mode' do
-          it 'converts ISGN identifiers to URLs'
+          it 'converts IGSN identifiers to URLs'
           it 'warns of conversion'
         end
       end

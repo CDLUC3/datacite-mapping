@@ -135,7 +135,30 @@ module Datacite
       # @!parse URN = URN
       new :URN, 'URN'
 
+      # @!parse IGSN = IGSN
+      new :IGSN, 'IGSN'
     end
+
+    class Datacite3RidTypeNode < XML::MappingExtensions::TypesafeEnumNode
+      def to_xml_text(enum_instance)
+        return super unless enum_instance == RelatedIdentifierType::IGSN
+        super(RelatedIdentifierType::HANDLE)
+      end
+    end
+    XML::Mapping.add_node_class(Datacite3RidTypeNode)
+
+    class Datacite3RidValueNode < XML::Mapping::TextNode
+      def obj_to_xml(obj, xml)
+        return super unless obj.identifier_type == RelatedIdentifierType::IGSN
+        igsn_value = obj.value
+        handle_value = "http://hdl.handle.net/10273/#{igsn_value}"
+        # TODO: move this somewhere more general
+        ReadOnlyNodes.warn("Converting IGSN: #{igsn_value} to Handle: #{handle_value}")
+        set_attr_value(xml, handle_value)
+        true
+      end
+    end
+    XML::Mapping.add_node_class(Datacite3RidValueNode)
 
     # Globally unique identifier of a related resource.
     class RelatedIdentifier
@@ -197,6 +220,10 @@ module Datacite
       # @!attribute [rw] scheme_type
       #   @return [String, nil] the type of the metadata scheme. Used only with `HasMetadata`/`IsMetadataFor`. Optional.
       text_node :scheme_type, '@schemeType', default_value: nil
+
+      use_mapping :datacite_3
+      datacite3_rid_type_node :identifier_type, '@relatedIdentifierType', class: RelatedIdentifierType
+      datacite3_rid_value_node :value, 'text()'
 
       fallback_mapping :datacite_3, :_default
     end

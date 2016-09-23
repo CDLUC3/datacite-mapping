@@ -966,101 +966,73 @@ module Datacite
       describe 'DC4 to DC3' do
 
         attr_reader :resource
+        attr_reader :rexml
+        attr_reader :warnings
 
         it 'reads/writes spec/data/datacite-4-synthetic.xml'
 
+        def warnings_including(substring)
+          warnings.select { |w| w.include?(substring) }
+        end
+
+        def expect_warning(substring, count, include_matches = false)
+          matches = warnings_including(substring)
+          found_count = matches.size
+          msg = "expected #{count} warnings including '#{substring}', found #{found_count}"
+          msg << ": #{matches}" if include_matches
+          expect(found_count).to eq(count), msg
+        end
+
+        def expect_matches(xpath, count, include_matches = false)
+          matches = REXML::XPath.match(rexml, xpath)
+          found_count = matches.size
+          msg = "expected #{count} matches for XPath '#{xpath}', found #{found_count}"
+          msg << ": #{matches}" if include_matches
+          expect(found_count).to eq(count), msg
+        end
+
         before(:each) do
-          xml = File.read('spec/data/datacite4/datacite-example-full-v4.0.xml')
+          @warnings = []
+          allow(ReadOnlyNodes).to receive(:warn) do |w|
+            warnings << w
+            Kernel.warn(w) # for debugging
+          end
 
           # TODO: use this one instead
           # xml = File.read('spec/data/datacite-4-synthetic.xml')
-
+          xml = File.read('spec/data/datacite4/datacite-example-full-v4.0.xml')
           @resource = Resource.parse_xml(xml)
+          @rexml = resource.save_to_xml(mapping: :datacite_3)
         end
 
-        describe '#save_to_xml' do
-
-          attr_reader :rexml
-          attr_reader :warnings
-
-          before(:each) do
-            @warnings = []
-            allow(ReadOnlyNodes).to receive(:warn) do |w|
-              warnings << w
-              Kernel.warn(w) # for debugging
-            end
-            @rexml = resource.save_to_xml(mapping: :datacite_3)
-          end
-
-          def warnings_including(substring)
-            warnings.select { |w| w.include?(substring) }
-          end
-
-          def expect_warning(substring, count, include_matches = false)
-            matches = warnings_including(substring)
-            found_count = matches.size
-            msg = "expected #{count} warnings including '#{substring}', found #{found_count}"
-            msg << ": #{matches}" if include_matches
-            expect(found_count).to eq(count), msg
-          end
-
-          def expect_matches(xpath, count, include_matches = false)
-            matches = REXML::XPath.match(rexml, xpath)
-            found_count = matches.size
-            msg = "expected #{count} matches for XPath '#{xpath}', found #{found_count}"
-            msg << ": #{matches}" if include_matches
-            expect(found_count).to eq(count), msg
-          end
-
-          it 'sets the kernel-3 namespace' do
-            expect(rexml.namespace).to eq(DATACITE_3_NAMESPACE.uri)
-          end
-
-          it 'warns about givenNames and familyNames' do
-            name_tags = %w(givenName familyName)
-            name_tags.each do |tag|
-              expect_matches("//#{tag}", 0, true)
-              expect_warning(tag, 1)
-            end
-          end
-
-          it 'warns about FundingReferences'
-          it 'warns about ISGN identifiers'
-          it 'warns about geoLocationPolygons'
+        it 'sets the kernel-3 namespace' do
+          expect(rexml.namespace).to eq(DATACITE_3_NAMESPACE.uri)
         end
 
-        describe '#write_xml' do
-          it 'sets the kernel-3 namespace'
-          it 'warns about FundingReferences'
-          it 'warns about givenNames and familyNames'
-          it 'warns about ISGN identifiers'
-          it 'warns about geoLocationPolygons'
+        it 'warns about givenNames and familyNames' do
+          name_tags = %w(givenName familyName)
+          name_tags.each do |tag|
+            expect_matches("//#{tag}", 0, true)
+            expect_warning(tag, 1)
+          end
         end
 
-        describe '#save_to_file' do
-          it 'sets the kernel-3 namespace'
-          it 'warns about FundingReferences'
-          it 'warns about givenNames and familyNames'
-          it 'warns about ISGN identifiers'
-          it 'warns about geoLocationPolygons'
+        it 'warns about FundingReferences' do
+          expect_matches('//fundingReferences', 0, true)
+          expect_warning('fundingReferences', 1)
         end
+
+        it 'warns about IGSN identifiers'
+
+        it 'warns about geoLocationPolygons'
+
       end
 
       describe 'DC4 mapping' do
         it 'reads a DC4 document'
         it 'reads a DC3 document'
 
-        describe '#write_xml' do
-          it 'sets the kernel-4.0 namespace'
-          it 'writes a DC3 document as DC4'
-        end
-
         describe '#save_to_xml' do
-          it 'sets the kernel-4.0 namespace'
-          it 'writes a DC3 document as DC4'
-        end
-
-        describe '#save_to_file' do
           it 'sets the kernel-4.0 namespace'
           it 'writes a DC3 document as DC4'
         end
