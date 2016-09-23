@@ -2,7 +2,7 @@ require 'xml/mapping'
 
 module Datacite
   module Mapping
-    DOI_PATTERN = %r{\A10\.\S+/\S+\z}
+    DOI_PATTERN = %r{10\.\S+/\S+}
 
     # The persistent identifier that identifies the resource.
     #

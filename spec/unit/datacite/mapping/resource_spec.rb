@@ -32,11 +32,11 @@ module Datacite
 
       def normalize(xml_str)
         xml_str
-          .gsub(%r{<([^>]+tude)>([0-9.-]+?)(0?)0+</\1>}, '<\\1>\\2\\3</\\1>')
-          .gsub(/ "([^"]+)"/, ' &quot;\\1&quot;')
-          .gsub('&lt;br /&gt;', '<br/>')
-          .gsub('"', "'")
-          .gsub(%r{<(geoLocation[^>]+)>[^<]+</\1>}) { |loc| loc.gsub(/([0-9\-]+\.[0-9]+?)0+([^0-9])/, '\\1\\2') }
+          .gsub(%r{<([^>]+tude)>([0-9.-]+?)(0?)0+</\1>}, '<\\1>\\2\\3</\\1>') # strip trailing coordinate zeroes
+          .gsub(/ "([^"]+)"/, ' &quot;\\1&quot;') # entity-escape quotes in text
+          .gsub('&lt;br /&gt;', '<br/>') # entity-de-escape <br/> tags
+          .gsub('"', "'") # swap double for single quotes
+          .gsub(%r{<(geoLocation[^>]+)>[^<]+</\1>}) { |loc| loc.gsub(/([0-9\-]+\.[0-9]+?)0+([^0-9])/, '\\1\\2') } # strip trailing coordinate zeroes
       end
 
       def fix_dash1(xml_str)
@@ -45,10 +45,11 @@ module Datacite
         # - empty tags
         # - nested contributors instead of contributorNames
         xml_str
-          .gsub('<identifier identifierType="DOI"/>', '<identifier identifierType="DOI">10.5555/12345678</identifier>')
-          .gsub(%r{<[^>]+/>}, '') # TODO: make sure there's no attribute-only tags
-          .gsub(%r{<([^>]+)>\s+</\1>}, '')
-          .gsub(%r{(<contributor[^>/]+>\s*)<contributor>([^<]+)</contributor>(\s*</contributor>)}, '\\1<contributorName>\\2</contributorName>\\3')
+          .gsub('<identifier identifierType="DOI"/>', '<identifier identifierType="DOI">10.5555/12345678</identifier>') # fix missing DOIs
+          .gsub(%r{<[^>]+/>}, '') # remove empty tags
+          .gsub(%r{<([^>]+)>\s+</\1>}, '') # remove empty tag pairs
+          .gsub(%r{(<date[^>]*>)(\d{4})-(\d{4})(</date>)}, '\\1\\2/\\3\\4') # fix date ranges
+          .gsub(%r{(<contributor[^>/]+>\s*)<contributor>([^<]+)</contributor>(\s*</contributor>)}, '\\1<contributorName>\\2</contributorName>\\3') # fix broken contributors
       end
 
       def it_round_trips(file:, mapping: :_default, fix_dash1: false)
@@ -58,12 +59,11 @@ module Datacite
         resource = parse_file(xml_text, basename)
         actual_xml = write_xml(resource, basename, options)
         expected_xml = normalize(xml_text)
-        File.open("tmp/#{basename}-actual.xml", 'w') { |t| t.write(actual_xml) }
         begin
           expect(actual_xml).to be_xml(expected_xml)
         rescue Exception # rubocop:disable Lint/RescueException:
           File.open("tmp/#{basename}-expected.xml", 'w') { |t| t.write(expected_xml) }
-          # File.open("tmp/#{basename}-actual.xml", 'w') { |t| t.write(actual_xml) }
+          File.open("tmp/#{basename}-actual.xml", 'w') { |t| t.write(actual_xml) }
           raise
         end
       end
