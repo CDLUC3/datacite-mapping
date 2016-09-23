@@ -17,5 +17,9 @@ module Datacite
     )
 
     Dir.glob(File.expand_path('../mapping/*.rb', __FILE__)).sort.each(&method(:require))
+
+    def self.warn(msg)
+      super
+    end
   end
 end
