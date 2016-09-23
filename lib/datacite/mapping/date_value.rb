@@ -31,6 +31,7 @@ module Datacite
       attr_reader :sec
       attr_reader :nsec
       attr_reader :date
+      attr_reader :zone
 
       # Creates a new {DateValue}.
       #
@@ -48,6 +49,7 @@ module Datacite
           @minute = datetime.minute
           @sec = datetime.sec
           @nsec = datetime.to_time.nsec
+          @zone = datetime.zone
         end
         fail ArgumentError, "Unable to parse date value '#{val}'" unless @year
       end
@@ -56,18 +58,19 @@ module Datacite
         return nil unless other.class == self.class
         [:year, :month, :day, :hour, :minute, :sec, :nsec].each do |v|
           order = send(v) <=> other.send(v)
-          return order if order != 0
+          return order if order.nonzero?
         end
         0
       end
 
       def hash
-        [year, month, day, hour, minute, sec, nsec].hash
+        [year, month, day, hour, minute, sec, nsec, zone].hash
       end
 
       def to_s
-        'DateTime(' + [:year, :month, :day, :hour, :minute, :sec, :nsec].map do |field|
+        'DateTime(' + [:year, :month, :day, :hour, :minute, :sec, :nsec, :zone].map do |field|
           value = send(field)
+          value = format('%02d', value) if value && value.is_a?(Integer)
           "#{field}: #{value}" if value
         end.compact.join(', ') + ')'
       end

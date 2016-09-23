@@ -14,7 +14,7 @@ module Datacite
 
       def parse_file(xml_text, basename)
         return Resource.parse_xml(xml_text)
-      rescue Exception => e # rubocop:disable Lint/RescueException:
+      rescue Exception => e # rubocop:disable Lint/RescueException
         warn "Error parsing #{basename}: #{e}"
         File.open("tmp/#{basename}-xml_text.xml", 'w') { |t| t.write(xml_text) }
         File.open("tmp/#{basename}-parse_error.xml", 'w') { |t| t.write(xml_text) }
@@ -25,7 +25,7 @@ module Datacite
         # Workaround for Dash 1 datacite.xml with missing DOI
         resource.identifier = Identifier.from_doi('10.5555/12345678') unless resource.identifier
         return resource.write_xml(options)
-      rescue Exception => e # rubocop:disable Lint/RescueException:
+      rescue Exception => e # rubocop:disable Lint/RescueException
         warn "Error writing #{basename}: #{e}"
         raise
       end
@@ -45,23 +45,23 @@ module Datacite
         # - empty tags
         # - nested contributors instead of contributorNames
         xml_str
-          .gsub('<identifier identifierType="DOI"/>', '<identifier identifierType="DOI">10.5555/12345678</identifier>') # fix missing DOIs
           .gsub(%r{<[^>]+/>}, '') # remove empty tags
           .gsub(%r{<([^>]+)>\s+</\1>}, '') # remove empty tag pairs
           .gsub(%r{(<date[^>]*>)(\d{4})-(\d{4})(</date>)}, '\\1\\2/\\3\\4') # fix date ranges
           .gsub(%r{(<contributor[^>/]+>\s*)<contributor>([^<]+)</contributor>(\s*</contributor>)}, '\\1<contributorName>\\2</contributorName>\\3') # fix broken contributors
       end
 
-      def it_round_trips(file:, mapping: :_default, fix_dash1: false)
+      def it_round_trips(file:, mapping: :_default, fix_dash1: false) # rubocop:disable Metrics/AbcSize
         options = { mapping: mapping }
         basename = File.basename(file)
         xml_text = xml_text_from(file, fix_dash1)
         resource = parse_file(xml_text, basename)
         actual_xml = write_xml(resource, basename, options)
         expected_xml = normalize(xml_text)
+        expected_xml.gsub!(/(<resource[^>]+>)\s+(<creators>)/, "\\1\n  <identifier identifierType=\"DOI\">10.5555/12345678</identifier>\n  \\2") if fix_dash1
         begin
           expect(actual_xml).to be_xml(expected_xml)
-        rescue Exception # rubocop:disable Lint/RescueException:
+        rescue Exception # rubocop:disable Lint/RescueException
           File.open("tmp/#{basename}-expected.xml", 'w') { |t| t.write(expected_xml) }
           File.open("tmp/#{basename}-actual.xml", 'w') { |t| t.write(actual_xml) }
           raise

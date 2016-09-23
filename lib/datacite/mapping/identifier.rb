@@ -61,18 +61,15 @@ module Datacite
     # missing its `<identifier/>`.
     class IdentifierNode < XML::Mapping::ObjectNode
       def xml_to_obj(_obj, xml)
-        element = element_from(xml)
-        return unless element
-        return super if element.text
-        warn "Missing identifier value in #{element}; add a valid Identifier to the resulting Resource before saving"
+        super if has_element?(xml)
       end
 
       private
 
-      def element_from(xml)
+      def has_element?(xml) # rubocop:disable Style/PredicateName
         @path.first(xml)
       rescue XML::XXPathError => e
-        warn "Identifier element #{@attrname} not found in XML #{xml}: #{e}; add a valid Identifier to the resulting Resource before saving"
+        warn "<#{@attrname}/> element not found: #{e}; add a valid Identifier to the resulting Resource before saving"
       end
     end
     XML::Mapping.add_node_class IdentifierNode

@@ -8,11 +8,13 @@
     - invalid elements (`<geoLocationPolygon/>`, `<fundingReference>`)
       will be dropped, with a warning
     - ISGN identifiers will be converted to URL identifiers
+- `language` and `xml:lang` attributes no longer default to `'en'` and are 
+  now fully optional.
+- `Date` now properly supports [RKMS-ISO8601](http://www.ukoln.ac.uk/metadata/dcmi/collection-RKMS-ISO8601/)
+  date ranges
 - Remove `Datacite::Mapping.log` in favor of `warn()`
 - Array fields (`subjects`, `contributors`, etc.) can no longer be set to nil; if set to 
   nil they will instead return an empty array.
-- `language` and `xml:lang` attributes no longer default to `'en'` and are 
-  now fully optional.
 - `:nonvalidating` mapping has been removed. Instead:
   - `<subject/>` and `<description/>` tags without text are ignored on read, as are `<geoLocation>`
     tags with no child elements.

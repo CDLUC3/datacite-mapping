@@ -38,6 +38,16 @@ module Datacite
 
     # Represents a DataCite `<date/>` field, which can be a year, date (year-month-day or just year-month),
     # ISO8601 datetime, or [RKMS-ISO8601](http://www.ukoln.ac.uk/metadata/dcmi/collection-RKMS-ISO8601/) date range.
+    #
+    # @!attribute [r] date_value
+    #   @return [DateValue, nil] the single date/time represented by this `<date/>` field,
+    #     if it does not represent a ragne
+    # @!attribute [r] range_start
+    #   @return [DateValue, nil] the start of the date range represented by this `<date/> field`,
+    #     if it represents a range, and the range is not open on the lower end
+    # @!attribute [r] range_end
+    #   @return [DateValue, nil] the end of the date range represented by this `<date/> field`,
+    #     if it represents a range, and the range is not open on the upper end
     class Date
       include XML::Mapping
 
@@ -69,7 +79,7 @@ module Datacite
           @range_start, @range_end = parts.map(&:strip).map { |part| DateValue.new(part) unless part == '' }
           # puts "#{val} -> [#{range_start}, #{range_end}]"
         else
-          fail "Unable to parse date value #{val}"
+          fail ArgumentError, "Unable to parse date value #{val}"
         end
         @value = val
       end

@@ -4,9 +4,9 @@ module Datacite
   module Mapping
     describe DateValue do
 
-      before(:each) do
+      before(:all) do
         @values = {
-          with_date_time: DateTime.new(1914, 8, 4, 11, 01, 6.0123, '+1'),
+          with_date_time: DateTime.new(1914, 8, 4, 11, 1, 6.0123, '+1'),
           with_date: ::Date.new(1914, 8, 4),
           with_year: 1914,
           with_year_str: '1914',
@@ -107,24 +107,35 @@ module Datacite
 
       describe '#<=>' do
         it 'reports equal values as equal' do
-          d1 = DateValue.new(DateTime.new(1914, 8, 4, 11, 01, 6.0123, '+1'))
-          d2 = DateValue.new(DateTime.new(1914, 8, 4, 11, 01, 6.0123, '+1'))
+          d1 = DateValue.new(DateTime.new(1914, 8, 4, 11, 0o1, 6.0123, '+1'))
+          d2 = DateValue.new(DateTime.new(1914, 8, 4, 11, 0o1, 6.0123, '+1'))
           expect(d1).to eq(d2)
           expect(d1.hash).to eq(d2.hash)
         end
 
         it 'reports equal values initialized differently as equal' do
           d1 = DateValue.new('1914-08-04T11:01:06.0123+01:00')
-          d2 = DateValue.new(DateTime.new(1914, 8, 4, 11, 01, 6.0123, '+1'))
+          d2 = DateValue.new(DateTime.new(1914, 8, 4, 11, 0o1, 6.0123, '+1'))
           expect(d1).to eq(d2)
           expect(d1.hash).to eq(d2.hash)
         end
 
         it 'reports unequal values as unequal' do
           d1 = DateValue.new('1914-08-04T11:01+01:00')
-          d2 = DateValue.new(DateTime.new(1914, 8, 4, 11, 01, 6.0123, '+1'))
+          d2 = DateValue.new(DateTime.new(1914, 8, 4, 11, 0o1, 6.0123, '+1'))
           expect(d1).not_to eq(d2)
           expect(d1.hash).not_to eq(d2.hash)
+        end
+      end
+
+      describe '#to_s' do
+        it 'includes all relevant fields' do
+          val = '1914-08-04T11:01:06.0123+01:00'
+          str = DateValue.new(val).to_s
+          val.split(/[-T:+.]/).each do |v|
+            v = 12_300_000.to_s if v == '0123' # special case nanos
+            expect(str).to include(v)
+          end
         end
       end
     end

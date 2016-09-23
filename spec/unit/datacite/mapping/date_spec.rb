@@ -25,6 +25,10 @@ module Datacite
           expect(date.range_start).to eq(DateValue.new('1997-07-16T19:30+10:00'))
           expect(date.range_end).to be_nil
         end
+
+        it 'fails on range-like non-ranges' do
+          expect { Date.new(value: '5/18/72', type: DateType::VALID) }.to raise_error(ArgumentError)
+        end
       end
 
       describe 'type=' do
@@ -53,7 +57,7 @@ module Datacite
         it 'reads XML' do
           xml = '<date dateType="Available">1914-08-04T11:01:06.0123+01:00</date>'
           d = Date.parse_xml(xml)
-          expect(d.date_value).to eq(DateValue.new(DateTime.new(1914, 8, 4, 11, 01, 6.0123, '+1')))
+          expect(d.date_value).to eq(DateValue.new(DateTime.new(1914, 8, 4, 11, 0o1, 6.0123, '+1')))
         end
       end
     end

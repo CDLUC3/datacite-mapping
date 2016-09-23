@@ -88,18 +88,18 @@ module Datacite
       end
 
       def creators=(value)
-        fail ArgumentError, 'Resource must have at least one creator' unless value && value.size > 0
+        fail ArgumentError, 'Resource must have at least one creator' unless value && !value.empty?
         @creators = value
       end
 
       def titles=(value)
-        fail ArgumentError, 'Resource must have at least one title' unless value && value.size > 0
+        fail ArgumentError, 'Resource must have at least one title' unless value && !value.empty?
         @titles = value
       end
 
       def publisher=(value)
         new_value = value && value.strip
-        fail ArgumentError, 'Resource must have a publisher' unless new_value && new_value.size > 0
+        fail ArgumentError, 'Resource must have a publisher' unless new_value && !new_value.empty?
         @publisher = new_value.strip
       end
 

@@ -96,7 +96,7 @@ module Datacite
         return nil unless other.class == self.class
         [:south_latitude, :west_longitude, :north_latitude, :east_longitude].each do |c|
           order = send(c) <=> other.send(c)
-          return order if order != 0
+          return order if order.nonzero?
         end
         0
       end

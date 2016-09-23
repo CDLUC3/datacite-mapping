@@ -81,11 +81,11 @@ module Datacite
       end
 
       def award_number=(value)
-        if value.nil? || value.is_a?(AwardNumber)
-          @award_number = value
-        else
-          @award_number = AwardNumber.new(value: value.to_s)
-        end
+        @award_number = if value.nil? || value.is_a?(AwardNumber)
+                          value
+                        else
+                          AwardNumber.new(value: value.to_s)
+                        end
       end
 
       text_node :name, 'funderName'
