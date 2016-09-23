@@ -45,6 +45,14 @@ module Datacite
       #   @return [GeoLocationBox, nil] the latitude-longitude quadrangle containing the area where the data was gathered or about which the data is focused.
       geo_location_box_node :box, 'geoLocationBox', default_value: nil
 
+      # @!attribute [rw] polygon
+      #   @return [Array<GeoLocationPoint>] an array of points defining a drawn polygon area containing the area where the data was gathered or about which the data is focused.
+      array_node :polygon, 'geoLocationPolygon', 'polygonPoint', class: GeoLocationPoint, default_value: []
+
+      use_mapping :datacite_3
+
+      read_only_array_node :polygon, 'geoLocationPolygon', class: GeoLocationPoint, default_value: []
+
       fallback_mapping :datacite_3, :_default
     end
   end

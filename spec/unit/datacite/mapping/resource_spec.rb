@@ -998,9 +998,7 @@ module Datacite
             Kernel.warn(w) # for debugging
           end
 
-          # TODO: use this one instead
-          # xml = File.read('spec/data/datacite-4-synthetic.xml')
-          xml = File.read('spec/data/datacite4/datacite-example-full-v4.0.xml')
+          xml = File.read('spec/data/datacite-4-synthetic.xml')
           @resource = Resource.parse_xml(xml)
           @rexml = resource.save_to_xml(mapping: :datacite_3)
         end
