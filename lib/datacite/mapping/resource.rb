@@ -10,6 +10,7 @@ require 'datacite/mapping/resource_type'
 require 'datacite/mapping/alternate_identifier'
 require 'datacite/mapping/rights'
 require 'datacite/mapping/geo_location'
+require 'datacite/mapping/read_only_nodes'
 
 module Datacite
   module Mapping
@@ -275,6 +276,10 @@ module Datacite
       deprecate(:funder_name, FundingReference, 2016, 9)
       deprecate(:funder_id, FundingReference, 2016, 9)
       deprecate(:funder_id_value, FundingReference, 2016, 9)
+
+      use_mapping :datacite_3
+
+      read_only_array_node :funding_references, 'fundingReferences', 'fundingReference', class: FundingReference, default_value: [], warn_reason: 'not available in Datacite 3'
 
       fallback_mapping :datacite_3, :_default
     end

@@ -1,5 +1,5 @@
 require 'xml/mapping'
-require 'datacite/mapping/read_only_text_node'
+require 'datacite/mapping/read_only_nodes'
 require 'datacite/mapping/name_identifier'
 
 module Datacite

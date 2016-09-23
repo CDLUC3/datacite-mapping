@@ -985,7 +985,10 @@ module Datacite
 
           before(:each) do
             @warnings = []
-            allow(Mapping).to receive(:warn) { |w| warnings << w }
+            allow(ReadOnlyNodes).to receive(:warn) do |w|
+              warnings << w
+              Kernel.warn(w) # for debugging
+            end
             @rexml = resource.save_to_xml(mapping: :datacite_3)
           end
 
