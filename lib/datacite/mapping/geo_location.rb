@@ -17,10 +17,12 @@ module Datacite
       # @param point [GeoLocationPoint, nil] the latitude and longitude at which the data was gathered or about which the data is focused.
       # @param box [GeoLocationBox, nil] the latitude-longitude quadrangle containing the area where the data was gathered or about which the data is focused.
       # @param place [String, nil] the spatial region or named place where the data was gathered or about which the data is focused.
-      def initialize(point: nil, box: nil, place: nil)
+      # @param polygon [GeoLocationPolygon, nil] a drawn polygon area containing the area where the data was gathered or about which the data is focused.
+      def initialize(point: nil, box: nil, place: nil, polygon: nil)
         self.point = point
         self.box = box
         self.place = place
+        self.polygon = polygon
       end
 
       def place=(value)
@@ -28,7 +30,7 @@ module Datacite
       end
 
       def location?
-        point || box || place
+        point || box || place || polygon
       end
 
       root_element_name 'geoLocation'
@@ -45,9 +47,9 @@ module Datacite
       #   @return [GeoLocationBox, nil] the latitude-longitude quadrangle containing the area where the data was gathered or about which the data is focused.
       geo_location_box_node :box, 'geoLocationBox', default_value: nil
 
-      # @!attribute [rw] polygon
-      #   @return [Array<GeoLocationPoint>] an array of points defining a drawn polygon area containing the area where the data was gathered or about which the data is focused.
-      array_node :polygon, 'geoLocationPolygon', 'polygonPoint', class: GeoLocationPoint, default_value: []
+      # # @!attribute [rw] polygon
+      # #   @return [GeoLocationPolygon] a drawn polygon area containing the area where the data was gathered or about which the data is focused.
+      object_node :polygon, 'geoLocationPolygon', default_value: nil
 
       use_mapping :datacite_3
 

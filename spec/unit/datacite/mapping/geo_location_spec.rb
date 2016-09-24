@@ -20,6 +20,16 @@ module Datacite
           loc = GeoLocation.new(place: place)
           expect(loc.place).to eq(place)
         end
+        it 'accepts a polygon' do
+          polygon = GeoLocationPolygon.new(points: [
+            GeoLocationPoint.new(47.61, -122.33),
+            GeoLocationPoint.new(-33.45, -122.33),
+            GeoLocationPoint.new(47.61, -70.67),
+            GeoLocationPoint.new(47.61, -122.33)
+          ])
+          loc = GeoLocation.new(polygon: polygon)
+          expect(loc.polygon).to eq(polygon)
+        end
         it 'allows an empty location' do
           loc = GeoLocation.new
           expect(loc.point).to be_nil
@@ -70,11 +80,21 @@ module Datacite
         end
       end
 
-      describe '#load_from_xml' do
-        it 'reads geoLocationPolygons'
-        it 'reads DC3 points'
-        it 'reads DC3 boxes'
+      describe '#polygon=' do
+        it 'sets the polygon' do
+          polygon = GeoLocationPolygon.new(points: [
+                                             GeoLocationPoint.new(47.61, -122.33),
+                                             GeoLocationPoint.new(-33.45, -122.33),
+                                             GeoLocationPoint.new(47.61, -70.67),
+                                             GeoLocationPoint.new(47.61, -122.33)
+                                           ])
+          loc = GeoLocation.new
+          loc.polygon = polygon
+          expect(loc.polygon).to eq(polygon)
+        end
+      end
 
+      describe '#load_from_xml' do
         it 'parses DC3' do
           xml_text = '<geoLocation>
                         <geoLocationPlace>Atlantic Ocean</geoLocationPlace>
@@ -100,11 +120,35 @@ module Datacite
                           <northBoundLatitude>42.893</northBoundLatitude>
                           <eastBoundLongitude>-68.211</eastBoundLongitude>
                         </geoLocationBox>
+                        <geoLocationPolygon>
+                          <polygonPoint>
+                            <pointLongitude>-67.302</pointLongitude>
+                            <pointLatitude>31.233</pointLatitude>
+                          </polygonPoint>
+                          <polygonPoint>
+                            <pointLongitude>-71.032</pointLongitude>
+                            <pointLatitude>-68.211</pointLatitude>
+                          </polygonPoint>
+                          <polygonPoint>
+                            <pointLongitude>41.09</pointLongitude>
+                            <pointLatitude>42.893</pointLatitude>
+                          </polygonPoint>
+                          <polygonPoint>
+                            <pointLongitude>-67.302</pointLongitude>
+                            <pointLatitude>31.233</pointLatitude>
+                          </polygonPoint>
+                        </geoLocationPolygon>
                       </geoLocation>'
           loc = GeoLocation.parse_xml(xml_text)
           expect(loc.point).to eq(GeoLocationPoint.new(31.233, -67.302))
           expect(loc.box).to eq(GeoLocationBox.new(41.09, -71.032, 42.893, -68.211))
           expect(loc.place).to eq('Atlantic Ocean')
+          expect(loc.polygon).to eq(GeoLocationPolygon.new(points: [
+                      GeoLocationPoint.new(-67.302, -31.233),
+                      GeoLocationPoint.new(-71.032, -68.211),
+                      GeoLocationPoint.new(41.09, -42.893),
+                      GeoLocationPoint.new(-67.302, -31.233),
+                    ]))
         end
 
         it 'trims place-name whitespace' do
@@ -126,13 +170,18 @@ module Datacite
           @loc = GeoLocation.new(
             point: GeoLocationPoint.new(31.233, -67.302),
             box: GeoLocationBox.new(41.09, -71.032, 42.893, -68.211),
-            place: 'Atlantic Ocean'
+            place: 'Atlantic Ocean',
+            polygon: (GeoLocationPolygon.new(points: [
+              GeoLocationPoint.new(-67.302, -31.233),
+              GeoLocationPoint.new(-71.032, -68.211),
+              GeoLocationPoint.new(41.09, -42.893),
+              GeoLocationPoint.new(-67.302, -31.233),
+            ]))
           )
         end
 
         describe 'DC4 mode' do
-          it 'writes geoLocationPolygons'
-          it 'writes DC4 points and boxes' do
+          it 'writes DC4' do
             expected_xml = '<geoLocation>
                               <geoLocationPlace>Atlantic Ocean</geoLocationPlace>
                               <geoLocationPoint>
@@ -145,6 +194,24 @@ module Datacite
                                 <northBoundLatitude>42.893</northBoundLatitude>
                                 <eastBoundLongitude>-68.211</eastBoundLongitude>
                               </geoLocationBox>
+                              <geoLocationPolygon>
+                                <polygonPoint>
+                                  <pointLongitude>-67.302</pointLongitude>
+                                  <pointLatitude>31.233</pointLatitude>
+                                </polygonPoint>
+                                <polygonPoint>
+                                  <pointLongitude>-71.032</pointLongitude>
+                                  <pointLatitude>-68.211</pointLatitude>
+                                </polygonPoint>
+                                <polygonPoint>
+                                  <pointLongitude>41.09</pointLongitude>
+                                  <pointLatitude>42.893</pointLatitude>
+                                </polygonPoint>
+                                <polygonPoint>
+                                  <pointLongitude>-67.302</pointLongitude>
+                                  <pointLatitude>31.233</pointLatitude>
+                                </polygonPoint>
+                              </geoLocationPolygon>
                             </geoLocation>'
             expect(loc.save_to_xml).to be_xml(expected_xml)
           end
