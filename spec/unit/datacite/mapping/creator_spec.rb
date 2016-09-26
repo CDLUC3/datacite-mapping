@@ -168,13 +168,46 @@ module Datacite
 
       describe 'DC4 family and given names' do
         describe 'DC3 mapping' do
-          it 'doesn\'t write DC4 family and given names'
-          it 'uses DC4 family and given names for creatorName if creatorName not given'
+          it 'doesn\'t write DC4 family and given names' do
+            id = NameIdentifier.new(scheme: 'ISNI', scheme_uri: URI('http://isni.org/'), value: '0000-0001-1690-159X')
+            creator = Creator.new(name: 'Hedy Lamarr', given_name: 'Hedy', family_name: 'Lamarr', identifier: id, affiliations: ['United Artists', 'Metro-Goldwyn-Mayer'])
+            expected_xml = '<creator>
+                              <creatorName>Hedy Lamarr</creatorName>
+                              <nameIdentifier schemeURI="http://isni.org/" nameIdentifierScheme="ISNI">0000-0001-1690-159X</nameIdentifier>
+                              <affiliation>United Artists</affiliation>
+                              <affiliation>Metro-Goldwyn-Mayer</affiliation>
+                            </creator>'
+            expect(creator.save_to_xml(mapping: :datacite_3)).to be_xml(expected_xml)
+          end
         end
 
         describe 'DC4 mapping' do
-          it 'reads DC4 family and given names'
-          it 'writes DC4 family and given names'
+          it 'reads DC4 family and given names' do
+            xml = '<creator>
+                     <creatorName>Hedy Lamarr</creatorName>
+                     <givenName>Hedy</givenName>
+                     <familyName>Lamarr</familyName>
+                     <nameIdentifier schemeURI="http://isni.org/" nameIdentifierScheme="ISNI">0000-0001-1690-159X</nameIdentifier>
+                     <affiliation>United Artists</affiliation>
+                     <affiliation>Metro-Goldwyn-Mayer</affiliation>
+                   </creator>'
+            creator = Creator.parse_xml(xml)
+            expect(creator.given_name).to eq('Hedy')
+            expect(creator.family_name).to eq('Lamarr')
+          end
+          it 'writes DC4 family and given names' do
+            expected_xml = '<creator>
+                              <creatorName>Hedy Lamarr</creatorName>
+                              <givenName>Hedy</givenName>
+                              <familyName>Lamarr</familyName>
+                              <nameIdentifier schemeURI="http://isni.org/" nameIdentifierScheme="ISNI">0000-0001-1690-159X</nameIdentifier>
+                              <affiliation>United Artists</affiliation>
+                              <affiliation>Metro-Goldwyn-Mayer</affiliation>
+                            </creator>'
+            id = NameIdentifier.new(scheme: 'ISNI', scheme_uri: URI('http://isni.org/'), value: '0000-0001-1690-159X')
+            creator = Creator.new(name: 'Hedy Lamarr', given_name: 'Hedy', family_name: 'Lamarr', identifier: id, affiliations: ['United Artists', 'Metro-Goldwyn-Mayer'])
+            expect(creator.save_to_xml).to be_xml(expected_xml)
+          end
         end
       end
     end

@@ -54,16 +54,6 @@ module Datacite
           expect(id.save_to_xml).to be_xml(expected_xml)
         end
       end
-
-      describe 'DC3 support' do
-        it 'reads with DC3 mapping'
-        it 'writes with DC3 mapping'
-      end
-
-      describe 'DC4 mapping' do
-        it 'reads with DC3 mapping'
-        it 'writes with DC3 mapping'
-      end
     end
   end
 end
