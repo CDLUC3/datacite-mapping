@@ -969,8 +969,6 @@ module Datacite
         attr_reader :rexml
         attr_reader :warnings
 
-        it 'reads/writes spec/data/datacite-4-synthetic.xml'
-
         def warnings_including(substring)
           warnings.select { |w| w.include?(substring) }
         end
@@ -1020,16 +1018,17 @@ module Datacite
           expect_warning('fundingReferences', 1)
         end
 
-        it 'warns about IGSN identifiers'
+        it 'warns about IGSN identifiers' do
+          expect_warning('IGSN', 1)
+        end
 
-        it 'warns about geoLocationPolygons'
+        it 'warns about geoLocationPolygons' do
+          expect_warning('geoLocationPolygon', 1)
+        end
 
       end
 
       describe 'DC4 mapping' do
-        it 'reads a DC4 document'
-        it 'reads a DC3 document'
-
         describe '#save_to_xml' do
           it 'sets the kernel-4.0 namespace'
           it 'writes a DC3 document as DC4'

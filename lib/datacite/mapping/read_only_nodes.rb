@@ -29,7 +29,7 @@ module Datacite
       end
 
       def obj_to_xml(obj, _xml)
-        warning = "Ignoring #{@attrname} value #{value_str(obj)}; #{xpathstr} not written"
+        warning = "#{self.class}: Ignoring #{@attrname} value #{value_str(obj)}; #{xpathstr} not written"
         warning << " (#{warn_reason})" if warn_reason
         ReadOnlyNodes.warn(warning)
       end

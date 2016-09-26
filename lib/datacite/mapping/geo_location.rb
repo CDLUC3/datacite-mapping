@@ -1,6 +1,7 @@
 require 'xml/mapping_extensions'
 require 'datacite/mapping/geo_location_point'
 require 'datacite/mapping/geo_location_box'
+require 'datacite/mapping/geo_location_polygon'
 
 module Datacite
   module Mapping
@@ -49,11 +50,16 @@ module Datacite
 
       # # @!attribute [rw] polygon
       # #   @return [GeoLocationPolygon] a drawn polygon area containing the area where the data was gathered or about which the data is focused.
-      object_node :polygon, 'geoLocationPolygon', default_value: nil
+      object_node :polygon, 'geoLocationPolygon', class: GeoLocationPolygon, default_value: nil
 
       use_mapping :datacite_3
 
-      read_only_array_node :polygon, 'geoLocationPolygon', class: GeoLocationPoint, default_value: []
+      # Workaround for https://github.com/dmolesUC3/xml-mapping_extensions/issues/6
+      object_node :polygon, 'geoLocationPolygon', class: GeoLocationPolygon, default_value: nil, marshaller: (proc do |xml, value|
+        # TODO: Move ReadOnlyNodes.warn() somewhere more obvious
+        ReadOnlyNodes.warn "<geoLocationPolygon/> not supported in Datacite 3; ignoring polygon #{value}"
+        xml.parent.delete_element(xml)
+      end)
 
       fallback_mapping :datacite_3, :_default
     end

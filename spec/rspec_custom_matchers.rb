@@ -37,6 +37,10 @@ RSpec::Matchers.define :be_xml do |expected|
   failure_message do |actual|
     expected_string = to_pretty(to_nokogiri(expected))
     actual_string = to_pretty(to_nokogiri(actual)) || actual
+
+    # File.open('tmp/actual.xml', 'w') { |f| f.write(actual_string) }
+    # File.open('tmp/expected.xml', 'w') { |f| f.write(expected_string) }
+
     "expected XML:\n#{expected_string}\n\nbut was:\n#{actual_string}"
   end
 

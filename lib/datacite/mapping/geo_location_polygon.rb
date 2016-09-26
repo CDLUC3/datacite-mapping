@@ -3,61 +3,64 @@ require 'xml/mapping'
 module Datacite
   module Mapping
     class GeoLocationPolygon
+      include Comparable
       include XML::Mapping
-
-      # # @!attribute [rw] polygon
-      # #   @return [Array<GeoLocationPoint>] an array of points defining the polygon area.
-      array_node :points, 'polygonPoint',
-                 default_value: [],
-                 marshaller: (proc do |xml, value|
-                   marshal_point(xml, value)
-                 end),
-                 unmarshaller: (proc do |xml|
-                   unmarshal_point(xml)
-                 end)
 
       # Creates a new `GeoLocationPolygon`.
       #
       # @param points [Array<GeoLocationPoint>] an array of points defining the polygon area.
       #   Per the spec, the array should contain at least four points, the first and last being
       #   identical to close the polygon.
-      def initialize(points:) # TODO: allow simple array of point args
+      def initialize(points:) # TODO: allow simple array of point args, array of hashes
         self.points = points
-        num_points = points.size
-        warn "Polygon should contain at least 4 points, but has #{num_points}" if num_points < 4
-        if num_points > 1
-          first = points[0]
-          last = points[-1]
-          warn "Polygon is not closed; last and first point should be identical, but were: [#{first}], [#{last}]" unless first == last
-        end
+        warn "Polygon should contain at least 4 points, but has #{points.size}" if points.size < 4
+        warn "Polygon is not closed; last and first point should be identical, but were: [#{points[0]}], [#{points[-1]}]" if points.size > 1 unless points[0] == points[-1]
       end
 
       def points=(value)
         @points = value || []
       end
 
-      # TODO: make this work
-      # def to_s
-      #   points.map { |p| "(#{p})"}.join(',')
-      # end
+      def <=>(other)
+        return nil unless other.class == self.class
+        points <=> other.points
+      end
 
-      # def datacite_3?
-      #   mapping == :datacite_3
-      # end
+      def hash
+        points.hash
+      end
 
-      COORD_ELEMENTS = { latitude: 'pointLatitude',
-                         longitude: 'pointLongitude' }.freeze
+      def to_s
+        point_hashes = points.map { |p| "{ latitude: #{p.latitude}, longitude: #{p.longitude} }" }.join(', ')
+        "[ #{point_hashes} ]"
+      end
+
+      # # @!attribute [rw] polygon
+      # #   @return [Array<GeoLocationPoint>] an array of points defining the polygon area.
+      array_node :points, 'polygonPoint',
+                 default_value: [],
+                 marshaller: (proc { |xml, value| marshal_point(xml, value) }),
+                 unmarshaller: (proc { |xml| unmarshal_point(xml) })
+
+      use_mapping :datacite_3
+
+      # TODO: does this ever get called?
+      read_only_array_node :points, 'polygonPoint', class: GeoLocationPoint, default_value: [], warn_reason: 'not available in Datacite 3'
+
+      fallback_mapping :datacite_3, :_default
+
+      # TODO: Figure out how to DRY this with GeoLocationPointNode
+
+      COORD_ELEMENTS = { longitude: 'pointLongitude',
+                         latitude: 'pointLatitude' }.freeze
 
       def self.marshal_point(element, value)
-        # TODO: figure out how to run-time check for datacite 3 mapping
-        # if datacite_3?
-        #   fail "Can't marshal polygons in Datacite 3"
-        # else
-          COORD_ELEMENTS.each do |getter, element_name|
-            child = element.elements << REXML::Element.new(element_name)
-            child.text = value.send(getter)
-          end
-        # end
+        COORD_ELEMENTS.each do |getter, element_name|
+          v = value.send(getter)
+          puts "adding #{element_name}: #{v}"
+          child = element.elements << REXML::Element.new(element_name)
+          child.text = v
+        end
       end
 
       def self.unmarshal_point(elem)
@@ -67,6 +70,7 @@ module Datacite
         end.to_h
         GeoLocationPoint.new(coords_hash)
       end
+
     end
   end
 end

@@ -4,6 +4,29 @@ module Datacite
   module Mapping
 
     describe GeoLocation do
+
+      attr_reader :warnings
+
+      def warnings_including(substring)
+        warnings.select { |w| w.include?(substring) }
+      end
+
+      def expect_warning(substring, count, include_matches = false)
+        matches = warnings_including(substring)
+        found_count = matches.size
+        msg = "expected #{count} warnings including '#{substring}', found #{found_count}"
+        msg << ": #{matches}" if include_matches
+        expect(found_count).to eq(count), msg
+      end
+
+      before(:each) do
+        @warnings = []
+        allow(ReadOnlyNodes).to receive(:warn) do |w|
+          warnings << w
+          Kernel.warn(w) # for debugging
+        end
+      end
+
       describe '#initialize' do
         it 'accepts a point' do
           point = GeoLocationPoint.new(47.61, -122.33)
@@ -83,11 +106,11 @@ module Datacite
       describe '#polygon=' do
         it 'sets the polygon' do
           polygon = GeoLocationPolygon.new(points: [
-                                             GeoLocationPoint.new(47.61, -122.33),
-                                             GeoLocationPoint.new(-33.45, -122.33),
-                                             GeoLocationPoint.new(47.61, -70.67),
-                                             GeoLocationPoint.new(47.61, -122.33)
-                                           ])
+            GeoLocationPoint.new(47.61, -122.33),
+            GeoLocationPoint.new(-33.45, -122.33),
+            GeoLocationPoint.new(47.61, -70.67),
+            GeoLocationPoint.new(47.61, -122.33)
+          ])
           loc = GeoLocation.new
           loc.polygon = polygon
           expect(loc.polygon).to eq(polygon)
@@ -143,12 +166,14 @@ module Datacite
           expect(loc.point).to eq(GeoLocationPoint.new(31.233, -67.302))
           expect(loc.box).to eq(GeoLocationBox.new(41.09, -71.032, 42.893, -68.211))
           expect(loc.place).to eq('Atlantic Ocean')
-          expect(loc.polygon).to eq(GeoLocationPolygon.new(points: [
-                      GeoLocationPoint.new(-67.302, -31.233),
-                      GeoLocationPoint.new(-71.032, -68.211),
-                      GeoLocationPoint.new(41.09, -42.893),
-                      GeoLocationPoint.new(-67.302, -31.233),
-                    ]))
+          actual_polygon = loc.polygon
+          expected_polygon = GeoLocationPolygon.new(points: [
+            GeoLocationPoint.new(31.233, -67.302),
+            GeoLocationPoint.new(-68.211, -71.032),
+            GeoLocationPoint.new(42.893, 41.09),
+            GeoLocationPoint.new(31.233, -67.302)
+          ])
+          expect(actual_polygon).to eq(expected_polygon)
         end
 
         it 'trims place-name whitespace' do
@@ -172,10 +197,10 @@ module Datacite
             box: GeoLocationBox.new(41.09, -71.032, 42.893, -68.211),
             place: 'Atlantic Ocean',
             polygon: (GeoLocationPolygon.new(points: [
-              GeoLocationPoint.new(-67.302, -31.233),
+              GeoLocationPoint.new(-67.302, 31.233),
               GeoLocationPoint.new(-71.032, -68.211),
-              GeoLocationPoint.new(41.09, -42.893),
-              GeoLocationPoint.new(-67.302, -31.233),
+              GeoLocationPoint.new(41.09, 42.893),
+              GeoLocationPoint.new(-67.302, 31.233)
             ]))
           )
         end
@@ -189,44 +214,45 @@ module Datacite
                                 <pointLongitude>-67.302</pointLongitude>
                               </geoLocationPoint>
                               <geoLocationBox>
-                                <southBoundLatitude>41.09</southBoundLatitude>
                                 <westBoundLongitude>-71.032</westBoundLongitude>
-                                <northBoundLatitude>42.893</northBoundLatitude>
                                 <eastBoundLongitude>-68.211</eastBoundLongitude>
+                                <southBoundLatitude>41.09</southBoundLatitude>
+                                <northBoundLatitude>42.893</northBoundLatitude>
                               </geoLocationBox>
                               <geoLocationPolygon>
                                 <polygonPoint>
-                                  <pointLongitude>-67.302</pointLongitude>
-                                  <pointLatitude>31.233</pointLatitude>
+                                  <pointLongitude>31.233</pointLongitude>
+                                  <pointLatitude>-67.302</pointLatitude>
                                 </polygonPoint>
                                 <polygonPoint>
-                                  <pointLongitude>-71.032</pointLongitude>
-                                  <pointLatitude>-68.211</pointLatitude>
+                                  <pointLongitude>-68.211</pointLongitude>
+                                  <pointLatitude>-71.032</pointLatitude>
                                 </polygonPoint>
                                 <polygonPoint>
-                                  <pointLongitude>41.09</pointLongitude>
-                                  <pointLatitude>42.893</pointLatitude>
+                                  <pointLongitude>42.893</pointLongitude>
+                                  <pointLatitude>41.09</pointLatitude>
                                 </polygonPoint>
                                 <polygonPoint>
-                                  <pointLongitude>-67.302</pointLongitude>
-                                  <pointLatitude>31.233</pointLatitude>
+                                  <pointLongitude>31.233</pointLongitude>
+                                  <pointLatitude>-67.302</pointLatitude>
                                 </polygonPoint>
                               </geoLocationPolygon>
                             </geoLocation>'
-            expect(loc.save_to_xml).to be_xml(expected_xml)
+            actual_xml = loc.save_to_xml
+            expect(actual_xml).to be_xml(expected_xml)
           end
         end
 
         describe 'DC3 mapping' do
-          it 'drops geoLocationPolygons'
-          it 'warns when dropping geoLocationPolygons'
           it 'writes DC3 points and boxes' do
             expected_xml = '<geoLocation>
                             <geoLocationPoint>31.233 -67.302</geoLocationPoint>
                             <geoLocationBox>41.09 -71.032 42.893 -68.211</geoLocationBox>
                             <geoLocationPlace>Atlantic Ocean</geoLocationPlace>
                           </geoLocation>'
-            expect(loc.save_to_xml(mapping: :datacite_3)).to be_xml(expected_xml)
+            actual_xml = loc.save_to_xml(mapping: :datacite_3)
+            expect(actual_xml).to be_xml(expected_xml)
+            expect_warning(loc.polygon.to_s, 1)
           end
         end
       end
