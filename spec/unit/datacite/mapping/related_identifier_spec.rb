@@ -171,7 +171,7 @@ module Datacite
         end
 
         it 'writes an IGSN as a handle when using DC3 mapping' do
-          expected_xml = '<relatedIdentifier relatedIdentifierType="Handle" relationType="References">http://hdl.handle.net/10273/IECUR0097</relatedIdentifier>'
+          expected_xml = '<relatedIdentifier relatedIdentifierType="Handle" relationType="References">10273/IECUR0097</relatedIdentifier>'
           expect(id.save_to_xml(mapping: :datacite_3)).to be_xml(expected_xml)
         end
       end

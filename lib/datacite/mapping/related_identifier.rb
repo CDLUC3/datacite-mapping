@@ -151,9 +151,9 @@ module Datacite
       def obj_to_xml(obj, xml)
         return super unless obj.identifier_type == RelatedIdentifierType::IGSN
         igsn_value = obj.value
-        handle_value = "http://hdl.handle.net/10273/#{igsn_value}"
+        handle_value = "10273/#{igsn_value}"
         # TODO: move this somewhere more general
-        ReadOnlyNodes.warn("Converting IGSN: #{igsn_value} to Handle: #{handle_value}")
+        ReadOnlyNodes.warn("IGSN identifiers not directly supported in Datacite 3; converting IGSN #{igsn_value} to Handle #{handle_value}")
         set_attr_value(xml, handle_value)
         true
       end

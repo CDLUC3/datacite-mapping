@@ -31,6 +31,10 @@ module Datacite
           expect(creator.given_name).to eq('Hedy')
           expect(creator.family_name).to eq('Lamarr')
         end
+
+        it 'defaults to nil given and family names' do
+
+        end
       end
 
       describe '#name=' do

@@ -68,8 +68,8 @@ module Datacite
 
       def has_element?(xml) # rubocop:disable Style/PredicateName
         @path.first(xml)
-      rescue XML::XXPathError => e
-        warn "<#{@attrname}/> element not found: #{e}; add a valid Identifier to the resulting Resource before saving"
+      rescue XML::XXPathError
+        warn '<identifier/> not found; add a valid Identifier to the Resource before saving'
       end
     end
     XML::Mapping.add_node_class IdentifierNode

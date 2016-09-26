@@ -279,7 +279,7 @@ module Datacite
 
       use_mapping :datacite_3
 
-      read_only_array_node :funding_references, 'fundingReferences', 'fundingReference', class: FundingReference, default_value: [], warn_reason: 'not available in Datacite 3'
+      read_only_array_node :funding_references, 'fundingReferences', 'fundingReference', class: FundingReference, default_value: [], warn_reason: '<fundingReferences/> not supported in Datacite 3'
 
       fallback_mapping :datacite_3, :_default
     end

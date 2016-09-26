@@ -37,6 +37,10 @@ module Datacite
         @type = value
       end
 
+      def to_s
+        "#{type.value}: #{value}"
+      end
+
       # @!attribute [rw] type
       #   @return [FunderIdentifierType] the identifier type. Cannot be nil.
       typesafe_enum_node :type, '@funderIdentifierType', class: FunderIdentifierType
@@ -57,6 +61,10 @@ module Datacite
       def value=(value)
         fail ArgumentError, 'Value cannot be empty or nil' unless value && !value.empty?
         @value = value
+      end
+
+      def to_s
+        "#{value} (#{uri})"
       end
 
       # @!attribute [rw] uri
@@ -86,6 +94,11 @@ module Datacite
                         else
                           AwardNumber.new(value: value.to_s)
                         end
+      end
+
+      def to_s
+        fields = [:name, :identifier, :award_number, :award_title].map { |f| "#{f}: #{send(f)}" }
+        "FundingReference { #{fields.join(', ')} }"
       end
 
       text_node :name, 'funderName'

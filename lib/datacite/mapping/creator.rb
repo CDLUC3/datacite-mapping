@@ -64,8 +64,8 @@ module Datacite
 
       use_mapping :datacite_3
 
-      read_only_text_node :given_name, 'givenName', default_value: nil, warn_reason: 'not available in Datacite 3'
-      read_only_text_node :family_name, 'familyName', default_value: nil, warn_reason: 'not available in Datacite 3'
+      read_only_text_node :given_name, 'givenName', default_value: nil, warn_reason: '<givenName/> not supported in Datacite 3'
+      read_only_text_node :family_name, 'familyName', default_value: nil, warn_reason: '<familyName/> not supported in Datacite 3'
 
       fallback_mapping :datacite_3, :_default
     end
