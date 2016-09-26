@@ -88,6 +88,8 @@ To create XML from a `Resource` object, use `Resource.write_xml`, `Resource.save
 | file path         | `Resource.save_to_file` |
 | `REXML::Element`  | `Resource.save_xml`     |
 
+Example:
+
 ```ruby
 resource.write_xml
 #  => "<resource xsi:schemaLocation='http://datacite.org/schema/kernel-4 …
