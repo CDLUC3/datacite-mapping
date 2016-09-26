@@ -1,4 +1,5 @@
 require 'logger'
+require 'rexml/formatters/transitive' # unaccountably, xml/mapping doesn't do this
 require 'xml/mapping_extensions'
 
 # Module for working with the [DataCite metadata schema](https://schema.datacite.org/)

@@ -1032,8 +1032,7 @@ module Datacite
           attr_reader :rexml
 
           before(:each) do
-            xml = File.read('spec/data/datacite3/datacite-example-full-v3.1.xml')
-            @resource = Resource.parse_xml(xml)
+            @resource = Resource.load_from_file('spec/data/datacite3/datacite-example-full-v3.1.xml')
             @rexml = resource.save_to_xml
           end
 
@@ -1102,6 +1101,20 @@ module Datacite
           expect(xml).to match(%r{<dcs:[a-z "=/]+>})
         end
 
+      end
+
+      describe '#save_to_file' do
+        it 'saves to a file' do
+          xml_text =  File.read('spec/data/datacite4/datacite-example-full-v4.0.xml')
+          resource = Resource.parse_xml(xml_text)
+          Dir.mktmpdir('resource_spec') do |dir|
+            path = "#{dir}/resource.xml"
+            resource.save_to_file(path)
+            actual = File.read(path)
+            expected = xml_text.gsub('41.090', '41.09')
+            expect(actual).to be_xml(expected)
+          end
+        end
       end
     end
   end
