@@ -14,14 +14,6 @@ module Datacite
         @warn_reason ||= @options[:warn_reason]
       end
 
-      def xpathstr
-        @xpathstr ||= begin
-          path = @path || @base_path
-          path_str = path && path.xpathstr
-          path_str.match(/[()@]/) ? path_str : "<#{path_str}>"
-        end
-      end
-
       def value_from(obj)
         obj.send(@attrname)
       end
