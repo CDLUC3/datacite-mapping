@@ -28,7 +28,11 @@ module Datacite
 
       # Overrides Namespaced::InstanceMethods.fill_into_xml to check mapping
       def fill_into_xml(xml, options = { mapping: :_default })
-        @namespace = DATACITE_3_NAMESPACE if options[:mapping] == :datacite_3
+        if options[:mapping] == :datacite_3
+          unless namespace.uri == DATACITE_3_NAMESPACE.uri
+            @namespace = DATACITE_3_NAMESPACE.with_prefix(namespace.prefix)
+          end
+        end
         super
       end
 
@@ -78,9 +82,9 @@ module Datacite
       # Sets the namespace prefix to be used when writing out XML (defaults to nil)
       # @param prefix [String, nil] The new prefix, or nil to use the default,
       #   unprefixed namespace
-      def self.namespace_prefix=(prefix)
+      def namespace_prefix=(prefix)
         old_namespace = namespace
-        namespace ::XML::MappingExtensions::Namespace.new(uri: old_namespace.uri, schema_location: old_namespace.schema_location, prefix: prefix)
+        @namespace = ::XML::MappingExtensions::Namespace.new(uri: old_namespace.uri, schema_location: old_namespace.schema_location, prefix: prefix)
       end
 
       def identifier=(value)

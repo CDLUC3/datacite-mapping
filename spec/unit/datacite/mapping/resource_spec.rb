@@ -961,80 +961,148 @@ module Datacite
         it 'reads all dash 1 docs, with caveats' do
           Dir.glob('spec/data/dash1/*.xml') { |f| it_round_trips(file: f, mapping: :datacite_3, fix_dash1: true) }
         end
+
+        describe 'DC4 to DC3' do
+
+          attr_reader :resource
+          attr_reader :rexml
+          attr_reader :warnings
+
+          def warnings_including(substring)
+            warnings.select { |w| w.include?(substring) }
+          end
+
+          def expect_warning(substring, count, include_matches = false)
+            matches = warnings_including(substring)
+            found_count = matches.size
+            msg = "expected #{count} warnings including '#{substring}', found #{found_count}"
+            msg << ": #{matches}" if include_matches
+            expect(found_count).to eq(count), msg
+          end
+
+          def expect_matches(xpath, count, include_matches = false)
+            matches = REXML::XPath.match(rexml, xpath)
+            found_count = matches.size
+            msg = "expected #{count} matches for XPath '#{xpath}', found #{found_count}"
+            msg << ": #{matches}" if include_matches
+            expect(found_count).to eq(count), msg
+          end
+
+          before(:each) do
+            @warnings = []
+            allow(ReadOnlyNodes).to receive(:warn) do |w|
+              warnings << w
+              Kernel.warn(w) # for debugging
+            end
+
+            xml = File.read('spec/data/datacite-4-synthetic.xml')
+            @resource = Resource.parse_xml(xml)
+            @rexml = resource.save_to_xml(mapping: :datacite_3)
+          end
+
+          it 'sets the kernel-3 namespace' do
+            expect(rexml.namespace).to eq(DATACITE_3_NAMESPACE.uri)
+          end
+
+          it 'warns about givenNames and familyNames' do
+            name_tags = %w(givenName familyName)
+            name_tags.each do |tag|
+              expect_matches("//#{tag}", 0, true)
+              expect_warning(tag, 1)
+            end
+          end
+
+          it 'warns about FundingReferences' do
+            expect_matches('//fundingReferences', 0, true)
+            expect_warning('fundingReferences', 1)
+          end
+
+          it 'warns about IGSN identifiers' do
+            expect_warning('IGSN', 1)
+          end
+
+          it 'warns about geoLocationPolygons' do
+            expect_warning('geoLocationPolygon', 1)
+          end
+
+        end
+
+        describe 'DC3 to DC4' do
+          attr_reader :resource
+          attr_reader :rexml
+
+          before(:each) do
+            xml = File.read('spec/data/datacite3/datacite-example-full-v3.1.xml')
+            @resource = Resource.parse_xml(xml)
+            @rexml = resource.save_to_xml
+          end
+
+          it 'writes a DC3 document as DC4' do
+            expect(rexml.namespace).to eq(DATACITE_4_NAMESPACE.uri)
+          end
+        end
       end
 
-      describe 'DC4 to DC3' do
+      describe '#namespace_prefix=' do
 
-        attr_reader :resource
-        attr_reader :rexml
-        attr_reader :warnings
-
-        def warnings_including(substring)
-          warnings.select { |w| w.include?(substring) }
-        end
-
-        def expect_warning(substring, count, include_matches = false)
-          matches = warnings_including(substring)
-          found_count = matches.size
-          msg = "expected #{count} warnings including '#{substring}', found #{found_count}"
-          msg << ": #{matches}" if include_matches
-          expect(found_count).to eq(count), msg
-        end
-
-        def expect_matches(xpath, count, include_matches = false)
-          matches = REXML::XPath.match(rexml, xpath)
-          found_count = matches.size
-          msg = "expected #{count} matches for XPath '#{xpath}', found #{found_count}"
-          msg << ": #{matches}" if include_matches
-          expect(found_count).to eq(count), msg
-        end
+        attr_reader :dcs3_xml
+        attr_reader :dcs4_xml
 
         before(:each) do
-          @warnings = []
-          allow(ReadOnlyNodes).to receive(:warn) do |w|
-            warnings << w
-            Kernel.warn(w) # for debugging
-          end
-
-          xml = File.read('spec/data/datacite-4-synthetic.xml')
-          @resource = Resource.parse_xml(xml)
-          @rexml = resource.save_to_xml(mapping: :datacite_3)
+          @dcs3_xml = '<dcs:resource xmlns:dcs="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+                        <dcs:identifier identifierType="DOI">10.14749/1407399495</dcs:identifier>
+                        <dcs:creators>
+                          <dcs:creator>
+                            <dcs:creatorName>Hedy Lamarr</dcs:creatorName>
+                            <dcs:nameIdentifier nameIdentifierScheme="ISNI" schemeURI="http://isni.org/">0000-0001-1690-159X</dcs:nameIdentifier>
+                            <dcs:affiliation>United Artists</dcs:affiliation>
+                            <dcs:affiliation>Metro-Goldwyn-Mayer</dcs:affiliation>
+                          </dcs:creator>
+                          <dcs:creator>
+                            <dcs:creatorName>Herschlag, Natalie</dcs:creatorName>
+                            <dcs:nameIdentifier nameIdentifierScheme="ISNI" schemeURI="http://isni.org/">0000-0001-0907-8419</dcs:nameIdentifier>
+                            <dcs:affiliation>Gaumont Buena Vista International</dcs:affiliation>
+                            <dcs:affiliation>20th Century Fox</dcs:affiliation>
+                          </dcs:creator>
+                        </dcs:creators>
+                        <dcs:titles>
+                          <dcs:title xml:lang="en-emodeng">An Account of a Very Odd Monstrous Calf</dcs:title>
+                          <dcs:title xml:lang="en-emodeng" titleType="Subtitle">And a Contest between Two Artists about Optick Glasses, &amp;c</dcs:title>
+                        </dcs:titles>
+                        <dcs:publisher>California Digital Library</dcs:publisher>
+                        <dcs:publicationYear>2015</dcs:publicationYear>
+                        <dcs:language>en</dcs:language>
+                      </dcs:resource>'
+          @dcs4_xml = dcs3_xml.gsub('kernel-3', 'kernel-4')
         end
 
-        it 'sets the kernel-3 namespace' do
-          expect(rexml.namespace).to eq(DATACITE_3_NAMESPACE.uri)
+        it 'reads DC3 with namespace prefix' do
+          resource = Resource.parse_xml(dcs3_xml)
+          expect(resource.save_to_xml(mapping: :datacite_3)).to be_xml(dcs3_xml)
         end
 
-        it 'warns about givenNames and familyNames' do
-          name_tags = %w(givenName familyName)
-          name_tags.each do |tag|
-            expect_matches("//#{tag}", 0, true)
-            expect_warning(tag, 1)
-          end
+        it 'writes DC3 with namespace prefix' do
+          resource = Resource.parse_xml(dcs3_xml)
+          resource.namespace_prefix = 'dcs'
+          xml = resource.write_xml(mapping: :datacite_3)
+          expect(xml).not_to match(%r{<[a-z "=/]+>})
+          expect(xml).to match(%r{<dcs:[a-z "=/]+>})
         end
 
-        it 'warns about FundingReferences' do
-          expect_matches('//fundingReferences', 0, true)
-          expect_warning('fundingReferences', 1)
+        it 'reads DC4 with namespace prefix' do
+          resource = Resource.parse_xml(dcs4_xml)
+          expect(resource.save_to_xml).to be_xml(dcs4_xml)
         end
 
-        it 'warns about IGSN identifiers' do
-          expect_warning('IGSN', 1)
+        it 'writes DC4 with namespace prefix' do
+          resource = Resource.parse_xml(dcs4_xml)
+          resource.namespace_prefix = 'dcs'
+          xml = resource.write_xml
+          expect(xml).not_to match(%r{<[a-z "=/]+>})
+          expect(xml).to match(%r{<dcs:[a-z "=/]+>})
         end
 
-        it 'warns about geoLocationPolygons' do
-          expect_warning('geoLocationPolygon', 1)
-        end
-
-      end
-
-      describe 'DC4 mapping' do
-        describe '#save_to_xml' do
-          it 'sets the kernel-4.0 namespace'
-          it 'writes a DC3 document as DC4'
-        end
       end
     end
-
   end
 end
