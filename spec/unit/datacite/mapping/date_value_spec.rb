@@ -4,6 +4,9 @@ module Datacite
   module Mapping
     describe DateValue do
 
+      attr_reader :values
+      attr_reader :dates
+
       before(:all) do
         @values = {
           with_date_time: DateTime.new(1914, 8, 4, 11, 1, 6.0123, '+1'),
@@ -15,12 +18,12 @@ module Datacite
           iso8601_secs: '1914-08-04T11:01:06+01:00',
           iso8601_frac: '1914-08-04T11:01:06.0123+01:00'
         }
-        @dates = @values.map { |format, v| [format, DateValue.new(v)] }.to_h
+        @dates = values.map { |format, v| [format, DateValue.new(v)] }.to_h
       end
 
       describe '#initialize' do
         it 'accepts a DateTime' do
-          d = @dates[:with_date_time]
+          d = dates[:with_date_time]
           expect(d).to be_a(DateValue)
           expect(d.year).to eq(1914)
           expect(d.month).to eq(8)
@@ -33,7 +36,7 @@ module Datacite
         end
 
         it 'accepts a DateValue' do
-          d = @dates[:with_date]
+          d = dates[:with_date]
           expect(d).to be_a(DateValue)
           expect(d.year).to eq(1914)
           expect(d.month).to eq(8)
@@ -42,26 +45,26 @@ module Datacite
         end
 
         it 'accepts a year as an integer' do
-          d = @dates[:with_year]
+          d = dates[:with_year]
           expect(d).to be_a(DateValue)
           expect(d.year).to eq(1914)
         end
 
         it 'accepts a year as a string' do
-          d = @dates[:with_year_str]
+          d = dates[:with_year_str]
           expect(d).to be_a(DateValue)
           expect(d.year).to eq(1914)
         end
 
         it 'accepts a year-month string' do
-          d = @dates[:with_year_month]
+          d = dates[:with_year_month]
           expect(d).to be_a(DateValue)
           expect(d.year).to eq(1914)
           expect(d.month).to eq(8)
         end
 
         it 'accepts an ISO 8601 DateValue string with hours and minutes' do
-          d = @dates[:iso8601]
+          d = dates[:iso8601]
           expect(d).to be_a(DateValue)
           expect(d.year).to eq(1914)
           expect(d.month).to eq(8)
@@ -72,7 +75,7 @@ module Datacite
         end
 
         it 'accepts an ISO 8601 DateValue string with hours, minutes, and seconds' do
-          d = @dates[:iso8601_secs]
+          d = dates[:iso8601_secs]
           expect(d).to be_a(DateValue)
           expect(d.year).to eq(1914)
           expect(d.month).to eq(8)
@@ -84,7 +87,7 @@ module Datacite
         end
 
         it 'accepts an ISO 8601 DateValue string with hours, minutes, seconds, and fractional seconds' do
-          d = @dates[:iso8601_frac]
+          d = dates[:iso8601_frac]
           expect(d).to be_a(DateValue)
           expect(d.year).to eq(1914)
           expect(d.month).to eq(8)
@@ -129,12 +132,21 @@ module Datacite
       end
 
       describe '#to_s' do
-        it 'includes all relevant fields' do
-          val = '1914-08-04T11:01:06.0123+01:00'
-          str = DateValue.new(val).to_s
-          val.split(/[-T:+.]/).each do |v|
-            v = 12_300_000.to_s if v == '0123' # special case nanos
-            expect(str).to include(v)
+        it 'returns an ISO-8601 string for all formats' do
+          expected = {
+            with_date_time: '1914-08-04T11:01:06.0123+01:00',
+            with_date: '1914-08-04',
+            with_year: '1914',
+            with_year_str: '1914',
+            with_year_month: '1914-08',
+            iso8601: '1914-08-04T11:01+01:00',
+            iso8601_secs: '1914-08-04T11:01:06+01:00',
+            iso8601_frac: '1914-08-04T11:01:06.0123+01:00'
+          }
+          dates.each do |format, v|
+            actual_str = v.to_s
+            expected_str = expected[format]
+            expect(actual_str).to eq(expected_str), "expected '#{expected_str}' for #{format}, got '#{actual_str}'"
           end
         end
       end

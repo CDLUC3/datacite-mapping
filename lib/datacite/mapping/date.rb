@@ -49,6 +49,7 @@ module Datacite
     #   @return [DateValue, nil] the end of the date range represented by this `<date/> field`,
     #     if it represents a range, and the range is not open on the upper end
     class Date
+      include Comparable
       include XML::Mapping
 
       attr_reader :date_value
@@ -81,7 +82,24 @@ module Datacite
         else
           fail ArgumentError, "Unable to parse date value #{val}"
         end
-        @value = val
+        @value = date_value ? date_value.to_s : "#{range_start}/#{range_end}"
+      end
+
+      def <=>(other)
+        return nil unless other.class == self.class
+        [:date_value, :range_start, :range_end].each do |v|
+          order = send(v) <=> other.send(v)
+          return order if order.nonzero?
+        end
+        0
+      end
+
+      def hash
+        [date_value, range_start, range_end].hash
+      end
+
+      def to_s
+        @value
       end
 
       private

@@ -1,4 +1,9 @@
-## 0.2.0
+## 0.2.1 (28 September 2016)
+
+- Fixed issue where `Datacite::Mapping::Date` objects initialized with Ruby
+  `Dates` or `Datetimes` couldn't be serialized to XML.
+
+## 0.2.0 (26 September 2016)
 
 - Datacite 4.0 support:
   - reading supports both Datacite 3 and Datacite 4

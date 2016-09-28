@@ -29,6 +29,24 @@ module Datacite
         it 'fails on range-like non-ranges' do
           expect { Date.new(value: '5/18/72', type: DateType::VALID) }.to raise_error(ArgumentError)
         end
+
+        it 'saves closed ranges to XML' do
+          date = Date.new(value: '1997-07-16T19:30+10:00/1997-07-17T15:30-05:00', type: DateType::AVAILABLE)
+          expected_xml = '<date dateType="Available">1997-07-16T19:30+10:00/1997-07-17T15:30-05:00</date>'
+          expect(date.save_to_xml).to be_xml(expected_xml)
+        end
+
+        it 'saves right open ranges to XML' do
+          date = Date.new(value: '1997-07-16T19:30+10:00/', type: DateType::AVAILABLE)
+          expected_xml = '<date dateType="Available">1997-07-16T19:30+10:00/</date>'
+          expect(date.save_to_xml).to be_xml(expected_xml)
+        end
+
+        it 'saves left open ranges to XML' do
+          date = Date.new(value: '/1997-07-17T15:30-05:00', type: DateType::AVAILABLE)
+          expected_xml = '<date dateType="Available">/1997-07-17T15:30-05:00</date>'
+          expect(date.save_to_xml).to be_xml(expected_xml)
+        end
       end
 
       describe 'type=' do
@@ -50,6 +68,24 @@ module Datacite
           d = Date.new(value: '1914-08-04T11:01:06.0123+01:00', type: DateType::AVAILABLE)
           expected_xml = '<date dateType="Available">1914-08-04T11:01:06.0123+01:00</date>'
           expect(d.save_to_xml).to be_xml(expected_xml)
+        end
+
+        it 'writes XML with all value types' do
+          {
+            with_date_time: DateTime.new(1914, 8, 4, 11, 1, 6.0123, '+1'),
+            with_date: ::Date.new(1914, 8, 4),
+            with_year: 1914,
+            with_year_str: '1914',
+            with_year_month: '1914-08',
+            iso8601: '1914-08-04T11:01+01:00',
+            iso8601_secs: '1914-08-04T11:01:06+01:00',
+            iso8601_frac: '1914-08-04T11:01:06.0123+01:00'
+          }.each do |k, v|
+            d = Date.new(value: v, type: DateType::AVAILABLE)
+            xml = d.save_to_xml
+            parsed = Date.parse_xml(xml)
+            expect(parsed).to eq(d), "Expected #{d}, got #{parsed} for #{k}"
+          end
         end
       end
 

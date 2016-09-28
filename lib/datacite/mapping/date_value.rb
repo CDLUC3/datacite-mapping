@@ -32,6 +32,7 @@ module Datacite
       attr_reader :nsec
       attr_reader :date
       attr_reader :zone
+      attr_reader :iso_value
 
       # Creates a new {DateValue}.
       #
@@ -43,7 +44,7 @@ module Datacite
         @year = to_year(val)
         @month = to_month(val)
         @day = to_day(val)
-        iso_value = val.respond_to?(:iso8601) ? val.iso8601 : val.to_s
+        @iso_value = val.respond_to?(:iso8601) ? val.iso8601 : val.to_s
         if datetime && iso_value.include?('T')
           @hour = datetime.hour
           @minute = datetime.minute
@@ -68,11 +69,14 @@ module Datacite
       end
 
       def to_s
-        'DateTime(' + [:year, :month, :day, :hour, :minute, :sec, :nsec, :zone].map do |field|
-          value = send(field)
-          value = format('%02d', value) if value && value.is_a?(Integer)
-          "#{field}: #{value}" if value
-        end.compact.join(', ') + ')'
+        @str_value = begin
+          str_value = iso_value
+          if nsec && nsec != 0
+            frac_str = (nsec / 1e9).to_s.sub('0', '')
+            str_value.sub!(/(T[0-9]+:[0-9]+:[0-9]+)/, "\\1#{frac_str}") unless str_value.include?(frac_str)
+          end
+          str_value
+        end
       end
 
       private

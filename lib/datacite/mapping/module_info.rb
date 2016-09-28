@@ -4,7 +4,7 @@ module Datacite
     NAME = 'datacite-mapping'.freeze
 
     # The version of this gem
-    VERSION = '0.2.0'.freeze
+    VERSION = '0.2.1'.freeze
 
     # The copyright notice for this gem
     COPYRIGHT = 'Copyright (c) 2016 The Regents of the University of California'.freeze
