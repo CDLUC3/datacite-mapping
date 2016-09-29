@@ -1,3 +1,8 @@
+## 0.2.2 (Next)
+
+- Fixed issue where `Date#<=>` would erroneously report date objects with the
+  same value but differen types as equal.
+
 ## 0.2.1 (28 September 2016)
 
 - Fixed issue where `Datacite::Mapping::Date` objects initialized with Ruby

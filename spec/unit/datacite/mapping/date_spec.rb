@@ -89,6 +89,35 @@ module Datacite
         end
       end
 
+      describe '#<=>' do
+        it 'reports equal values as equal' do
+          d1 = Date.new(value: DateTime.new(1914, 8, 4, 11, 1, 6.0123, '+1'), type: DateType::AVAILABLE)
+          d2 = Date.new(value: '1914-08-04T11:01:06.0123+01:00', type: DateType::AVAILABLE)
+          expect(d1).to eq(d2)
+          expect(d2).to eq(d1)
+          expect(d1.hash).to eq(d2.hash)
+          expect(d2.hash).to eq(d1.hash)
+        end
+
+        it 'reports unequal values as unequal' do
+          d1 = Date.new(value: DateTime.new(1914, 8, 4, 11, 1, 6.0123, '+1'), type: DateType::AVAILABLE)
+          d2 = Date.new(value: '1914-08-04T11:01+01:00', type: DateType::AVAILABLE)
+          expect(d1).not_to eq(d2)
+          expect(d2).not_to eq(d1)
+          expect(d1.hash).not_to eq(d2.hash)
+          expect(d2.hash).not_to eq(d1.hash)
+        end
+
+        it 'reports different types as different' do
+          d1 = Date.new(value: '1914-08-04T11:01+01:00', type: DateType::VALID)
+          d2 = Date.new(value: '1914-08-04T11:01+01:00', type: DateType::AVAILABLE)
+          expect(d1).not_to eq(d2)
+          expect(d2).not_to eq(d1)
+          expect(d1.hash).not_to eq(d2.hash)
+          expect(d2.hash).not_to eq(d1.hash)
+        end
+      end
+
       describe '#load_from_xml' do
         it 'reads XML' do
           xml = '<date dateType="Available">1914-08-04T11:01:06.0123+01:00</date>'
