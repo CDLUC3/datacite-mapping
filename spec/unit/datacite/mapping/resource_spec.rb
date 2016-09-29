@@ -915,12 +915,21 @@ module Datacite
         end
 
         def normalize(xml_str)
-          xml_str
-            .gsub(%r{<([^>]+tude)>([0-9.-]+?)(0?)0+</\1>}, '<\\1>\\2\\3</\\1>') # strip trailing coordinate zeroes
-            .gsub(/ "([^"]+)"/, ' &quot;\\1&quot;') # entity-escape quotes in text
-            .gsub('&lt;br /&gt;', '<br/>') # entity-de-escape <br/> tags
-            .gsub('"', "'") # swap double for single quotes
-            .gsub(%r{<(geoLocation[^>]+)>[^<]+</\1>}) { |loc| loc.gsub(/([0-9\-]+\.[0-9]+?)0+([^0-9])/, '\\1\\2') } # strip trailing coordinate zeroes
+          xml_text = xml_str
+                     .gsub(/<resource (xmlns:xsi="[^"]+")\s+(xsi:schemaLocation="[^"]+")>/, "<resource \\2 \\1 xmlns=\"http://datacite.org/schema/kernel-3\">") # fix missing namespace
+                     .gsub(%r{(<identifier[^>]+>)\s*([^ ]+)\s*(</identifier>)}, '\\1\\2\\3') # trim identifiers
+                     .gsub(%r{<([^>]+tude)>([0-9.-]+?)(0?)0+</\1>}, '<\\1>\\2\\3</\\1>') # strip trailing coordinate zeroes
+                     .gsub('&lt;br /&gt;', '<br/>') # entity-de-escape <br/> tags
+                     .gsub(%r{<(geoLocation[^>]+)>[^<]+</\1>}) { |loc| loc.gsub(/([0-9\-]+\.[0-9]+?)0+([^0-9])/, '\\1\\2') } # strip trailing coordinate zeroes
+                     .gsub(%r{<[^>]+/>}, '') # remove empty tags
+                     .gsub(%r{<([A-Za-z]*)[^>]*>\s*</\1>}, '') # remove empty tag pairs
+
+          xml = REXML::Document.new(xml_text).root
+          formatter = REXML::Formatters::Pretty.new
+          formatter.compact = true
+          io = ::StringIO.new
+          formatter.write(xml, io)
+          io.string
         end
 
         def fix_dash1(xml_str)
@@ -928,11 +937,15 @@ module Datacite
           # - missing DOI
           # - empty tags
           # - nested contributors instead of contributorNames
+          # - empty descriptions
           xml_str
+            .gsub(%r{<description[^/>]*/>}, '') # strip empty descriptions
+            .gsub(%r{<description[^/>]*></description>}, '') # strip empty descriptions
             .gsub(%r{<[^>]+/>}, '') # remove empty tags
-            .gsub(%r{<([^>]+)>\s+</\1>}, '') # remove empty tag pairs
+            .gsub(%r{<([A-Za-z]*)[^>]*>\s*</\1>}, '') # remove empty tag pairs
             .gsub(%r{(<date[^>]*>)(\d{4})-(\d{4})(</date>)}, '\\1\\2/\\3\\4') # fix date ranges
             .gsub(%r{(<contributor[^>/]+>\s*)<contributor>([^<]+)</contributor>(\s*</contributor>)}, '\\1<contributorName>\\2</contributorName>\\3') # fix broken contributors
+          # TODO: handle empty descriptions like empty subjects
         end
 
         def it_round_trips(file:, mapping: :_default, fix_dash1: false) # rubocop:disable Metrics/AbcSize
@@ -944,6 +957,7 @@ module Datacite
           expected_xml = normalize(xml_text)
           expected_xml.gsub!(/(<resource[^>]+>)\s+(<creators>)/, "\\1\n  <identifier identifierType=\"DOI\">10.5555/12345678</identifier>\n  \\2") if fix_dash1
           begin
+            # actual_xml = actual_xml.gsub('&apos;', "'")
             expect(actual_xml).to be_xml(expected_xml)
           rescue Exception # rubocop:disable Lint/RescueException
             File.open("tmp/#{basename}-expected.xml", 'w') { |t| t.write(expected_xml) }
