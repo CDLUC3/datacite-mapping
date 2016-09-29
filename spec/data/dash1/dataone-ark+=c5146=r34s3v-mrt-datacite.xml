@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
   <identifier identifierType="DOI"/>
   <creators>
     <creator>
@@ -30,6 +31,6 @@
   </rightsList>
   <descriptions>
     <description descriptionType="Abstract">Previous studies have shown that zinc deficiency leads to apoptosis of neuronal precursor cells in vivo and in vitro. In addition to the role of p53 as a nuclear transcription factor in zinc deficient cultured human neuronal precursors (NT-2), we have now identified the translocation of phosphorylated p53 to the mitochondria and p53-dependent increases in the pro-apoptotic mitochondrial protein BAX leading to a loss of mitochondrial membrane potential as demonstrated by a 25% decrease in JC-1 red:green fluorescence ratio. Disruption of mitochondrial membrane integrity was accompanied by efflux of the apoptosis inducing factor (AIF) from the mitochondria and translocation to the nucleus with a significant increase in reactive oxygen species (ROS) after 24 h of zinc deficiency. Measurement of caspase cleavage, mRNA, and treatment with caspase inhibitors revealed the involvement of caspases 2, 3, 6, and 7 in zinc deficiency-mediated apoptosis. Down-stream targets of caspase activation, including the nuclear structure protein lamin and polyADP ribose polymerase (PARP), which participates in DNA repair, were also cleaved. Transfection with a dominant-negative p53 construct and use of the p53 inhibitor, pifithrin- ␮, established that these alterations were largely dependent on p53. Together these data identify a cascade of events involving mitochondrial p53 as well as p53-dependent caspase-mediated mechanisms leading to apoptosis during zinc deficiency.</description>
-    <description descriptionType="Other"/>
+    <description descriptionType="Other"></description>
   </descriptions>
 </resource>

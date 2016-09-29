@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Urbizagastegui, Pablo</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Pimenta, Matheus</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>forearm sEMG</title>
+  </titles>
+  <publisher>DataONE</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>Haptics</subject>
+    <subject>sEMG</subject>
+    <subject>prothesis control</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Alejandro, Pablo</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers/>
+  <resourceType resourceTypeGeneral="Text">Text</resourceType>
+  <sizes>
+    <size>679998</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication (CC0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">A load (zero order) can be controlled by EMG of two antagonistic muscles. Data was acquired to evaluate EMG control of a virtual arm or leg prosthesis.
+
+This is just a test, with no other purpose other than learning to use this website and its service.</description>
+    <description descriptionType="Methods">Active Channel = Both Channels
+Cutoff Frequency High Pass Filter = 2,00 Hz
+Cutoff Frequency Low Pass Filter = 1,00 Hz
+Order filter = 2
+Zero Order System
+
+First Column = RAW EMG Data Channel 1
+2nd Column = RAW EMG Data Channel 2
+3rd Column = Filtered EMG Channel 1
+4th Column = Filtered EMG Channel 2
+5th Column = u
+6th Column = y
+7th Column = y_ref</description>
+  </descriptions>
+</resource>

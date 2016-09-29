@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
   <identifier identifierType="DOI"/>
   <creators>
     <creator>
@@ -32,6 +33,6 @@
   <descriptions>
     <description descriptionType="Abstract">Clinical evidence has shown that physical exercise during pregnancy may alter brain devel- opment and improve cognitive function of offspring. However, the mechanisms through which maternal exercise might promote such effects are not well understood. The present study examined levels of brain-derived neurotrophic factor (BDNF) and absolute cell num- bers in the hippocampal formation and cerebral cortex of rat pups born from mothers exer- cised during pregnancy. Additionally, we evaluated the cognitive abilities of adult offspring in different behavioral paradigms (exploratory activity and habituation in open field tests, spatial memory in a water maze test, and aversive memory in a step-down inhibitory avoid- ance task). Results showed that maternal exercise during pregnancy increased BDNF lev- els and absolute numbers of neuronal and non-neuronal cells in the hippocampal formation of offspring. No differences in BDNF levels or cell numbers were detected in the cerebral cortex. It was also observed that offspring from exercised mothers exhibited better cognitive performance in nonassociative (habituation) and associative (spatial learning) mnemonic tasks than did offspring from sedentary mothers. Our findings indicate that maternal exer- cise during pregnancy enhances offspring cognitive function (habituation behavior and spa- tial learning) and increases BDNF levels and cell numbers in the hippocampal formation of offspring.
 </description>
-    <description descriptionType="Other"/>
+    <description descriptionType="Other"></description>
   </descriptions>
 </resource>

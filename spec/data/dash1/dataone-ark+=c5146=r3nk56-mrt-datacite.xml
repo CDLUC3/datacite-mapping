@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Russo, Pedro</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Time Course of Individuals Vaccinated with YF-17D</title>
+  </titles>
+  <publisher>DataONE</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>Yellow fever</subject>
+    <subject>transcriptomics</subject>
+    <subject>gene expression</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Russo, Pedro</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers/>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>9830056</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication (CC0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">A major challenge in vaccinology is to prospectively determine vaccine efficacy. Here we have used a systems biology approach to identify early gene 'signatures' that predicted immune responses in humans vaccinated with yellow fever vaccine YF-17D. Vaccination induced genes that regulate virus innate sensing and type I interferon production. Computational analyses identified a gene signature, including complement protein C1qB and eukaryotic translation initiation factor 2 alpha kinase 4-an orchestrator of the integrated stress response-that correlated with and predicted YF-17D CD8(+) T cell responses with up to 90% accuracy in an independent, blinded trial. A distinct signature, including B cell growth factor TNFRS17, predicted the neutralizing antibody response with up to 100% accuracy. These data highlight the utility of systems biology approaches in predicting vaccine efficacy.</description>
+    <description descriptionType="Methods">PMBCs were isolated with citrate buffered cell preparation tubes (CPT) from 2 healthy donors who were not previously vaccinated with YF-17D. Total RNA was either isolated directly from the freshly collected cells or after cell culture. Cells were cultured for 3 and 12 hours in the presence or absence of YF-17D vaccine.</description>
+    <description descriptionType="Other"></description>
+  </descriptions>
+</resource>

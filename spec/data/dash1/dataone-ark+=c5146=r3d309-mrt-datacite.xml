@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Maeda, Vinícius de Araújo</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Pressão, Temperatura e Umidade - maio 2013</title>
+  </titles>
+  <publisher>DataONE</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>Pressão</subject>
+    <subject>Temperatura</subject>
+    <subject>Umidade</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Maeda, Vinicius</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="URL" relationType="Cites">http://n2t.net/ark:/90135/q10c4sq8</relatedIdentifier>
+  </relatedIdentifiers>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>2961275</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication (CC0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">Este dataset foi criado com o objetivo de estudar a ferramenta. Foi utilizado o dataset descrito na referência abaixo:
+Aguilar, Fernando (2014): Press, Temperature and Humidity May 2013. DataONE. http://n2t.net/ark:/90135/q10c4sq8</description>
+    <description descriptionType="Methods">Os dados foram obtidos para ambiente de teste e toda descrição estão na referência original. 
+Aguilar, Fernando (2014): Press, Temperature and Humidity May 2013. DataONE. http://n2t.net/ark:/90135/q10c4sq8</description>
+    <description descriptionType="Other"></description>
+  </descriptions>
+</resource>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Wittenberg, Jamie</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Sackmann, Anna</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Educational Resources from UC Berkeley RDM Librarian Training Program</title>
+  </titles>
+  <publisher>UC Berkeley</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>open educational resources</subject>
+    <subject>research data management</subject>
+    <subject>library professional development</subject>
+  </subjects>
+  <relatedIdentifiers/>
+  <resourceType resourceTypeGeneral="Text">Text</resourceType>
+  <sizes>
+    <size>1452</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions/>
+</resource>

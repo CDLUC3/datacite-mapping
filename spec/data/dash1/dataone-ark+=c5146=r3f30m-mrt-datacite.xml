@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Bandones Correa, Guilherme</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Deslocamento no canal do porto</title>
+  </titles>
+  <publisher>DataONE</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>Porto</subject>
+    <subject>Navios</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Bandones, Guilherme</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>Companhia de docas</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers/>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>239171</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication (CC0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">Dados de movimentação de navios em um porto</description>
+    <description descriptionType="Methods">Dados observados no porto</description>
+  </descriptions>
+</resource>

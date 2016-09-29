@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
 	<identifier identifierType="DOI">10.5068/D1RP49</identifier>
 	<creators>
 		<creator><creatorName>Zangle, Thomas A.</creatorName></creator>
@@ -19,7 +20,7 @@
 	</subjects>
 	<resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
 	<relatedIdentifiers>
-		<relatedIdentifier relatedIdentifierType="DOI" relationType="IsCitedBy">10.1371/journal.pone.0115726</relatedIdentifier>
+		<relatedIdentifier relationType="IsCitedBy" relatedIdentifierType="DOI">10.1371/journal.pone.0115726</relatedIdentifier>
 	</relatedIdentifiers>
 	<rightsList>
 		<rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>

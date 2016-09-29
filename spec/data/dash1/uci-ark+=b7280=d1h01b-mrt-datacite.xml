@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
   <identifier identifierType="DOI"/>
   <creators>
     <creator>
@@ -53,7 +54,7 @@
   </rightsList>
   <descriptions>
     <description descriptionType="Abstract">To compare the effects of several mustard removal treatments (e.g. hand-weeding, herbicide, and mowing) on plant and fungal communities. We also have plant transect data For more detailed metadata, including data access and usage instructions, please download and consult README.txt file.</description>
-    <description descriptionType="Other"/>
+    <description descriptionType="Other"></description>
   </descriptions>
   <geoLocations>
     <geoLocation>

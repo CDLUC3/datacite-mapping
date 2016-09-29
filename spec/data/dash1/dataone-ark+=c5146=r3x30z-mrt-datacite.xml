@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Bartomeus, I.</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Vilà, M.</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Santamaria, L</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Contrasting effects of invasive plants in plant-pollinator networks</title>
+  </titles>
+  <publisher>DataONE</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>species interaction</subject>
+    <subject>plant polinator</subject>
+    <subject>Carpobrotus affine acinaciformis</subject>
+    <subject>Opuntia strict</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Salim, José Augusto</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers/>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>65741</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication (CC0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">The authors compared uninvaded and invaded ecological communities, to examine how two species of invasive plants with large and showy flowers (Carpobrotus affine acinaciformis and Opuntia stricta) affect the structure of Mediterranean plant–pollinator networks at the Natural Park of Cap de Creus, Catalonia</description>
+    <description descriptionType="Methods">Datasets describe the frequency of visits observed for each pollinator-plant interaction. The study involved pollinator surveys in 3 sites per study species. Pairs of invaded and uninvaded plots were samples in all sites. Sites were sampled every 2 weeks during the entire flowering period of both C. affine acinaciformis and O. stricta. Each plant species was sampled during 6 minutes. Each species was sampled for a total of 36 minutes per site. In total, each site was surveyed by pollinators for more than 6 hours.</description>
+  </descriptions>
+</resource>

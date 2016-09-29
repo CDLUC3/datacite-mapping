@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Gorbach, Pamina</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Javanbakht, Marjan</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Metromates: Newly Infected MSM in SoCal</title>
+  </titles>
+  <publisher>DataONE</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>HIV</subject>
+    <subject>MSM</subject>
+    <subject>New Infection</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Gorbach, Pamina</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>National Institute of Drug Abuse</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers/>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>2719744</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication (CC0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">Between February 2009 and May 2012 the NIDA funded Metromates Study was conducted at The Los Angeles Lesbian, Gay and Bisexual and Transgender Center (LA LGBT Center), a community-based organization providing comprehensive health services.   </description>
+    <description descriptionType="Methods">We enrolled  328 men seeking HIV testing at the LA LGBT Center Sexual Health program longitudinal cohort study who met the following criteria: had results from a recent HIV test; at least 18 years of age; male; and reported sex with a male partner in the past 12 months.  Eligible participants provided written informed consent; those who had tested HIV-positive (through the sexual health program) provided a specimen for testing of recency of infection. Those testing positive were all verified as newly diagnosed, with a subset classified as recently infected using one of these criteria: a positive test result to RNA nucleic acid amplification testing (NAAT) on a specimen negative by rapid HIV antibody testing or a result indicative of recent infection from the Vironostika detuned assay.  The remaining were classified as newly HIV-diagnosed (but not newly infected) and 105 were HIV-negative.  Men were enrolled for a year of behavioral follow-up attempted quarterly but only 55% completed any follow-up after enrollment.</description>
+    <description descriptionType="Other">1R01DA022116-01A1</description>
+  </descriptions>
+</resource>

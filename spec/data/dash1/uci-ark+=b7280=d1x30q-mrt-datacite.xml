@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>UCI Environmental Planning &amp; Sustainability</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>UCI Campus Tree Inventory</title>
+  </titles>
+  <publisher>UC Irvine</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>plants</subject>
+    <subject>vegetation monitoring</subject>
+    <subject>urban ecology</subject>
+    <subject>UC Irvine</subject>
+    <subject>Polyphagous Shot Hole Borer</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>McKinley;McKinley, Matthew J.</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers/>
+  <resourceType resourceTypeGeneral="Collection">Collection</resourceType>
+  <sizes>
+    <size>12064702</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">GIS data collected as part of a campus-wide tree inventory, done in part to determine scope and effect of Polyphagous Shot Hole Borer (PSHB) infestation.</description>
+    <description descriptionType="Methods">Includes DBF spreadsheet of data on individual trees as well as SHP/SHX/PRJ files for GIS representation.</description>
+    <description descriptionType="Other"></description>
+  </descriptions>
+  <geoLocations>
+    <geoLocation>
+      <geoLocationPlace>Orange County (Calif.)</geoLocationPlace>
+    </geoLocation>
+    <geoLocation>
+      <geoLocationPoint>33.645845 -117.84281</geoLocationPoint>
+    </geoLocation>
+  </geoLocations>
+</resource>

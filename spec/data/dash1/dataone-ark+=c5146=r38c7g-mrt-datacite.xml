@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Rodrigues, Joao</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Reclamações do consumidor - Jan2015</title>
+  </titles>
+  <publisher>DataONE</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>consumidor</subject>
+    <subject>reclamação</subject>
+    <subject>procon</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Rodrigues, João Carlos</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers/>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>2963608</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication (CC0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">Os dados representam cada reclamação feita por consumidores ao Procon no mês de Janeiro de 2015. Os
+dados são do tipo qualitativo e foram obtidos junto ao Portal de Transparência do Governo Federal. Os dados
+serão trabalhados em R a fim de criar padrões de comportamente entre as reclamações.</description>
+    <description descriptionType="Methods">Os dados têm abrangência naional e contém informações sobre localidade, sexo, faixa etária, data de abertura da reclamação, data da resposta, data de finalização, tempo de resposta, nome fantasia do estabelecimento criticado, segmento, assunto da reclamação, problema, forma de contratação, se procurou a empresa antes de acionar o órgão, situação final e avaliação ao atendimento. 
+Será feita uma análise de agrupamento nos dados a fim de construir padrões entre as reclamações para verificar a possibilidade de criação de um plano de mitigação dessas reclamações.</description>
+    <description descriptionType="Other"></description>
+  </descriptions>
+</resource>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Upadhyay, Ushma D.</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Johns, Nicole E.</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Combellick, Sarah L.</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Kohn, Julia E.</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Keder, Lisa M.</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Roberts, Sarah C.M.</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Comparison of Outcomes before and after Ohio's Law Mandating Use of the FDA Approved Protocol for Medication Abortion: A Retrospective Cohort Study</title>
+  </titles>
+  <publisher>UC San Francisco</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects/>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Upadhyay, Ushma</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="URL" relationType="Cites">http://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002110</relatedIdentifier>
+  </relatedIdentifiers>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>1432064</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">Background: In February 2011, an Ohio law took effect mandating use of the United States Food and Drug Administration (FDA)-approved protocol for mifepristone, which is used with misoprostol for medication abortion.  Other state legislatures have passed or enacted similar laws requiring use of the FDA-approved protocol for medication abortion. The objective of this study is to examine the association of this legal change with medication abortion outcomes and utilization.
+
+Methods and Findings: We used a retrospective cohort design, comparing outcomes of medication abortion patients in the prelaw period to those in the postlaw period. Sociodemographic and clinical chart data were abstracted from all medication abortion patients from 1 y prior to the law’s implementation (January 2010–January 2011) to 3 y post implementation (February 2011–October 2014) at four abortion-providing health care facilities in Ohio. Outcome data were analyzed for all women undergoing abortion at ≤49 d gestation during the study period. The main outcomes were as follows: need for additional intervention following medication abortion (such as aspiration, repeat misoprostol, and blood transfusion), frequency of continuing pregnancy, reports of side effects, and the proportion of abortions that were medication abortions (versus other abortion procedures). Among the 2,783 medication abortions ≤49 d gestation, 4.9% (95% CI: 3.7%–6.2%) in the prelaw and 14.3% (95% CI: 12.6%–16.0%) in the postlaw period required one or more additional interventions. Women obtaining a medication abortion in the postlaw period had three times the odds of requiring an additional intervention as women in the prelaw period (adjusted odds ratio [AOR] = 3.11, 95% CI: 2.27–4.27). In a mixed effects multivariable model that uses facility-months as the unit of analysis to account for lack of independence by site, we found that the law change was associated with a 9.4% (95% CI: 4.0%–18.4%) absolute increase in the rate of requiring an additional intervention.  The most common subsequent intervention in both periods was an additional misoprostol dose and was most commonly administered to treat incomplete abortion. The percentage of women requiring two or more follow-up visits increased from 4.2% (95% CI: 3.0%–5.3%) in the prelaw period to 6.2% (95% CI: 5.5%–8.0%) in the postlaw period (p = 0.003). Continuing pregnancy was rare (0.3%). Overall, 12.6% of women reported at least one side effect during their medication abortion: 8.4% (95% CI: 6.8%–10.0%) in the prelaw period and 15.6% (95% CI: 13.8%–17.3%) in the postlaw period (p &lt; 0.001). Medication abortions fell from 22% (95% CI: 20.8%–22.3%) of all abortions the year before the law went into effect (2010) to 5% (95% CI: 4.8%–5.6%) 3 y after (2014) (p &lt; 0.001). The average patient charge increased from US$426 in 2010 to US$551 in 2014, representing a 16% increase after adjusting for inflation in medical prices.  The primary limitation to the study is that it was a pre/post-observational study with no control group that was not exposed to the law.  
+Conclusions: Ohio law required use of a medication abortion protocol that is associated with a greater need for additional intervention, more visits, more side effects, and higher costs for women relative to the evidence-based protocol.  There is no evidence that the change in law led to improved abortion outcomes.  Indeed, our findings suggest the opposite. In March 2016, the FDA-protocol was updated, so Ohio providers may now legally provide current evidence-based protocols. However, this law is still in place and bans physicians from using mifepristone based on any new developments in clinical research as best practices continue to be updated.
+</description>
+  </descriptions>
+</resource>

@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
   <identifier identifierType="DOI"/>
   <creators>
     <creator>
@@ -43,7 +44,7 @@
     <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
   </rightsList>
   <descriptions>
-    <description descriptionType="Abstract">The theme of this year's survey is &quot;Orange County: Approaching the 1990s. The survey is designed to provide an extensive analysis of issues affecting the next decade. The sample size is 1,085 Orange County adult residents.
+    <description descriptionType="Abstract">The theme of this year's survey is "Orange County: Approaching the 1990s. The survey is designed to provide an extensive analysis of issues affecting the next decade. The sample size is 1,085 Orange County adult residents.
 
 Online data analysis &amp; additional documentation in Link below.</description>
     <description descriptionType="Methods">The Orange County Annual survey was directed by Mark Baldassare, a professor of social ecology at UC Irvine. For the survey, 1,085 adult orange County residents were interviewed by telephone Sept. 6 to 23. In Orange County, where more than 97 percent of households have telephones, this method of interview gives highly representative data.

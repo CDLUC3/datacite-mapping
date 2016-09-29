@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Yukawa, Michi</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Gansky, Stuart</creatorName>
+    </creator>
+    <creator>
+      <creatorName>O'Sullivan, Patricia</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Feldman, Mitchell</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Nishimura, Holly</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Teherani, Arianne</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Mentor Assessment Instrument validation study</title>
+  </titles>
+  <publisher>UC San Francisco</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>Mentor</subject>
+    <subject>Assessment</subject>
+    <subject>Validation</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Yukawa, Michi</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>none</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers/>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>44851</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Methods">Prospective survey study</description>
+    <description descriptionType="Other">none</description>
+  </descriptions>
+</resource>

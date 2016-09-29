@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
 <identifier identifierType="DOI">10.7272/Q66Q1V54 </identifier>
 <creators>
 <creator>
@@ -11,15 +12,15 @@
 <publisher>University of California, San Francisco</publisher>
 <publicationYear>2012</publicationYear>
 <subjects>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Adult</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Human</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Magnetic Resonance Imaging</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Cognition</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Neuropsychological Test</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Gulf War</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Middle Aged</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Persian Gulf Syndrome</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Veterans</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Adult</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Human</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Magnetic Resonance Imaging</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Cognition</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Neuropsychological Test</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Gulf War</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Middle Aged</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Persian Gulf Syndrome</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Veterans</subject>
 </subjects>
 <contributors>
 <contributor contributorType="ResearchGroup">

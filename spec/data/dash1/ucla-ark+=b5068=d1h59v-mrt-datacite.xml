@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
   <identifier identifierType="DOI"/>
   <creators>
     <creator>
@@ -28,6 +29,6 @@
 v
 vi
 which corresponds to up to ~9 mL sample volume. This imaging platform records the shadows (i.e., lensless digital holograms) of each cell of interest within its field of view, and automated digital processing of these cell shadows can determine the type, the count and the relative positions of cells within the solution. Because it does not require any bulky optical components or mechanical scanning stages it offers a significantly miniaturized platform that at the same time reduces the cost, which is quite important for especially point of care diagnostic tools. Furthermore, the imaging throughput of this platform is orders of magnitude better than conventional optical microscopes, which could be exceedingly valuable for high-throughput cell-biology experiments.</description>
-    <description descriptionType="Other"/>
+    <description descriptionType="Other"></description>
   </descriptions>
 </resource>

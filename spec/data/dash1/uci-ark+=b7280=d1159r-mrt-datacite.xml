@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
   <identifier identifierType="DOI"/>
   <creators>
     <creator>
@@ -51,7 +52,7 @@ Public Policy Institute of California, with research assistance from Lisa
 Cole and Eric McGhee. The survey was conducted in collaboration with the
 School of Social Ecology at the University of California, Irvine; however, the survey methodology and questions and the content of this report were solely determined by Mark Baldassare.
 
-The findings of this survey are based on a telephone survey of 2,004 Orange County adult residents interviewed from August 20 to August 31, 2001. Interviewing took place on weekend days and weekday nights, using a computer-generated random sample of telephone numbers, ensuring that both listed and unlisted telephone numbers were called. All telephone exchanges in Orange County were eligible for calling. Telephone numbers in the survey sample were called up to five times to increase the likelihood of reaching eligible households. Once a household was reached, an adult respondent (18 or older) was randomly chosen for interviewing by using the &quot;last birthday method&quot; to avoid biases in age and gender.
+The findings of this survey are based on a telephone survey of 2,004 Orange County adult residents interviewed from August 20 to August 31, 2001. Interviewing took place on weekend days and weekday nights, using a computer-generated random sample of telephone numbers, ensuring that both listed and unlisted telephone numbers were called. All telephone exchanges in Orange County were eligible for calling. Telephone numbers in the survey sample were called up to five times to increase the likelihood of reaching eligible households. Once a household was reached, an adult respondent (18 or older) was randomly chosen for interviewing by using the "last birthday method" to avoid biases in age and gender.
                             
 Each interview took an average of 20 minutes to complete. Interviewing was conducted in English or Spanish. 
 
@@ -67,7 +68,7 @@ Results may also be affected by factors such as question wording, question order
 Throughout the report, we refer to two geographic regions. North County refers to cities and communities north of the 55 Freeway, including
 Anaheim, Orange, Villa Park, La Habra, Brea, Buena Park, Fullerton, Placentia, Yorba Linda, La Palma, Cypress, Los Alamitos, Rossmoor, Seal Beach, Westminster, Midway City, Stanton, Fountain Valley, Huntington Beach, Santa Ana, Garden Grove, Tustin, Tustin Foothills, and Costa Mesa. South County refers to cities and communities south of the 55 Freeway, including Newport Beach, Irvine, Lake Forest, Newport Coast, Aliso Viejo, Laguna Hills, Laguna Niguel, Laguna Woods, Mission Viejo, Portola Hills, Rancho Santa Margarita, Foothill Ranch, Coto de Caza, Trabuco, Laguna Beach, Dana Point, San Clemente, Capistrano Beach, and San Juan Capistrano. In the analysis of questions on the proposed El Toro airport, we include Newport Beach in the North County. 
                             
-We also present results for non-Hispanic whites (referred to in the tables as &quot;whites&quot;), Latinos, and Asians because each group accounts for a substantial number of the county's adult population. We also contrast the opinions of Democrats and Republicans with &quot;other&quot; or &quot;independent&quot; registered voters. This third category includes those who are registered to vote as &quot;decline to state&quot; as well as a fewer number who say they are members of other political parties.
+We also present results for non-Hispanic whites (referred to in the tables as "whites"), Latinos, and Asians because each group accounts for a substantial number of the county's adult population. We also contrast the opinions of Democrats and Republicans with "other" or "independent" registered voters. This third category includes those who are registered to vote as "decline to state" as well as a fewer number who say they are members of other political parties.
                             
 In some cases, we compare the Orange County Survey responses to responses in the 1982-2000 Orange County Annual Surveys at the University of California, Irvine, the PPIC Statewide Surveys, and national surveys by the University of Michigan and CBS/New York Times.</description>
   </descriptions>

@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
   <identifier identifierType="DOI"/>
   <creators>
     <creator>
@@ -44,7 +45,7 @@
     <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
   </rightsList>
   <descriptions>
-    <description descriptionType="Abstract">The theme of this year's survey is &quot;Issues of the 1990s.&quot; The 1990 Orange County Annual Survey explores three interrelated issues that are central topics in discussions about the county's future. These issues are the environment, regional government, and transportation alternatives. The sample size is 1,017 Orange County adult residents. 
+    <description descriptionType="Abstract">The theme of this year's survey is "Issues of the 1990s." The 1990 Orange County Annual Survey explores three interrelated issues that are central topics in discussions about the county's future. These issues are the environment, regional government, and transportation alternatives. The sample size is 1,017 Orange County adult residents. 
 
 Online data analysis &amp; additional documentation in Link below.</description>
     <description descriptionType="Methods">The Orange County Annual Survey was co-directed by Mark Baldassare, a UC Irvine professor of social ecology and Cheryl Katz, research associate. For the survey, 1,017 adult Orange County residents were interviewed by telephone Sept. 5 to 21. In Orange County, where more than 97 percent of households have telephones, this method of interview gives highly representative data.

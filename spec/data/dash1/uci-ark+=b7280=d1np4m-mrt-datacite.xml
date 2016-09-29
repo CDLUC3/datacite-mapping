@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
   <identifier identifierType="DOI"/>
   <creators>
     <creator>
@@ -38,7 +39,7 @@
   <descriptions>
     <description descriptionType="Abstract">For more detailed metadata, including data access and usage instructions, please download and consult README.txt file.</description>
     <description descriptionType="Methods">1) Connect diverse microbial groups with the extracellular enzyme systems that catalyze the decay of organic material 2) Determine whether different groups of microbes and their enzymes respond to environmental changes 3) Determine whether microbes and their functions can recover from environmental changes 4) Develop mathematical models to predict the responses of microbial communities and their associated functions under new environmental conditions</description>
-    <description descriptionType="Other"/>
+    <description descriptionType="Other"></description>
   </descriptions>
   <geoLocations>
     <geoLocation>

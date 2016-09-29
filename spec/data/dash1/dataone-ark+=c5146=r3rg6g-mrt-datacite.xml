@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Chen, Hao</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>A Zebrafish Model for Studies on Esophageal Epithelial Biology</title>
+  </titles>
+  <publisher>DataONE</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>Zebrafish</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Wilson, James</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="DOI" relationType="IsCitedBy">10.1371/journal.pone.0143878</relatedIdentifier>
+    <relatedIdentifier relatedIdentifierType="URL" relationType="IsDocumentedBy">http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0143878</relatedIdentifier>
+  </relatedIdentifiers>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>3824823</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication (CC0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">Mammalian esophagus exhibits a remarkable change in epithelial structure during the tran- sition from embryo to adult. However, the molecular mechanisms of esophageal epithelial development are not well understood. Zebrafish (Danio rerio), a common model organism for vertebrate development and gene function, has not previously been characterized as a model system for esophageal epithelial development. In this study, we characterized a piece of non-keratinized stratified squamous epithelium similar to human esophageal epi- thelium in the upper digestive tract of developing zebrafish. Under the microscope, this piece was detectable at 5dpf and became stratified at 7dpf. Expression of esophageal epi- thelial marker genes (Krt5, P63, Sox2 and Pax9) was detected by immunohistochemistry and in situ hybridization. Knockdown of P63, a gene known to be critical for esophageal epi- thelium, disrupted the development of this epithelium. With this model system, we found that Pax9 knockdown resulted in loss or disorganization of the squamous epithelium, as well as down-regulation of the differentiation markers Krt4 and Krt5. In summary, we charac- terized a region of stratified squamous epithelium in the zebrafish upper digestive tract which can be used for functional studies of candidate genes involved in esophageal epithe- lial biology.</description>
+  </descriptions>
+</resource>

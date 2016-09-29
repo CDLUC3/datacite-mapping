@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
   <identifier identifierType="DOI"/>
   <creators>
     <creator>
@@ -36,7 +37,7 @@
     <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
   </rightsList>
   <descriptions>
-    <description descriptionType="Abstract">The software examples are all derived in the book by Daniel Friedman and Barry Sinervo, &quot;Evolutionary Games in Natural, Social, and Virtual Worlds&quot;, published by Oxford University Press (2016). These Excel simulations, R workspaces, and mathematica programs are designed to illustrate diverse games that can be developed for one-population games such as Hawk Dove, RPS, Defect-Cooperate-TFT, to two population games such as Baseball (pitchers versus batters) or Buyer-Seller. The Excel games D-C-TFT and Baseball are derived from Joseph E. Harrington's examples from his book &quot;Games, Strategies, and Decision Making&quot; (Publisher MacMillan, 2009). 
+    <description descriptionType="Abstract">The software examples are all derived in the book by Daniel Friedman and Barry Sinervo, "Evolutionary Games in Natural, Social, and Virtual Worlds", published by Oxford University Press (2016). These Excel simulations, R workspaces, and mathematica programs are designed to illustrate diverse games that can be developed for one-population games such as Hawk Dove, RPS, Defect-Cooperate-TFT, to two population games such as Baseball (pitchers versus batters) or Buyer-Seller. The Excel games D-C-TFT and Baseball are derived from Joseph E. Harrington's examples from his book "Games, Strategies, and Decision Making" (Publisher MacMillan, 2009). 
 
 We also develop continuous time versions of several games in the R programming environment, including an r-K strategy game, a two-population buyer-seller game, and several variations on RPS (all discussed in Chapters 1-4 of Friedman and Sinervo, 2016). 
 
@@ -47,7 +48,7 @@ We also include a mathematica version, based on William Sandholm's Mathematica p
 Also included in this software repository are diverse examples of RPS games using Sandholm's mathematica package Dynamo, such as the yeast RPS of Question 6 in Chapter 3, and diverse RPS mating systems found in Chapter 7 of Friedman and Sinervo (2016).
 
 These examples are intended to spur on the development of projects by students who use the book as a text for a class. </description>
-    <description descriptionType="Methods">The spreadsheets and R software implement discrete or continuous time versions of several evolutionary games as described in the Book by Daniel Friedman and Barry Sinervo, &quot;Evolutionary Games in Natural, Social, and Virtual Worlds&quot;, published by Oxford University Press (2016). 
+    <description descriptionType="Methods">The spreadsheets and R software implement discrete or continuous time versions of several evolutionary games as described in the Book by Daniel Friedman and Barry Sinervo, "Evolutionary Games in Natural, Social, and Virtual Worlds", published by Oxford University Press (2016). 
 
 </description>
   </descriptions>

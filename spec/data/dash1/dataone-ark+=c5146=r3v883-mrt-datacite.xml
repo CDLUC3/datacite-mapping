@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Vandeleest, Jessica</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Beisner, Brianne</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Hannibal, Darcy</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Nathman, Amy</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Capitanio, John</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Fushing, Hsieh</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Atwill, Edward</creatorName>
+    </creator>
+    <creator>
+      <creatorName>McCowan, Brenda</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Data associated with Vandeleest, Beisner et al. (PeerJ, 2016) "Decoupling Social Status and Status Certainty Effects on Health in Macaques: A Network Approach"</title>
+  </titles>
+  <publisher>DataONE</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>Social Status</subject>
+    <subject>Inflammation</subject>
+    <subject>Nonhuman primate</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Vandeleest, Jessica</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>National Institutes of Health. Select a sub-organization</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="URL" relationType="Cites">https://cran.r-project.org/web/packages/Perc/index.html</relatedIdentifier>
+  </relatedIdentifiers>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>47635</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication (CC0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">Although a wealth of literature points to the importance of social factors on health, a detailed understanding of the complex interplay between social and biological systems is lacking. Social status is one aspect of social life that is made up of multiple structural (humans: income, education; animals: mating system, dominance rank) and relational components (perceived social status, dominance interactions). In a nonhuman primate model we use novel network techniques to decouple two components of social status, dominance rank (a commonly used measure of social status in animal models) and dominance certainty (the relative certainty vs. ambiguity of an individual’s status), allowing for a more complex examination of how social status impacts health. Data include subject ID, demographics, social status indicators, and select health outcomes. </description>
+    <description descriptionType="Methods">Behavioral observations to calculate dominance rank and certainty were conducted on three outdoor captive groups of rhesus macaques (N=252 subjects), each group was observed for 5-7 weeks. Dominance rank and certainty were calculated using the Perc package in R (Fujii et al., 2015) using a network-based approach. Subjects’ general physical health (diarrhea) was assessed twice weekly and from these data, we counted the total frequency of bouts of diarrhea per subject across the 5-7 week observation period. Blood was drawn once to assess biomarkers of inflammation (interleukin-6, tumor necrosis factor-alpha, and C-reactive protein). Due to the large number of animals, blood was collected in batches of ~15 samples, this variable is described in the present dataset as SamplingOrder. Serum levels of IL-6 and TNF-α were measured using commercially available, species specific Milliplex multi-analyte profiling (MAP) reagents purchased from EMD / Millipore (Billerica, MA), and utilizing Luminex Xmap technology (Luminex, Austin, TX). Concentrations of CRP were determined using a latex particle immunoturbidmetric method on the Beckman Coulter AU480 clinical chemistry analyzer. Additional methodology is available in Vandeleest, Beisner et al. (2016).</description>
+    <description descriptionType="Other">R01-HD068335 &amp; P51-OD01107-53</description>
+  </descriptions>
+</resource>

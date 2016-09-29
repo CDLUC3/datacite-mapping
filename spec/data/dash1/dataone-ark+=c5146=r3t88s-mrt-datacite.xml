@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Cruz, Emerson</creatorName>
+    </creator>
+    <creator>
+      <creatorName>Ohara, Mauro</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Annual Income - PCS5031 Project</title>
+  </titles>
+  <publisher>DataONE</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>Census</subject>
+    <subject>Annual income</subject>
+    <subject>Bayesian Network</subject>
+    <subject>PCS5031</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Cruz, Emerson</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers>
+    <relatedIdentifier relatedIdentifierType="URL" relationType="Documents">https://archive.ics.uci.edu/ml/datasets/Adult</relatedIdentifier>
+  </relatedIdentifiers>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>1022251</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication (CC0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">The data used in this project is a sample from a census data(1994) from the US census database.
+The data generated will contain census prediction models income for the selected sample. When inserted new data on a specific person, the model will indicate whether the person will achieve a desired income census.
+From the data a computational learning process will be used to do inference trough bayesian networks
+
+</description>
+    <description descriptionType="Methods">The data was collected from UCI database https://archive.ics.uci.edu/ml/datasets/Adult and filtered by the researchers linked to the project.</description>
+  </descriptions>
+</resource>

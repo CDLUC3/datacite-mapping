@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>Haack, Lauren</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Monroe Monroe Group Videos</title>
+  </titles>
+  <publisher>UC San Francisco</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>Monroe</subject>
+    <subject>Monroe</subject>
+    <subject>Video</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Plageman, Melissa</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers/>
+  <resourceType resourceTypeGeneral="Audiovisual">Audiovisual</resourceType>
+  <sizes>
+    <size>6707770982</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC-BY 4.0)</rights>
+  </rightsList>
+  <descriptions/>
+</resource>

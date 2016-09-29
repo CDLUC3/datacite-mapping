@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
 <identifier identifierType="DOI">10.7272/Q6057CV6</identifier>
 <creators>
 <creator>
@@ -50,23 +51,23 @@
 <publisher>University of California, San Francisco</publisher>
 <publicationYear>2012</publicationYear>
 <subjects>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Adult</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Male</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Female</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Magnetic Resonance Imaging</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Brain</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Human</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Framingham Cardiovascular Risk Profile</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Aged</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Carotid Intima Media</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Gray Matter</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Cortical Thickness</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Cortical Volume</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Atrophy</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Cerebrovascular Disease</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Stroke</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Myocardial Infarction</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Infarct</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Adult</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Male</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Female</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Magnetic Resonance Imaging</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Brain</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Human</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Framingham Cardiovascular Risk Profile</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Aged</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Carotid Intima Media</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Gray Matter</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Cortical Thickness</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Cortical Volume</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Atrophy</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Cerebrovascular Disease</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Stroke</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Myocardial Infarction</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Infarct</subject>
 </subjects>
 <contributors>
 <contributor contributorType="ResearchGroup">
@@ -84,7 +85,7 @@
 <description descriptionType="Abstract">Data from healthy and cognitively impaired elderly, enriched for cerebrovascular disease.
 Background and Purpose: To investigate whether the Framingham Cardiovascular Risk Profile (FCRP) and carotid artery intima-media thickness (CIMT) are associated with cortical volume and thickness.
 Results: 152 subjects (82 men) were aged 78 (±7) years old, 94 had a CDR of 0, 58 had a clinical dementia rating (CDR) of 0.5 and the mean mini-mental status examination (MMSE) was 28 ±2. FCRP score was inversely associated with total gray matter (GM) volume, parietal and temporal GM volume (adjusted p&lt;0.04). FCRP was inversely associated with parietal and total cerebral GM thickness (adjusted p&lt;0.03). CIMT was inversely associated with thickness of parietal GM only (adjusted p=0.04). Including history of myocardial infarction or stroke and radiologic evidence of brain infarction, or apoE genotype did not alter relationships with FCRP or CIMT.
-Conclusions: Increased cardiovascular risk was associated with reduced GM volume and thickness in regions also affected by Alzheimer's disease (AD), independent of infarcts and apoE genotype. These results suggest a &quot;double hit&quot; toward developing dementia when someone with incipient AD also has high cardiovascular risk.
+Conclusions: Increased cardiovascular risk was associated with reduced GM volume and thickness in regions also affected by Alzheimer's disease (AD), independent of infarcts and apoE genotype. These results suggest a "double hit" toward developing dementia when someone with incipient AD also has high cardiovascular risk.
 Subjects: Consecutive subjects were identified from an ongoing, longitudinal, multi-institutional Aging Brain program project that recruits subjects with normal cognition to mild cognitive impairment, representing a spectrum of low to high vascular risk14. Most participants were acquired through community-based recruitment using a protocol designed to obtain a demographically diverse cohort, or through sources such as stroke clinics and support groups attended by people with high vascular risk factors. All participants gave written informed consent in accordance with the policies of each institutional review board. Inclusion criteria include age 60 or older, with cognitive function in the normal to mild cognitive impairment range (Clinical Dementia Rating [CDR] score of 0 or 0.5) 15. Persons with history of multiple vascular risk factors, coronary or carotid disease, myocardial infarction, or ischemic stroke were targeted for inclusion, although patients with very large strokes that interfered with estimation of cortical volume and thickness were excluded. Exclusion criteria included evidence of alcohol or substance abuse, head trauma with loss of consciousness lasting longer than 15 minutes, factors contraindicating MRI, and severe medical illness, neurologic or psychiatric disorders unrelated to AD or vascular dementia that could significantly affect brain structure (e.g., schizophrenia and other psychotic disorders, bipolar disorder, current major depression, post-traumatic stress disorder, obsessive-compulsive disorder, liver disease, multiple sclerosis, amyotrophic lateral sclerosis). Participant demographics by CDR are shown in Table 1.
 Measures of cardiovascular risk and carotid atherosclerosis: The FCRP uses empirically-derived age- and gender-adjusted weighting of categorical variables to predict the 10-year risk of coronary heart disease and is a weighted sum of: age, gender, active smoking, diabetes, systolic blood pressure (and/or use of hypertensive medications) and total cholesterol and high-density lipoprotein cholesterol levels13. Higher scores indicate greater coronary risk.
 CIMT was used as a measure of subclinical atherosclerosis. CIMT is a measures of the thickness of the inner two layers of the carotid artery; higher CIMT indicates greater atherosclerosis burden. High-resolution B-mode ultrasound images of the right and left common carotid arteries were obtained with a 7.5-MHz linear array transducer attached to an ATL Apogee ultrasound system (Bothell, WA). CIMT was determined as the average of 70 to 100 measurements between the intima-lumen and media-adventitia interfaces along a 1 cm length just proximal to the carotid artery bulb at the same point of the cardiac cycle using comperterized automated edge detection. Right and left CIMT were measured in each individual whenever possible. For individuals with CIMT measurements from both sides, the maximum of these two quantities was used in subsequent statistical analyses.

@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+<?xml version='1.0' encoding='UTF-8'?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
   <identifier identifierType="DOI"/>
   <creators>
     <creator>
@@ -23,13 +24,13 @@
   <publisher>UC Merced</publisher>
   <publicationYear>2013</publicationYear>
   <subjects>
-    <subject schemeURI="http://id.loc.gov/authorities/subjects" subjectScheme="Library of Congress Subject Headings" xml:lang="en-us">Earth sciences</subject>
-    <subject schemeURI="http://vocab.lternet.edu" subjectScheme="LTER Controlled Vocabulary" xml:lang="en-us">soil moisture</subject>
-    <subject schemeURI="http://vocab.lternet.edu" subjectScheme="LTER Controlled Vocabulary" xml:lang="en-us">soil temperature</subject>
-    <subject schemeURI="http://vocab.lternet.edu" subjectScheme="LTER Controlled Vocabulary" xml:lang="en-us">snow depth</subject>
-    <subject schemeURI="http://vocab.lternet.edu" subjectScheme="LTER Controlled Vocabulary" xml:lang="en-us">air temperature</subject>
-    <subject schemeURI="http://vocab.lternet.edu" subjectScheme="LTER Controlled Vocabulary" xml:lang="en-us">water balance</subject>
-    <subject schemeURI="http://www.getty.edu/research/tools/vocabularies/tgn/" subjectScheme="Getty Thesaurus of Geographic Names" xml:lang="en-us">Nevada, Sierra (mountain range)</subject>
+    <subject xml:lang="en-us" schemeURI="http://id.loc.gov/authorities/subjects" subjectScheme="Library of Congress Subject Headings">Earth sciences</subject>
+    <subject xml:lang="en-us" schemeURI="http://vocab.lternet.edu" subjectScheme="LTER Controlled Vocabulary">soil moisture</subject>
+    <subject xml:lang="en-us" schemeURI="http://vocab.lternet.edu" subjectScheme="LTER Controlled Vocabulary">soil temperature</subject>
+    <subject xml:lang="en-us" schemeURI="http://vocab.lternet.edu" subjectScheme="LTER Controlled Vocabulary">snow depth</subject>
+    <subject xml:lang="en-us" schemeURI="http://vocab.lternet.edu" subjectScheme="LTER Controlled Vocabulary">air temperature</subject>
+    <subject xml:lang="en-us" schemeURI="http://vocab.lternet.edu" subjectScheme="LTER Controlled Vocabulary">water balance</subject>
+    <subject xml:lang="en-us" schemeURI="http://www.getty.edu/research/tools/vocabularies/tgn/" subjectScheme="Getty Thesaurus of Geographic Names">Nevada, Sierra (mountain range)</subject>
   </subjects>
   <contributors>
     <contributor contributorType="ProjectLeader">
@@ -46,7 +47,7 @@
     </contributor>
     <contributor contributorType="Funder">
       <contributorName>National Science Foundation, Division of Earth Sciences, Critical Zone Observatories</contributorName>
-      <nameIdentifier nameIdentifierScheme="FundRef" schemeURI="http://data.fundref.org/vocabulary">http://dx.doi.org/10.13039/100000160</nameIdentifier>
+      <nameIdentifier schemeURI="http://data.fundref.org/vocabulary" nameIdentifierScheme="FundRef">http://dx.doi.org/10.13039/100000160</nameIdentifier>
     </contributor>
     <contributor contributorType="ResearchGroup">
       <contributorName>Southern Sierra Critical Zone Observatory</contributorName>
@@ -70,8 +71,8 @@
     <rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 License</rights>
   </rightsList>
   <descriptions>
-    <description descriptionType="Abstract" xml:lang="en-us"> Snow depth, soil moisture and soil temperature are measured at lower Providence South facing (LowMetS) and North facing (LowMetN), Upper Providence South facing (UpMetS), North facing (UpMetN) and Flat aspect (UpMetF), and Subcatchment basin P301 (P301) with a wireless sensor network, using a Campbell Scientific logger to control peripheral devices. Snow depth is measured in the open, at the drip edge and under canopies. Soil moisture and temperature are measured at 10, 30, 60 and 90 cm depths coincident with the snow depth nodes. 10 watt solar panels provides power for monitoring at 10 minute intervals. Raw data have been processed to level 1 (QA/QC) and level 2 (gap-filled, derived) data. Time period: water year 2008 through water year 2012. </description>
-    <description descriptionType="Methods" xml:lang="en-us">Soil volumetric water content (VWC) and soil temperature measured using Decagon Devices ECHO-TM at depths of 10, 30, 60, an 90 cm below the mineral soil surface. Sensor now equivalent to 5TM (http://www.decagon.com/soil-moisture-sensors/). Distance to snow/soil surface and air temperature measured with Judd Communications ultrasonic depth sensor, using analog control ( http://www.juddcom.com/ ). Data control and storage on Campbell Scientific CR1000 datalogger, using AM16/32B multiplexer ( http://www.campbellsci.com ). Program for data acquisition are located on UC Merced-SNRI digital library ( https://eng.ucmerced.edu/snsjho/files/MHWG/Field/Southern_Sierra_CZO_KREW/Providence_Creek_Upper_Met/Water_Balance_Instrument_Cluster/North_Cluster/Programs)</description>
+    <description xml:lang="en-us" descriptionType="Abstract"> Snow depth, soil moisture and soil temperature are measured at lower Providence South facing (LowMetS) and North facing (LowMetN), Upper Providence South facing (UpMetS), North facing (UpMetN) and Flat aspect (UpMetF), and Subcatchment basin P301 (P301) with a wireless sensor network, using a Campbell Scientific logger to control peripheral devices. Snow depth is measured in the open, at the drip edge and under canopies. Soil moisture and temperature are measured at 10, 30, 60 and 90 cm depths coincident with the snow depth nodes. 10 watt solar panels provides power for monitoring at 10 minute intervals. Raw data have been processed to level 1 (QA/QC) and level 2 (gap-filled, derived) data. Time period: water year 2008 through water year 2012. </description>
+    <description xml:lang="en-us" descriptionType="Methods">Soil volumetric water content (VWC) and soil temperature measured using Decagon Devices ECHO-TM at depths of 10, 30, 60, an 90 cm below the mineral soil surface. Sensor now equivalent to 5TM (http://www.decagon.com/soil-moisture-sensors/). Distance to snow/soil surface and air temperature measured with Judd Communications ultrasonic depth sensor, using analog control ( http://www.juddcom.com/ ). Data control and storage on Campbell Scientific CR1000 datalogger, using AM16/32B multiplexer ( http://www.campbellsci.com ). Program for data acquisition are located on UC Merced-SNRI digital library ( https://eng.ucmerced.edu/snsjho/files/MHWG/Field/Southern_Sierra_CZO_KREW/Providence_Creek_Upper_Met/Water_Balance_Instrument_Cluster/North_Cluster/Programs)</description>
     <description descriptionType="Other">Lower and upper Providence Creek, Subcatchment basin P301.acde: white fir drip edge; acuc: white fir under canopy; cdde: incense-cedar drip edge; cduc: incense-cedar under canopy; open: open canopy; plde: sugar pine drip edge; pluc: sugar pine under canopy; ppde: Ponderosa pine drip; edge ppde: Ponderosa pine drip edge; ppuc: Ponderosa pine under canopy; ppuc: Ponderosa pine under canopy; qkde: black oak drip edge; qkuc: black oak under canopy</description>
   </descriptions>
   <geoLocations>

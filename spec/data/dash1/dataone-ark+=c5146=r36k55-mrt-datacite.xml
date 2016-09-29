@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+  <identifier identifierType="DOI"/>
+  <creators>
+    <creator>
+      <creatorName>CEM</creatorName>
+    </creator>
+  </creators>
+  <titles>
+    <title>Vias USP</title>
+  </titles>
+  <publisher>DataONE</publisher>
+  <publicationYear>2016</publicationYear>
+  <subjects>
+    <subject>Sistema de Transporte</subject>
+    <subject>Logradouros</subject>
+  </subjects>
+  <contributors>
+    <contributor contributorType="DataManager">
+      <contributorName>Bogado Tomasiello, Diego</contributorName>
+    </contributor>
+    <contributor contributorType="Funder">
+      <contributorName>Governo Brasil</contributorName>
+    </contributor>
+  </contributors>
+  <relatedIdentifiers/>
+  <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+  <sizes>
+    <size>7405</size>
+  </sizes>
+  <rightsList>
+    <rights rightsURI="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication (CC0)</rights>
+  </rightsList>
+  <descriptions>
+    <description descriptionType="Abstract">Dados que contém as vias da cidade universitária da USP.</description>
+    <description descriptionType="Methods">Dados vetoriais coletados do site do Centro de Estudos da Metrópole (CEM)</description>
+    <description descriptionType="Other"></description>
+  </descriptions>
+</resource>

@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd">
 <identifier identifierType="DOI">10.7272/Q6CC0XMH</identifier>
 <creators>
 <creator>
@@ -35,17 +36,17 @@
 <publisher>University of California, San Francisco</publisher>
 <publicationYear>2012</publicationYear>
 <subjects>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Adult</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Human</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Magnetic Resonance Imaging</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Diffusion Magnetic Resonance Imaging</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Brain</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Aged</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Middle Aged</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Alzheimer's Disease</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Cross-sectional Studies</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Dementia</subject>
-<subject schemeURI="http://www.nlm.nih.gov/mesh/" subjectScheme="MeSH">Differential Diagnosis</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Adult</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Human</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Magnetic Resonance Imaging</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Diffusion Magnetic Resonance Imaging</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Brain</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Aged</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Middle Aged</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Alzheimer's Disease</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Cross-sectional Studies</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Dementia</subject>
+<subject subjectScheme="MeSH" schemeURI="http://www.nlm.nih.gov/mesh/">Differential Diagnosis</subject>
 </subjects>
 <contributors>
 <contributor contributorType="ResearchGroup">
