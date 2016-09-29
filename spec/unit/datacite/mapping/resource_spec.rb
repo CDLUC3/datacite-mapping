@@ -915,15 +915,23 @@ module Datacite
         end
 
         def normalize(xml_str)
-          xml_text = xml_str
-                     .gsub(/<resource (xmlns:xsi="[^"]+")\s+(xsi:schemaLocation="[^"]+")>/, "<resource \\2 \\1 xmlns=\"http://datacite.org/schema/kernel-3\">") # fix missing namespace
-                     .gsub(%r{(<identifier[^>]+>)\s*([^ ]+)\s*(</identifier>)}, '\\1\\2\\3') # trim identifiers
-                     .gsub(%r{<([^>]+tude)>([0-9.-]+?)(0?)0+</\1>}, '<\\1>\\2\\3</\\1>') # strip trailing coordinate zeroes
-                     .gsub('&lt;br /&gt;', '<br/>') # entity-de-escape <br/> tags
-                     .gsub(%r{<(geoLocation[^>]+)>[^<]+</\1>}) { |loc| loc.gsub(/([0-9\-]+\.[0-9]+?)0+([^0-9])/, '\\1\\2') } # strip trailing coordinate zeroes
-                     .gsub(%r{<[^>]+/>}, '') # remove empty tags
-                     .gsub(%r{<([A-Za-z]*)[^>]*>\s*</\1>}, '') # remove empty tag pairs
+          r0 = xml_str
+          r1 = r0.gsub(%r{&lt;br\s+/&gt;}, '<br/>') # entity-de-escape <br/> tags
+          r2 = r1.gsub(%r{<(?!br)[^>]+/>}, '') # remove empty tags
+          r3 = r2.gsub(/<resource (xmlns:xsi="[^"]+")\s+(xsi:schemaLocation="[^"]+")>/, "<resource \\2 \\1 xmlns=\"http://datacite.org/schema/kernel-3\">") # fix missing namespace
+          r4 = r3.gsub(%r{(<identifier[^>]+>)\s*([^ ]+)\s*(</identifier>)}, '\\1\\2\\3') # trim identifiers
+          r5 = r4.gsub(%r{<([^>]+tude)>([0-9.-]+?)(0?)0+</\1>}, '<\\1>\\2\\3</\\1>') # strip trailing coordinate zeroes
+          r6 = r5.gsub(%r{<(geoLocation[^>]+)>[^<]+</\1>}) { |loc| loc.gsub(/([0-9\-]+\.[0-9]+?)0+([^0-9])/, '\\1\\2') } # strip trailing coordinate zeroes
+          r7 = r6.gsub(%r{<([A-Za-z]*)[^>]*>\s*</\1>}, '') # remove empty tag pairs
+          r8 = to_pretty(r7)
+          # if r8.include?('&lt;br')
+          #   trace = [r0, r1, r2, r3, r4, r5, r6, r7, r8].map { |r| r.include?('&lt;br') }
+          #   puts trace
+          # end
+          r8
+        end
 
+        def to_pretty(xml_text)
           xml = REXML::Document.new(xml_text).root
           formatter = REXML::Formatters::Pretty.new
           formatter.compact = true
@@ -938,23 +946,29 @@ module Datacite
           # - empty tags
           # - nested contributors instead of contributorNames
           # - empty descriptions
-          xml_str
-            .gsub(%r{<description[^/>]*/>}, '') # strip empty descriptions
-            .gsub(%r{<description[^/>]*></description>}, '') # strip empty descriptions
-            .gsub(%r{<[^>]+/>}, '') # remove empty tags
-            .gsub(%r{<([A-Za-z]*)[^>]*>\s*</\1>}, '') # remove empty tag pairs
-            .gsub(%r{(<date[^>]*>)(\d{4})-(\d{4})(</date>)}, '\\1\\2/\\3\\4') # fix date ranges
-            .gsub(%r{(<contributor[^>/]+>\s*)<contributor>([^<]+)</contributor>(\s*</contributor>)}, '\\1<contributorName>\\2</contributorName>\\3') # fix broken contributors
           # TODO: handle empty descriptions like empty subjects
+
+          r0 = xml_str
+          r1 = r0.gsub(%r{<(?!br)[^>]+/>}, '') # remove empty tags
+          r2 = r1.gsub(%r{<description[^/>]*/>}, '') # strip empty descriptions
+          r3 = r2.gsub(%r{<description[^/>]*></description>}, '') # strip empty descriptions
+          r4 = r3.gsub(%r{<([A-Za-z]*)[^>]*>\s*</\1>}, '') # remove empty tag pairs
+          r5 = r4.gsub(%r{(<date[^>]*>)(\d{4})-(\d{4})(</date>)}, '\\1\\2/\\3\\4') # fix date ranges
+          r6 = r5.gsub(%r{(<contributor[^>/]+>\s*)<contributor>([^<]+)</contributor>(\s*</contributor>)}, '\\1<contributorName>\\2</contributorName>\\3') # fix broken contributors
+          # if r6.include?('&lt;br')
+          #   trace = [r0, r1, r2, r3, r4, r5, r6].map { |r| r.include?('&lt;br') }
+          #   puts trace
+          # end
+          r6
         end
 
         def it_round_trips(file:, mapping: :_default, fix_dash1: false) # rubocop:disable Metrics/AbcSize
           options = { mapping: mapping }
           basename = File.basename(file)
           xml_text = xml_text_from(file, fix_dash1)
-          resource = parse_file(xml_text, basename)
-          actual_xml = write_xml(resource, basename, options)
           expected_xml = normalize(xml_text)
+          resource = parse_file(expected_xml, basename)
+          actual_xml = write_xml(resource, basename, options)
           expected_xml.gsub!(/(<resource[^>]+>)\s+(<creators>)/, "\\1\n  <identifier identifierType=\"DOI\">10.5555/12345678</identifier>\n  \\2") if fix_dash1
           begin
             # actual_xml = actual_xml.gsub('&apos;', "'")
