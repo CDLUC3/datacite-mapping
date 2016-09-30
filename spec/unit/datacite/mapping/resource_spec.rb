@@ -717,6 +717,27 @@ module Datacite
           '
             expect(resource.version).to eq('9.2.2')
           end
+          it 'accepts a float' do
+            resource = Resource.new(args)
+            resource.version = 9.2
+            expect(resource.version).to eq('9.2')
+          end
+          it 'accepts an integer' do
+            resource = Resource.new(args)
+            resource.version = 9
+            expect(resource.version).to eq('9')
+          end
+          it 'can be initialized' do
+            args[:version] = '9.2.2'
+            resource = Resource.new(args)
+            expect(resource.version).to eq('9.2.2')
+          end
+          it 'can be set to nil' do
+            args[:version] = '9.2.2'
+            resource = Resource.new(args)
+            resource.version = nil
+            expect(resource.version).to be_nil
+          end
         end
 
         describe '#rights_list' do

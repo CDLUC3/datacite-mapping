@@ -146,7 +146,8 @@ module Datacite
       end
 
       def version=(value)
-        @version = value && value.strip
+        new_value = value && value.to_s
+        @version = new_value && new_value.strip
       end
 
       def rights_list=(value)

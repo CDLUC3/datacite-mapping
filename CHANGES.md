@@ -1,5 +1,6 @@
 ## 0.2.2 (Next)
 
+- Allow `Resource.version` to take numeric arguments. 
 - Fixed issue where `Date#<=>` would erroneously report date objects with the
   same value but differen types as equal.
 
