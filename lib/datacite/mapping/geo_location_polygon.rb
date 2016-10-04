@@ -57,7 +57,6 @@ module Datacite
       def self.marshal_point(element, value)
         COORD_ELEMENTS.each do |getter, element_name|
           v = value.send(getter)
-          puts "adding #{element_name}: #{v}"
           child = element.elements << REXML::Element.new(element_name)
           child.text = v
         end
