@@ -1,5 +1,9 @@
-## 0.2.2 (Next)
+## 0.2.2 (4 October 2016)
 
+- Fixed issue where `<geoLocation>` child elements would be written in Datacite 4
+  schema declaration order (place, point, box, polygon) instead of Datacite 3
+  schema sequence order (point, box, place), causing `<geoLocation>` elements with
+  multiple children to fail Datacite 3 schema validation.
 - Allow `Resource.version` to take numeric arguments. 
 - Fixed issue where `Date#<=>` would erroneously report date objects with the
   same value but differen types as equal.

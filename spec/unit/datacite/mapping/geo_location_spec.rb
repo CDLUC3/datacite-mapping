@@ -254,6 +254,13 @@ module Datacite
             expect(actual_xml).to be_xml(expected_xml)
             expect_warning(loc.polygon.to_s, 1)
           end
+
+          it 'writes DC3 in XSD-defined order: point, box, place' do
+            actual_xml = loc.save_to_xml(mapping: :datacite_3)
+            expected_order = %w(geoLocationPoint geoLocationBox geoLocationPlace)
+            actual_order = actual_xml.children.map(&:name)
+            expect(actual_order).to eq(expected_order)
+          end
         end
       end
     end
