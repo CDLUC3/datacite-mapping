@@ -117,8 +117,10 @@ module Datacite
       end
 
       def init_from_array(coordinates)
-        self.south_latitude, self.north_latitude = [coordinates[0], coordinates[2]].sort
-        self.west_longitude, self.east_longitude = [coordinates[1], coordinates[3]].sort
+        self.south_latitude, self.north_latitude = coordinates[0], coordinates[2]
+        self.west_longitude, self.east_longitude = coordinates[1], coordinates[3]
+        # self.south_latitude, self.north_latitude = [coordinates[0], coordinates[2]].sort
+        # self.west_longitude, self.east_longitude = [coordinates[1], coordinates[3]].sort
       end
     end
 

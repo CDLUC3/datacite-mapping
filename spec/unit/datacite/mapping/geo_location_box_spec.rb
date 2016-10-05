@@ -12,20 +12,12 @@ module Datacite
           expect(box.east_longitude).to eq(-70.67)
         end
 
-        it 'accepts a quad with flipped east/west coordinates' do
-          box = GeoLocationBox.new(-33.45, -70.67, 47.61, -122.33)
-          expect(box.south_latitude).to eq(-33.45)
-          expect(box.west_longitude).to eq(-122.33)
-          expect(box.north_latitude).to eq(47.61)
-          expect(box.east_longitude).to eq(-70.67)
-        end
-
-        it 'accepts a quad with flipped north/south coordinates' do
-          box = GeoLocationBox.new(47.61, -122.33, -33.45, -70.67)
-          expect(box.south_latitude).to eq(-33.45)
-          expect(box.west_longitude).to eq(-122.33)
-          expect(box.north_latitude).to eq(47.61)
-          expect(box.east_longitude).to eq(-70.67)
+        it 'accepts a quad crossing 180°' do
+          box = GeoLocationBox.new(-41.289, 174.777, 21.3, -157.817)
+          expect(box.south_latitude).to eq(-41.289)
+          expect(box.west_longitude).to eq(174.777)
+          expect(box.north_latitude).to eq(21.3)
+          expect(box.east_longitude).to eq(-157.817)
         end
 
         it 'accepts :south_latitude, :west_longitude, :north_latitude, :east_longitude' do

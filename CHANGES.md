@@ -1,3 +1,8 @@
+## 0.2.4 (next)
+
+- Remove well-intentioned but ill-advised feature that would auto-sort `<geoLocationBox/>`
+  coordinates into north/south and east/west.
+
 ## 0.2.3 (5 October 2016)
 
 - Allow empty `<identifier/>` tags on read, but not write
