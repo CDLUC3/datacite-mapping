@@ -184,7 +184,7 @@ module Datacite
 
       # @!attribute [rw] subjects
       #   @return [Array<Subject>] subjects, keywords, classification codes, or key phrases describing the resource.
-      array_node :subjects, 'subjects', 'subject', class: Subject, default_value: []
+      empty_filtering_array_node :subjects, 'subjects', 'subject', class: Subject, default_value: []
 
       # @!attribute [rw] fundingReferences
       #   @return [Array<FundingReference>] information about financial support (funding) for the resource being registered.
@@ -232,7 +232,7 @@ module Datacite
 
       # @!attribute [rw] descriptions
       #   @return [Array<Description>] all additional information that does not fit in any of the other categories.
-      array_node :descriptions, 'descriptions', 'description', class: Description, default_value: []
+      empty_filtering_array_node :descriptions, 'descriptions', 'description', class: Description, default_value: []
 
       # @!attribute [rw] geo_locations
       #   @return [Array<GeoLocations>] spatial region or named place where the data was gathered or about which the data is focused.

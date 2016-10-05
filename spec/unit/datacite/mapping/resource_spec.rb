@@ -938,7 +938,8 @@ module Datacite
         def normalize(xml_str)
           r0 = xml_str
           r1 = r0.gsub(%r{&lt;br\s+/&gt;}, '<br/>') # entity-de-escape <br/> tags
-          r2 = r1.gsub(%r{<(?!br)[^>]+/>}, '') # remove empty tags
+          # r2 = r1.gsub(%r{<(?!br)[^>]+/>}, '') # remove empty tags
+          r2 = r1
           r3 = r2.gsub(/<resource (xmlns:xsi="[^"]+")\s+(xsi:schemaLocation="[^"]+")>/, "<resource \\2 \\1 xmlns=\"http://datacite.org/schema/kernel-3\">") # fix missing namespace
           r4 = r3.gsub(%r{(<identifier[^>]+>)\s*([^ ]+)\s*(</identifier>)}, '\\1\\2\\3') # trim identifiers
           r5 = r4.gsub(%r{<([^>]+tude)>([0-9.-]+?)(0?)0+</\1>}, '<\\1>\\2\\3</\\1>') # strip trailing coordinate zeroes
@@ -966,21 +967,12 @@ module Datacite
           # - missing DOI
           # - empty tags
           # - nested contributors instead of contributorNames
-          # - empty descriptions
-          # TODO: handle empty descriptions like empty subjects
 
           r0 = xml_str
           r1 = r0.gsub(%r{<(?!br)[^>]+/>}, '') # remove empty tags
-          r2 = r1.gsub(%r{<description[^/>]*/>}, '') # strip empty descriptions
-          r3 = r2.gsub(%r{<description[^/>]*></description>}, '') # strip empty descriptions
-          r4 = r3.gsub(%r{<([A-Za-z]*)[^>]*>\s*</\1>}, '') # remove empty tag pairs
-          r5 = r4.gsub(%r{(<date[^>]*>)(\d{4})-(\d{4})(</date>)}, '\\1\\2/\\3\\4') # fix date ranges
-          r6 = r5.gsub(%r{(<contributor[^>/]+>\s*)<contributor>([^<]+)</contributor>(\s*</contributor>)}, '\\1<contributorName>\\2</contributorName>\\3') # fix broken contributors
-          # if r6.include?('&lt;br')
-          #   trace = [r0, r1, r2, r3, r4, r5, r6].map { |r| r.include?('&lt;br') }
-          #   puts trace
-          # end
-          r6
+          r2 = r1.gsub(%r{<([A-Za-z]*)[^>]*>\s*</\1>}, '') # remove empty tag pairs
+          r3 = r2.gsub(%r{(<date[^>]*>)(\d{4})-(\d{4})(</date>)}, '\\1\\2/\\3\\4') # fix date ranges
+          r3.gsub(%r{(<contributor[^>/]+>\s*)<contributor>([^<]+)</contributor>(\s*</contributor>)}, '\\1<contributorName>\\2</contributorName>\\3') # fix broken contributors
         end
 
         def it_round_trips(file:, mapping: :_default, fix_dash1: false) # rubocop:disable Metrics/AbcSize
@@ -1163,6 +1155,118 @@ module Datacite
             expected = xml_text.gsub('41.090', '41.09')
             expect(actual).to be_xml(expected)
           end
+        end
+      end
+
+      describe '#save_to_xml' do
+
+        attr_reader :resource
+
+        before(:each) do
+          @identifier = Identifier.new(value: '10.14749/1407399495')
+
+          @creators = [
+            Creator.new(
+              name: 'Hedy Lamarr',
+              identifier: NameIdentifier.new(scheme: 'ISNI', scheme_uri: URI('http://isni.org/'), value: '0000-0001-1690-159X'),
+              affiliations: ['United Artists', 'Metro-Goldwyn-Mayer']
+            ),
+            Creator.new(
+              name: 'Herschlag, Natalie',
+              identifier: NameIdentifier.new(scheme: 'ISNI', scheme_uri: URI('http://isni.org/'), value: '0000-0001-0907-8419'),
+              affiliations: ['Gaumont Buena Vista International', '20th Century Fox']
+            )
+          ]
+
+          @titles = [
+            Title.new(value: 'An Account of a Very Odd Monstrous Calf', language: 'en-emodeng'),
+            Title.new(type: TitleType::SUBTITLE, value: 'And a Contest between Two Artists about Optick Glasses, &c', language: 'en-emodeng')
+          ]
+
+          @publisher = 'California Digital Library'
+          @publication_year = 2015
+
+          @resource = Resource.new(
+            identifier: identifier,
+            creators: creators,
+            titles: titles,
+            publisher: publisher,
+            publication_year: publication_year
+          )
+        end
+
+        it 'sets the DC4 namespace by default' do
+          xml = resource.save_to_xml
+          expect(xml).to be_a(REXML::Element)
+          expect(xml.namespace).to eq(DATACITE_4_NAMESPACE.uri)
+        end
+
+        it 'sets the DC3 namespace for the :datacite_3 mapping' do
+          xml = resource.save_to_xml(mapping: :datacite_3)
+          expect(xml).to be_a(REXML::Element)
+          expect(xml.namespace).to eq(DATACITE_3_NAMESPACE.uri)
+        end
+
+        it 'fails on nil identifiers' do
+          resource.instance_variable_set(:@identifier, nil)
+          expect { resource.save_to_xml }.to raise_error(XML::MappingError)
+        end
+      end
+
+      describe '#parse_xml' do
+
+        attr_reader :xml_text
+
+        before(:each) do
+          @xml_text = "<resource xsi:schemaLocation='http://datacite.org/schema/kernel-4 http://schema.datacite.org/meta/kernel-4/metadata.xsd' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns='http://datacite.org/schema/kernel-4'>
+            <identifier identifierType='DOI'>10.14749/1407399495</identifier>
+            <creators>
+              <creator>
+                <creatorName>Hedy Lamarr</creatorName>
+                <nameIdentifier nameIdentifierScheme='ISNI' schemeURI='http://isni.org/'>0000-0001-1690-159X</nameIdentifier>
+                <affiliation>United Artists</affiliation>
+                <affiliation>Metro-Goldwyn-Mayer</affiliation>
+              </creator>
+              <creator>
+                <creatorName>Herschlag, Natalie</creatorName>
+                <nameIdentifier nameIdentifierScheme='ISNI' schemeURI='http://isni.org/'>0000-0001-0907-8419</nameIdentifier>
+                <affiliation>Gaumont Buena Vista International</affiliation>
+                <affiliation>20th Century Fox</affiliation>
+              </creator>
+            </creators>
+            <titles>
+              <title xml:lang='en-emodeng'>An Account of a Very Odd Monstrous Calf</title>
+              <title xml:lang='en-emodeng' titleType='Subtitle'>And a Contest between Two Artists about Optick Glasses, &amp;c</title>
+            </titles>
+            <publisher>California Digital Library</publisher>
+            <publicationYear>2015</publicationYear>
+            <subjects>
+              <subject xml:lang='en-us' schemeURI='http://id.loc.gov/authorities/subjects' subjectScheme='LCSH'>Mammals--Embryology</subject>
+            </subjects>
+            <descriptions>
+              <description xml:lang='en-us' descriptionType='Abstract'>foo</description>
+            </descriptions>
+          </resource>"
+        end
+
+        it 'skips empty identifiers' do
+          sketchy_xml = xml_text.gsub(%r{<identifier.*/identifier>}, '<identifier/>')
+          resource = Resource.parse_xml(sketchy_xml)
+          expect(resource).to be_a(Resource)
+        end
+
+        it 'skips empty subjects' do
+          sketchy_xml = xml_text.gsub(%r{>[^<]+</subject>}, '/>')
+          resource = Resource.parse_xml(sketchy_xml)
+          expect(resource).to be_a(Resource)
+          expect(resource.subjects).to eq([])
+        end
+
+        it 'skips empty descriptions' do
+          sketchy_xml = xml_text.gsub(%r{>[^<]+</description>}, '/>')
+          resource = Resource.parse_xml(sketchy_xml)
+          expect(resource).to be_a(Resource)
+          expect(resource.descriptions).to eq([])
         end
       end
     end

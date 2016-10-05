@@ -1,4 +1,5 @@
 require 'xml/mapping'
+require 'datacite/mapping/empty_filtering_nodes'
 
 module Datacite
   module Mapping
@@ -60,8 +61,10 @@ module Datacite
     # Custom node to warn (but not blow up) if we read an XML `<resource/>` that's
     # missing its `<identifier/>`.
     class IdentifierNode < XML::Mapping::ObjectNode
+      include EmptyNodeUtils
       def xml_to_obj(_obj, xml)
-        super if has_element?(xml)
+        return super if (element = has_element?(xml)) && not_empty(element)
+        warn 'Identifier not found; add a valid Identifier to the Resource before saving'
       end
 
       private
@@ -69,7 +72,7 @@ module Datacite
       def has_element?(xml) # rubocop:disable Style/PredicateName
         @path.first(xml)
       rescue XML::XXPathError
-        warn '<identifier/> not found; add a valid Identifier to the Resource before saving'
+        false
       end
     end
     XML::Mapping.add_node_class IdentifierNode
