@@ -1,3 +1,8 @@
+## 0.2.3 (5 October 2016)
+
+- Allow empty `<identifier/>` tags on read, but not write
+- Allow but ignore empty `<subject/>` and `<description/>` tags on read
+
 ## 0.2.2 (4 October 2016)
 
 - Fixed issue where `<geoLocation>` child elements would be written in Datacite 4
