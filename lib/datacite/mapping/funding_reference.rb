@@ -89,11 +89,7 @@ module Datacite
       end
 
       def award_number=(value)
-        @award_number = if value.nil? || value.is_a?(AwardNumber)
-                          value
-                        else
-                          AwardNumber.new(value: value.to_s)
-                        end
+        @award_number = award_number_or_nil(value)
       end
 
       def to_s
@@ -107,6 +103,16 @@ module Datacite
       text_node :award_title, 'awardTitle', default_value: nil
 
       fallback_mapping :datacite_3, :_default
+
+      private
+
+      def award_number_or_nil(value)
+        return nil unless value
+        return value if value.is_a?(AwardNumber)
+        new_value = value.to_s.strip
+        return nil if new_value.empty?
+        AwardNumber.new(value: new_value)
+      end
     end
   end
 end

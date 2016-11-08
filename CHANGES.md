@@ -1,3 +1,7 @@
+## 0.2.5 (next)
+
+- Treat blank or empty award number as nil when constructing a `FundingReference`.
+
 ## 0.2.4 (8 November 2016)
 
 - Fix issue where writing a resource in Datacite 3 would cause the Datacite 3 namespace

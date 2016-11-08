@@ -34,6 +34,16 @@ module Datacite
           expect(award_number).to be_an(AwardNumber)
           expect(award_number.value).to eq('9 3/4')
         end
+
+        it 'treats an empty award number as nil' do
+          fref = FundingReference.new(name: 'Ministry of Magic', award_number: '')
+          expect(fref.award_number).to be_nil
+        end
+
+        it 'treats a blank award number as nil' do
+          fref = FundingReference.new(name: 'Ministry of Magic', award_number: ' ')
+          expect(fref.award_number).to be_nil
+        end
       end
 
       describe '#parse_xml' do
