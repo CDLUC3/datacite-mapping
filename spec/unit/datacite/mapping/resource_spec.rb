@@ -1045,6 +1045,11 @@ module Datacite
             expect(rexml.namespace).to eq(DATACITE_3_NAMESPACE.uri)
           end
 
+          it 'still writes DC4 by default after writing DC3' do
+            dc4xml = resource.save_to_xml
+            expect(dc4xml.namespace).to eq(DATACITE_4_NAMESPACE.uri)
+          end
+
           it 'warns about givenNames and familyNames' do
             name_tags = %w(givenName familyName)
             name_tags.each do |tag|

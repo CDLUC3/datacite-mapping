@@ -1,5 +1,7 @@
-## 0.2.4 (next)
+## 0.2.4 (8 November 2016)
 
+- Fix issue where writing a resource in Datacite 3 would cause the Datacite 3 namespace
+  to stick around, even when later writing Datacite 4.
 - Remove well-intentioned but ill-advised feature that would auto-sort `<geoLocationBox/>`
   coordinates into north/south and east/west.
 

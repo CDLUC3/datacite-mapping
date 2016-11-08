@@ -28,12 +28,15 @@ module Datacite
 
       # Overrides Namespaced::InstanceMethods.fill_into_xml to check mapping
       def fill_into_xml(xml, options = { mapping: :_default })
-        if options[:mapping] == :datacite_3
-          unless namespace.uri == DATACITE_3_NAMESPACE.uri
-            @namespace = DATACITE_3_NAMESPACE.with_prefix(namespace.prefix)
-          end
+        current_namespace = namespace
+        return super if options[:mapping] != :datacite_3 || current_namespace.uri == DATACITE_3_NAMESPACE.uri
+
+        begin
+          @namespace = DATACITE_3_NAMESPACE.with_prefix(current_namespace.prefix)
+          super
+        ensure
+          @namespace = current_namespace
         end
-        super
       end
 
       # Initialies a new {Resource}
