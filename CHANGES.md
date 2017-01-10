@@ -1,5 +1,6 @@
 ## 0.2.5 (next)
 
+- Update to Ruby 2.2.5
 - Treat blank or empty award number as nil when constructing a `FundingReference`.
 
 ## 0.2.4 (8 November 2016)
