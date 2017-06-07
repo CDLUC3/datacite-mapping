@@ -46,8 +46,8 @@ abstract.value
 # => "XML example of all DataCite Metadata Schema v4.0 properties."
 ```
 
-Note that Datacite::Mapping uses the `TypesafeEnum` gem to represent controlled vocabularies such
-as [ResourceTypeGeneral](http://www.rubydoc.info/github/CDLUC3/datacite-mapping/master/Datacite/Mapping/ResourceTypeGeneral)
+Note that Datacite::Mapping uses the [TypesafeEnum](https://github.com/dmolesUC3/typesafe_enum) gem to represent controlled 
+vocabularies such as [ResourceTypeGeneral](http://www.rubydoc.info/github/CDLUC3/datacite-mapping/master/Datacite/Mapping/ResourceTypeGeneral)
 and [DescriptionType](http://www.rubydoc.info/github/CDLUC3/datacite-mapping/master/Datacite/Mapping/DescriptionType).
 
 ### Writing
