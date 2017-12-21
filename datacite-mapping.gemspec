@@ -36,5 +36,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop', '~> 0.32.1'
   spec.add_development_dependency 'redcarpet', '~> 3.3'
   spec.add_development_dependency 'github-markup', '~> 1.4'
-  spec.add_development_dependency 'yard', '~> 0.8'
+  spec.add_development_dependency 'yard', '~> 0.9'
 end
