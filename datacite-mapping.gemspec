@@ -38,5 +38,5 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.add_development_dependency 'rubocop', '~> 0.52'
   spec.add_development_dependency 'simplecov', '~> 0.9.2'
   spec.add_development_dependency 'simplecov-console', '~> 0.2.0'
-  spec.add_development_dependency 'yard', '~> 0.8'
+  spec.add_development_dependency 'yard', '~> 0.9'
 end
