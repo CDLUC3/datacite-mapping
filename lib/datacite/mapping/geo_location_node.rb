@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'xml/mapping_extensions'
 
 module Datacite
@@ -9,11 +11,11 @@ module Datacite
       attr_reader :coord_elements
 
       def initialize(*args)
-        fail 'No geometry class provided' unless @geom_class
-        fail 'No coordinate elements provided' unless @coord_elements
-        path, *args = super(*args)
+        raise 'No geometry class provided' unless @geom_class
+        raise 'No coordinate elements provided' unless @coord_elements
+        path, *myargs = super(*args)
         @path = ::XML::XXPath.new(path)
-        args
+        myargs # rubocop:disable Lint/Void
       end
 
       def datacite_3?
@@ -22,12 +24,12 @@ module Datacite
 
       def extract_attr_value(xml)
         return from_text(xml) || from_children(xml)
-      rescue => e
+      rescue StandardError => e
         raise e, "#{@owner}.#{@attrname}: Can't extract #{self.class} from #{xml}: #{e.message}"
       end
 
-      def set_attr_value(xml, value) # rubocop:disable Metrics/AbcSize
-        fail "Invalid value: expected #{geom_class} instance, was #{value || 'nil'}" unless value && value.is_a?(geom_class)
+      def set_attr_value(xml, value)
+        raise "Invalid value: expected #{geom_class} instance, was #{value || 'nil'}" unless value && value.is_a?(geom_class)
         element = @path.first(xml, ensure_created: true)
 
         if datacite_3?

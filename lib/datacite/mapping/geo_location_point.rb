@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'xml/mapping'
 require 'datacite/mapping/geo_location_node'
 
@@ -33,19 +35,19 @@ module Datacite
         when 2
           init_from_array(args)
         else
-          fail ArgumentError, "Can't construct GeoLocationPoint from arguments: #{args}"
+          raise ArgumentError, "Can't construct GeoLocationPoint from arguments: #{args}"
         end
       end
 
       def latitude=(value)
-        fail ArgumentError, 'Latitude cannot be nil' unless value
-        fail ArgumentError, "#{value} is not a valid latitude" unless value >= -90 && value <= 90
+        raise ArgumentError, 'Latitude cannot be nil' unless value
+        raise ArgumentError, "#{value} is not a valid latitude" unless value >= -90 && value <= 90
         @latitude = value
       end
 
       def longitude=(value)
-        fail ArgumentError, 'Longitude cannot be nil' unless value
-        fail ArgumentError, "#{value} is not a valid longitude" unless value >= -180 && value <= 180
+        raise ArgumentError, 'Longitude cannot be nil' unless value
+        raise ArgumentError, "#{value} is not a valid longitude" unless value >= -180 && value <= 180
         @longitude = value
       end
 
@@ -62,7 +64,7 @@ module Datacite
       #   {GeoLocationPoint}
       def <=>(other)
         return nil unless other.class == self.class
-        [:latitude, :longitude].each do |c|
+        %i[latitude longitude].each do |c|
           order = send(c) <=> other.send(c)
           return order if order.nonzero?
         end

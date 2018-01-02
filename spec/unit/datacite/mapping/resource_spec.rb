@@ -1,5 +1,8 @@
-# coding: utf-8
+
+# frozen_string_literal: true
+
 require 'spec_helper'
+require 'tmpdir'
 
 module Datacite
   module Mapping
@@ -119,9 +122,9 @@ module Datacite
                 resource = Resource.new(args)
                 expect(resource.creator_affiliations)
                   .to eq([
-                    ['United Artists', 'Metro-Goldwyn-Mayer'],
-                    ['Gaumont Buena Vista International', '20th Century Fox']
-                  ])
+                           ['United Artists', 'Metro-Goldwyn-Mayer'],
+                           ['Gaumont Buena Vista International', '20th Century Fox']
+                         ])
               end
             end
           end
@@ -228,7 +231,7 @@ module Datacite
           it 'converts strings to integers' do
             new_pub_year = 1963
             resource = Resource.new(args)
-            resource.publication_year = "#{new_pub_year}"
+            resource.publication_year = new_pub_year.to_s
             expect(resource.publication_year).to eq(new_pub_year)
           end
         end
@@ -426,7 +429,8 @@ module Datacite
                   scheme_uri: URI('http://iatistandard.org/201/codelists/OrganisationIdentifier/'),
                   value: 'GR-9¾'
                 ),
-                type: ContributorType::FUNDER)
+                type: ContributorType::FUNDER
+              )
               @resource.contributors << @funder
             end
 
@@ -465,7 +469,7 @@ module Datacite
           describe 'dates:' do
             it 'can be initialized' do
               dates = [
-                Date.new(value: DateTime.new(1914, 8, 4, 11, 01, 6.0123, '+1'), type: DateType::AVAILABLE),
+                Date.new(value: DateTime.new(1914, 8, 4, 11, 0o1, 6.0123, '+1'), type: DateType::AVAILABLE),
                 Date.new(value: '1914-08-04T11:01:06.0123+01:00', type: DateType::AVAILABLE)
               ]
               args[:dates] = dates
@@ -483,7 +487,7 @@ module Datacite
             it 'can be set' do
               resource = Resource.new(args)
               dates = [
-                Date.new(value: DateTime.new(1914, 8, 4, 11, 01, 6.0123, '+1'), type: DateType::AVAILABLE),
+                Date.new(value: DateTime.new(1914, 8, 4, 11, 0o1, 6.0123, '+1'), type: DateType::AVAILABLE),
                 Date.new(value: '1914-08-04T11:01:06.0123+01:00', type: DateType::AVAILABLE)
               ]
               resource.dates = dates
@@ -625,7 +629,7 @@ module Datacite
 
           describe 'sizes:' do
             it 'can be initialized' do
-              sizes = %w(48K 128K)
+              sizes = %w[48K 128K]
               args[:sizes] = sizes
               resource = Resource.new(args)
               expect(resource.sizes).to eq(sizes)
@@ -639,7 +643,7 @@ module Datacite
 
           describe '#sizes=' do
             it 'can be set' do
-              sizes = %w(48K 128K)
+              sizes = %w[48K 128K]
               resource = Resource.new(args)
               resource.sizes = sizes
               expect(resource.sizes).to eq(sizes)
@@ -660,7 +664,7 @@ module Datacite
 
           describe 'formats:' do
             it 'can be initialized' do
-              formats = %w(D64 DSK)
+              formats = %w[D64 DSK]
               args[:formats] = formats
               resource = Resource.new(args)
               expect(resource.formats).to eq(formats)
@@ -674,7 +678,7 @@ module Datacite
 
           describe '#formats=' do
             it 'can be set' do
-              formats = %w(D64 DSK)
+              formats = %w[D64 DSK]
               resource = Resource.new(args)
               resource.formats = formats
               expect(resource.formats).to eq(formats)
@@ -940,7 +944,7 @@ module Datacite
           r1 = r0.gsub(%r{&lt;br\s+/&gt;}, '<br/>') # entity-de-escape <br/> tags
           # r2 = r1.gsub(%r{<(?!br)[^>]+/>}, '') # remove empty tags
           r2 = r1
-          r3 = r2.gsub(/<resource (xmlns:xsi="[^"]+")\s+(xsi:schemaLocation="[^"]+")>/, "<resource \\2 \\1 xmlns=\"http://datacite.org/schema/kernel-3\">") # fix missing namespace
+          r3 = r2.gsub(/<resource (xmlns:xsi="[^"]+")\s+(xsi:schemaLocation="[^"]+")>/, '<resource \\2 \\1 xmlns="http://datacite.org/schema/kernel-3">') # fix missing namespace
           r4 = r3.gsub(%r{(<identifier[^>]+>)\s*([^ ]+)\s*(</identifier>)}, '\\1\\2\\3') # trim identifiers
           r5 = r4.gsub(%r{<([^>]+tude)>([0-9.-]+?)(0?)0+</\1>}, '<\\1>\\2\\3</\\1>') # strip trailing coordinate zeroes
           r6 = r5.gsub(%r{<(geoLocation[^>]+)>[^<]+</\1>}) { |loc| loc.gsub(/([0-9\-]+\.[0-9]+?)0+([^0-9])/, '\\1\\2') } # strip trailing coordinate zeroes
@@ -1017,7 +1021,7 @@ module Datacite
             matches = warnings_including(substring)
             found_count = matches.size
             msg = "expected #{count} warnings including '#{substring}', found #{found_count}"
-            msg << ": #{matches}" if include_matches
+            msg += ": #{matches}" if include_matches
             expect(found_count).to eq(count), msg
           end
 
@@ -1025,7 +1029,7 @@ module Datacite
             matches = REXML::XPath.match(rexml, xpath)
             found_count = matches.size
             msg = "expected #{count} matches for XPath '#{xpath}', found #{found_count}"
-            msg << ": #{matches}" if include_matches
+            msg += ": #{matches}" if include_matches
             expect(found_count).to eq(count), msg
           end
 
@@ -1033,7 +1037,7 @@ module Datacite
             @warnings = []
             allow(ReadOnlyNodes).to receive(:warn) do |w|
               warnings << w
-              Kernel.warn(w) # for debugging
+              # Kernel.warn(w) # for debugging
             end
 
             xml = File.read('spec/data/datacite-4-synthetic.xml')
@@ -1051,7 +1055,7 @@ module Datacite
           end
 
           it 'warns about givenNames and familyNames' do
-            name_tags = %w(givenName familyName)
+            name_tags = %w[givenName familyName]
             name_tags.each do |tag|
               expect_matches("//#{tag}", 0, true)
               expect_warning(tag, 1)
@@ -1151,7 +1155,7 @@ module Datacite
 
       describe '#save_to_file' do
         it 'saves to a file' do
-          xml_text =  File.read('spec/data/datacite4/datacite-example-full-v4.0.xml')
+          xml_text = File.read('spec/data/datacite4/datacite-example-full-v4.0.xml')
           resource = Resource.parse_xml(xml_text)
           Dir.mktmpdir('resource_spec') do |dir|
             path = "#{dir}/resource.xml"

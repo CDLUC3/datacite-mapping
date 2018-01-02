@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'xml/mapping_extensions'
 
 module Datacite
@@ -88,12 +90,12 @@ module Datacite
       end
 
       def language=(value)
-        @language = value && value.strip
+        @language = value&.strip
       end
 
       def value=(v)
-        new_value = v && v.strip
-        fail ArgumentError, 'Value cannot be empty or nil' unless new_value && !new_value.empty?
+        new_value = v&.strip
+        raise ArgumentError, 'Value cannot be empty or nil' unless new_value && !new_value.empty?
         @value = new_value
       end
 

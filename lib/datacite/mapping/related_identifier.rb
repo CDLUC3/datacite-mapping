@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'xml/mapping_extensions'
 
 module Datacite
@@ -181,17 +183,17 @@ module Datacite
       end
 
       def value=(value)
-        fail ArgumentError, 'Value cannot be empty or nil' unless value && !value.empty?
+        raise ArgumentError, 'Value cannot be empty or nil' unless value && !value.empty?
         @value = value
       end
 
       def identifier_type=(value)
-        fail ArgumentError, 'Identifier type cannot be empty or nil' unless value
+        raise ArgumentError, 'Identifier type cannot be empty or nil' unless value
         @identifier_type = value
       end
 
       def relation_type=(value)
-        fail ArgumentError, 'Relation type cannot be nil' unless value
+        raise ArgumentError, 'Relation type cannot be nil' unless value
         @relation_type = value
       end
 

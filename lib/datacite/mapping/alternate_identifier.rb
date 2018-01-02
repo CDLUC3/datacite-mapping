@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'xml/mapping_extensions'
 
 module Datacite
@@ -19,14 +21,14 @@ module Datacite
       # Sets the type. Cannot be nil.
       # @param val [String] the identifier type
       def type=(val)
-        fail ArgumentError, 'No identifier type provided' unless val
+        raise ArgumentError, 'No identifier type provided' unless val
         @type = val
       end
 
       # Sets the value. Cannot be nil.
       # @param val [String] the value
       def value=(val)
-        fail ArgumentError, 'No identifier value provided' unless val
+        raise ArgumentError, 'No identifier value provided' unless val
         @value = val
       end
 

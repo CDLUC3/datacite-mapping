@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'xml/mapping_extensions'
 
 module Datacite
@@ -62,7 +64,7 @@ module Datacite
       end
 
       def resource_type_general=(val)
-        fail ArgumentError, 'General resource type cannot be nil' unless val
+        raise ArgumentError, 'General resource type cannot be nil' unless val
         @resource_type_general = val
       end
 

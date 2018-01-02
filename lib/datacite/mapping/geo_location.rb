@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'xml/mapping_extensions'
 require 'datacite/mapping/geo_location_point'
 require 'datacite/mapping/geo_location_box'

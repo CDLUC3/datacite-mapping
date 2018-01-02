@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 module Datacite
@@ -80,7 +82,7 @@ module Datacite
           expected_xml = '<rights rightsURI="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International (CC BY 4.0)</rights>'
           expect(rights.save_to_xml).to be_xml(expected_xml)
 
-          [:CC_ZERO, :CC_BY].each do |c|
+          %i[CC_ZERO CC_BY].each do |c|
             r = Rights.const_get(c)
             puts "#{c.to_s.downcase.gsub('_zero', '0')}:"
             puts "  uri: #{r.uri}"

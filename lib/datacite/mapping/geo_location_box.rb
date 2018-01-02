@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'xml/mapping'
 require 'datacite/mapping/geo_location_node'
 
@@ -53,31 +55,31 @@ module Datacite
         when 4
           init_from_array(args)
         else
-          fail ArgumentError, "Can't construct GeoLocationBox from arguments: #{args}"
+          raise ArgumentError, "Can't construct GeoLocationBox from arguments: #{args}"
         end
       end
 
       def south_latitude=(value)
-        fail ArgumentError, 'South latitude cannot be nil' unless value
-        fail ArgumentError, "#{value} is not a valid south latitude" unless value >= -90 && value <= 90
+        raise ArgumentError, 'South latitude cannot be nil' unless value
+        raise ArgumentError, "#{value} is not a valid south latitude" unless value >= -90 && value <= 90
         @south_latitude = value
       end
 
       def west_longitude=(value)
-        fail ArgumentError, 'West longitude cannot be nil' unless value
-        fail ArgumentError, "#{value} is not a valid west longitude" unless value >= -180 && value <= 180
+        raise ArgumentError, 'West longitude cannot be nil' unless value
+        raise ArgumentError, "#{value} is not a valid west longitude" unless value >= -180 && value <= 180
         @west_longitude = value
       end
 
       def north_latitude=(value)
-        fail ArgumentError, 'North latitude cannot be nil' unless value
-        fail ArgumentError, "#{value} is not a valid north latitude" unless value >= -90 && value <= 90
+        raise ArgumentError, 'North latitude cannot be nil' unless value
+        raise ArgumentError, "#{value} is not a valid north latitude" unless value >= -90 && value <= 90
         @north_latitude = value
       end
 
       def east_longitude=(value)
-        fail ArgumentError, 'East longitude cannot be nil' unless value
-        fail ArgumentError, "#{value} is not a valid east longitude" unless value >= -180 && value <= 180
+        raise ArgumentError, 'East longitude cannot be nil' unless value
+        raise ArgumentError, "#{value} is not a valid east longitude" unless value >= -180 && value <= 180
         @east_longitude = value
       end
 
@@ -94,7 +96,7 @@ module Datacite
       #   {GeoLocationBox}
       def <=>(other)
         return nil unless other.class == self.class
-        [:south_latitude, :west_longitude, :north_latitude, :east_longitude].each do |c|
+        %i[south_latitude west_longitude north_latitude east_longitude].each do |c|
           order = send(c) <=> other.send(c)
           return order if order.nonzero?
         end

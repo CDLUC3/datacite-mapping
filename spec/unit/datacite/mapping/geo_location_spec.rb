@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 module Datacite
@@ -45,11 +47,11 @@ module Datacite
         end
         it 'accepts a polygon' do
           polygon = GeoLocationPolygon.new(points: [
-            GeoLocationPoint.new(47.61, -122.33),
-            GeoLocationPoint.new(-33.45, -122.33),
-            GeoLocationPoint.new(47.61, -70.67),
-            GeoLocationPoint.new(47.61, -122.33)
-          ])
+                                             GeoLocationPoint.new(47.61, -122.33),
+                                             GeoLocationPoint.new(-33.45, -122.33),
+                                             GeoLocationPoint.new(47.61, -70.67),
+                                             GeoLocationPoint.new(47.61, -122.33)
+                                           ])
           loc = GeoLocation.new(polygon: polygon)
           expect(loc.polygon).to eq(polygon)
         end
@@ -106,11 +108,11 @@ module Datacite
       describe '#polygon=' do
         it 'sets the polygon' do
           polygon = GeoLocationPolygon.new(points: [
-            GeoLocationPoint.new(47.61, -122.33),
-            GeoLocationPoint.new(-33.45, -122.33),
-            GeoLocationPoint.new(47.61, -70.67),
-            GeoLocationPoint.new(47.61, -122.33)
-          ])
+                                             GeoLocationPoint.new(47.61, -122.33),
+                                             GeoLocationPoint.new(-33.45, -122.33),
+                                             GeoLocationPoint.new(47.61, -70.67),
+                                             GeoLocationPoint.new(47.61, -122.33)
+                                           ])
           loc = GeoLocation.new
           loc.polygon = polygon
           expect(loc.polygon).to eq(polygon)
@@ -168,11 +170,11 @@ module Datacite
           expect(loc.place).to eq('Atlantic Ocean')
           actual_polygon = loc.polygon
           expected_polygon = GeoLocationPolygon.new(points: [
-            GeoLocationPoint.new(31.233, -67.302),
-            GeoLocationPoint.new(-68.211, -71.032),
-            GeoLocationPoint.new(42.893, 41.09),
-            GeoLocationPoint.new(31.233, -67.302)
-          ])
+                                                      GeoLocationPoint.new(31.233, -67.302),
+                                                      GeoLocationPoint.new(-68.211, -71.032),
+                                                      GeoLocationPoint.new(42.893, 41.09),
+                                                      GeoLocationPoint.new(31.233, -67.302)
+                                                    ])
           expect(actual_polygon).to eq(expected_polygon)
         end
 
@@ -196,12 +198,12 @@ module Datacite
             point: GeoLocationPoint.new(31.233, -67.302),
             box: GeoLocationBox.new(41.09, -71.032, 42.893, -68.211),
             place: 'Atlantic Ocean',
-            polygon: (GeoLocationPolygon.new(points: [
-              GeoLocationPoint.new(-67.302, 31.233),
-              GeoLocationPoint.new(-71.032, -68.211),
-              GeoLocationPoint.new(41.09, 42.893),
-              GeoLocationPoint.new(-67.302, 31.233)
-            ]))
+            polygon: GeoLocationPolygon.new(points: [
+                                              GeoLocationPoint.new(-67.302, 31.233),
+                                              GeoLocationPoint.new(-71.032, -68.211),
+                                              GeoLocationPoint.new(41.09, 42.893),
+                                              GeoLocationPoint.new(-67.302, 31.233)
+                                            ])
           )
         end
 
@@ -257,7 +259,7 @@ module Datacite
 
           it 'writes DC3 in XSD-defined order: point, box, place' do
             actual_xml = loc.save_to_xml(mapping: :datacite_3)
-            expected_order = %w(geoLocationPoint geoLocationBox geoLocationPlace)
+            expected_order = %w[geoLocationPoint geoLocationBox geoLocationPlace]
             actual_order = actual_xml.children.map(&:name)
             expect(actual_order).to eq(expected_order)
           end

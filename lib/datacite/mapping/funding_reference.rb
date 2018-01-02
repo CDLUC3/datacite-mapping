@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'xml/mapping_extensions'
 
 module Datacite
@@ -28,12 +30,12 @@ module Datacite
       end
 
       def value=(value)
-        fail ArgumentError, 'Value cannot be empty or nil' unless value && !value.empty?
+        raise ArgumentError, 'Value cannot be empty or nil' unless value && !value.empty?
         @value = value
       end
 
       def type=(value)
-        fail ArgumentError, 'Type cannot be nil' unless value
+        raise ArgumentError, 'Type cannot be nil' unless value
         @type = value
       end
 
@@ -59,7 +61,7 @@ module Datacite
       end
 
       def value=(value)
-        fail ArgumentError, 'Value cannot be empty or nil' unless value && !value.empty?
+        raise ArgumentError, 'Value cannot be empty or nil' unless value && !value.empty?
         @value = value
       end
 
@@ -93,7 +95,7 @@ module Datacite
       end
 
       def to_s
-        fields = [:name, :identifier, :award_number, :award_title].map { |f| "#{f}: #{send(f)}" }
+        fields = %i[name identifier award_number award_title].map { |f| "#{f}: #{send(f)}" }
         "FundingReference { #{fields.join(', ')} }"
       end
 

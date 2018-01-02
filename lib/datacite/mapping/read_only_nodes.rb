@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'xml/mapping'
 
 module XML
@@ -31,7 +33,7 @@ module Datacite
 
       def warn_ignored(val)
         warning = "ignoring #{@attrname} #{value_str(val)}"
-        warning.prepend("#{warn_reason}; ") if warn_reason
+        warning = "#{warn_reason}; #{warning}" if warn_reason
         ReadOnlyNodes.warn(warning)
       end
 
@@ -43,7 +45,7 @@ module Datacite
 
     class ReadOnlyTextNode < XML::Mapping::TextNode
       def warn_ignored(val)
-        fail ArgumentError, "Expected string, got #{val}" unless val.respond_to?(:strip)
+        raise ArgumentError, "Expected string, got #{val}" unless val.respond_to?(:strip)
         return if val.strip.empty?
         super
       end
@@ -53,7 +55,7 @@ module Datacite
 
     class ReadOnlyArrayNode < XML::Mapping::ArrayNode
       def warn_ignored(val)
-        fail ArgumentError, "Expected array, got #{val}" unless val.respond_to?(:empty?)
+        raise ArgumentError, "Expected array, got #{val}" unless val.respond_to?(:empty?)
         return if val.empty?
         super
       end

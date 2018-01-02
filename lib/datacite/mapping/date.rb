@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'xml/mapping_extensions'
 
 require 'datacite/mapping/date_value'
@@ -67,7 +69,7 @@ module Datacite
       end
 
       def type=(val)
-        fail ArgumentError, 'Date type cannot be nil' unless val
+        raise ArgumentError, 'Date type cannot be nil' unless val
         @type = val
       end
 
@@ -80,14 +82,14 @@ module Datacite
           @range_start, @range_end = parts.map(&:strip).map { |part| DateValue.new(part) unless part == '' }
           # puts "#{val} -> [#{range_start}, #{range_end}]"
         else
-          fail ArgumentError, "Unable to parse date value #{val}"
+          raise ArgumentError, "Unable to parse date value #{val}"
         end
         @value = date_value ? date_value.to_s : "#{range_start}/#{range_end}"
       end
 
       def <=>(other)
         return nil unless other.class == self.class
-        [:date_value, :range_start, :range_end, :type].each do |v|
+        %i[date_value range_start range_end type].each do |v|
           order = send(v) <=> other.send(v)
           return order if order.nonzero?
         end
@@ -101,8 +103,6 @@ module Datacite
       def to_s
         @value
       end
-
-      private
 
       # @!attribute [rw] type
       #  @return [DateType] the type of date. Cannot be nil.

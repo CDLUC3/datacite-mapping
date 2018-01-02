@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'xml/mapping'
 
 module Datacite
@@ -14,7 +16,7 @@ module Datacite
       def initialize(points:) # TODO: allow simple array of point args, array of hashes
         self.points = points
         warn "Polygon should contain at least 4 points, but has #{points.size}" if points.size < 4
-        warn "Polygon is not closed; last and first point should be identical, but were: [#{points[0]}], [#{points[-1]}]" if points.size > 1 unless points[0] == points[-1]
+        warn "Polygon is not closed; last and first point should be identical, but were: [#{points[0]}], [#{points[-1]}]" unless points[0] == points[-1] || points.size <= 1
       end
 
       def points=(value)

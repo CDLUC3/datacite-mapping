@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'xml/mapping'
 require 'datacite/mapping/read_only_nodes'
 require 'datacite/mapping/name_identifier'
@@ -23,18 +25,18 @@ module Datacite
       end
 
       def name=(value)
-        new_value = value && value.strip
-        fail ArgumentError, 'Name cannot be empty or nil' unless new_value && !new_value.empty?
+        new_value = value&.strip
+        raise ArgumentError, 'Name cannot be empty or nil' unless new_value && !new_value.empty?
         @name = new_value
       end
 
       def given_name=(value)
-        new_value = value && value.strip
+        new_value = value&.strip
         @given_name = new_value
       end
 
       def family_name=(value)
-        new_value = value && value.strip
+        new_value = value&.strip
         @family_name = new_value
       end
 

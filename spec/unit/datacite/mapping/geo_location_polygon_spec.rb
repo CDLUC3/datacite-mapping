@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 module Datacite
@@ -6,17 +8,17 @@ module Datacite
       describe '#==' do
         it 'reports equal values as equal' do
           polygon1 = GeoLocationPolygon.new(points: [
-            GeoLocationPoint.new(-33.45, -122.33),
-            GeoLocationPoint.new(33.45, -122.33),
-            GeoLocationPoint.new(33.45, 122.33),
-            GeoLocationPoint.new(-33.45, -122.33)
-          ])
+                                              GeoLocationPoint.new(-33.45, -122.33),
+                                              GeoLocationPoint.new(33.45, -122.33),
+                                              GeoLocationPoint.new(33.45, 122.33),
+                                              GeoLocationPoint.new(-33.45, -122.33)
+                                            ])
           polygon2 = GeoLocationPolygon.new(points: [
-            GeoLocationPoint.new(-33.45, -122.33),
-            GeoLocationPoint.new(33.45, -122.33),
-            GeoLocationPoint.new(33.45, 122.33),
-            GeoLocationPoint.new(-33.45, -122.33)
-          ])
+                                              GeoLocationPoint.new(-33.45, -122.33),
+                                              GeoLocationPoint.new(33.45, -122.33),
+                                              GeoLocationPoint.new(33.45, 122.33),
+                                              GeoLocationPoint.new(-33.45, -122.33)
+                                            ])
           expect(polygon1).to eq(polygon2)
           expect(polygon1.hash).to eq(polygon2.hash)
           expect(polygon2).to eq(polygon1)
@@ -25,17 +27,17 @@ module Datacite
 
         it 'reports unequal values as unequal' do
           polygon1 = GeoLocationPolygon.new(points: [
-            GeoLocationPoint.new(-33.45, -122.33),
-            GeoLocationPoint.new(33.45, -122.33),
-            GeoLocationPoint.new(33.45, 122.33),
-            GeoLocationPoint.new(-33.45, -122.33)
-          ])
+                                              GeoLocationPoint.new(-33.45, -122.33),
+                                              GeoLocationPoint.new(33.45, -122.33),
+                                              GeoLocationPoint.new(33.45, 122.33),
+                                              GeoLocationPoint.new(-33.45, -122.33)
+                                            ])
           polygon2 = GeoLocationPolygon.new(points: [
-            GeoLocationPoint.new(33.45, 122.33),
-            GeoLocationPoint.new(-33.45, 122.33),
-            GeoLocationPoint.new(-33.45, -122.33),
-            GeoLocationPoint.new(33.45, 122.33)
-          ])
+                                              GeoLocationPoint.new(33.45, 122.33),
+                                              GeoLocationPoint.new(-33.45, 122.33),
+                                              GeoLocationPoint.new(-33.45, -122.33),
+                                              GeoLocationPoint.new(33.45, 122.33)
+                                            ])
           expect(polygon1).not_to eq(polygon2)
           expect(polygon1.hash).not_to eq(polygon2.hash)
           expect(polygon2).not_to eq(polygon1)

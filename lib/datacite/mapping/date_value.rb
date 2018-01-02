@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'xml/mapping_extensions'
 
 module Datacite
@@ -52,12 +54,12 @@ module Datacite
           @nsec = datetime.to_time.nsec
           @zone = datetime.zone
         end
-        fail ArgumentError, "Unable to parse date value '#{val}'" unless @year
+        raise ArgumentError, "Unable to parse date value '#{val}'" unless @year
       end
 
       def <=>(other)
         return nil unless other.class == self.class
-        [:year, :month, :day, :hour, :minute, :sec, :nsec].each do |v|
+        %i[year month day hour minute sec nsec].each do |v|
           order = send(v) <=> other.send(v)
           return order if order.nonzero?
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'xml/mapping_extensions'
 
 require 'datacite/mapping/identifier'
@@ -91,33 +93,33 @@ module Datacite
       end
 
       def identifier=(value)
-        fail ArgumentError, 'Resource must have an identifier' unless value
+        raise ArgumentError, 'Resource must have an identifier' unless value
         @identifier = value
       end
 
       def creators=(value)
-        fail ArgumentError, 'Resource must have at least one creator' unless value && !value.empty?
+        raise ArgumentError, 'Resource must have at least one creator' unless value && !value.empty?
         @creators = value
       end
 
       def titles=(value)
-        fail ArgumentError, 'Resource must have at least one title' unless value && !value.empty?
+        raise ArgumentError, 'Resource must have at least one title' unless value && !value.empty?
         @titles = value
       end
 
       def publisher=(value)
-        new_value = value && value.strip
-        fail ArgumentError, 'Resource must have a publisher' unless new_value && !new_value.empty?
+        new_value = value&.strip
+        raise ArgumentError, 'Resource must have a publisher' unless new_value && !new_value.empty?
         @publisher = new_value.strip
       end
 
       def publication_year=(value)
-        fail ArgumentError, 'Resource must have a four-digit publication year' unless value && value.to_i.between?(1000, 9999)
+        raise ArgumentError, 'Resource must have a four-digit publication year' unless value && value.to_i.between?(1000, 9999)
         @publication_year = value.to_i
       end
 
       def subjects=(value)
-        @subjects = (value && value.select(&:value)) || []
+        @subjects = (value&.select(&:value)) || []
       end
 
       def contributors=(value)
@@ -150,7 +152,7 @@ module Datacite
 
       def version=(value)
         new_value = value && value.to_s
-        @version = new_value && new_value.strip
+        @version = new_value&.strip
       end
 
       def rights_list=(value)
@@ -158,11 +160,11 @@ module Datacite
       end
 
       def descriptions=(value)
-        @descriptions = (value && value.select(&:value)) || []
+        @descriptions = (value&.select(&:value)) || []
       end
 
       def geo_locations=(value)
-        @geo_locations = (value && value.select(&:location?)) || []
+        @geo_locations = (value&.select(&:location?)) || []
       end
 
       # @!attribute [rw] identifier
@@ -264,19 +266,19 @@ module Datacite
       # @deprecated contributor type 'funder' is deprecated. Use {FundingReference} instead.
       # @return [String, nil] the name of the funding contributor, if any.
       def funder_name
-        funder_contrib.name if funder_contrib
+        funder_contrib&.name
       end
 
       # Convenience method to get the funding contributor identifier.
       # @return [NameIdentifier, nil] the identifier of the funding contributor, if any.
       def funder_id
-        funder_contrib.identifier if funder_contrib
+        funder_contrib&.identifier
       end
 
       # Convenience method to get the funding contributor identifier as a string.
       # @return [String, nil] the string value of the funding contributor's identifier, if any.
       def funder_id_value
-        funder_id.value if funder_id
+        funder_id&.value
       end
 
       extend Gem::Deprecate

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 module Datacite
@@ -56,7 +58,7 @@ module Datacite
                          <funderIdentifier funderIdentifierType="Crossref Funder ID">http://doi.org/10.13039/501100000780</funderIdentifier>
                          <awardNumber awardURI="http://cordis.europa.eu/project/rcn/100180_en.html">282625</awardNumber>
                          <awardTitle>MOTivational strength of ecosystem services and alternative ways to express the value of BIOdiversity</awardTitle>
-                       </fundingReference>'.freeze
+                       </fundingReference>'
 
           @fref = FundingReference.parse_xml(fref_xml)
         end

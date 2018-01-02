@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'logger'
 require 'rexml/formatters/transitive' # unaccountably, xml/mapping doesn't do this
 require 'xml/mapping_extensions'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'xml/mapping_extensions'
 require 'datacite/mapping/name_identifier'
 
@@ -92,13 +94,13 @@ module Datacite
       end
 
       def name=(value)
-        new_value = value && value.strip
-        fail ArgumentError, 'Name cannot be empty or nil' unless new_value && !new_value.empty?
+        new_value = value&.strip
+        raise ArgumentError, 'Name cannot be empty or nil' unless new_value && !new_value.empty?
         @name = new_value
       end
 
       def type=(value)
-        fail ArgumentError, 'Type cannot be nil' unless value
+        raise ArgumentError, 'Type cannot be nil' unless value
         @type = value
       end
 

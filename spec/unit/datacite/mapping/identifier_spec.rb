@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 module Datacite
@@ -21,13 +23,13 @@ module Datacite
         end
 
         it 'disallows bad DOIs' do
-          bad_dois = %w(
+          bad_dois = %w[
             20.14749/1407399495
             11.14749/1407399495
             10./1407399495
             10.14749\1407399495
             10.14749/
-          )
+          ]
           bad_dois.each do |doi|
             expect { Identifier.new(value: doi) }.to raise_error(ArgumentError)
           end
@@ -71,13 +73,13 @@ module Datacite
         end
 
         it 'raises ArgumentError if it is passed a bad DOI' do
-          bad_dois = %w(
+          bad_dois = %w[
             20.14749/1407399495
             11.14749/1407399495
             10./1407399495
             10.14749\1407399495
             10.14749/
-          )
+          ]
           bad_dois.each do |doi|
             expect { Identifier.from_doi(doi) }.to raise_error do |e|
               expect(e).to be_an(ArgumentError)
@@ -95,13 +97,13 @@ module Datacite
         end
         it 'disallows bad DOIs' do
           id = Identifier.allocate
-          bad_dois = %w(
+          bad_dois = %w[
             20.14749/1407399495
             11.14749/1407399495
             10./1407399495
             10.14749\1407399495
             10.14749/
-          )
+          ]
           bad_dois.each do |doi|
             expect { id.value = doi }.to raise_error(ArgumentError)
             expect(id.value).to be_nil

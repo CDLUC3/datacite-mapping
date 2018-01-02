@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'xml/mapping'
 require 'datacite/mapping/empty_filtering_nodes'
 
@@ -14,7 +16,7 @@ module Datacite
     class Identifier
       include XML::Mapping
 
-      DOI = 'DOI'.freeze
+      DOI = 'DOI'
 
       # Initializes a new {Identifier}
       # @param value [String]
@@ -25,9 +27,9 @@ module Datacite
       end
 
       def value=(v)
-        new_value = v && v.strip
-        fail ArgumentError, 'Identifier must have a non-nil value' unless new_value
-        fail ArgumentError, "Identifier value '#{new_value}' is not a valid DOI" unless new_value.match(DOI_PATTERN)
+        new_value = v&.strip
+        raise ArgumentError, 'Identifier must have a non-nil value' unless new_value
+        raise ArgumentError, "Identifier value '#{new_value}' is not a valid DOI" unless new_value.match?(DOI_PATTERN)
         @value = new_value
       end
 
@@ -35,7 +37,7 @@ module Datacite
       # @param v [String]
       #   the identifier type (always 'DOI')
       def identifier_type=(v)
-        fail ArgumentError, "Identifier type '#{v}' must be 'DOI'" unless DOI == v
+        raise ArgumentError, "Identifier type '#{v}' must be 'DOI'" unless DOI == v
         @identifier_type = v
       end
 
@@ -48,7 +50,7 @@ module Datacite
       # @param doi_string [String]
       def self.from_doi(doi_string)
         match = doi_string.match(DOI_PATTERN)
-        fail ArgumentError, "'#{doi_string}' does not appear to contain a valid DOI" unless match
+        raise ArgumentError, "'#{doi_string}' does not appear to contain a valid DOI" unless match
         Identifier.new(value: match[0])
       end
 
@@ -69,7 +71,7 @@ module Datacite
 
       private
 
-      def has_element?(xml) # rubocop:disable Style/PredicateName
+      def has_element?(xml) # rubocop:disable Naming/PredicateName
         @path.first(xml)
       rescue XML::XXPathError
         false

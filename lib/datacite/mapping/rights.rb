@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'xml/mapping_extensions'
 
 module Datacite
@@ -17,7 +19,7 @@ module Datacite
       end
 
       def value=(v)
-        fail ArgumentError, 'Value cannot be empty or nil' unless v && !v.empty?
+        raise ArgumentError, 'Value cannot be empty or nil' unless v && !v.empty?
         @value = v.strip
       end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'xml/mapping_extensions'
 
 module Datacite
@@ -17,12 +19,12 @@ module Datacite
       end
 
       def scheme=(v)
-        fail ArgumentError, 'Scheme cannot be empty or nil' unless v && !v.empty?
+        raise ArgumentError, 'Scheme cannot be empty or nil' unless v && !v.empty?
         @scheme = v
       end
 
       def value=(v)
-        fail ArgumentError, 'Value cannot be empty or nil' unless v && !v.empty?
+        raise ArgumentError, 'Value cannot be empty or nil' unless v && !v.empty?
         @value = v
       end
 
