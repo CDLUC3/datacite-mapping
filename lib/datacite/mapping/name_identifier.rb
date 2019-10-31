@@ -18,14 +18,16 @@ module Datacite
         self.value = value
       end
 
-      def scheme=(v)
-        raise ArgumentError, 'Scheme cannot be empty or nil' unless v && !v.empty?
-        @scheme = v
+      def scheme=(new_value)
+        raise ArgumentError, 'Scheme cannot be empty or nil' unless new_value && !new_value.empty?
+
+        @scheme = new_value
       end
 
-      def value=(v)
-        raise ArgumentError, 'Value cannot be empty or nil' unless v && !v.empty?
-        @value = v
+      def value=(new_value)
+        raise ArgumentError, 'Value cannot be empty or nil' unless new_value && !new_value.empty?
+
+        @value = new_value
       end
 
       root_element_name 'nameIdentifier'

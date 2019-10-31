@@ -19,7 +19,7 @@ module Datacite
       schema_location: 'http://schema.datacite.org/meta/kernel-4/metadata.xsd'
     )
 
-    Dir.glob(File.expand_path('../mapping/*.rb', __FILE__)).sort.each(&method(:require))
+    Dir.glob(File.expand_path('mapping/*.rb', __dir__)).sort.each(&method(:require))
 
   end
 end

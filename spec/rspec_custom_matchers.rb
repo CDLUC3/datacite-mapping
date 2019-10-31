@@ -7,6 +7,7 @@ RSpec::Matchers.define :be_xml do |expected|
 
   def to_nokogiri(xml)
     return nil unless xml
+
     case xml
     when Nokogiri::XML::Element
       xml
@@ -23,6 +24,7 @@ RSpec::Matchers.define :be_xml do |expected|
 
   def to_pretty(nokogiri)
     return nil unless nokogiri
+
     out = StringIO.new
     save_options = Nokogiri::XML::Node::SaveOptions::FORMAT | Nokogiri::XML::Node::SaveOptions::NO_DECLARATION
     nokogiri.write_xml_to(out, encoding: 'UTF-8', indent: 2, save_with: save_options)
@@ -62,6 +64,7 @@ RSpec::Matchers.define :be_time do |expected|
     return actual.nil? unless expected
 
     raise "Expected value #{expected} is not a Time" unless expected.is_a?(Time)
+
     actual.is_a?(Time) && (to_string(expected) == to_string(actual))
   end
 

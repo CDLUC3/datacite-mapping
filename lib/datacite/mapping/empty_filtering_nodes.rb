@@ -8,6 +8,7 @@ module Datacite
     module EmptyNodeUtils
       def not_empty(element)
         return unless element
+
         text = element.text
         empty = text.nil? || text.strip.empty?
         warn "Ignoring empty element #{element}" if empty

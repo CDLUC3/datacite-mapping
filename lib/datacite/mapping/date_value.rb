@@ -59,6 +59,7 @@ module Datacite
 
       def <=>(other)
         return nil unless other.class == self.class
+
         %i[year month day hour minute sec nsec].each do |v|
           order = send(v) <=> other.send(v)
           return order if order.nonzero?
@@ -86,24 +87,28 @@ module Datacite
       def to_year(val)
         return val if val.is_a?(Integer)
         return val.year if val.respond_to?(:year)
+
         matchdata = val.to_s.match(/^[0-9]+/)
         matchdata[0].to_i if matchdata
       end
 
       def to_month(val)
         return val.month if val.respond_to?(:month)
+
         matchdata = val.to_s.match(/^[0-9]+-([0-9]{2})(?![0-9])/)
         matchdata[1].to_i if matchdata
       end
 
       def to_day(val)
         return val.day if val.respond_to?(:day)
+
         matchdata = val.to_s.match(/^[0-9]+-[0-9]{2}-([0-9]{2})(?![0-9])/)
         matchdata[1].to_i if matchdata
       end
 
       def to_datetime(val)
         return val if val.is_a?(DateTime)
+
         DateTime.parse(val.to_s)
       rescue ArgumentError
         nil
@@ -112,6 +117,7 @@ module Datacite
       def to_date(val)
         return val if val.is_a?(::Date)
         return ::Date.parse(val.iso8601) if val.respond_to?(:iso8601)
+
         ::Date.parse(val.to_s)
       rescue ArgumentError
         nil

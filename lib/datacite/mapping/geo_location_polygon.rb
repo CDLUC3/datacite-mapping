@@ -25,6 +25,7 @@ module Datacite
 
       def <=>(other)
         return nil unless other.class == self.class
+
         points <=> other.points
       end
 

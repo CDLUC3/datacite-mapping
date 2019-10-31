@@ -42,12 +42,14 @@ module Datacite
       def latitude=(value)
         raise ArgumentError, 'Latitude cannot be nil' unless value
         raise ArgumentError, "#{value} is not a valid latitude" unless value >= -90 && value <= 90
+
         @latitude = value
       end
 
       def longitude=(value)
         raise ArgumentError, 'Longitude cannot be nil' unless value
         raise ArgumentError, "#{value} is not a valid longitude" unless value >= -180 && value <= 180
+
         @longitude = value
       end
 
@@ -64,6 +66,7 @@ module Datacite
       #   {GeoLocationPoint}
       def <=>(other)
         return nil unless other.class == self.class
+
         %i[latitude longitude].each do |c|
           order = send(c) <=> other.send(c)
           return order if order.nonzero?

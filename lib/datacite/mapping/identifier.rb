@@ -5,7 +5,7 @@ require 'datacite/mapping/empty_filtering_nodes'
 
 module Datacite
   module Mapping
-    DOI_PATTERN = %r{10\.\S+/\S+}
+    DOI_PATTERN = %r{10\.\S+/\S+}.freeze
 
     # The persistent identifier that identifies the resource.
     #
@@ -26,19 +26,21 @@ module Datacite
         self.value = value
       end
 
-      def value=(v)
-        new_value = v&.strip
+      def value=(new_value)
+        new_value = new_value&.strip
         raise ArgumentError, 'Identifier must have a non-nil value' unless new_value
         raise ArgumentError, "Identifier value '#{new_value}' is not a valid DOI" unless new_value.match?(DOI_PATTERN)
+
         @value = new_value
       end
 
       # Sets the identifier type. Should only be called by the XML mapping engine.
       # @param v [String]
       #   the identifier type (always 'DOI')
-      def identifier_type=(v)
-        raise ArgumentError, "Identifier type '#{v}' must be 'DOI'" unless DOI == v
-        @identifier_type = v
+      def identifier_type=(new_value)
+        raise ArgumentError, "Identifier type '#{v}' must be 'DOI'" unless DOI == new_value
+
+        @identifier_type = new_value
       end
 
       # Gets the identifiery type.
@@ -51,6 +53,7 @@ module Datacite
       def self.from_doi(doi_string)
         match = doi_string.match(DOI_PATTERN)
         raise ArgumentError, "'#{doi_string}' does not appear to contain a valid DOI" unless match
+
         Identifier.new(value: match[0])
       end
 
@@ -66,6 +69,7 @@ module Datacite
       include EmptyNodeUtils
       def xml_to_obj(_obj, xml)
         return super if (element = has_element?(xml)) && not_empty(element)
+
         warn 'Identifier not found; add a valid Identifier to the Resource before saving'
       end
 

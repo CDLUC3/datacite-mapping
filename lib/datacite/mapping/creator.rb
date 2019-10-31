@@ -27,6 +27,7 @@ module Datacite
       def name=(value)
         new_value = value&.strip
         raise ArgumentError, 'Name cannot be empty or nil' unless new_value && !new_value.empty?
+
         @name = new_value
       end
 

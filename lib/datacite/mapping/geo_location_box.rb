@@ -62,24 +62,28 @@ module Datacite
       def south_latitude=(value)
         raise ArgumentError, 'South latitude cannot be nil' unless value
         raise ArgumentError, "#{value} is not a valid south latitude" unless value >= -90 && value <= 90
+
         @south_latitude = value
       end
 
       def west_longitude=(value)
         raise ArgumentError, 'West longitude cannot be nil' unless value
         raise ArgumentError, "#{value} is not a valid west longitude" unless value >= -180 && value <= 180
+
         @west_longitude = value
       end
 
       def north_latitude=(value)
         raise ArgumentError, 'North latitude cannot be nil' unless value
         raise ArgumentError, "#{value} is not a valid north latitude" unless value >= -90 && value <= 90
+
         @north_latitude = value
       end
 
       def east_longitude=(value)
         raise ArgumentError, 'East longitude cannot be nil' unless value
         raise ArgumentError, "#{value} is not a valid east longitude" unless value >= -180 && value <= 180
+
         @east_longitude = value
       end
 
@@ -96,6 +100,7 @@ module Datacite
       #   {GeoLocationBox}
       def <=>(other)
         return nil unless other.class == self.class
+
         %i[south_latitude west_longitude north_latitude east_longitude].each do |c|
           order = send(c) <=> other.send(c)
           return order if order.nonzero?

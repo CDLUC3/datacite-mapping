@@ -31,11 +31,13 @@ module Datacite
 
       def value=(value)
         raise ArgumentError, 'Value cannot be empty or nil' unless value && !value.empty?
+
         @value = value
       end
 
       def type=(value)
         raise ArgumentError, 'Type cannot be nil' unless value
+
         @type = value
       end
 
@@ -62,6 +64,7 @@ module Datacite
 
       def value=(value)
         raise ArgumentError, 'Value cannot be empty or nil' unless value && !value.empty?
+
         @value = value
       end
 
@@ -111,8 +114,10 @@ module Datacite
       def award_number_or_nil(value)
         return nil unless value
         return value if value.is_a?(AwardNumber)
+
         new_value = value.to_s.strip
         return nil if new_value.empty?
+
         AwardNumber.new(value: new_value)
       end
     end

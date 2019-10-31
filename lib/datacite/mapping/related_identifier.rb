@@ -144,6 +144,7 @@ module Datacite
     class Datacite3RidTypeNode < XML::MappingExtensions::TypesafeEnumNode
       def to_xml_text(enum_instance)
         return super unless enum_instance == RelatedIdentifierType::IGSN
+
         super(RelatedIdentifierType::HANDLE)
       end
     end
@@ -152,6 +153,7 @@ module Datacite
     class Datacite3RidValueNode < XML::Mapping::TextNode
       def obj_to_xml(obj, xml)
         return super unless obj.identifier_type == RelatedIdentifierType::IGSN
+
         igsn_value = obj.value
         handle_value = "10273/#{igsn_value}"
         # TODO: move this somewhere more general
@@ -184,16 +186,19 @@ module Datacite
 
       def value=(value)
         raise ArgumentError, 'Value cannot be empty or nil' unless value && !value.empty?
+
         @value = value
       end
 
       def identifier_type=(value)
         raise ArgumentError, 'Identifier type cannot be empty or nil' unless value
+
         @identifier_type = value
       end
 
       def relation_type=(value)
         raise ArgumentError, 'Relation type cannot be nil' unless value
+
         @relation_type = value
       end
 

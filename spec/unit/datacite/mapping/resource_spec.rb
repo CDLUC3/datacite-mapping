@@ -1,4 +1,3 @@
-
 # frozen_string_literal: true
 
 require 'spec_helper'
@@ -922,7 +921,7 @@ module Datacite
         end
 
         def parse_file(xml_text, basename)
-          return Resource.parse_xml(xml_text)
+          Resource.parse_xml(xml_text)
         rescue Exception => e # rubocop:disable Lint/RescueException
           warn "Error parsing #{basename}: #{e}"
           File.open("tmp/#{basename}-xml_text.xml", 'w') { |t| t.write(xml_text) }
@@ -933,7 +932,7 @@ module Datacite
         def write_xml(resource, basename, options)
           # Workaround for Dash 1 datacite.xml with missing DOI
           resource.identifier = Identifier.from_doi('10.5555/12345678') unless resource.identifier
-          return resource.write_xml(options)
+          resource.write_xml(options)
         rescue Exception => e # rubocop:disable Lint/RescueException
           warn "Error writing #{basename}: #{e}"
           raise
