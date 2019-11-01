@@ -65,6 +65,7 @@ module Datacite
 
       def resource_type_general=(val)
         raise ArgumentError, 'General resource type cannot be nil' unless val
+
         @resource_type_general = val
       end
 

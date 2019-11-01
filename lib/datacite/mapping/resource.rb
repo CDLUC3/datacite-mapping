@@ -94,27 +94,32 @@ module Datacite
 
       def identifier=(value)
         raise ArgumentError, 'Resource must have an identifier' unless value
+
         @identifier = value
       end
 
       def creators=(value)
         raise ArgumentError, 'Resource must have at least one creator' unless value && !value.empty?
+
         @creators = value
       end
 
       def titles=(value)
         raise ArgumentError, 'Resource must have at least one title' unless value && !value.empty?
+
         @titles = value
       end
 
       def publisher=(value)
         new_value = value&.strip
         raise ArgumentError, 'Resource must have a publisher' unless new_value && !new_value.empty?
+
         @publisher = new_value.strip
       end
 
       def publication_year=(value)
-        raise ArgumentError, 'Resource must have a four-digit publication year' unless value && value.to_i.between?(1000, 9999)
+        raise ArgumentError, 'Resource must have a four-digit publication year' unless value&.to_i&.between?(1000, 9999)
+
         @publication_year = value.to_i
       end
 
@@ -151,7 +156,7 @@ module Datacite
       end
 
       def version=(value)
-        new_value = value && value.to_s
+        new_value = value&.to_s
         @version = new_value&.strip
       end
 

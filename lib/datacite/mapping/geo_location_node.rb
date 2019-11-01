@@ -13,6 +13,7 @@ module Datacite
       def initialize(*args)
         raise 'No geometry class provided' unless @geom_class
         raise 'No coordinate elements provided' unless @coord_elements
+
         path, *myargs = super(*args)
         @path = ::XML::XXPath.new(path)
         myargs # rubocop:disable Lint/Void
@@ -23,13 +24,14 @@ module Datacite
       end
 
       def extract_attr_value(xml)
-        return from_text(xml) || from_children(xml)
+        from_text(xml) || from_children(xml)
       rescue StandardError => e
         raise e, "#{@owner}.#{@attrname}: Can't extract #{self.class} from #{xml}: #{e.message}"
       end
 
       def set_attr_value(xml, value)
-        raise "Invalid value: expected #{geom_class} instance, was #{value || 'nil'}" unless value && value.is_a?(geom_class)
+        raise "Invalid value: expected #{geom_class} instance, was #{value || 'nil'}" unless value&.is_a?(geom_class)
+
         element = @path.first(xml, ensure_created: true)
 
         if datacite_3?

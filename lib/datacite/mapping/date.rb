@@ -70,6 +70,7 @@ module Datacite
 
       def type=(val)
         raise ArgumentError, 'Date type cannot be nil' unless val
+
         @type = val
       end
 
@@ -89,6 +90,7 @@ module Datacite
 
       def <=>(other)
         return nil unless other.class == self.class
+
         %i[date_value range_start range_end type].each do |v|
           order = send(v) <=> other.send(v)
           return order if order.nonzero?

@@ -22,12 +22,14 @@ module Datacite
 
       def value_str(val)
         return "[ #{val.map(&:to_s).join(', ')} ]" if val.is_a?(Array)
+
         "'#{val}'"
       end
 
       def obj_to_xml(obj, _xml)
         val = value_from(obj)
         return unless val
+
         warn_ignored(val)
       end
 
@@ -47,6 +49,7 @@ module Datacite
       def warn_ignored(val)
         raise ArgumentError, "Expected string, got #{val}" unless val.respond_to?(:strip)
         return if val.strip.empty?
+
         super
       end
       include ReadOnlyNodes
@@ -57,6 +60,7 @@ module Datacite
       def warn_ignored(val)
         raise ArgumentError, "Expected array, got #{val}" unless val.respond_to?(:empty?)
         return if val.empty?
+
         super
       end
       include ReadOnlyNodes

@@ -22,6 +22,7 @@ module Datacite
       # @param val [String] the identifier type
       def type=(val)
         raise ArgumentError, 'No identifier type provided' unless val
+
         @type = val
       end
 
@@ -29,6 +30,7 @@ module Datacite
       # @param val [String] the value
       def value=(val)
         raise ArgumentError, 'No identifier value provided' unless val
+
         @value = val
       end
 

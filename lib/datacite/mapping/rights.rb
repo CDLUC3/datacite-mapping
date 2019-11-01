@@ -18,9 +18,10 @@ module Datacite
         self.value = value
       end
 
-      def value=(v)
-        raise ArgumentError, 'Value cannot be empty or nil' unless v && !v.empty?
-        @value = v.strip
+      def value=(new_value)
+        raise ArgumentError, 'Value cannot be empty or nil' unless new_value && !new_value.empty?
+
+        @value = new_value.strip
       end
 
       # @!attribute [rw] uri
