@@ -35,10 +35,10 @@ module Datacite
       end
 
       # Sets the identifier type. Should only be called by the XML mapping engine.
-      # @param v [String]
+      # @param new_value [String]
       #   the identifier type (always 'DOI')
       def identifier_type=(new_value)
-        raise ArgumentError, "Identifier type '#{v}' must be 'DOI'" unless DOI == new_value
+        raise ArgumentError, "Identifier type '#{new_value}' must be 'DOI'" unless DOI == new_value
 
         @identifier_type = new_value
       end
