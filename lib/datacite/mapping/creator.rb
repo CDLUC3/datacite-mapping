@@ -28,20 +28,28 @@ module Datacite
       end
       # rubocop:enable Metrics/ParameterLists
 
+      # name can be entered as a string or a CreatorName object, but it will be stored
+      # internally as a CreatorName object
       def name=(value)
         raise ArgumentError, 'Name cannot be empty or nil' unless value
 
         if value.is_a?(CreatorName)    
-          @name = value
+          @creator_name = value
         else
-          @name = CreatorName.new(value: value)
+          @creator_name = CreatorName.new(value: value)
         end
       end
 
-      def name
-        @name.value
+      def creator_name=(value)
+        raise ArgumentError, 'CreatorName cannot be empty or nil' unless value
+
+        @creator_name = value
       end
 
+      def name
+        @creator_name&.value
+      end
+      
       def given_name=(value)
         new_value = value&.strip
         @given_name = new_value
@@ -58,7 +66,7 @@ module Datacite
 
       # @!attribute [rw] name
       #   @return [String] The personal name of the creator, in the format `Family, Given`. Cannot be empty or nil.
-      object_node :name, 'creatorName', class: CreatorName
+      object_node :creator_name, 'creatorName', class: CreatorName
 
       # @!attribute [rw] given_name
       #   @return [String, nil] The given name of the creator. Optional.

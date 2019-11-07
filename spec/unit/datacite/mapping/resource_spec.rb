@@ -177,20 +177,20 @@ module Datacite
           end
           it 'can be initialized' do
             resource = Resource.new(args)
-            expect(resource.publisher).to eq(publisher)
+            expect(resource.publisher.value).to eq(publisher)
           end
           it 'can be set' do
-            new_publisher = Publisher.new(value: 'University of California')
+            new_publisher = 'University of California'
             resource = Resource.new(args)
             resource.publisher = new_publisher
-            expect(resource.publisher).to eq(new_publisher)
+            expect(resource.publisher.value).to eq(new_publisher)
           end
           it 'strips on initialization' do
             args[:publisher] = Publisher.new(value: '
             University of California
              ')
             resource = Resource.new(args)
-            expect(resource.publisher&.value).to eq('University of California')
+            expect(resource.publisher.value).to eq('University of California')
           end
           it 'strips on set' do
             resource = Resource.new(args)

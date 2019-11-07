@@ -110,10 +110,16 @@ module Datacite
         @titles = value
       end
 
+      # publisher can be entered as a string or a Publisher object, but it will be stored
+      # as a Publisher object
       def publisher=(value)
         raise ArgumentError, 'Publisher must have a value' unless value
 
-        @publisher = value
+        if value.is_a?(Publisher)
+          @publisher = value
+        else
+          @publisher = Publisher.new(value: value)
+        end
       end
 
       def publication_year=(value)
@@ -254,7 +260,7 @@ module Datacite
       # Convenience method to get the creators' names.
       # @return [[Array[String]] An array of the creators' names.
       def creator_names
-        creators.map(&:name)
+        creators.map { |c| c&.creator_name&.value }
       end
 
       # Convenience method to get the creators' affiliations. (Bear in mind that each creator
