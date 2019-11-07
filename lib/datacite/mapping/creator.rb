@@ -6,6 +6,16 @@ require 'datacite/mapping/name_identifier'
 
 module Datacite
   module Mapping
+
+    # Controlled vocabulary of title types (for titles other than the main/default title).
+    class NameType < TypesafeEnum::Base
+      # @!parse ORGANIZATIONAL = Organizational
+      new :ORGANIZATIONAL, 'Organizational'
+
+      # @!parse PERSONAL = Personal
+      new :PERSONAL, 'Personal'
+    end
+
     # The main researchers involved working on the data, or the authors of the publication in priority order.
     class Creator
       include XML::Mapping
@@ -16,13 +26,17 @@ module Datacite
       # @param given_name [String, nil] The family name of the creator. Optional.
       # @param identifier [NameIdentifier, nil] An identifier for the creator. Optional.
       # @param affiliations [Array<String>, nil] The creator's affiliations. Defaults to an empty list.
-      def initialize(name:, given_name: nil, family_name: nil, identifier: nil, affiliations: [])
+      # @param type [NameType, nil] the name type. Optional.
+      # rubocop:disable Metrics/ParameterLists
+      def initialize(name:, given_name: nil, family_name: nil, identifier: nil, affiliations: [], type: nil)
         self.name = name
         self.given_name = given_name
         self.family_name = family_name
         self.identifier = identifier
         self.affiliations = affiliations
+        self.type = type
       end
+      # rubocop:enable Metrics/ParameterLists
 
       def name=(value)
         new_value = value&.strip
@@ -64,6 +78,10 @@ module Datacite
       # @!attribute [rw] affiliations
       #   @return [Array<String>, nil] The creator's affiliations. Defaults to an empty list.
       array_node :affiliations, 'affiliation', class: String, default_value: []
+
+      # @!attribute [rw] type
+      #   @return [NameType, nil] the title type. Optional.
+      typesafe_enum_node :type, '@nameType', class: NameType, default_value: nil
 
       use_mapping :datacite_3
 

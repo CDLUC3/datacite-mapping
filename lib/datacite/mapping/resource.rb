@@ -46,7 +46,7 @@ module Datacite
       # @param identifier [Identifier] a persistent identifier that identifies a resource.
       # @param creators [Array<Creator>] the main researchers involved working on the data, or the authors of the publication in priority order.
       # @param titles [Array<Title>] the names or titles by which a resource is known.
-      # @param publisher [String] the name of the entity that holds, archives, publishes prints, distributes, releases, issues, or produces the resource.
+      # @param publisher [Publisher] the name of the entity that holds, archives, publishes prints, distributes, releases, issues, or produces the resource.
       # @param publication_year [Integer] year when the resource is made publicly available.
       # @param subjects [Array<Subject>] subjects, keywords, classification codes, or key phrases describing the resource.
       # @param funding_references [Array<FundingReference>] information about financial support (funding) for the resource being registered.
@@ -111,10 +111,9 @@ module Datacite
       end
 
       def publisher=(value)
-        new_value = value&.strip
-        raise ArgumentError, 'Resource must have a publisher' unless new_value && !new_value.empty?
+        raise ArgumentError, 'Publisher must have a value' unless value
 
-        @publisher = new_value.strip
+        @publisher = value
       end
 
       def publication_year=(value)
@@ -186,7 +185,11 @@ module Datacite
 
       # @!attribute [rw] publisher
       #   @return [String] the name of the entity that holds, archives, publishes prints, distributes, releases, issues, or produces the resource.
-      text_node :publisher, 'publisher'
+      object_node :publisher, 'publisher', class: Publisher
+
+      # @!attribute [rw] publisher
+      #   @return [Publisher, nil] the name of the entity that holds, archives, publishes prints, distributes, releases, issues, or produces the resource.
+      object_node :resource_type, 'resourceType', class: ResourceType, default_value: nil
 
       # @!attribute [rw] publication_year
       #   @return [Integer] year when the resource is made publicly available.

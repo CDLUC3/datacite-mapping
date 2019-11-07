@@ -37,6 +37,9 @@ module Datacite
       # @!parse IS_PREVIOUS_VERSION_OF = IsPreviousVersionOf
       new :IS_PREVIOUS_VERSION_OF, 'IsPreviousVersionOf'
 
+      # @!parse IS_VERSION_OF = IsVersionOf
+      new :IS_VERSION_OF, 'IsVersionOf'
+
       # @!parse IS_PART_OF = IsPartOf
       new :IS_PART_OF, 'IsPartOf'
 
