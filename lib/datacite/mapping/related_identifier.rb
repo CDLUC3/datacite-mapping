@@ -37,6 +37,9 @@ module Datacite
       # @!parse IS_PREVIOUS_VERSION_OF = IsPreviousVersionOf
       new :IS_PREVIOUS_VERSION_OF, 'IsPreviousVersionOf'
 
+      # @!parse HAS_VERSION = HasVersion
+      new :HAS_VERSION, 'HasVersion'
+      
       # @!parse IS_VERSION_OF = IsVersionOf
       new :IS_VERSION_OF, 'IsVersionOf'
 
@@ -84,6 +87,24 @@ module Datacite
 
       # @!parse IS_SOURCE_OF = IsSourceOf
       new :IS_SOURCE_OF, 'IsSourceOf'
+
+      # @!parse IS_OBSOLETED_BY = IsObsoletedBy
+      new :IS_OBSOLETED_BY, 'IsObsoletedBy'
+
+      # @!parse OBSOLETES = Obsoletes
+      new :OBSOLETES, 'Obsoletes'
+
+      # @!parse IS_DESCRIBED_BY = IsDescribedBy
+      new :IS_DESCRIBED_BY, 'IsDescribedBy'
+
+      # @!parse DESCRIBES = Describes
+      new :DESCRIBES, 'Describes'
+      
+      # @!parse IS_REQUIRED_BY = IsRequiredBy
+      new :IS_REQUIRED_BY, 'IsRequiredBy'
+
+      # @!parse REQUIRES = Requires
+      new :REQUIRES, 'Requires'
 
     end
 

@@ -16,6 +16,9 @@ module Datacite
       # @!parse DATASET = Dataset
       new :DATASET, 'Dataset'
 
+      # @!parse DATA_PAPER = DataPaper
+      new :DATA_PAPER, 'DataPaper'
+
       # @!parse EVENT = Event
       new :EVENT, 'Event'
 
