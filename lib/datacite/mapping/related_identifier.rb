@@ -39,7 +39,7 @@ module Datacite
 
       # @!parse HAS_VERSION = HasVersion
       new :HAS_VERSION, 'HasVersion'
-      
+
       # @!parse IS_VERSION_OF = IsVersionOf
       new :IS_VERSION_OF, 'IsVersionOf'
 
@@ -99,7 +99,7 @@ module Datacite
 
       # @!parse DESCRIBES = Describes
       new :DESCRIBES, 'Describes'
-      
+
       # @!parse IS_REQUIRED_BY = IsRequiredBy
       new :IS_REQUIRED_BY, 'IsRequiredBy'
 

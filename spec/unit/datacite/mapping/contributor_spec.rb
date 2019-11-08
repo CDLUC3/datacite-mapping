@@ -57,6 +57,13 @@ module Datacite
           contrib.name = 'Hershlag, Natalie'
           expect(contrib.name).to eq('Hershlag, Natalie')
         end
+        it 'sets the name with ContributorName' do
+          contributor = Contributor.allocate
+          contributor.contributor_name = ContributorName.new(value: 'Spencer Tracy')
+          expect(contributor.name).to eq('Spencer Tracy')
+          contributor.name = ContributorName.new(value: 'Katharine Hepburn')
+          expect(contributor.name).to eq('Katharine Hepburn')
+        end
         it 'rejects nil' do
           contrib = Contributor.new(name: 'Hershlag, Natalie', type: ContributorType::PROJECT_MEMBER)
           expect { contrib.name = nil }.to raise_error(ArgumentError)

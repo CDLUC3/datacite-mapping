@@ -115,11 +115,11 @@ module Datacite
       def publisher=(value)
         raise ArgumentError, 'Publisher must have a value' unless value
 
-        if value.is_a?(Publisher)
-          @publisher = value
-        else
-          @publisher = Publisher.new(value: value)
-        end
+        @publisher = if value.is_a?(Publisher)
+                       value
+                     else
+                       Publisher.new(value: value)
+                     end
       end
 
       def publication_year=(value)

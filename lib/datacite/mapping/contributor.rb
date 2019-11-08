@@ -2,6 +2,7 @@
 
 require 'xml/mapping_extensions'
 require 'datacite/mapping/name_identifier'
+require 'datacite/mapping/contributor_name'
 
 module Datacite
   module Mapping
@@ -93,11 +94,26 @@ module Datacite
         self.type = type
       end
 
+      # name can be entered as a string or a ContributorName object, but it will be stored
+      # internally as a ContributorName object
       def name=(value)
-        new_value = value&.strip
-        raise ArgumentError, 'Name cannot be empty or nil' unless new_value && !new_value.empty?
+        raise ArgumentError, 'Name cannot be empty or nil' unless value
 
-        @name = new_value
+        @contributor_name = if value.is_a?(ContributorName)
+                              value
+                            else
+                              ContributorName.new(value: value)
+                            end
+      end
+
+      def contributor_name=(value)
+        raise ArgumentError, 'ContributorName cannot be empty or nil' unless value
+
+        @contributor_name = value
+      end
+
+      def name
+        @contributor_name&.value
       end
 
       def type=(value)
@@ -107,8 +123,8 @@ module Datacite
       end
 
       # @!attribute [rw] name
-      #   @return [String] the personal name of the contributor, in the format `Family, Given`. Cannot be empty or nil
-      text_node :name, 'contributorName'
+      #   @return [String] The personal name of the creator, in the format `Family, Given`. Cannot be empty or nil.
+      object_node :contributor_name, 'contributorName', class: ContributorName
 
       # @!attribute [rw] identifier
       #   @return [NameIdentifier, nil] an identifier for the contributor. Optional.

@@ -7,7 +7,7 @@ require 'datacite/mapping/creator_name'
 
 module Datacite
   module Mapping
-    
+
     # The main researchers involved working on the data, or the authors of the publication in priority order.
     class Creator
       include XML::Mapping
@@ -18,7 +18,6 @@ module Datacite
       # @param given_name [String, nil] The family name of the creator. Optional.
       # @param identifier [NameIdentifier, nil] An identifier for the creator. Optional.
       # @param affiliations [Array<String>, nil] The creator's affiliations. Defaults to an empty list.
-      # rubocop:disable Metrics/ParameterLists
       def initialize(name:, given_name: nil, family_name: nil, identifier: nil, affiliations: [])
         self.name = name
         self.given_name = given_name
@@ -26,18 +25,17 @@ module Datacite
         self.identifier = identifier
         self.affiliations = affiliations
       end
-      # rubocop:enable Metrics/ParameterLists
 
       # name can be entered as a string or a CreatorName object, but it will be stored
       # internally as a CreatorName object
       def name=(value)
         raise ArgumentError, 'Name cannot be empty or nil' unless value
 
-        if value.is_a?(CreatorName)    
-          @creator_name = value
-        else
-          @creator_name = CreatorName.new(value: value)
-        end
+        @creator_name = if value.is_a?(CreatorName)
+                          value
+                        else
+                          CreatorName.new(value: value)
+                        end
       end
 
       def creator_name=(value)
@@ -49,7 +47,7 @@ module Datacite
       def name
         @creator_name&.value
       end
-      
+
       def given_name=(value)
         new_value = value&.strip
         @given_name = new_value

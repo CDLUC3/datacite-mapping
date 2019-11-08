@@ -45,6 +45,13 @@ module Datacite
           creator.name = 'Hedy Lamarr'
           expect(creator.name).to eq('Hedy Lamarr')
         end
+        it 'sets the name with CreatorName' do
+          creator = Creator.allocate
+          creator.creator_name = CreatorName.new(value: 'Spencer Tracy')
+          expect(creator.name).to eq('Spencer Tracy')
+          creator.name = CreatorName.new(value: 'Katharine Hepburn')
+          expect(creator.name).to eq('Katharine Hepburn')
+        end
         it 'rejects nil' do
           creator = Creator.new(name: 'Hedy Lamarr')
           expect { creator.name = nil }.to raise_error(ArgumentError)
