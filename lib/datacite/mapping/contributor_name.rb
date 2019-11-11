@@ -9,9 +9,14 @@ module Datacite
   module Mapping
     class ContributorName
       include XML::Mapping
-      def initialize(type: nil, value:)
+      def initialize(type: nil, language: nil, value:)
         self.type = type
+        self.language = language
         self.value = value
+      end
+
+      def language=(value)
+        @language = value&.strip
       end
 
       def value=(value)
@@ -24,6 +29,10 @@ module Datacite
       # @!attribute [rw] type
       #   @return [NameType, nil] the name type. Optional.
       typesafe_enum_node :type, '@nameType', class: NameType, default_value: nil
+
+      # @!attribute [rw] language
+      #   @return [String, nil] an IETF BCP 47, ISO 639-1 language code identifying the language.
+      text_node :language, '@xml:lang', default_value: nil
 
       # @!attribute [rw] value
       #   @return [String] the name itself.
