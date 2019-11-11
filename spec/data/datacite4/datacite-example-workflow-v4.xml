@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://datacite.org/schema/kernel-4" xsi:schemaLocation="http://datacite.org/schema/kernel-4 http://schema.datacite.org/meta/kernel-4.3/metadata.xsd">
+<resource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://datacite.org/schema/kernel-4" xsi:schemaLocation="http://datacite.org/schema/kernel-4 http://schema.datacite.org/meta/kernel-4/metadata.xsd">
   <identifier identifierType="DOI">10.5072/100044</identifier>
   <creators>
     <creator>
@@ -29,7 +29,7 @@
   <dates>
     <date dateType="Available">2012-12-13</date>
   </dates>
-  <language>en</language>
+ <language>en</language>
   <resourceType resourceTypeGeneral="Workflow">Software</resourceType>
   <relatedIdentifiers>
     <relatedIdentifier relatedIdentifierType="DOI" relationType="IsReferencedBy">10.5072/2047-217X-1-1</relatedIdentifier>
@@ -39,7 +39,10 @@
     <size>31 MB</size>
   </sizes>
   <rightsList>
-    <rights xml:lang="en-US" schemeURI="https://spdx.org/licenses/" rightsIdentifierScheme="SPDX" rightsIdentifier="CC0 1.0" rightsURI="http://creativecommons.org/publicdomain/zero/1.0/"/>  </rightsList>
+    <rights rightsIdentifier="CC0 1.0" xml:lang="en-US"
+	    schemeURI="https://spdx.org/licenses/" rightsIdentifierScheme="SPDX"
+	    rightsURI="http://creativecommons.org/publicdomain/zero/1.0/" />
+  </rightsList>
   <descriptions>
     <description xml:lang="en" descriptionType="Abstract">
       SOAPdenovo2 is the latest de novo genome assembly package from BGI's SOAP (short oligonucleotide analysis package) suite of tools (homepage here: http://soap.genomics.org.cn/). Compared to SOAPdenovo1, this new version has the advantage of a new

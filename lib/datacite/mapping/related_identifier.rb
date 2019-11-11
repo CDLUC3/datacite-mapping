@@ -199,7 +199,7 @@ module Datacite
       # @param related_metadata_scheme [String, nil] the name of the metadata scheme. Used only with `HasMetadata`/`IsMetadataFor`. Optional.
       # @param scheme_uri [URI, nil] the URI of the metadata scheme. Used only with `HasMetadata`/`IsMetadataFor`. Optional.
       # @param scheme_type [String, nil] the type of the metadata scheme. Used only with `HasMetadata`/`IsMetadataFor`. Optional.
-      def initialize(relation_type:, value:, identifier_type:, related_metadata_scheme: nil, scheme_uri: nil, scheme_type: nil) # rubocop:disable Metrics/ParameterLists
+      def initialize(relation_type:, value:, identifier_type:, related_metadata_scheme: nil, scheme_uri: nil, scheme_type: nil)
         self.relation_type = relation_type
         self.value = value
         self.identifier_type = identifier_type

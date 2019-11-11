@@ -2,6 +2,10 @@
 Metrics/LineLength:
   Enabled: False
 
+# Disable parameter-length check; this is determined by the number of XML attributes defined in the DataCite schema
+Metrics/ParameterLists:
+  Enabled: False
+
 # Disable problematic module documentation check (see https://github.com/bbatsov/rubocop/issues/947)
 Style/Documentation:
   Enabled: false
