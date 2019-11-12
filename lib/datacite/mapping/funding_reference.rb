@@ -15,6 +15,9 @@ module Datacite
       # @!parse CROSSREF_FUNDER = 'Crossref Funder ID'
       new :CROSSREF_FUNDER_ID, 'Crossref Funder ID'
 
+      # @!parse ROR = ROR
+      new :ROR, 'ROR'
+
       # @!parse OTHER = Other
       new :OTHER, 'Other'
     end
@@ -24,8 +27,9 @@ module Datacite
 
       # @param type [FunderIdentifierType] the identifier type. Cannot be nil.
       # @param value [String] the identifier value. Cannot be nil.
-      def initialize(type:, value:)
+      def initialize(type:, scheme_uri: nil, value:)
         self.type = type
+        self.scheme_uri = scheme_uri
         self.value = value
       end
 
@@ -48,6 +52,10 @@ module Datacite
       # @!attribute [rw] type
       #   @return [FunderIdentifierType] the identifier type. Cannot be nil.
       typesafe_enum_node :type, '@funderIdentifierType', class: FunderIdentifierType
+
+      # @!attribute [rw] scheme_uri
+      #   @return [URI, nil] the URI of the identifier scheme. Optional.
+      uri_node :scheme_uri, '@schemeURI', default_value: nil
 
       # @!attribute [rw] value
       #   @return [String] the identifier value. Cannot be nil.
