@@ -1151,7 +1151,7 @@ module Datacite
       end
 
       describe '#save_to_file' do
-        xit 'saves to a file' do
+        it 'saves to a file' do
           xml_text = File.read('spec/data/datacite4/datacite-example-full-v4.xml')
           resource = Resource.parse_xml(xml_text)
           Dir.mktmpdir('resource_spec') do |dir|
