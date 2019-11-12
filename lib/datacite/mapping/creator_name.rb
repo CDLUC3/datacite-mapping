@@ -3,7 +3,7 @@
 require 'xml/mapping'
 require 'datacite/mapping/read_only_nodes'
 require 'datacite/mapping/name_identifier'
-require 'datacite/mapping/creator_name'
+require 'datacite/mapping/name_type'
 
 module Datacite
   module Mapping

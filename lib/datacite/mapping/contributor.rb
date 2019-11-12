@@ -126,13 +126,21 @@ module Datacite
       #   @return [String] The personal name of the creator, in the format `Family, Given`. Cannot be empty or nil.
       object_node :contributor_name, 'contributorName', class: ContributorName
 
+      # @!attribute [rw] given_name
+      #   @return [String, nil] The given name of the creator. Optional.
+      text_node :given_name, 'givenName', default_value: nil
+
+      # @!attribute [rw] family_name
+      #   @return [String, nil] The family name of the creator. Optional.
+      text_node :family_name, 'familyName', default_value: nil
+
       # @!attribute [rw] identifier
       #   @return [NameIdentifier, nil] an identifier for the contributor. Optional.
       object_node :identifier, 'nameIdentifier', class: NameIdentifier, default_value: nil
 
       # @!attribute [rw] affiliations
       #   @return [Array<String>] the contributor's affiliations. Defaults to an empty list.
-      array_node :affiliations, 'affiliation', class: String, default_value: []
+      array_node :affiliations, 'affiliation', class: Affiliation, default_value: []
 
       # @!attribute [rw] type
       #   @return [ContributorType] the contributor type. Cannot be nil.

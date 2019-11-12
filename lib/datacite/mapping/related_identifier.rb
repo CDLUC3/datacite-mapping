@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'xml/mapping_extensions'
+require 'datacite/mapping/resource_type'
 
 module Datacite
   module Mapping
@@ -243,6 +244,10 @@ module Datacite
       # @!attribute [rw] related_metadata_scheme
       #   @return [String, nil] the name of the metadata scheme. Used only with `HasMetadata`/`IsMetadataFor`. Optional.
       text_node :related_metadata_scheme, '@relatedMetadataScheme', default_value: nil
+
+      # @!attribute [rw] resource_type_general
+      #    @return [ResourceTypeGeneral] the general resource type
+      typesafe_enum_node :resource_type_general, '@resourceTypeGeneral', class: ResourceTypeGeneral, default_value: nil
 
       # @!attribute [rw] scheme_uri
       #   @return [URI, nil] the URI of the metadata scheme. Used only with `HasMetadata`/`IsMetadataFor`. Optional.

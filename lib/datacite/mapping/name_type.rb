@@ -2,8 +2,6 @@
 
 require 'xml/mapping'
 require 'datacite/mapping/read_only_nodes'
-require 'datacite/mapping/name_identifier'
-require 'datacite/mapping/contributor_name'
 
 module Datacite
   module Mapping

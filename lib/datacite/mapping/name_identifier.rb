@@ -35,9 +35,11 @@ module Datacite
       # @!attribute [rw] scheme
       #   @return [String] the name identifier scheme. Cannot be nil.
       text_node :scheme, '@nameIdentifierScheme'
+
       # @!attribute [rw] scheme_uri
       #   @return [URI, nil] the URI of the identifier scheme. Optional.
       uri_node :scheme_uri, '@schemeURI', default_value: nil
+
       # @!attribute [rw] value
       #   @return [String] the identifier value. Cannot be nil.
       text_node :value, 'text()'

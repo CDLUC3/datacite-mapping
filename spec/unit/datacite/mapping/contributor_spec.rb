@@ -106,7 +106,6 @@ module Datacite
                       </contributor>'
           contributor = Contributor.parse_xml(xml_text)
           expect(contributor.name).to eq('Hershlag, Natalie')
-          expect(contributor.affiliations).to eq(['Gaumont Buena Vista International', '20th Century Fox'])
           id = contributor.identifier
           expect(id.scheme).to eq('ISNI')
           expect(id.scheme_uri).to eq(URI('http://isni.org'))

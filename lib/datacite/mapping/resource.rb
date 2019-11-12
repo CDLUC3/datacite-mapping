@@ -267,7 +267,7 @@ module Datacite
       # can have multiple affiliations.)
       # @return [Array[Array[String]]] An array containing each creator's array of affiliations.
       def creator_affiliations
-        creators.map(&:affiliations)
+        creators.map(&:affiliation_names)
       end
 
       # Convenience method to get the funding contributor.
