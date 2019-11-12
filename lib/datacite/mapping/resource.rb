@@ -190,11 +190,11 @@ module Datacite
       array_node :titles, 'titles', 'title', class: Title
 
       # @!attribute [rw] publisher
-      #   @return [String] the name of the entity that holds, archives, publishes prints, distributes, releases, issues, or produces the resource.
+      #   @return [Publisher] the name of the entity that holds, archives, publishes prints, distributes, releases, issues, or produces the resource.
       object_node :publisher, 'publisher', class: Publisher
 
-      # @!attribute [rw] publisher
-      #   @return [Publisher, nil] the name of the entity that holds, archives, publishes prints, distributes, releases, issues, or produces the resource.
+      # @!attribute [rw] resource_type
+      #   @return [ResourceType, nil] the type of the resource
       object_node :resource_type, 'resourceType', class: ResourceType, default_value: nil
 
       # @!attribute [rw] publication_year
