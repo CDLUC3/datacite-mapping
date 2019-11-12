@@ -164,6 +164,9 @@ module Datacite
 
       # @!parse IGSN = IGSN
       new :IGSN, 'IGSN'
+
+      # @!parse W3ID = w3id
+      new :W3ID, 'w3id'
     end
 
     class Datacite3RidTypeNode < XML::MappingExtensions::TypesafeEnumNode
