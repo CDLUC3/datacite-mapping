@@ -9,7 +9,10 @@
     can now include a nameType and an xml:lang, the simple "name" String in the Contributor object was
     replaced with a ContributorName object, accessed through Contributor.contributor_name, while
     Contributor.name is now a convenience method that allows access to the value as a String.
-  
+- These updates to the gem are fully backwards compatible with respect to the input/output XML, but some changes in the object 
+  model were required to support the more complex XML. So ruby code that worked with version 0.3.0 will require minor updates to use
+  this version.
+
 ## 0.3.0 (2 January 2018)
 
 - Update to Ruby 2.4.1
