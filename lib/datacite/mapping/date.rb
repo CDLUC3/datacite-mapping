@@ -27,6 +27,9 @@ module Datacite
       # @!parse ISSUED = Issued
       new :ISSUED, 'Issued'
 
+      # @!parse OTHER = Other
+      new :OTHER, 'Other'
+
       # @!parse SUBMITTED = Submitted
       new :SUBMITTED, 'Submitted'
 
@@ -35,6 +38,9 @@ module Datacite
 
       # @!parse VALID = Valid
       new :VALID, 'Valid'
+
+      # @!parse WITHDRAWN = Withdrawn
+      new :WITHDRAWN, 'Withdrawn'
 
     end
 
@@ -109,6 +115,10 @@ module Datacite
       # @!attribute [rw] type
       #  @return [DateType] the type of date. Cannot be nil.
       typesafe_enum_node :type, '@dateType', class: DateType
+
+      # @!attribute [rw] date_information
+      #   @return [String] information to clarify a date
+      text_node :date_information, '@dateInformation', default_value: nil
 
       # @!method value
       #   @return [String] The value as a string. May be any [W3C DateTime format](http://www.w3.org/TR/NOTE-datetime).

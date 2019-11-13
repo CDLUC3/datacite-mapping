@@ -21,11 +21,12 @@ module Datacite
       # @param box [GeoLocationBox, nil] the latitude-longitude quadrangle containing the area where the data was gathered or about which the data is focused.
       # @param place [String, nil] the spatial region or named place where the data was gathered or about which the data is focused.
       # @param polygon [GeoLocationPolygon, nil] a drawn polygon area containing the area where the data was gathered or about which the data is focused.
-      def initialize(point: nil, box: nil, place: nil, polygon: nil)
+      def initialize(point: nil, box: nil, place: nil, polygon: nil, polygons: [])
         self.point = point
         self.box = box
         self.place = place
         self.polygon = polygon
+        self.polygons = polygons
       end
 
       def place=(value)
@@ -49,6 +50,10 @@ module Datacite
       # # @!attribute [rw] polygon
       # #   @return [GeoLocationPolygon] a drawn polygon area containing the area where the data was gathered or about which the data is focused.
       object_node :polygon, 'geoLocationPolygon', class: GeoLocationPolygon, default_value: nil
+
+      # @!attribute [rw] polygons
+      #   @return [Array<GeoLocationPolygon>] multiple polygons where data is contained
+      array_node :polygons, 'geoLocationPolygons', 'geoLocationPolygon', class: GeoLocationPolygon, default_value: []
 
       # @!attribute [rw] place
       #   @return [String, nil] the spatial region or named place where the data was gathered or about which the data is focused.

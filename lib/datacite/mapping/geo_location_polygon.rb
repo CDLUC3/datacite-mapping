@@ -13,8 +13,9 @@ module Datacite
       # @param points [Array<GeoLocationPoint>] an array of points defining the polygon area.
       #   Per the spec, the array should contain at least four points, the first and last being
       #   identical to close the polygon.
-      def initialize(points:) # TODO: allow simple array of point args, array of hashes
+      def initialize(points:, in_polygon_point: nil) # TODO: allow simple array of point args, array of hashes
         self.points = points
+        self.in_polygon_point = in_polygon_point
         warn "Polygon should contain at least 4 points, but has #{points.size}" if points.size < 4
         warn "Polygon is not closed; last and first point should be identical, but were: [#{points[0]}], [#{points[-1]}]" unless points[0] == points[-1] || points.size <= 1
       end
@@ -44,6 +45,13 @@ module Datacite
                  default_value: [],
                  marshaller: (proc { |xml, value| marshal_point(xml, value) }),
                  unmarshaller: (proc { |xml| unmarshal_point(xml) })
+
+      # # @!attribute [rw] in_polygon_point
+      # #   @return [InPolygonPoint] a point within the target polygon
+      object_node :in_polygon_point, 'inPolygonPoint',
+                  default_value: nil,
+                  marshaller: (proc { |xml, value| marshal_point(xml, value) }),
+                  unmarshaller: (proc { |xml| unmarshal_point(xml) })
 
       use_mapping :datacite_3
 

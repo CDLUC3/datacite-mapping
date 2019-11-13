@@ -3,24 +3,24 @@
   <identifier identifierType="DOI">10.5072/1003496</identifier>
   <creators>
     <creator>
-      <creatorName>Barton, T.</creatorName>
+      <creatorName nameType="Personal">Barton, T.</creatorName>
     </creator>
     <creator>
-      <creatorName>Bowler, D.</creatorName>
+      <creatorName nameType="Personal">Bowler, D.</creatorName>
     </creator>
   </creators>
   <titles>
-    <title>
+    <title xml:lang="en">
       Archaeological Evaluation, 64 Kenneth Street, Stornoway Isle of Lewis
     </title>
   </titles>
-  <publisher>Scottish Urban Archaeological Trust Ltd.</publisher>
+  <publisher xml:lang="en">Scottish Urban Archaeological Trust Ltd.</publisher>
   <publicationYear>2008</publicationYear>
   <subjects>
-    <subject>Archaeology</subject>
-    <subject>Grey Literature</subject>
+    <subject xml:lang="en">Archaeology</subject>
+    <subject xml:lang="en">Grey Literature</subject>
   </subjects>
-  <language>eng</language>
+  <language>en</language>
   <resourceType resourceTypeGeneral="Collection">Report</resourceType>
   <alternateIdentifiers>
     <alternateIdentifier alternateIdentifierType="ADS Grey Lit ID">4335</alternateIdentifier>
@@ -37,10 +37,10 @@
     <format>image/jpeg</format>
   </formats>
   <rightsList>
-    <rights rightsURI="http://archaeologydataservice.ac.uk/advice/termsOfUseAndAccess">Terms of Use and Access to ADS Resources</rights>
+    <rights xml:lang="en" rightsURI="http://archaeologydataservice.ac.uk/advice/termsOfUseAndAccess">Terms of Use and Access to ADS Resources</rights>
   </rightsList>
   <descriptions>
-    <description descriptionType="Other">
+    <description xml:lang="en" descriptionType="Other">
       Unpublished fieldwork reports (Grey Literature Library)
     </description>
   </descriptions>

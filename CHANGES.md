@@ -1,3 +1,18 @@
+## 0.4.0 (12 November 2019
+
+- Datacite 4.3 support:
+  - Added the new elements and attributes introduced in DataCite 4.1, 4.2, and 4.3.
+  - Updated sample DataCite XML documents to include the new examples introduced in DataCite 4.3.
+  - Reading from XML still supports any version of the DataCite schema from 3.0 through 4.3.
+  - Object mapping for some items was updated to use full objects instead of simple Strings
+    when the DataCite schema introduced more complicated structure. E.g., because ContributorName
+    can now include a nameType and an xml:lang, the simple "name" String in the Contributor object was
+    replaced with a ContributorName object, accessed through Contributor.contributor_name, while
+    Contributor.name is now a convenience method that allows access to the value as a String.
+- These updates to the gem are fully backwards compatible with respect to the input/output XML, but some changes in the object 
+  model were required to support the more complex XML. So ruby code that worked with version 0.3.0 will require minor updates to use
+  this version.
+
 ## 0.3.0 (2 January 2018)
 
 - Update to Ruby 2.4.1

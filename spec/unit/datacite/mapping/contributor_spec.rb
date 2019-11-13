@@ -57,6 +57,13 @@ module Datacite
           contrib.name = 'Hershlag, Natalie'
           expect(contrib.name).to eq('Hershlag, Natalie')
         end
+        it 'sets the name with ContributorName' do
+          contributor = Contributor.allocate
+          contributor.contributor_name = ContributorName.new(value: 'Spencer Tracy')
+          expect(contributor.name).to eq('Spencer Tracy')
+          contributor.name = ContributorName.new(value: 'Katharine Hepburn')
+          expect(contributor.name).to eq('Katharine Hepburn')
+        end
         it 'rejects nil' do
           contrib = Contributor.new(name: 'Hershlag, Natalie', type: ContributorType::PROJECT_MEMBER)
           expect { contrib.name = nil }.to raise_error(ArgumentError)
@@ -99,7 +106,6 @@ module Datacite
                       </contributor>'
           contributor = Contributor.parse_xml(xml_text)
           expect(contributor.name).to eq('Hershlag, Natalie')
-          expect(contributor.affiliations).to eq(['Gaumont Buena Vista International', '20th Century Fox'])
           id = contributor.identifier
           expect(id.scheme).to eq('ISNI')
           expect(id.scheme_uri).to eq(URI('http://isni.org'))

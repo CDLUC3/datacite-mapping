@@ -35,10 +35,10 @@ module Datacite
       end
 
       # Sets the identifier type. Should only be called by the XML mapping engine.
-      # @param v [String]
+      # @param new_value [String]
       #   the identifier type (always 'DOI')
       def identifier_type=(new_value)
-        raise ArgumentError, "Identifier type '#{v}' must be 'DOI'" unless DOI == new_value
+        raise ArgumentError, "Identifier type '#{new_value}' must be 'DOI'" unless DOI == new_value
 
         @identifier_type = new_value
       end
@@ -63,14 +63,12 @@ module Datacite
       fallback_mapping :datacite_3, :_default
     end
 
-    # Custom node to warn (but not blow up) if we read an XML `<resource/>` that's
+    # Custom node to allow (but ignore) if we read an XML `<resource/>` that's
     # missing its `<identifier/>`.
     class IdentifierNode < XML::Mapping::ObjectNode
       include EmptyNodeUtils
       def xml_to_obj(_obj, xml)
         return super if (element = has_element?(xml)) && not_empty(element)
-
-        warn 'Identifier not found; add a valid Identifier to the Resource before saving'
       end
 
       private

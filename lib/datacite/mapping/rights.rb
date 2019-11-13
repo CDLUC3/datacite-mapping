@@ -12,25 +12,51 @@ module Datacite
       # Initializes a new {Rights} object
       #
       # @param uri [URI, nil] a URI for the license. Optional.
-      # @param value [String] the rights statement. Cannot be empty or nil.
-      def initialize(uri: nil, value:)
+      # @param identifier [String, nil] Optional.
+      # @param identifier_scheme [String, nil] Optional.
+      # @param scheme_url [URI, nil] Optional.
+      # @param language [String, nil] Optional.
+      # @param value [String] a rights statement.
+      def initialize(uri: nil, identifier: nil, identifier_scheme: nil, scheme_uri: nil, language: nil, value: nil)
         self.uri = uri
+        self.identifier = identifier
+        self.identifier_scheme = identifier_scheme
+        self.scheme_uri = scheme_uri
+        self.language = language
         self.value = value
       end
 
-      def value=(new_value)
-        raise ArgumentError, 'Value cannot be empty or nil' unless new_value && !new_value.empty?
+      def language=(value)
+        @language = value&.strip
+      end
 
-        @value = new_value.strip
+      def value=(new_value)
+        @value = new_value&.strip
       end
 
       # @!attribute [rw] uri
       #   @return [URI, nil] a URI for the license. Optional.
       uri_node :uri, '@rightsURI', default_value: nil
 
+      # @!attribute [rw] language
+      #   @return [String, nil] an IETF BCP 47, ISO 639-1 language code identifying the language.
+      text_node :language, '@xml:lang', default_value: nil
+
+      # @!attribute [rw] identifier
+      #   @return [String, nil] an identifier for the rights setting. Optional.
+      text_node :identifier, '@rightsIdentifier', default_value: nil
+
+      # @!attribute [rw] identifier_scheme
+      #   @return [String, nil] an identifier for the rights scheme. Optional.
+      text_node :identifier_scheme, '@rightsIdentifierScheme', default_value: nil
+
+      # @!attribute [rw] scheme_uri
+      #   @return [URI, nil] a URI for the rights scheme. Optional.
+      uri_node :scheme_uri, '@schemeURI', default_value: nil
+
       # @!attribute [rw] value
       #   @return [String] the rights statement. Cannot be empty or nil.
-      text_node :value, 'text()'
+      text_node :value, 'text()', default_value: nil
 
       fallback_mapping :datacite_3, :_default
     end

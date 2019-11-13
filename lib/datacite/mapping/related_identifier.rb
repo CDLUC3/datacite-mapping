@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'xml/mapping_extensions'
+require 'datacite/mapping/resource_type'
 
 module Datacite
   module Mapping
@@ -36,6 +37,12 @@ module Datacite
 
       # @!parse IS_PREVIOUS_VERSION_OF = IsPreviousVersionOf
       new :IS_PREVIOUS_VERSION_OF, 'IsPreviousVersionOf'
+
+      # @!parse HAS_VERSION = HasVersion
+      new :HAS_VERSION, 'HasVersion'
+
+      # @!parse IS_VERSION_OF = IsVersionOf
+      new :IS_VERSION_OF, 'IsVersionOf'
 
       # @!parse IS_PART_OF = IsPartOf
       new :IS_PART_OF, 'IsPartOf'
@@ -81,6 +88,24 @@ module Datacite
 
       # @!parse IS_SOURCE_OF = IsSourceOf
       new :IS_SOURCE_OF, 'IsSourceOf'
+
+      # @!parse IS_OBSOLETED_BY = IsObsoletedBy
+      new :IS_OBSOLETED_BY, 'IsObsoletedBy'
+
+      # @!parse OBSOLETES = Obsoletes
+      new :OBSOLETES, 'Obsoletes'
+
+      # @!parse IS_DESCRIBED_BY = IsDescribedBy
+      new :IS_DESCRIBED_BY, 'IsDescribedBy'
+
+      # @!parse DESCRIBES = Describes
+      new :DESCRIBES, 'Describes'
+
+      # @!parse IS_REQUIRED_BY = IsRequiredBy
+      new :IS_REQUIRED_BY, 'IsRequiredBy'
+
+      # @!parse REQUIRES = Requires
+      new :REQUIRES, 'Requires'
 
     end
 
@@ -139,6 +164,9 @@ module Datacite
 
       # @!parse IGSN = IGSN
       new :IGSN, 'IGSN'
+
+      # @!parse W3ID = w3id
+      new :W3ID, 'w3id'
     end
 
     class Datacite3RidTypeNode < XML::MappingExtensions::TypesafeEnumNode
@@ -175,7 +203,7 @@ module Datacite
       # @param related_metadata_scheme [String, nil] the name of the metadata scheme. Used only with `HasMetadata`/`IsMetadataFor`. Optional.
       # @param scheme_uri [URI, nil] the URI of the metadata scheme. Used only with `HasMetadata`/`IsMetadataFor`. Optional.
       # @param scheme_type [String, nil] the type of the metadata scheme. Used only with `HasMetadata`/`IsMetadataFor`. Optional.
-      def initialize(relation_type:, value:, identifier_type:, related_metadata_scheme: nil, scheme_uri: nil, scheme_type: nil) # rubocop:disable Metrics/ParameterLists
+      def initialize(relation_type:, value:, identifier_type:, related_metadata_scheme: nil, scheme_uri: nil, scheme_type: nil)
         self.relation_type = relation_type
         self.value = value
         self.identifier_type = identifier_type
@@ -219,6 +247,10 @@ module Datacite
       # @!attribute [rw] related_metadata_scheme
       #   @return [String, nil] the name of the metadata scheme. Used only with `HasMetadata`/`IsMetadataFor`. Optional.
       text_node :related_metadata_scheme, '@relatedMetadataScheme', default_value: nil
+
+      # @!attribute [rw] resource_type_general
+      #    @return [ResourceTypeGeneral] the general resource type
+      typesafe_enum_node :resource_type_general, '@resourceTypeGeneral', class: ResourceTypeGeneral, default_value: nil
 
       # @!attribute [rw] scheme_uri
       #   @return [URI, nil] the URI of the metadata scheme. Used only with `HasMetadata`/`IsMetadataFor`. Optional.

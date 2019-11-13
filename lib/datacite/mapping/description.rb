@@ -19,6 +19,9 @@ module Datacite
       # @!parse TABLE_OF_CONTENTS = TableOfContents
       new :TABLE_OF_CONTENTS, 'TableOfContents'
 
+      # @!parse TECHNICAL_INFO = TechnicalInfo
+      new :TECHNICAL_INFO, 'TechnicalInfo'
+
       # @!parse OTHER = Other
       new :OTHER, 'Other'
 

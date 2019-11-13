@@ -10,8 +10,13 @@ based on [xml-mapping](http://multi-io.github.io/xml-mapping/) and
 [xml-mapping_extensions](https://github.com/dmolesUC3/xml-mapping_extensions).
 Full API documentation on [RubyDoc.info](http://www.rubydoc.info/github/CDLUC3/datacite-mapping/master/frames).
 
-Supports [Datacite 4.0](https://schema.labs.datacite.org/meta/kernel-4.0/); backward-compatible with 
+Supports [Datacite 4.3](https://schema.labs.datacite.org/meta/kernel-4.3/); backward-compatible with 
 [Datacite 3.1](https://schema.labs.datacite.org/meta/kernel-3/).
+
+Note that although this gem maintains compatibility with multiple
+versions of DataCite XML, changes to DataCite XML sometimes force
+changes to the internal object model of the gem. So different versions
+of this gem may require minor updates to how a part of the model is accessed.
 
 ## Usage
 
@@ -37,13 +42,13 @@ Example:
 require 'datacite/mapping'
 include Datacite::Mapping
 
-resource = Resource.load_from_file('datacite-example-full-v4.0.xml')
+resource = Resource.load_from_file('datacite-example-full-v4.3.xml')
 # => #<Datacite::Mapping::Resource:0x007f97689e87a0 …
 
 abstract = resource.descriptions.find { |d| d.type = DescriptionType::ABSTRACT }
 # => #<Datacite::Mapping::Description:0x007f976aafa330 …
 abstract.value
-# => "XML example of all DataCite Metadata Schema v4.0 properties."
+# => "XML example of all DataCite Metadata Schema v4.3 properties."
 ```
 
 Note that Datacite::Mapping uses the [TypesafeEnum](https://github.com/dmolesUC3/typesafe_enum) gem to represent controlled 

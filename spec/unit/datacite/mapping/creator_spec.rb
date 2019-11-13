@@ -20,7 +20,7 @@ module Datacite
 
         it 'sets affiliations' do
           creator = Creator.new(name: 'Hedy Lamarr', affiliations: ['United Artists', 'Metro-Goldwyn-Mayer'])
-          expect(creator.affiliations).to eq(['United Artists', 'Metro-Goldwyn-Mayer'])
+          expect(creator.affiliation_names).to eq(['United Artists', 'Metro-Goldwyn-Mayer'])
         end
 
         it 'defaults to an empty affiliation array' do
@@ -44,6 +44,13 @@ module Datacite
           creator = Creator.allocate
           creator.name = 'Hedy Lamarr'
           expect(creator.name).to eq('Hedy Lamarr')
+        end
+        it 'sets the name with CreatorName' do
+          creator = Creator.allocate
+          creator.creator_name = CreatorName.new(value: 'Spencer Tracy')
+          expect(creator.name).to eq('Spencer Tracy')
+          creator.name = CreatorName.new(value: 'Katharine Hepburn')
+          expect(creator.name).to eq('Katharine Hepburn')
         end
         it 'rejects nil' do
           creator = Creator.new(name: 'Hedy Lamarr')
@@ -113,7 +120,7 @@ module Datacite
           creator = Creator.allocate
           affiliations = ['United Artists', 'Metro-Goldwyn-Mayer']
           creator.affiliations = affiliations
-          expect(creator.affiliations).to eq(affiliations)
+          expect(creator.affiliation_names).to eq(affiliations)
         end
         it 'treats nil as empty' do
           creator = Creator.new(name: 'Hedy Lamarr', affiliations: ['United Artists', 'Metro-Goldwyn-Mayer'])
@@ -137,7 +144,6 @@ module Datacite
                       </creator>'
           creator = Creator.parse_xml(xml_text)
           expect(creator.name).to eq('Hedy Lamarr')
-          expect(creator.affiliations).to eq(['United Artists', 'Metro-Goldwyn-Mayer'])
           id = creator.identifier
           expect(id.scheme).to eq('ISNI')
           expect(id.scheme_uri).to eq(URI('http://isni.org'))
