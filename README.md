@@ -13,6 +13,11 @@ Full API documentation on [RubyDoc.info](http://www.rubydoc.info/github/CDLUC3/d
 Supports [Datacite 4.3](https://schema.labs.datacite.org/meta/kernel-4.3/); backward-compatible with 
 [Datacite 3.1](https://schema.labs.datacite.org/meta/kernel-3/).
 
+Note that although this gem maintains compatibility with multiple
+versions of DataCite XML, changes to DataCite XML sometimes force
+changes to the internal object model of the gem. So different versions
+of this gem may require minor updates to how a part of the model is accessed.
+
 ## Usage
 
 The core of the Datacite::Mapping library is the `Resource` class, corresponding to the root `<resource/>` element
