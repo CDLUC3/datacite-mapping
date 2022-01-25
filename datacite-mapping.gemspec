@@ -28,10 +28,10 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'typesafe_enum', '~> 0.1', '>= 0.1.7'
   spec.add_dependency 'xml-mapping_extensions', '~> 0.4', '>= 0.4.7'
 
-  spec.add_development_dependency 'bundler', '~> 1.7'
+  spec.add_development_dependency 'bundler', '>= 2.2.33'
   spec.add_development_dependency 'equivalent-xml', '~> 0.6.0'
   spec.add_development_dependency 'github-markup', '~> 1.4'
-  spec.add_development_dependency 'rake', '~> 10.4'
+  spec.add_development_dependency 'rake', '>= 12.3.3'
   spec.add_development_dependency 'redcarpet', '~> 3.3'
   spec.add_development_dependency 'rspec', '~> 3.2'
   spec.add_development_dependency 'rubocop', '~> 0.52'
