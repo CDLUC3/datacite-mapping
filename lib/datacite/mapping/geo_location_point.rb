@@ -31,7 +31,11 @@ module Datacite
       def initialize(*args)
         case args.length
         when 1
-          init_from_hash(args[0])
+          if (args[0].respond_to?(:keys))
+            init_from_hash(**args[0])
+          else
+            raise ArgumentError, "Can't construct GeoLocationPoint from arguments: #{args}"
+          end
         when 2
           init_from_array(args)
         else

@@ -53,22 +53,22 @@ module Datacite
         describe '#identifier' do
           it 'requires an identifier' do
             args.delete(:identifier)
-            expect { Resource.new(args) }.to raise_error(ArgumentError)
+            expect { Resource.new(**args) }.to raise_error(ArgumentError)
           end
 
           it 'requires a non-nil identifier' do
             args[:identifier] = nil
-            expect { Resource.new(args) }.to raise_error(ArgumentError)
+            expect { Resource.new(**args) }.to raise_error(ArgumentError)
           end
 
           it 'can be initialized' do
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.identifier).to eq(identifier)
           end
 
           it 'can be set' do
             new_id = Identifier.new(value: '10.1594/WDCC/CCSRNIES_SRES_B2')
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             resource.identifier = new_id
             expect(resource.identifier).to eq(new_id)
           end
@@ -78,21 +78,21 @@ module Datacite
 
           it 'requires a creator list' do
             args.delete(:creators)
-            expect { Resource.new(args) }.to raise_error(ArgumentError)
+            expect { Resource.new(**args) }.to raise_error(ArgumentError)
           end
 
           it 'requires a non-nil creator list' do
             args[:creators] = nil
-            expect { Resource.new(args) }.to raise_error(ArgumentError)
+            expect { Resource.new(**args) }.to raise_error(ArgumentError)
           end
 
           it 'requires a non-empty creator list' do
             args[:creators] = []
-            expect { Resource.new(args) }.to raise_error(ArgumentError)
+            expect { Resource.new(**args) }.to raise_error(ArgumentError)
           end
 
           it 'can be initialized' do
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.creators).to eq(creators)
           end
 
@@ -102,7 +102,7 @@ module Datacite
               identifier: NameIdentifier.new(scheme: 'ISNI', scheme_uri: URI('http://isni.org/'), value: '0000 0001 1678 4522'),
               affiliations: ['Disney–ABC Television Group']
             )]
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             resource.creators = new_creators
             expect(resource.creators).to eq(new_creators)
           end
@@ -110,7 +110,7 @@ module Datacite
           describe 'creator convenience methods' do
             describe '#creator_names' do
               it 'extracts the creator names' do
-                resource = Resource.new(args)
+                resource = Resource.new(**args)
                 expect(resource.creator_names)
                   .to eq(['Hedy Lamarr', 'Herschlag, Natalie'])
               end
@@ -118,7 +118,7 @@ module Datacite
 
             describe '#creator_affiliations' do
               it 'extracts the creator affiliations' do
-                resource = Resource.new(args)
+                resource = Resource.new(**args)
                 expect(resource.creator_affiliations)
                   .to eq([
                            ['United Artists', 'Metro-Goldwyn-Mayer'],
@@ -132,21 +132,21 @@ module Datacite
         describe '#titles' do
           it 'requires a title list' do
             args.delete(:titles)
-            expect { Resource.new(args) }.to raise_error(ArgumentError)
+            expect { Resource.new(**args) }.to raise_error(ArgumentError)
           end
 
           it 'requires a non-nil title list' do
             args[:titles] = nil
-            expect { Resource.new(args) }.to raise_error(ArgumentError)
+            expect { Resource.new(**args) }.to raise_error(ArgumentError)
           end
 
           it 'requires a non-empty title list' do
             args[:titles] = []
-            expect { Resource.new(args) }.to raise_error(ArgumentError)
+            expect { Resource.new(**args) }.to raise_error(ArgumentError)
           end
 
           it 'can be initialized' do
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.titles).to eq(titles)
           end
 
@@ -156,7 +156,7 @@ module Datacite
               type: TitleType::SUBTITLE,
               value: 'Together with an Appendix of the Same, Containing an Answer to Some Objections, Made by Severall Persons against That Hypothesis'
             )]
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             resource.titles = new_titles
             expect(resource.titles).to eq(new_titles)
           end
@@ -166,22 +166,22 @@ module Datacite
         describe '#publisher' do
           it 'requires a publisher' do
             args.delete(:publisher)
-            expect { Resource.new(args) }.to raise_error(ArgumentError)
+            expect { Resource.new(**args) }.to raise_error(ArgumentError)
           end
           it 'requires a non-nil publisher' do
             args[:publisher] = nil
-            expect { Resource.new(args) }.to raise_error(ArgumentError)
+            expect { Resource.new(**args) }.to raise_error(ArgumentError)
           end
           it 'requires a non-blank publisher' do
             expect { Publisher.new(value: '   ') }.to raise_error(ArgumentError)
           end
           it 'can be initialized' do
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.publisher.value).to eq(publisher)
           end
           it 'can be set' do
             new_publisher = 'University of California'
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             resource.publisher = new_publisher
             expect(resource.publisher.value).to eq(new_publisher)
           end
@@ -189,11 +189,11 @@ module Datacite
             args[:publisher] = Publisher.new(value: '
             University of California
              ')
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.publisher.value).to eq('University of California')
           end
           it 'strips on set' do
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             resource.publisher = Publisher.new(value: '
             University of California
               ')
@@ -204,31 +204,31 @@ module Datacite
         describe '#publication_year' do
           it 'requires a publication_year' do
             args.delete(:publication_year)
-            expect { Resource.new(args) }.to raise_error(ArgumentError)
+            expect { Resource.new(**args) }.to raise_error(ArgumentError)
           end
           it 'requires a non-nil publication_year' do
             args[:publication_year] = nil
-            expect { Resource.new(args) }.to raise_error(ArgumentError)
+            expect { Resource.new(**args) }.to raise_error(ArgumentError)
           end
           it 'requires a four-digit publication_year' do
             args[:publication_year] = 999
-            expect { Resource.new(args) }.to raise_error(ArgumentError)
+            expect { Resource.new(**args) }.to raise_error(ArgumentError)
             args[:publication_year] = 10_000
-            expect { Resource.new(args) }.to raise_error(ArgumentError)
+            expect { Resource.new(**args) }.to raise_error(ArgumentError)
           end
           it 'can be initialized' do
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.publication_year).to eq(publication_year)
           end
           it 'can be set' do
             new_pub_year = 1963
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             resource.publication_year = new_pub_year
             expect(resource.publication_year).to eq(new_pub_year)
           end
           it 'converts strings to integers' do
             new_pub_year = 1963
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             resource.publication_year = new_pub_year.to_s
             expect(resource.publication_year).to eq(new_pub_year)
           end
@@ -236,7 +236,7 @@ module Datacite
 
         describe '#subjects' do
           it 'defaults to empty' do
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.subjects).to eq([])
           end
 
@@ -257,12 +257,12 @@ module Datacite
                 )
               ]
               args[:subjects] = subjects
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.subjects).to eq(subjects)
             end
             it 'can\'t be initialized to nil' do
               args[:subjects] = nil
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.subjects).to eq([])
             end
 
@@ -273,7 +273,7 @@ module Datacite
                 Subject.allocate
               ]
               args[:subjects] = subjects
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.subjects).to eq([subjects[1]])
             end
           end
@@ -294,12 +294,12 @@ module Datacite
                   value: '571.8 Croissance, développement, reproduction biologique (fécondation, sexualité)'
                 )
               ]
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               resource.subjects = subjects
               expect(resource.subjects).to eq(subjects)
             end
             it 'can\'t be set to nil' do
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               resource.subjects = nil
               expect(resource.subjects).to eq([])
             end
@@ -309,7 +309,7 @@ module Datacite
                 Subject.new(value: 'Mammals--Embryology'),
                 Subject.allocate
               ]
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               resource.subjects = subjects
               expect(resource.subjects).to eq([subjects[1]])
             end
@@ -318,7 +318,7 @@ module Datacite
 
         describe '#funding_references' do
           it 'defaults to empty' do
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.funding_references).to eq([])
           end
 
@@ -329,19 +329,19 @@ module Datacite
                 FundingReference.new(name: 'НИИЧАВО', award_number: '164070')
               ]
               args[:funding_references] = funding_references
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.funding_references).to eq(funding_references)
             end
             it 'can\'t be initialized to nil' do
               args[:funding_references] = nil
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.funding_references).to eq([])
             end
           end
 
           describe '#funding_references=' do
             it 'can be set' do
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               funding_references = [
                 FundingReference.new(name: 'Ministry of Magic', award_number: '9¾'),
                 FundingReference.new(name: 'НИИЧАВО', award_number: '164070')
@@ -350,7 +350,7 @@ module Datacite
               expect(resource.funding_references).to eq(funding_references)
             end
             it 'can\'t be set to nil' do
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               resource.funding_references = nil
               expect(resource.funding_references).to eq([])
             end
@@ -359,18 +359,18 @@ module Datacite
 
         describe '#language' do
           it 'defaults to nil' do
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.language).to be_nil
           end
 
           it 'can be initialized' do
             args[:language] = 'en-emodeng'
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.language).to eq('en-emodeng')
           end
 
           it 'can be set' do
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             resource.language = 'en-emodeng'
             expect(resource.language).to eq('en-emodeng')
           end
@@ -379,7 +379,7 @@ module Datacite
         describe '#contributors' do
 
           it 'defaults to empty' do
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.funding_references).to eq([])
           end
 
@@ -390,19 +390,19 @@ module Datacite
                 Contributor.new(name: 'Hedy Lamarr', type: ContributorType::RESEARCHER)
               ]
               args[:contributors] = contributors
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.contributors).to eq(contributors)
             end
             it 'can\'t be initialized to nil' do
               args[:contributors] = nil
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.contributors).to eq([])
             end
           end
 
           describe '#contributors=' do
             it 'can be set' do
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               contributors = [
                 Contributor.new(name: 'Hershlag, Natalie', type: ContributorType::PROJECT_MEMBER),
                 Contributor.new(name: 'Hedy Lamarr', type: ContributorType::RESEARCHER)
@@ -411,7 +411,7 @@ module Datacite
               expect(resource.contributors).to eq(contributors)
             end
             it 'can\'t be set to nil' do
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               resource.contributors = nil
               expect(resource.contributors).to eq([])
             end
@@ -419,7 +419,7 @@ module Datacite
 
           describe 'contributor convenience methods' do
             before(:each) do
-              @resource = Resource.new(args)
+              @resource = Resource.new(**args)
               @funder = Contributor.new(
                 name: 'The Ministry of Magic',
                 identifier: NameIdentifier.new(
@@ -460,7 +460,7 @@ module Datacite
 
         describe '#dates' do
           it 'defaults to empty' do
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.funding_references).to eq([])
           end
 
@@ -471,19 +471,19 @@ module Datacite
                 Date.new(value: '1914-08-04T11:01:06.0123+01:00', type: DateType::AVAILABLE)
               ]
               args[:dates] = dates
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.dates).to eq(dates)
             end
             it 'can\'t be initialized to nil' do
               args[:dates] = nil
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.dates).to eq([])
             end
           end
 
           describe '#dates=' do
             it 'can be set' do
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               dates = [
                 Date.new(value: DateTime.new(1914, 8, 4, 11, 0o1, 6.0123, '+1'), type: DateType::AVAILABLE),
                 Date.new(value: '1914-08-04T11:01:06.0123+01:00', type: DateType::AVAILABLE)
@@ -492,7 +492,7 @@ module Datacite
               expect(resource.dates).to eq(dates)
             end
             it 'can\'t be set to nil' do
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               resource.dates = nil
               expect(resource.dates).to eq([])
             end
@@ -503,13 +503,13 @@ module Datacite
           it 'can be initialized' do
             resource_type = ResourceType.new(resource_type_general: ResourceTypeGeneral::DATASET, value: 'Dataset')
             args[:resource_type] = resource_type
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.resource_type).to eq(resource_type)
           end
 
           it 'can be set' do
             resource_type = ResourceType.new(resource_type_general: ResourceTypeGeneral::DATASET, value: 'Dataset')
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             resource.resource_type = resource_type
             expect(resource.resource_type).to eq(resource_type)
           end
@@ -517,7 +517,7 @@ module Datacite
 
         describe '#alternate_identifiers' do
           it 'defaults to empty' do
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.alternate_identifiers).to eq([])
           end
 
@@ -528,19 +528,19 @@ module Datacite
                 AlternateIdentifier.new(type: 'URL', value: 'http://example.com')
               ]
               args[:alternate_identifiers] = alternate_identifiers
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.alternate_identifiers).to eq(alternate_identifiers)
             end
             it 'can\'t be initialized to nil' do
               args[:alternate_identifiers] = nil
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.alternate_identifiers).to eq([])
             end
           end
 
           describe '#alternate_identifiers=' do
             it 'can be set' do
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               alternate_identifiers = [
                 AlternateIdentifier.new(type: 'URL', value: 'http://example.org'),
                 AlternateIdentifier.new(type: 'URL', value: 'http://example.com')
@@ -549,7 +549,7 @@ module Datacite
               expect(resource.alternate_identifiers).to eq(alternate_identifiers)
             end
             it 'can\'t be set to nil' do
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               resource.alternate_identifiers = nil
               expect(resource.alternate_identifiers).to eq([])
             end
@@ -558,7 +558,7 @@ module Datacite
 
         describe '#related_identifiers' do
           it 'defaults to empty' do
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.related_identifiers).to eq([])
           end
 
@@ -580,19 +580,19 @@ module Datacite
                 )
               ]
               args[:related_identifiers] = related_identifiers
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.related_identifiers).to eq(related_identifiers)
             end
             it 'can\'t be initialized to nil' do
               args[:related_identifiers] = nil
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.related_identifiers).to eq([])
             end
           end
 
           describe '#related_identifiers=' do
             it 'can be set' do
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               related_identifiers = [
                 RelatedIdentifier.new(
                   identifier_type: RelatedIdentifierType::URL,
@@ -612,7 +612,7 @@ module Datacite
               expect(resource.related_identifiers).to eq(related_identifiers)
             end
             it 'can\'t be set to nil' do
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               resource.related_identifiers = nil
               expect(resource.related_identifiers).to eq([])
             end
@@ -621,7 +621,7 @@ module Datacite
 
         describe '#sizes' do
           it 'defaults to empty' do
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.sizes).to eq([])
           end
 
@@ -629,12 +629,12 @@ module Datacite
             it 'can be initialized' do
               sizes = %w[48K 128K]
               args[:sizes] = sizes
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.sizes).to eq(sizes)
             end
             it 'can\'t be initialized to nil' do
               args[:sizes] = nil
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.sizes).to eq([])
             end
           end
@@ -642,12 +642,12 @@ module Datacite
           describe '#sizes=' do
             it 'can be set' do
               sizes = %w[48K 128K]
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               resource.sizes = sizes
               expect(resource.sizes).to eq(sizes)
             end
             it 'can\'t be set to nil' do
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               resource.sizes = nil
               expect(resource.sizes).to eq([])
             end
@@ -656,7 +656,7 @@ module Datacite
 
         describe '#formats' do
           it 'defaults to empty' do
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.formats).to eq([])
           end
 
@@ -664,12 +664,12 @@ module Datacite
             it 'can be initialized' do
               formats = %w[D64 DSK]
               args[:formats] = formats
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.formats).to eq(formats)
             end
             it 'can\'t be initialized to nil' do
               args[:formats] = nil
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.formats).to eq([])
             end
           end
@@ -677,12 +677,12 @@ module Datacite
           describe '#formats=' do
             it 'can be set' do
               formats = %w[D64 DSK]
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               resource.formats = formats
               expect(resource.formats).to eq(formats)
             end
             it 'can\'t be set to nil' do
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               resource.formats = nil
               expect(resource.formats).to eq([])
             end
@@ -691,17 +691,17 @@ module Datacite
 
         describe '#version' do
           it 'defaults to nil' do
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.version).to be_nil
           end
           it 'can be initialized' do
             args[:version] = '9.2.2'
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.version).to eq('9.2.2')
           end
           it 'can be set' do
             new_version = '9.2.2'
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             resource.version = new_version
             expect(resource.version).to eq(new_version)
           end
@@ -709,34 +709,34 @@ module Datacite
             args[:version] = '
             9.2.2
           '
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.version).to eq('9.2.2')
           end
           it 'strips on set' do
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             resource.version = '
             9.2.2
           '
             expect(resource.version).to eq('9.2.2')
           end
           it 'accepts a float' do
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             resource.version = 9.2
             expect(resource.version).to eq('9.2')
           end
           it 'accepts an integer' do
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             resource.version = 9
             expect(resource.version).to eq('9')
           end
           it 'can be initialized' do
             args[:version] = '9.2.2'
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.version).to eq('9.2.2')
           end
           it 'can be set to nil' do
             args[:version] = '9.2.2'
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             resource.version = nil
             expect(resource.version).to be_nil
           end
@@ -744,7 +744,7 @@ module Datacite
 
         describe '#rights_list' do
           it 'defaults to empty' do
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.rights_list).to eq([])
           end
 
@@ -755,19 +755,19 @@ module Datacite
                 Rights.new(value: 'This work is free of known copyright restrictions.', uri: URI('http://creativecommons.org/publicdomain/mark/1.0/'))
               ]
               args[:rights_list] = rights_list
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.rights_list).to eq(rights_list)
             end
             it 'can\'t be initialized to nil' do
               args[:rights_list] = nil
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.rights_list).to eq([])
             end
           end
 
           describe '#rights_list=' do
             it 'can be set' do
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               rights_list = [
                 Rights.new(value: 'CC0 1.0 Universal', uri: URI('http://creativecommons.org/publicdomain/zero/1.0/')),
                 Rights.new(value: 'This work is free of known copyright restrictions.', uri: URI('http://creativecommons.org/publicdomain/mark/1.0/'))
@@ -777,7 +777,7 @@ module Datacite
             end
 
             it 'can\'t be set to nil' do
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               resource.rights_list = nil
               expect(resource.rights_list).to eq([])
             end
@@ -787,7 +787,7 @@ module Datacite
 
         describe '#descriptions' do
           it 'defaults to empty' do
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.descriptions).to eq([])
           end
 
@@ -798,12 +798,12 @@ module Datacite
                 Description.new(language: 'en-us', type: DescriptionType::METHODS, value: 'unsound')
               ]
               args[:descriptions] = descriptions
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.descriptions).to eq(descriptions)
             end
             it 'can\'t be initialized to nil' do
               args[:descriptions] = nil
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.descriptions).to eq([])
             end
 
@@ -814,7 +814,7 @@ module Datacite
                 Description.allocate
               ]
               args[:descriptions] = descriptions
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.descriptions).to eq([descriptions[1]])
             end
           end
@@ -825,12 +825,12 @@ module Datacite
                 Description.new(language: 'en-us', type: DescriptionType::ABSTRACT, value: 'Exterminate all the brutes!'),
                 Description.new(language: 'en-us', type: DescriptionType::METHODS, value: 'unsound')
               ]
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               resource.descriptions = descriptions
               expect(resource.descriptions).to eq(descriptions)
             end
             it 'can\'t be set to nil' do
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               resource.descriptions = nil
               expect(resource.descriptions).to eq([])
             end
@@ -841,7 +841,7 @@ module Datacite
                 Description.new(language: 'en-us', type: DescriptionType::METHODS, value: 'unsound'),
                 Description.allocate
               ]
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               resource.descriptions = descriptions
               expect(resource.descriptions).to eq([descriptions[1]])
             end
@@ -850,7 +850,7 @@ module Datacite
 
         describe '#geo_locations' do
           it 'defaults to empty' do
-            resource = Resource.new(args)
+            resource = Resource.new(**args)
             expect(resource.geo_locations).to eq([])
           end
 
@@ -861,12 +861,12 @@ module Datacite
                 GeoLocation.new(box: GeoLocationBox.new(-33.45, -122.33, 47.61, -70.67))
               ]
               args[:geo_locations] = geo_locations
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.geo_locations).to eq(geo_locations)
             end
             it 'can\'t be initialized to nil' do
               args[:geo_locations] = nil
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.geo_locations).to eq([])
             end
             it 'ignores empty locations' do
@@ -876,14 +876,14 @@ module Datacite
                 GeoLocation.new
               ]
               args[:geo_locations] = geo_locations
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               expect(resource.geo_locations).to eq([geo_locations[1]])
             end
           end
 
           describe '#geo_locations=' do
             it 'can be set' do
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               geo_locations = [
                 GeoLocation.new(point: GeoLocationPoint.new(47.61, -122.33)),
                 GeoLocation.new(box: GeoLocationBox.new(-33.45, -122.33, 47.61, -70.67))
@@ -892,12 +892,12 @@ module Datacite
               expect(resource.geo_locations).to eq(geo_locations)
             end
             it 'can\'t be set to nil' do
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               resource.geo_locations = nil
               expect(resource.geo_locations).to eq([])
             end
             it 'ignores empty locations' do
-              resource = Resource.new(args)
+              resource = Resource.new(**args)
               geo_locations = [
                 GeoLocation.new,
                 GeoLocation.new(point: GeoLocationPoint.new(47.61, -122.33)),

@@ -1,4 +1,8 @@
-## 0.4.0 (12 November 2019
+## 0.5.0 (12 November 2019)
+- Update to Ruby 3.0.4
+- Update to Rubocop 0.93
+
+## 0.4.0 (12 November 2019)
 
 - Datacite 4.3 support:
   - Added the new elements and attributes introduced in DataCite 4.1, 4.2, and 4.3.
