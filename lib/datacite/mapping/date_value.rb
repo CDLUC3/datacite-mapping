@@ -25,16 +25,7 @@ module Datacite
     class DateValue
       include Comparable
 
-      attr_reader :year
-      attr_reader :month
-      attr_reader :day
-      attr_reader :hour
-      attr_reader :minute
-      attr_reader :sec
-      attr_reader :nsec
-      attr_reader :date
-      attr_reader :zone
-      attr_reader :iso_value
+      attr_reader :year, :month, :day, :hour, :minute, :sec, :nsec, :date, :zone, :iso_value
 
       # Creates a new {DateValue}.
       #
@@ -58,7 +49,7 @@ module Datacite
       end
 
       def <=>(other)
-        return nil unless other.class == self.class
+        return nil unless other.instance_of?(self.class)
 
         %i[year month day hour minute sec nsec].each do |v|
           order = send(v) <=> other.send(v)

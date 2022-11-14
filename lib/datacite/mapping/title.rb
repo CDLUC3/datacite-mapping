@@ -26,7 +26,7 @@ module Datacite
       # @param language [String, nil] an IETF BCP 47, ISO 639-1 language code identifying the language.
       # @param value [String] the title itself.
       # @param type [TitleType, nil] the title type. Optional.
-      def initialize(language: nil, value:, type: nil)
+      def initialize(value:, language: nil, type: nil)
         self.language = language
         self.type = type
         self.value = value

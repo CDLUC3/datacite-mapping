@@ -15,8 +15,7 @@ module Datacite
     class GeoLocationPoint
       include Comparable
 
-      attr_reader :latitude
-      attr_reader :longitude
+      attr_reader :latitude, :longitude
 
       # Initializes a new {GeoLocationPoint}. The arguments can be provided
       # either as a named-parameter hash, or as a pair of coordinates in the
@@ -31,11 +30,10 @@ module Datacite
       def initialize(*args)
         case args.length
         when 1
-          if (args[0].respond_to?(:keys))
-            init_from_hash(**args[0])
-          else
-            raise ArgumentError, "Can't construct GeoLocationPoint from arguments: #{args}"
-          end
+          raise ArgumentError, "Can't construct GeoLocationPoint from arguments: #{args}" unless args[0].respond_to?(:keys)
+
+          init_from_hash(**args[0])
+
         when 2
           init_from_array(args)
         else
@@ -69,7 +67,7 @@ module Datacite
       # @return [Fixnum, nil] the sort order (-1, 0, or 1), or nil if `other` is not a
       #   {GeoLocationPoint}
       def <=>(other)
-        return nil unless other.class == self.class
+        return nil unless other.instance_of?(self.class)
 
         %i[latitude longitude].each do |c|
           order = send(c) <=> other.send(c)

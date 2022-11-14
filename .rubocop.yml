@@ -42,3 +42,9 @@ Style/ClassAndModuleChildren:
 Style/MixinUsage:
   Exclude:
     - 'examples/*'
+
+Style/OptionalBooleanParameter:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false

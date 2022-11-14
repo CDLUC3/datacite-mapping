@@ -60,9 +60,7 @@ module Datacite
       include Comparable
       include XML::Mapping
 
-      attr_reader :date_value
-      attr_reader :range_start
-      attr_reader :range_end
+      attr_reader :date_value, :range_start, :range_end
 
       # Initializes a new `Date`
       #
@@ -80,12 +78,15 @@ module Datacite
         @type = val
       end
 
+      # rubocop:disable Metrics/MethodLength
+
       def value=(val) # rubocop:disable Metrics/AbcSize
         parts = val.to_s.split('/', -1) # negative limit so we don't drop trailing empty string
         @date_value, @range_start, @range_end = nil
-        if parts.size == 1
+        case parts.size
+        when 1
           @date_value = DateValue.new(val)
-        elsif parts.size == 2
+        when 2
           @range_start, @range_end = parts.map(&:strip).map { |part| DateValue.new(part) unless part == '' }
           # puts "#{val} -> [#{range_start}, #{range_end}]"
         else
@@ -93,9 +94,10 @@ module Datacite
         end
         @value = date_value ? date_value.to_s : "#{range_start}/#{range_end}"
       end
+      # rubocop:enable Metrics/MethodLength
 
       def <=>(other)
-        return nil unless other.class == self.class
+        return nil unless other.instance_of?(self.class)
 
         %i[date_value range_start range_end type].each do |v|
           order = send(v) <=> other.send(v)

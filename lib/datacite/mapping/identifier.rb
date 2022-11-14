@@ -5,7 +5,7 @@ require 'datacite/mapping/empty_filtering_nodes'
 
 module Datacite
   module Mapping
-    DOI_PATTERN = %r{10\.\S+/\S+}.freeze
+    DOI_PATTERN = %r{10\.\S+/\S+}
 
     # The persistent identifier that identifies the resource.
     #

@@ -129,7 +129,7 @@ module Datacite
       end
 
       def subjects=(value)
-        @subjects = (value&.select(&:value)) || []
+        @subjects = value&.select(&:value) || []
       end
 
       def contributors=(value)
@@ -170,11 +170,11 @@ module Datacite
       end
 
       def descriptions=(value)
-        @descriptions = (value&.select(&:value)) || []
+        @descriptions = value&.select(&:value) || []
       end
 
       def geo_locations=(value)
-        @geo_locations = (value&.select(&:location?)) || []
+        @geo_locations = value&.select(&:location?) || []
       end
 
       # @!attribute [rw] identifier

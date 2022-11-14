@@ -12,7 +12,7 @@ module Datacite
       # @param scheme [Scheme] the name identifier scheme. Cannot be nil.
       # @param scheme_uri [URI, nil] the URI of the identifier scheme. Optional.
       # @param value [String] the identifier value. Cannot be nil.
-      def initialize(scheme:, scheme_uri: nil, value:)
+      def initialize(scheme:, value:, scheme_uri: nil)
         self.scheme = scheme
         self.scheme_uri = scheme_uri
         self.value = value

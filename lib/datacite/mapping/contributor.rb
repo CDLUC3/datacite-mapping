@@ -87,7 +87,7 @@ module Datacite
       # @param identifier [NameIdentifier, nil] an identifier for the contributor. Optional.
       # @param affiliations [Array<Affiliation>] the contributor's affiliations. Defaults to an empty list.
       # @param type [ContributorType] the contributor type. Cannot be nil.
-      def initialize(name:, identifier: nil, affiliations: nil, type:)
+      def initialize(name:, type:, identifier: nil, affiliations: nil)
         self.name = name
         self.identifier = identifier
         self.affiliations = affiliations || []

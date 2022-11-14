@@ -7,8 +7,7 @@ module Datacite
     # Abstract superclass of GeoLocation parsing nodes
     class GeoLocationNode < XML::Mapping::SingleAttributeNode
 
-      attr_reader :geom_class
-      attr_reader :coord_elements
+      attr_reader :geom_class, :coord_elements
 
       def initialize(*args)
         raise 'No geometry class provided' unless @geom_class
@@ -30,7 +29,7 @@ module Datacite
       end
 
       def set_attr_value(xml, value)
-        raise "Invalid value: expected #{geom_class} instance, was #{value || 'nil'}" unless value&.is_a?(geom_class)
+        raise "Invalid value: expected #{geom_class} instance, was #{value || 'nil'}" unless value.is_a?(geom_class)
 
         element = @path.first(xml, ensure_created: true)
 
