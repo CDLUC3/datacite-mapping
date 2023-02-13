@@ -9,7 +9,7 @@ module Datacite
   module Mapping
     class CreatorName
       include XML::Mapping
-      def initialize(type: nil, language: nil, value:)
+      def initialize(value:, type: nil, language: nil)
         self.type = type
         self.language = language
         self.value = value

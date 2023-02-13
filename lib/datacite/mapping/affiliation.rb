@@ -8,7 +8,7 @@ module Datacite
     class Affiliation
       include XML::Mapping
 
-      def initialize(identifier: nil, identifier_scheme: nil, scheme_uri: nil, value:)
+      def initialize(value:, identifier: nil, identifier_scheme: nil, scheme_uri: nil)
         self.identifier = identifier
         self.identifier_scheme = identifier_scheme
         self.scheme_uri = scheme_uri

@@ -86,7 +86,7 @@ module Datacite
       # @param type [DescriptionType] the description type.
       # @param value [String] the description itself. See {Description} for notes on special
       #     handling of `<br/>` tags.
-      def initialize(language: nil, type:, value:)
+      def initialize(type:, value:, language: nil)
         self.language = language
         self.type = type
         self.value = value

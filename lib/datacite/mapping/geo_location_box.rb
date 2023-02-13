@@ -19,10 +19,7 @@ module Datacite
     class GeoLocationBox
       include Comparable
 
-      attr_reader :south_latitude
-      attr_reader :west_longitude
-      attr_reader :north_latitude
-      attr_reader :east_longitude
+      attr_reader :south_latitude, :west_longitude, :north_latitude, :east_longitude
 
       # Initializes a new {GeoLocationBox}. The arguments can be provided
       # either as a named-parameter hash, or as a list of four coordinates
@@ -51,7 +48,10 @@ module Datacite
       def initialize(*args)
         case args.length
         when 1
-          init_from_hash(args[0])
+          raise ArgumentError, "Can't construct GeoLocationBox from arguments: #{args}" unless args[0].respond_to?(:keys)
+
+          init_from_hash(**args[0])
+
         when 4
           init_from_array(args)
         else
@@ -99,7 +99,7 @@ module Datacite
       # @return [Fixnum, nil] the sort order (-1, 0, or 1), or nil if `other` is not a
       #   {GeoLocationBox}
       def <=>(other)
-        return nil unless other.class == self.class
+        return nil unless other.instance_of?(self.class)
 
         %i[south_latitude west_longitude north_latitude east_longitude].each do |c|
           order = send(c) <=> other.send(c)

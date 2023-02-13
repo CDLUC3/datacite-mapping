@@ -27,7 +27,7 @@ module Datacite
 
       # @param type [FunderIdentifierType] the identifier type. Cannot be nil.
       # @param value [String] the identifier value. Cannot be nil.
-      def initialize(type:, scheme_uri: nil, value:)
+      def initialize(type:, value:, scheme_uri: nil)
         self.type = type
         self.scheme_uri = scheme_uri
         self.value = value
@@ -65,7 +65,7 @@ module Datacite
     class AwardNumber
       include XML::Mapping
 
-      def initialize(uri: nil, value:)
+      def initialize(value:, uri: nil)
         self.uri = uri
         self.value = value
       end

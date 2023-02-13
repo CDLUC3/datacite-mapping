@@ -20,7 +20,7 @@ module Datacite
           iso8601_secs: '1914-08-04T11:01:06+01:00',
           iso8601_frac: '1914-08-04T11:01:06.0123+01:00'
         }
-        @dates = values.map { |format, v| [format, DateValue.new(v)] }.to_h
+        @dates = values.transform_values { |v| DateValue.new(v) }
       end
 
       describe '#initialize' do

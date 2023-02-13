@@ -39,10 +39,13 @@ module Datacite
         ReadOnlyNodes.warn(warning)
       end
 
+      # rubocop:disable Lint/UselessMethodDefinition
       # public to allow testing
       def self.warn(warning)
         super
       end
+
+      # rubocop:enable Lint/UselessMethodDefinition
     end
 
     class ReadOnlyTextNode < XML::Mapping::TextNode

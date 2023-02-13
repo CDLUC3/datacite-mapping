@@ -14,7 +14,7 @@ module Datacite
       # @param scheme_uri [URI, nil] the URI of the subject scheme or classification code or authority if one is used. Optional.
       # @param language [String, nil] an IETF BCP 47, ISO 639-1 language code identifying the language.
       # @param value [String] the subject itself.
-      def initialize(scheme: nil, scheme_uri: nil, language: nil, value:)
+      def initialize(value:, scheme: nil, scheme_uri: nil, language: nil)
         self.scheme = scheme
         self.scheme_uri = scheme_uri
         self.language = language
