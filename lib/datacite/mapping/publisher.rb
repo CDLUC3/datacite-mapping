@@ -24,12 +24,6 @@ module Datacite
         @language = value&.strip
       end
 
-      def scheme=(new_value)
-        raise ArgumentError, 'Scheme cannot be empty or nil' unless new_value && !new_value.empty?
-
-        @scheme = new_value
-      end
-
       def value=(value)
         new_value = value&.strip
         raise ArgumentError, 'Value cannot be empty or nil' unless new_value && !new_value.empty?
