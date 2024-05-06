@@ -12,7 +12,7 @@ module Datacite
       # Initializes a new {Publisher}
       # @param language [String, nil] an IETF BCP 47, ISO 639-1 language code identifying the language.
       # @param value [String] name of the publisher
-      def initialize(value:, language: nil, , identifier: nil, identifier_scheme: nil, scheme_uri: nil)
+      def initialize(value:, language: nil, identifier: nil, identifier_scheme: nil, scheme_uri: nil)
         self.language = language
         self.identifier = identifier
         self.identifier_scheme = identifier_scheme
